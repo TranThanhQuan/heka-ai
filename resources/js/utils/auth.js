@@ -68,7 +68,7 @@ export async function silentLoginSSO(code) {
                 if (data?.data?.accessToken && data?.data?.refreshToken) {
                     localStorage.setItem('accessToken', data.data.accessToken);
                     localStorage.setItem('refreshToken', data.data.refreshToken);
-                    eventTracking('login_success', '');
+                    // eventTracking('login_success', '');
                     // nếu có priceId thì gọi checkout
                     // Đợi 500ms rồi gọi getUserInfo
                     setTimeout(() => {
@@ -99,3 +99,74 @@ export async function silentLoginSSO(code) {
 
     }
 }
+
+
+export async function getUserInfo() {
+    let accessToken = localStorage.getItem('accessToken');
+    const backendDomain = import.meta.env.VITE_BACKEND_DOMAIN;
+    const bundleId = import.meta.env.VITE_BUNDLE_ID;
+    showLoadingScreen();
+
+    try {
+      const res = await fetch(`${backendDomain}/saas-user-service/v1/users/me`, {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${accessToken}`,
+          "x-api-bundleid": bundleId
+        }
+      });
+      hideLoadingScreen();
+      const data = await res.json();
+      if (res.ok && data.data) {
+        const userInfo = data.data;
+
+        if (userInfo.email) {
+          localStorage.setItem("email", userInfo.email);
+        }
+        // Lưu group name nếu có
+        const groupName = userInfo.groups?.[0]?.name || null;
+        if (groupName) {
+          localStorage.setItem("group_name", groupName);
+        }
+
+        const attributes = userInfo.attributes || {};
+        for (const key in attributes) {
+          const valueArray = attributes[key];
+          if (Array.isArray(valueArray)) {
+            localStorage.setItem(key, valueArray[0]);
+          }
+        }
+
+
+        // Lưu tất cả các attributes vào localStorage
+
+        if (localStorage.getItem('gender') ||
+          localStorage.getItem('year_of_birth') &&
+          localStorage.getItem('activity') &&
+          localStorage.getItem('measure_type') &&
+          localStorage.getItem('current_weight') &&
+          localStorage.getItem('current_height') &&
+          localStorage.getItem('target_cal')) {
+        }
+
+        return false;
+
+      } else {
+
+        Swal.fire({
+          title: 'Session expired',
+          text: 'Please sign in again to continue.',
+          icon: 'warning',
+          confirmButtonText: 'OK'
+        }).then(() => {
+          handleLogout();
+
+          showLoginModal();
+        });
+      }
+    } catch (err) {
+    //   console.error("Lỗi mạng khi lấy thông tin người dùng:", err);
+    }
+
+    hideLoadingScreen();
+  }
