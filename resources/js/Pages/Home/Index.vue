@@ -31,7 +31,7 @@
                 </a>
 
                 <!-- nếu đã login -> nút logout -->
-                <a id="logoutBtn" href="javascript:void(0)" @click="handleLogout" class="text-gray-700 hover:text-black font-medium hidden">
+                <a id="logoutBtn" href="javascript:void(0)" @click="logout" class="text-gray-700 hover:text-black font-medium hidden">
                     Logout
                 </a>
             </div>
@@ -378,11 +378,13 @@ const code = new URLSearchParams(window.location.search).get('code');
 if (code) {
     silentLoginSSO(code);
 }else{
+    console.log('checkLoginStatus');
     checkLoginStatus();
 }
 
 const checkLoginStatus = () => {
     if (localStorage.getItem('accessToken')) {
+        console.log('getUserInfo');
         getUserInfo();
         document.getElementById('logoutBtn').style.display = 'inline-block';
         document.getElementById('loginBtn').style.display = 'none';
@@ -392,17 +394,13 @@ const checkLoginStatus = () => {
     }
 }
 
-const handleLogout = () => {
+const logout = () => {
     handleLogout();
     document.getElementById('logoutBtn').style.display = 'none';
     document.getElementById('loginBtn').style.display = 'inline-block';
 }
 
-window.handleLogout = handleLogout;
-window.checkLoginStatus = checkLoginStatus;
-window.loginWithGoogle = loginWithGoogle;
-window.loginWithApple = loginWithApple;
-window.getUserInfo = getUserInfo;
+
 
 const loginWithGoogle = () => {
   login('google')
@@ -412,7 +410,11 @@ const loginWithApple = () => {
   login('apple')
 }
 
-
+window.logout = logout;
+window.checkLoginStatus = checkLoginStatus;
+window.loginWithGoogle = loginWithGoogle;
+window.loginWithApple = loginWithApple;
+window.getUserInfo = getUserInfo;
 const isOpen = ref(false);
 
 const images = [

@@ -37,10 +37,49 @@ export async function login(idp) {
 
 
 
-export function handleLogout() {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-    localStorage.removeItem('email');
+export async function handleLogout() {
+    try {
+        const refreshToken = localStorage.getItem('refreshToken');
+        const backendDomain = import.meta.env.VITE_BACKEND_DOMAIN;
+        const bundleId = import.meta.env.VITE_BUNDLE_ID;
+
+        if (!refreshToken) {
+            window.location.href = localStorage.getItem('redirectUri') || '/';
+            localStorage.clear();
+            return;
+        }
+
+        const response = await fetch(`${backendDomain}/saas-user-service/v1/users/logout`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'x-api-bundleid': bundleId
+            },
+            body: JSON.stringify({ refreshToken })
+        });
+
+        if (!response.ok) {
+            // const errorData = await response.json().catch(() => ({}));
+            // throw new Error(errorData.message || 'Logout failed. Please try again.');
+            localStorage.clear();
+
+            // Swal.fire({
+            //     title: 'Session expired',
+            //     text: 'Please sign in again to continue.',
+            //     icon: 'warning',
+            //     confirmButtonText: 'Log In'
+            // }).then(() => {
+            //     // handleLogout();
+            //     // showLoginModal();
+            // });
+        }else {
+            window.location.href = localStorage.getItem('redirectUri') || '/';
+            localStorage.clear();
+        }
+    } catch (error) {
+        // console.error('Logout error:', error);
+        // showResponse('Error', error.message || 'An error occurred during logout', false);
+    }
 }
 
 
