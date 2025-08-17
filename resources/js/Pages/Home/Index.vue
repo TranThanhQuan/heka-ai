@@ -365,7 +365,17 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
 import { ref, onMounted, onBeforeUnmount } from "vue";
-import { login, handleLogout } from '@/utils/auth';
+import { login, handleLogout, silentLoginSSO } from '@/utils/auth';
+
+// kiểm tra param
+const code = new URLSearchParams(window.location.search).get('code');
+
+if (code) {
+    silentLoginSSO(code);
+
+}
+
+
 
 const loginWithGoogle = () => {
   login('google')

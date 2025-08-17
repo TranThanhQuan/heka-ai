@@ -3,6 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 export async function login(idp) {
+    showLoadingScreen();
+
     const codeVerifier = generateCodeVerifier();
     const codeChallenge = await generateCodeChallenge(codeVerifier);
 
@@ -27,6 +29,8 @@ export async function login(idp) {
             prompt: 'consent select_account',
         });
 
+    hideLoadingScreen();
+
     window.location.href = authUrl;
 }
 
@@ -44,8 +48,12 @@ export async function silentLoginSSO(code) {
     const codeVerifier = localStorage.getItem('pkce_code_verifier');
     const idp = localStorage.getItem('idp');
     const deviceId = localStorage.getItem('deviceId');
-    const bundleId = localStorage.getItem('bundleId');
+    const bundleId = import.meta.env.VITE_BUNDLE_ID;
+    const backendDomain = import.meta.env.VITE_BACKEND_DOMAIN;
     const redirectUri = window.location.origin + window.location.pathname;
+
+
+
     if (code) {
         //thêm loading
         showLoadingScreen();
