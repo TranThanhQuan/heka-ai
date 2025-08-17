@@ -10,6 +10,7 @@ export async function login(idp) {
 
     localStorage.setItem('pkce_code_verifier', codeVerifier);
     localStorage.setItem('idp', idp);
+    localStorage.setItem('deviceId', 'device-' + uuidv4());
 
     const realm = getRealm(import.meta.env.VITE_BUNDLE_ID);
     const clientId = import.meta.env.VITE_CLIENT_ID;
@@ -51,11 +52,7 @@ export async function silentLoginSSO(code) {
     const bundleId = import.meta.env.VITE_BUNDLE_ID;
     const backendDomain = import.meta.env.VITE_BACKEND_DOMAIN;
     const redirectUri = window.location.origin + window.location.pathname;
-
-
-
     if (code) {
-        //thêm loading
         showLoadingScreen();
 
         fetch(backendDomain + '/saas-user-service/v1/users/silent-login-sso', {
@@ -97,7 +94,7 @@ export async function silentLoginSSO(code) {
             })
             .catch((error) => {
                 hideLoadingScreen();
-                // console.error('Error during login:', error);
+                console.error('Error during login:', error);
             });
 
     }
