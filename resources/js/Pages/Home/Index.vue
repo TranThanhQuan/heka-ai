@@ -370,7 +370,7 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
 import { ref, onMounted, onBeforeUnmount } from "vue";
-import { login, handleLogout, silentLoginSSO, getUserInfo } from '@/utils/auth';
+import { login, silentLoginSSO, getUserInfo, handleLogout } from '@/utils/auth';
 
 // kiểm tra param
 const code = new URLSearchParams(window.location.search).get('code');
@@ -379,20 +379,16 @@ if (code) {
     silentLoginSSO(code);
 }else{
     console.log('checkLoginStatus');
-    checkLoginStatus();
-}
-
-const checkLoginStatus = () => {
     if (localStorage.getItem('accessToken')) {
         console.log('getUserInfo');
         getUserInfo();
-        document.getElementById('logoutBtn').style.display = 'inline-block';
-        document.getElementById('loginBtn').style.display = 'none';
+
     }else{
-        document.getElementById('logoutBtn').style.display = 'none';
-        document.getElementById('loginBtn').style.display = 'inline-block';
+         console.log('not login');
     }
 }
+
+
 
 const logout = () => {
     handleLogout();
@@ -411,7 +407,7 @@ const loginWithApple = () => {
 }
 
 window.logout = logout;
-window.checkLoginStatus = checkLoginStatus;
+// window.checkLoginStatus = checkLoginStatus;
 window.loginWithGoogle = loginWithGoogle;
 window.loginWithApple = loginWithApple;
 window.getUserInfo = getUserInfo;

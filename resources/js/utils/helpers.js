@@ -5,7 +5,6 @@ export function getRealm(bundleId) {
 }
 
 
-
 export function generateRandomState() {
     return Math.random().toString(36).substring(2, 16);
 }
