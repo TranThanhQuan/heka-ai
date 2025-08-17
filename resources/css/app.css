@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+    font-family: 'Inter', sans-serif !important;
+}
+
+.typewriter {
+    @apply relative inline-block font-mono whitespace-nowrap overflow-hidden;
+}
+
+.typewriter::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: white;
+    animation-fill-mode: forwards;
+}
+
+.vue-scroll-picker-item[aria-selected=true] {
+    color: #000 !important;
+    font-weight: bold !important;
+}
+
+
+.vue-scroll-picker-item[aria-selected='true'].invalid-weight .text-black{
+    color: red !important;
+  }
