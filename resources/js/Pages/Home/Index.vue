@@ -26,8 +26,13 @@
                 <a href="#">
                     <img src="/images/home/appstore_icon.png" alt="App Store" class="h-9" />
                 </a>
-                <a href="javascript:void(0)" @click="loginWithGoogle" class="text-gray-700 hover:text-black font-medium">
+                <a id="loginBtn" href="javascript:void(0)" @click="loginWithGoogle" class="text-gray-700 hover:text-black font-medium">
                     Sign In
+                </a>
+
+                <!-- nếu đã login -> nút logout -->
+                <a id="logoutBtn" href="javascript:void(0)" @click="handleLogout" class="text-gray-700 hover:text-black font-medium hidden">
+                    Logout
                 </a>
             </div>
 
@@ -365,17 +370,39 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
 import { ref, onMounted, onBeforeUnmount } from "vue";
-import { login, handleLogout, silentLoginSSO } from '@/utils/auth';
+import { login, handleLogout, silentLoginSSO, getUserInfo } from '@/utils/auth';
 
 // kiểm tra param
 const code = new URLSearchParams(window.location.search).get('code');
 
 if (code) {
     silentLoginSSO(code);
-
+}else{
+    checkLoginStatus();
 }
 
+const checkLoginStatus = () => {
+    if (localStorage.getItem('accessToken')) {
+        getUserInfo();
+        document.getElementById('logoutBtn').style.display = 'inline-block';
+        document.getElementById('loginBtn').style.display = 'none';
+    }else{
+        document.getElementById('logoutBtn').style.display = 'none';
+        document.getElementById('loginBtn').style.display = 'inline-block';
+    }
+}
 
+const handleLogout = () => {
+    handleLogout();
+    document.getElementById('logoutBtn').style.display = 'none';
+    document.getElementById('loginBtn').style.display = 'inline-block';
+}
+
+window.handleLogout = handleLogout;
+window.checkLoginStatus = checkLoginStatus;
+window.loginWithGoogle = loginWithGoogle;
+window.loginWithApple = loginWithApple;
+window.getUserInfo = getUserInfo;
 
 const loginWithGoogle = () => {
   login('google')

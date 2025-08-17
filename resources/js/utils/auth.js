@@ -69,11 +69,7 @@ export async function silentLoginSSO(code) {
                     localStorage.setItem('accessToken', data.data.accessToken);
                     localStorage.setItem('refreshToken', data.data.refreshToken);
                     // eventTracking('login_success', '');
-                    // nếu có priceId thì gọi checkout
-                    // Đợi 500ms rồi gọi getUserInfo
-                    setTimeout(() => {
-                        getUserInfo();
-                    }, 500);
+
 
                     // chuyển hướng redirectUri
                     window.location.href = redirectUri;
@@ -102,9 +98,9 @@ export async function silentLoginSSO(code) {
 
 
 export async function getUserInfo() {
-    let accessToken = localStorage.getItem('accessToken');
-    const backendDomain = import.meta.env.VITE_BACKEND_DOMAIN;
-    const bundleId = import.meta.env.VITE_BUNDLE_ID;
+    var accessToken = localStorage.getItem('accessToken');
+    var backendDomain = import.meta.env.VITE_BACKEND_DOMAIN;
+    var bundleId = import.meta.env.VITE_BUNDLE_ID;
     showLoadingScreen();
 
     try {
@@ -140,7 +136,7 @@ export async function getUserInfo() {
 
         // Lưu tất cả các attributes vào localStorage
 
-        if (localStorage.getItem('gender') ||
+        if (localStorage.getItem('gender') &&
           localStorage.getItem('year_of_birth') &&
           localStorage.getItem('activity') &&
           localStorage.getItem('measure_type') &&
