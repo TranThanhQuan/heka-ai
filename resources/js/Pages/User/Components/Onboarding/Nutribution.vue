@@ -24,18 +24,20 @@
         </div>
 
         <!-- Modal -->
-        <NutritionModal :visible="showModal" @close="showModal = false" />
+        <PaywallModal :visible="showModal" backgroundUrl="/images/onboarding/modal/bg_nutrition_modal.png" @close="showModal = false" @accepted="handleAccepted" />
 
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import NutritionModal from './Modal/NutritionModal.vue'
+import PaywallModal from './Modal/PaywallModal.vue'
 defineEmits(['change-screen'])
-defineProps({
-    message: String
-})
+
+const handleAccepted = (priceId) => {
+    console.log('Price ID:', priceId)
+    // Thực hiện các hành động sau khi người dùng chấp nhận thanh toán
+}
 
 const showModal = ref(false)
 </script>

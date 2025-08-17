@@ -1,45 +1,86 @@
 <template>
-    <UserLayout>
-        <!-- hero section -->
-        <Hero></Hero>
-        <!-- end hero section -->
-        <div class="bg-white">
-            <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-                <h2 class="text-2xl font-bold tracking-tight text-gray-900">Latest product list</h2>
+    <header class="sticky-top">
+        <nav class="navbar navbar-expand-lg sticky-top bg-white shadow-sm">
+            <div class="container-fluid px-3 px-lg-5">
+                <!-- Logo -->
+                <a class="navbar-brand" href="/">
+                    <img src="/assets/images/logo.svg" alt="Logo" width="100" class="me-2">
+                    </a>
 
-                <!-- product list component -->
-                <Products :products="products"></Products>
+                <!-- Toggle button -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Collapsible Content -->
+                <div class="collapse navbar-collapse justify-content-between" id="mainNavbar">
+                    <!-- Nav links -->
+
+                    <ul class="navbar-nav mb-2 mb-lg-0 mx-auto">
+                        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#price">Premium Access</a></li>
+
+                        <!-- Hiển thị ở mobile nếu chưa đăng nhập -->
+                        <li class="nav-item d-lg-none" id="mobileLoginBtn">
+                            <a class="nav-link" href="javascript:showLoginModal();">Sign In</a>
+                        </li>
+
+                        <!-- Hiển thị ở mobile nếu đã đăng nhập -->
+                        <li class="nav-item d-lg-none" id="mobileSubBtn" style="display: none;">
+                            <a class="nav-link subscriptionLink" target="_blank" href="/">Subscription Management</a>
+                        </li>
+                        <li class="nav-item d-lg-none" id="mobileLogoutBtn" style="display: none;">
+                            <a class="nav-link" href="javascript:handleLogout();">Sign Out</a>
+                        </li>
+                    </ul>
 
 
-                <!-- end product list -->
 
-                <div class="flex justify-center mt-5">
-                    <Link :href="route('products.index')"
-                        class="text-gray-900 bg-gradient-to-r from-teal-200 to-lime-200 hover:bg-gradient-to-l hover:from-teal-200 hover:to-lime-200 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-teal-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
-                    More >>></Link>
+                    <div class="app-buttons d-none d-lg-flex justify-content-center align-items-center mt-3 mt-lg-0">
+                        <!-- App store buttons -->
+                        <a id="app-button-and1" class="btn-download-tracking"
+                            href="https://play.google.com/store/apps/details?id=com.heka.ai.caloriecounter.mealplan">
+                            <img src="/assets/images/chplay_icon.png" alt="App Store" height="40" class="me-2">
+                        </a>
+                        <a id="app-button-ios1" class="btn-download-tracking me-3"
+                            href="https://apps.apple.com/app/heka-ai-calorie-counter/id6747111547">
+                            <img src="/assets/images/appstore_icon.png" alt="Google Play" height="40">
+                        </a>
+
+                        <!-- Login button -->
+                        <a href="javascript:showLoginModal();" id="loginBtn" class="text-decoration-none text-dark">
+                            Sign In
+                        </a>
+
+                        <!-- User dropdown -->
+                        <div class="dropdown ms-3" id="userDropdown" style="display: none;">
+                            <a href="#" class="text-dark text-decoration-none dropdown-toggle" id="userMenuLink"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle fs-3"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuLink">
+                                <li><a class="dropdown-item subscriptionLink" href="/">Subscription Management</a></li>
+                                <li><a class="dropdown-item" href="javascript:handleLogout();">Sign Out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
 
 
                 </div>
-
             </div>
-        </div>
+        </nav>
 
-    </UserLayout>
+    </header>
+
 
 </template>
 
 <script setup>
-import UserLayout from './Layouts/UserLayout.vue';
-// import { defineProps } from 'vue';
-import { Link, router } from '@inertiajs/vue3';
-import Hero from './Layouts/Hero.vue';
-import Products from './Components/Product.vue';
 
 
-// product list
-const props = defineProps({
-    products: Array
-});
+
 
 
 

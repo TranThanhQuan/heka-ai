@@ -81,20 +81,29 @@
                 <div class="flex items-center justify-center px-4 py-2">
                     <button type="button"
                         class="text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 w-full sm:w-1/2 md:w-1/4"
-                        @click="$emit('change-screen', 'SignIn')">
+                        @click="next">
                         {{ contentData.buttonText }}
                     </button>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <PaywallModal
+      :visible="showModal"
+      :backgroundUrl="modalBackground"
+      @close="showModal = false"
+      @accepted="handleAccepted"
+    />
+
+
 </template>
-
-
-
 
 <script setup>
 import { computed, ref, onMounted } from 'vue'
+
+import PaywallModal from './Modal/PaywallModal.vue'
 const showMainContent = ref(false)
 
 onMounted(() => {
@@ -114,10 +123,31 @@ const props = defineProps({
     required: true
   }
 })
+
+
+
+
 const showIntro = ref(props.userData.showIntro ?? true)
 const emit = defineEmits(['change-screen'])
-
+const showModal = ref(false)
 let unhappyCase = false;
+const modalBackground = ref('')
+const next = () => {
+    if (unhappyCase) emit('change-screen', 'GoalWeight', props.userData, false)
+    else {
+        //  gọi modal truyền vào background
+        if(props.userData.goal === 'lose') modalBackground.value = '/images/onboarding/modal/bg_lose_modal.png'
+        else if(props.userData.goal === 'gain') modalBackground.value = '/images/onboarding/modal/bg_gain_modal.png'
+        else if(props.userData.goal === 'maintain') modalBackground.value = '/images/onboarding/modal/bg_maintain_modal.png'
+        showModal.value = true;
+    }
+}
+
+const handleAccepted = (priceId) => {
+  console.log('Price ID:', priceId)
+  // Thực hiện các hành động sau khi người dùng chấp nhận thanh toán
+}
+
 
 const back = () => {
   emit('change-screen', 'GoalWeight', props.userData, false)
@@ -178,7 +208,9 @@ const goalDate = computed(() => {
 const contentData = computed(() => {
   const goal = props.userData.goal
   const current = props.userData.current_weight
-  const target = props.userData.goal_weight
+  let target = props.userData.goal_weight
+
+  if(props.userData.goal === 'maintain') target = current
 
   let svg = `<svg width="220" height="120" viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg"> <rect width="100%" height="100%" fill="#e6ebfd" /> <path d="M 20 100 A 90 90 0 0 1 200 100" stroke="#1a1a1a" stroke-width="12" fill="none" stroke-linecap="round" /> <circle cx="200" cy="100" r="8" fill="#1a1a1a" stroke="white" stroke-width="4" /> </svg>`;
 

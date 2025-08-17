@@ -223,7 +223,6 @@ const next = () => {
     localStorage.setItem('goal_weight', selectedWeight.value)
     localStorage.setItem('duration', duration.value)
     localStorage.setItem('unit', unit.value)
-
     props.userData.goal_weight = selectedWeight.value
     props.userData.duration = duration.value
     props.userData.unit = unit.value

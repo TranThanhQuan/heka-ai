@@ -21,61 +21,55 @@ use App\Http\Controllers\User\ProductListController;
 */
 Route::get('/', [UserController::class, 'index'])->name('home');
 
-// Route::get('/get-premium', [OnboardingController::class, 'index'])->name('get-premium');
-// Route::middleware(['ab.testing'])->group(function () {
-//     Route::get('/get-premium', [OnboardingController::class, 'index']);
-//     Route::get('/ga-get-premium', [OnboardingController::class, 'index']);
-//     Route::get('/tt-get-premium', [OnboardingController::class, 'index']);
-// });
 
 Route::get('/get-premium', [OnboardingController::class, 'index'])->name('get-premium');
 Route::get('/ga-get-premium', [OnboardingController::class, 'index'])->name('ga-get-premium');
 Route::get('/tt-get-premium', [OnboardingController::class, 'index'])->name('tt-get-premium');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 
 
 
 
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-    // checkout
-    Route::prefix('checkout')->controller(CheckoutController::class)->group(function () {
-        Route::post('order', 'store')->name('checkout.store');
-        Route::get('success', 'success')->name('checkout.success');
-        Route::get('cancel', 'cancel')->name('checkout.cancel');
+//     // checkout
+//     Route::prefix('checkout')->controller(CheckoutController::class)->group(function () {
+//         Route::post('order', 'store')->name('checkout.store');
+//         Route::get('success', 'success')->name('checkout.success');
+//         Route::get('cancel', 'cancel')->name('checkout.cancel');
 
-    });
+//     });
 
 
 
-});
+// });
 
 //add to cart
 
-Route::prefix('cart')->controller(CartController::class)->group(function () {
-    Route::get('view', 'view')->name('cart.view');
-    Route::post('store/{product}', 'store')->name('cart.store');
-    Route::patch('update/{product}', 'update')->name('cart.update');
-    Route::delete('delete/{product}', 'delete')->name('cart.delete');
-});
+// Route::prefix('cart')->controller(CartController::class)->group(function () {
+//     Route::get('view', 'view')->name('cart.view');
+//     Route::post('store/{product}', 'store')->name('cart.store');
+//     Route::patch('update/{product}', 'update')->name('cart.update');
+//     Route::delete('delete/{product}', 'delete')->name('cart.delete');
+// });
 
 
 // product list and filter
-Route::prefix('products')->controller(ProductListController::class)->group(function () {
-    Route::get('/', 'index')->name('products.index');
-    Route::post('store/{product}', 'store')->name('products.store');
-    Route::patch('update/{product}', 'update')->name('products.update');
-    Route::delete('delete/{product}', 'delete')->name('products.delete');
-});
+// Route::prefix('products')->controller(ProductListController::class)->group(function () {
+//     Route::get('/', 'index')->name('products.index');
+//     Route::post('store/{product}', 'store')->name('products.store');
+//     Route::patch('update/{product}', 'update')->name('products.update');
+//     Route::delete('delete/{product}', 'delete')->name('products.delete');
+// });
 
 
 

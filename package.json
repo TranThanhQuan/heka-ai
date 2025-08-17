@@ -21,9 +21,11 @@
         "@heroicons/vue": "^2.2.0",
         "element-plus": "^2.9.2",
         "flowbite": "^2.5.2",
+        "slick-carousel": "^1.8.1",
         "vite": "^6.3.5",
         "vue-router": "^4.5.0",
         "vue-scroll-picker": "^2.0.1",
+        "vue-slick-carousel": "^1.0.6",
         "vue-sweetalert2": "^5.0.11"
     }
 }
