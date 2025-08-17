@@ -21,19 +21,20 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 
 
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = import.meta.env.VITE_APP_NAME || 'Heka AI';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
     setup({ el, App, props, plugin }) {
-        const app = createApp({ render: () => h(App, props)})
+        const app = createApp({ render: () => h(App, props) })
 
         app.use(plugin)
         app.use(ZiggyVue)
         app.use(ElementPlus)
         app.use(VueSweetalert2)
         app.use(VueScrollPicker)
+
 
         window.Swal = app.config.globalProperties.$swal
         app.mount(el)

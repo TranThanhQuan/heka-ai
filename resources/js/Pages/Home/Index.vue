@@ -26,7 +26,7 @@
                 <a href="#">
                     <img src="/images/home/appstore_icon.png" alt="App Store" class="h-9" />
                 </a>
-                <a href="#signin" class="text-gray-700 hover:text-black font-medium">
+                <a href="javascript:void(0)" @click="loginWithGoogle" class="text-gray-700 hover:text-black font-medium">
                     Sign In
                 </a>
             </div>
@@ -183,7 +183,8 @@
                             <div>Free</div>
                             <small>$0</small>
                         </th>
-                        <th style="border-left:0px; border-right:0; border-bottom:0; border-top:0; border-color: #dee2e6;">
+                        <th
+                            style="border-left:0px; border-right:0; border-bottom:0; border-top:0; border-color: #dee2e6;">
                             <div>Premium Access</div>
                             <small>Monthly or Yearly</small>
                         </th>
@@ -197,7 +198,8 @@
                         <td>✔</td>
                     </tr>
                     <tr>
-                        <td class="p-1 md:p-3  text-left whitespace-normal break-words">Unlimited scan foods with AI</td>
+                        <td class="p-1 md:p-3  text-left whitespace-normal break-words">Unlimited scan foods with AI
+                        </td>
                         <td>-</td>
                         <td>✔</td>
                     </tr>
@@ -222,21 +224,20 @@
                         <td>✔</td>
                     </tr>
                     <tr style="border:0">
-                    <td></td>
-                    <td style="border:0; padding: 0; text-align: center;">
-                        <a id="downloadBtn"
-                        href="https://play.google.com/store/apps/details?id=com.heka.ai.caloriecounter.mealplan"
-                        class="inline-block bg-[#f91c5f] hover:bg-pink-600 text-white font-semibold px-3 py-2 text-sm rounded">
-                        {{ downloadText }}
-                        </a>
-                    </td>
-                    <td style="border:0; padding: 0; text-align: center;">
-                        <a id="goPremiumBtn"
-                        href="javascript:openPricingModal()"
-                        class="inline-block bg-[#f91c5f] hover:bg-pink-600 text-white font-semibold px-3 py-2 text-sm rounded">
-                        {{ premiumText }}
-                        </a>
-                    </td>
+                        <td></td>
+                        <td style="border:0; padding: 0; text-align: center;">
+                            <a id="downloadBtn"
+                                href="https://play.google.com/store/apps/details?id=com.heka.ai.caloriecounter.mealplan"
+                                class="inline-block bg-[#f91c5f] hover:bg-pink-600 text-white font-semibold px-3 py-2 text-sm rounded">
+                                {{ downloadText }}
+                            </a>
+                        </td>
+                        <td style="border:0; padding: 0; text-align: center;">
+                            <a id="goPremiumBtn" href="javascript:openPricingModal()"
+                                class="inline-block bg-[#f91c5f] hover:bg-pink-600 text-white font-semibold px-3 py-2 text-sm rounded">
+                                {{ premiumText }}
+                            </a>
+                        </td>
                     </tr>
 
                 </tbody>
@@ -364,6 +365,15 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
 import { ref, onMounted, onBeforeUnmount } from "vue";
+import { login, handleLogout } from '@/utils/auth';
+
+const loginWithGoogle = () => {
+  login('google')
+}
+
+const loginWithApple = () => {
+  login('apple')
+}
 
 
 const isOpen = ref(false);
@@ -439,22 +449,15 @@ const downloadText = ref("DOWNLOAD NOW");
 const premiumText = ref("GET PREMIUM");
 
 function updateButtonText() {
-  if (window.innerWidth <= 768) {
-    premiumText.value = "BUY NOW";
-    downloadText.value = "DOWNLOAD";
-  } else {
-    premiumText.value = "GET PREMIUM";
-    downloadText.value = "DOWNLOAD NOW";
-  }
+    if (window.innerWidth <= 768) {
+        premiumText.value = "BUY NOW";
+        downloadText.value = "DOWNLOAD";
+    } else {
+        premiumText.value = "GET PREMIUM";
+        downloadText.value = "DOWNLOAD NOW";
+    }
 
-  console.log(premiumText.value, downloadText.value);
 }
-
-
-
-
-
-
 
 
 </script>

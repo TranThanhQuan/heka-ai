@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\User\PaymentController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\Admin\AdminAuthController;
@@ -25,6 +26,10 @@ Route::get('/', [UserController::class, 'index'])->name('home');
 Route::get('/get-premium', [OnboardingController::class, 'index'])->name('get-premium');
 Route::get('/ga-get-premium', [OnboardingController::class, 'index'])->name('ga-get-premium');
 Route::get('/tt-get-premium', [OnboardingController::class, 'index'])->name('tt-get-premium');
+
+
+Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
+Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
 
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');

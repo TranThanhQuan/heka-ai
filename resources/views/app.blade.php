@@ -20,6 +20,7 @@
         <!-- Scripts -->
         {{-- @routes --}}
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
+
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
@@ -31,5 +32,6 @@
         <!-- jQuery + Slick JS -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        <script src="{{ asset('js/loadingScreen.js') }}"></script>
     </body>
 </html>
