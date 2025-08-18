@@ -128,7 +128,7 @@ onMounted(() => {
 
     setTimeout(() => {
         showIntro.value = false
-    }, 500)
+    }, 3000)
 })
 
 

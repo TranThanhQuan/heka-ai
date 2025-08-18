@@ -10,12 +10,12 @@
           <p class="text-base text-[#a1a1a1]">Smart Eating Stronger Living</p>
 
           <!-- Nút Apple -->
-          <a href="javascript:void(0)" class="w-full md:w-3/5 mx-auto mt-6 cursor-pointer" @click="$emit('login-apple')">
+          <a href="javascript:void(0)" class="w-full md:w-3/5 mx-auto mt-6 cursor-pointer" @click="loginWithProvider('apple')">
             <img src="/images/onboarding/continue_apple.png" alt="Continue with Apple" class="transition-transform duration-200 hover:scale-105 w-full" />
           </a>
 
           <!-- Nút Google -->
-          <a href="javascript:void(0)" class="w-full md:w-3/5 mx-auto mt-4 cursor-pointer" @click="$emit('login-google')">
+          <a href="javascript:void(0)" class="w-full md:w-3/5 mx-auto mt-4 cursor-pointer" @click="loginWithProvider('google')">
             <img src="/images/onboarding/continue_google.png" alt="Continue with Google" class="transition-transform duration-200 hover:scale-105 w-full" />
           </a>
 
@@ -33,12 +33,19 @@
 
   <script setup>
   import { ref } from 'vue'
+  import { login, silentLoginSSO, getUserInfo, handleLogout } from '@/utils/auth'
 
   const showContent = ref(true)
 
   const handleGuestClick = () => {
     showContent.value = false
   }
+
+  const loginWithProvider = (provider) => {
+
+    login(provider);
+
+    }
   </script>
 
   <style scoped>

@@ -11,7 +11,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
         <!-- favicon -->
-        <link rel="icon" href="/images/favicon.png?v=123">
+        <link rel="icon" href="/images/favicon.png?v=1">
 
         <!-- slick css -->
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
