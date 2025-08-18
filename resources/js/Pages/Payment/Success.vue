@@ -82,9 +82,7 @@ if (!accessToken) {
 
 // lấy email từ local storage
 email.value = localStorage.getItem('email');
-if (!email.value) {
-    document.getElementById('email').style.display = 'none';
-}
+
 
 onMounted(() => {
     if(result){
