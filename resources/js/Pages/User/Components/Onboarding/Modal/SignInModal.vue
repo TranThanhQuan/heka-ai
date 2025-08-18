@@ -17,7 +17,7 @@
                     <h2 class="text-lg font-semibold text-black">Login to Continue</h2>
 
                     <!-- Google Button -->
-                    <button @click="login('google')"
+                    <button @click="loginWithProvider('google')" :disabled="showLoading"
                         class="flex items-center justify-center w-full border border-gray-300 rounded-full py-2 px-4 text-black hover:bg-gray-100">
                         <svg xmlns="http://www.w3.org/2000/svg" class="mr-2" x="0px" y="0px" width="20" height="20"
                             viewBox="0 0 48 48">
@@ -38,7 +38,7 @@
                     </button>
 
                     <!-- Apple Button -->
-                    <button @click="login('apple')"
+                    <button @click="loginWithProvider('apple')" :disabled="showLoading"
                         class="flex items-center justify-center w-full border border-gray-300 rounded-full py-2 px-4 text-black hover:bg-gray-100">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple"
                             width="18" height="18" class="mr-2">
@@ -51,16 +51,24 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
+import { login } from '@/utils/auth';
+
+const showLoading = ref(false)
+
 const props = defineProps({
     visible: Boolean
 })
 const emit = defineEmits(['close', 'login'])
 
 const close = () => emit('close')
-const login = (provider) => {
-    console.log(`Login with ${provider}`)
-    emit('login', provider)
+
+const loginWithProvider = (provider) => {
+    showLoading.value = true
+    login(provider);
+
 }
+
 </script>
 
 <style scoped>

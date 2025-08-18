@@ -38,3 +38,12 @@ export function base64UrlEncode(buffer) {
         .replace(/\//g, '_')
         .replace(/=+$/, '');
 }
+
+
+export function showLoadingScreen() {
+    document.body.style.overflow = 'hidden';
+}
+
+export function hideLoadingScreen() {
+    document.body.style.overflow = 'auto';
+}

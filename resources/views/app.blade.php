@@ -21,6 +21,37 @@
         {{-- @routes --}}
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
 
+
+        <script src="https://onelinksmartscript.appsflyer.com/onelink-smart-script-latest.js"></script>
+        <script>
+                const oneLinkURL = "https://heka.onelink.me/eDBo";
+                const result = window.AF_SMART_SCRIPT?.generateOneLinkURL({
+                  oneLinkURL,
+                  afParameters: {
+                    mediaSource: { keys: ["pid"], defaultValue: "web_traffic_organic" },
+                    campaign: { keys: ["c"] },
+                    afCustom: [
+                      { paramKey: "af_sited", keys: ["af_sited"] },
+                      { paramKey: "af_c_id", keys: ["af_c_id"] },
+                      { paramKey: "af_adset_id", keys: ["af_adset_id"] },
+                      { paramKey: "af_ad_id", keys: ["af_ad_id"] },
+                      { paramKey: "ttclid", keys: ["ttclid"] },
+                      { paramKey: "ttp", keys: ["ttp"] },
+                      { paramKey: "brower_user_agent", keys: ["brower_user_agent"] },
+                      { paramKey: "af_ss_ui", defaultValue: "true" }
+                    ],
+                    adSet: { keys: ["af_adset"] },
+                    ad: { keys: ["af_ad"] }
+                  }
+                });
+
+                if (result) {
+                    // console.log(result);
+                //   window.goToApp = () => {
+                //     window.location.href = result.clickURL;
+                //   };
+                }
+        </script>
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
@@ -29,7 +60,7 @@
 
         <script>
             const redirectUri = window.location.origin + window.location.pathname;
-            if (window.location.pathname !== '/payment/success') {
+            if (window.location.pathname !== '/payment/success' && window.location.pathname !== '/payment/cancel') {
                 localStorage.setItem('redirectUri', redirectUri);
             }
         </script>

@@ -1,4 +1,4 @@
-import { getRealm, generateCodeVerifier, generateCodeChallenge, generateRandomState } from './helpers';
+import { getRealm, generateCodeVerifier, generateCodeChallenge, generateRandomState, showLoadingScreen, hideLoadingScreen } from './helpers';
 import { v4 as uuidv4 } from 'uuid';
 
 
@@ -196,7 +196,7 @@ export async function getUserInfo() {
         }).then(() => {
           handleLogout();
 
-          showLoginModal();
+          showSignInModal(true);
         });
       }
     } catch (err) {
@@ -204,4 +204,95 @@ export async function getUserInfo() {
     }
 
     hideLoadingScreen();
+  }
+
+
+  export async function updateUserProfile() {
+      let accessToken = localStorage.getItem('accessToken');
+      const bundleId = import.meta.env.VITE_BUNDLE_ID;
+      const backendDomain = import.meta.env.VITE_BACKEND_DOMAIN;
+
+    if (!accessToken) {
+      console.error('❌ Access token is missing');
+      return;
+    }
+
+
+    // Các key cần lấy từ localStorage
+    const keys = [
+      'activity',
+      'goal',
+      'gender',
+      'year_of_birth',
+      'measure_type',
+      'current_weight',
+      'current_height',
+      'target_cal',
+      'goal_weight',
+      'start_date',
+      'end_date',
+    ];
+
+    // Tạo object attributes đã được xử lý
+    const attributes = keys.reduce((acc, key) => {
+      const value = getSanitizedString(key);
+      if (value !== undefined && value !== '') {
+        acc[key] = value;
+      }
+      return acc;
+    }, {});
+
+    const payload = {
+      attributes: attributes
+    };
+      try {
+        const res = await fetch(`${backendDomain}/saas-user-service/v1/users/update`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-bundleid': bundleId,
+            'Authorization': `Bearer ${accessToken}`
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await res.json();
+
+        if (res.ok && result.data === true) {
+          // console.log('✅ Profile updated successfully!');
+        } else {
+          if (result?.error?.message === 'Token expired') {
+            Swal.fire({
+              title: 'Session expired',
+              text: 'Please sign in again to continue.',
+              icon: 'warning',
+              confirmButtonText: 'Log In'
+            }).then(() => {
+              handleLogout();
+              showSignInModal(true);
+            });
+          } else {
+            console.error('❌ Update failed:', result);
+          }
+        }
+      } catch (error) {
+        hideLoadingScreen(); // Ensure hide in case of error
+        console.error('❌ Error while updating profile:', error);
+      }
+
+  }
+
+
+
+  export function getSanitizedString(key) {
+    let value = localStorage.getItem(key);
+
+    if (typeof value !== 'string' || value === null) return undefined;
+
+    // Bỏ dấu " nếu bị bao quanh bởi ""
+    if (value.startsWith('"') && value.endsWith('"')) {
+      value = value.slice(1, -1);
+    }
+
+    return String(value);
   }
