@@ -16,7 +16,30 @@ import GoalWeight from '../Components/Onboarding/GoalWeight.vue';
 import Review from '../Components/Onboarding/Review.vue';
 import Nutribution from '../Components/Onboarding/Nutribution.vue';
 
+import { onMounted } from 'vue';
+import { silentLoginSSO } from '@/utils/auth';
 
+
+// ==== Handle Code Param (SSO login) ====
+const code = new URLSearchParams(window.location.search).get('code')
+if (code) {
+    silentLoginSSO(code)
+} else {
+    checkLoginStatus()
+}
+
+
+async function checkLoginStatus() {
+    const token = localStorage.getItem('accessToken')
+    if (token) {
+        isLoggedIn.value = true
+        getUserInfo()
+    }else{
+       console.log('no accessToken')
+    }
+
+
+}
 
 const userData = ref({
     goal: null,
