@@ -6,10 +6,8 @@ const paymentDomain = import.meta.env.VITE_PAYMENT_DOMAIN;
 const paymentDomainDev = import.meta.env.VITE_PAYMENT_DOMAIN_DEV;
 
 
-const redirectUri = window.location.origin + window.location.pathname;
-if (window.location.pathname !== '/payment/success.html') {
-    localStorage.setItem('redirectUri', redirectUri);
-}
+
+
 // ---------------------------
 // Utilities
 // ---------------------------

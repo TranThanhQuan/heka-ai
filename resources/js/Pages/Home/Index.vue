@@ -385,7 +385,7 @@
         </div>
     </footer>
 
-    <PaywallModal :visible="showModal" backgroundUrl="/images/onboarding/modal/bg-modal.jpg" @close="showModal = false" @accepted="handleAccepted" />
+    <PaywallModal :visible="showModal" backgroundUrl="/images/onboarding/modal/bg-modal.jpg" @close="showModal = false" @accepted="handleAccepted" @showSignInModal="showSignInModal = true" />
 
     <SignInModal :visible="showSignInModal" @close="showSignInModal = false" @login="handleLogin" />
 </template>
@@ -394,12 +394,12 @@
 import { Head } from '@inertiajs/vue3'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { login, silentLoginSSO, getUserInfo, handleLogout } from '@/utils/auth'
-import { createStripeBillingPortalSession } from '@/utils/payment'
+import { createStripeBillingPortalSession, checkout } from '@/utils/payment'
 import PaywallModal from '@/Pages/User/Components/Onboarding/Modal/PaywallModal.vue'
 import SignInModal from '@/Pages/User/Components/Onboarding/Modal/SignInModal.vue'
 
 const handleAccepted = (priceId) => {
-    console.log('Price ID:', priceId)
+    checkout(priceId)
 }
 
 // ==== Auth State ====

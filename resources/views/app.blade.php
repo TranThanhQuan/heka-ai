@@ -27,7 +27,12 @@
         @inertia
 
 
-
+        <script>
+            const redirectUri = window.location.origin + window.location.pathname;
+            if (window.location.pathname !== '/payment/success') {
+                localStorage.setItem('redirectUri', redirectUri);
+            }
+        </script>
 
         <!-- jQuery + Slick JS -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -20,7 +20,7 @@
           </li>
         </ol>
 
-        <a href="javascript: goToApp();" class="block w-full text-white btn-download">
+        <a href="/" class="block w-full text-white btn-download">
           Download Heka
         </a>
 

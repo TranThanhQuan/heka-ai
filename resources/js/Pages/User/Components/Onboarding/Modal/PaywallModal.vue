@@ -52,10 +52,16 @@
         </div>
       </div>
     </transition>
-  </template>
+
+    <SignInModal :visible="showSignInModal" @close="showSignInModal = false" @login="handleLogin" />
+</template>
 
   <script setup>
-  import { ref } from 'vue'
+  import { ref } from 'vue';
+  import { checkout } from '@/utils/payment';
+  import SignInModal from '@/Pages/User/Components/Onboarding/Modal/SignInModal.vue';
+
+  const showSignInModal = ref(false)
 
   const props = defineProps({
     visible: Boolean,
@@ -65,8 +71,7 @@
     }
   })
 
-  const emit = defineEmits(['close', 'accepted'])
-
+  const emit = defineEmits(['close', 'accepted', 'showSignInModal'])
   const selected = ref('12months')
 
   const PRICE_IDS = {
@@ -78,13 +83,27 @@
 
   const accept = () => {
     const priceId = PRICE_IDS[selected.value]
-    console.log('Selected Price ID:', priceId)
-    emit('accepted', selected.value)
-    close()
+    console.log('Selected Price IDaa:', priceId)
+    // check if user is logged in
+    if(!localStorage.getItem('accessToken')){
+    //    nếu không có accessToken thì trả về tín hiệu để index.vue hiện modal đăng nhập
+      emit('showSignInModal')
+      close()
+      return
+    }
+
+
+    checkout(priceId)
+    emit('accepted', priceId)
   }
 
   const selectPlan = (plan) => {
     selected.value = plan
+  }
+
+  const handleLogin = () => {
+    isLoggedIn.value = true
+    showSignInModal.value = false
   }
   </script>
 
