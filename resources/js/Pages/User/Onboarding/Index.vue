@@ -17,13 +17,16 @@ import Review from '../Components/Onboarding/Review.vue';
 import Nutribution from '../Components/Onboarding/Nutribution.vue';
 
 import { onMounted } from 'vue';
-import { silentLoginSSO } from '@/utils/auth';
+import { silentLoginSSO, getUserInfo, handleLogout } from '@/utils/auth';
+
+const isLoggedIn = ref(false);
 
 
 // ==== Handle Code Param (SSO login) ====
 const code = new URLSearchParams(window.location.search).get('code')
 if (code) {
-    silentLoginSSO(code)
+    // silentLoginSSO(code)
+    // console.log('code: ', code)
 } else {
     checkLoginStatus()
 }
@@ -77,6 +80,17 @@ function changeScreen(screenName, userData = {}, showIntro = false) {
     }
 }
 
+// ==== Auth actions ====
+const handleLogin = (provider) => {
+    login(provider)
+    showSignInModal.value = false
+}
 
+
+const logout = () => {
+    handleLogout()
+    isLoggedIn.value = false
+    hasSubscription.value = false
+}
 
 </script>
