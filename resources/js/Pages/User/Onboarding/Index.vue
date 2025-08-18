@@ -25,7 +25,7 @@ const isLoggedIn = ref(false);
 // ==== Handle Code Param (SSO login) ====
 const code = new URLSearchParams(window.location.search).get('code')
 if (code) {
-    // silentLoginSSO(code)
+    silentLoginSSO(code)
     // console.log('code: ', code)
 } else {
     checkLoginStatus()
