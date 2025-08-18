@@ -109,9 +109,17 @@ export async function silentLoginSSO(code) {
                     localStorage.setItem('refreshToken', data.data.refreshToken);
                     // eventTracking('login_success', '');
 
+                    // check if priceId is set
+                    const priceId = localStorage.getItem('priceId');
+                    if(priceId){
+                        // call checkout
+                        checkout(priceId)
+                    }else{
+                        // chuyển hướng redirectUri
+                        window.location.href = redirectUri;
+                    }
 
-                    // chuyển hướng redirectUri
-                    window.location.href = redirectUri;
+
                 } else {
                     hideLoadingScreen();
                     console.error('Login failed:', data);

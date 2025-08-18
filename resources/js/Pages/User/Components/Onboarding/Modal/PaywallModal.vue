@@ -83,9 +83,11 @@
 
   const accept = () => {
     const priceId = PRICE_IDS[selected.value]
+    localStorage.setItem('priceId', priceId)
+
     if(!localStorage.getItem('accessToken')){
     //    nếu không có accessToken thì trả về tín hiệu để index.vue hiện modal đăng nhập
-    console.log('no accessToken')
+
       emit('showSignInModal')
       close()
       return
