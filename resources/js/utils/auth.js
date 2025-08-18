@@ -222,7 +222,7 @@ export async function getUserInfo() {
 
 
 
-export async function updateUserProfile(data) {
+  export async function updateUserProfile(data) {
     let accessToken = localStorage.getItem('accessToken');
     const bundleId = import.meta.env.VITE_BUNDLE_ID;
     const backendDomain = import.meta.env.VITE_BACKEND_DOMAIN;
@@ -231,69 +231,55 @@ export async function updateUserProfile(data) {
       return;
     }
 
-    console.log('data: ', data)
-
-
-    // Các key cần lấy từ localStorage
-    const keys = [
-      'activity', 'goal', 'gender', 'year_of_birth', 'measure_type', 'current_weight', 'current_height', 'target_cal', 'goal_weight', 'start_date', 'end_date'
-    ];
-
-    // Tạo object attributes đã được xử lý
-    // bỏ dấu " hoặc ' nếu bị bao quanh bởi "" hoặc ''
-    const attributes = keys.reduce((acc, key) => {
-      const value = data[key];
-      if (value !== undefined && value !== '') {
-        if (value.startsWith('"') && value.endsWith('"')) {
-          value = value.slice(1, -1);
-        }
-        if (value.startsWith("'") && value.endsWith("'")) {
-          value = value.slice(1, -1);
-        }
-        acc[key] = value;
-      }
-      return acc;
-    }, {});
-
-    const payload = {
-      attributes: attributes
-    };
-
-    console.log('payload sau khi xử lý: ', payload)
-      try {
-        const res = await fetch(`${backendDomain}/saas-user-service/v1/users/update`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-            'x-api-bundleid': bundleId,
-            'Authorization': `Bearer ${accessToken}`
-          },
-          body: JSON.stringify(payload)
-        });
-
-        const result = await res.json();
-
-        if (res.ok && result.data === true) {
-
-        } else {
-          if (result?.error?.message === 'Token expired') {
-            handleLogout();
-            // Swal.fire({
-            //   title: 'Session expired',
-            //   text: 'Please sign in again to continue.',
-            //   icon: 'warning',
-            //   confirmButtonText: 'Log In'
-            // }).then(() => {
-            //   handleLogout();
-            //   showSignInModal(true);
-            // });
-          } else {
-            console.error('❌ Update failed:', result);
+    // Tự động lọc và làm sạch tất cả key trong `data`
+    const attributes = Object.entries(data).reduce((acc, [key, value]) => {
+        if (value !== undefined && value !== '') {
+          if (typeof value === 'string') {
+            value = value.trim();
+            if (
+              (value.startsWith('"') && value.endsWith('"')) ||
+              (value.startsWith("'") && value.endsWith("'"))
+            ) {
+              value = value.slice(1, -1);
+            }
           }
+          acc[key] = value;
         }
-      } catch (error) {
-        hideLoadingScreen(); // Ensure hide in case of error
-        console.error('❌ Error while updating profile:', error);
-      }
+        return acc;
+      }, {});
 
+
+    const payload = { attributes };
+
+    console.log('✅ payload sau khi xử lý:', payload);
+
+    try {
+      // showLoadingScreen();
+      const res = await fetch(`${backendDomain}/saas-user-service/v1/users/update`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-bundleid': bundleId,
+          'Authorization': `Bearer ${accessToken}`
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await res.json();
+
+      if (res.ok && result.data === true) {
+        // Thành công
+      } else {
+        if (result?.error?.message === 'Token expired') {
+          handleLogout();
+        } else {
+          console.error('❌ Update failed:', result);
+        }
+      }
+    } catch (error) {
+      console.error('❌ Error while updating profile:', error);
+    } finally {
+      hideLoadingScreen();
+    }
   }
+

@@ -16,7 +16,7 @@
             <ol class="text-lg text-left mb-6 space-y-1">
                 <li>1. Click on the link below to download Heka AI</li>
                 <li>2. Open the app and select "Sign in"</li>
-                <li v-if="email">
+                <li v-if="email" id="email">
                     3. Use your sign-up email: <strong class="text-black">{{ email }}</strong>
                 </li>
             </ol>
@@ -56,16 +56,27 @@ if (!accessToken) {
     });
 
     // gọi hàm updateUserProfile
-    // lấy tất cả các key từ localStorage
-    const keys = ['activity', 'goal', 'gender', 'year_of_birth', 'measure_type', 'current_weight', 'current_height', 'target_cal', 'goal_weight', 'start_date', 'end_date'];
+    const keys = [
+        'activity', 'goal', 'gender', 'year_of_birth', 'measure_type',
+        'current_weight', 'current_height', 'target_cal', 'goal_weight',
+        'start_date', 'end_date'
+        ];
 
-    const data = {}
+        const data = {};
 
-    keys.forEach(key => {
-        data[key] = localStorage.getItem(key)
-    })
-    console.log('data: ', data)
-    updateUserProfile(data);
+        // Lấy giá trị từ localStorage nếu có
+        keys.forEach(key => {
+        const value = localStorage.getItem(key);
+        if (value !== null && value !== '') {
+            data[key] = value;
+        }
+        });
+
+        console.log('👉 data truyền đi:', data);
+
+        // Gọi cập nhật với dữ liệu đã lọc
+        updateUserProfile(data);
+
 }
 
 
