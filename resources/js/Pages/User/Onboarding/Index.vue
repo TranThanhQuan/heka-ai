@@ -1,6 +1,9 @@
 <template>
     <OnboardingLayout>
         <component :is="currentComponent" :userData="userData"  @change-screen="changeScreen" />
+
+        <PaywallModal :visible="showModal" backgroundUrl="/images/onboarding/modal/bg-modal.jpg" @close="showModal = false" @accepted="handleAccepted" @showSignInModal="showSignInModal = true" />
+        <SignInModal :visible="showSignInModal" @close="showSignInModal = false" @login="handleLogin" />
     </OnboardingLayout>
 </template>
 
@@ -15,18 +18,19 @@ import HeightWeight from '../Components/Onboarding/HeightWeight.vue';
 import GoalWeight from '../Components/Onboarding/GoalWeight.vue';
 import Review from '../Components/Onboarding/Review.vue';
 import Nutribution from '../Components/Onboarding/Nutribution.vue';
+import PaywallModal from '../Components/Onboarding/Modal/PaywallModal.vue';
+import SignInModal from '../Components/Onboarding/Modal/SignInModal.vue';
 
-import { onMounted } from 'vue';
 import { silentLoginSSO, getUserInfo, handleLogout } from '@/utils/auth';
 
 const isLoggedIn = ref(false);
-
+const showModal = ref(false);
+const showSignInModal = ref(false);
 
 // ==== Handle Code Param (SSO login) ====
 const code = new URLSearchParams(window.location.search).get('code')
 if (code) {
     silentLoginSSO(code)
-    // console.log('code: ', code)
 } else {
     checkLoginStatus()
 }
@@ -36,12 +40,16 @@ async function checkLoginStatus() {
     const token = localStorage.getItem('accessToken')
     if (token) {
         isLoggedIn.value = true
-        getUserInfo()
-    }else{
-       console.log('no accessToken')
+        getUserInfo().then(() => {
+            //group name
+            const groupName = localStorage.getItem('group_name');
+            console.log('groupName: ', groupName)
+            if(groupName === 'vip'){
+                //show modal paywall
+                showModal.value = true
+            }
+        })
     }
-
-
 }
 
 const userData = ref({

@@ -87,6 +87,8 @@ export async function handleLogout() {
 
 
 export async function silentLoginSSO(code) {
+    const priceId = localStorage.getItem('priceId');
+    localStorage.removeItem('priceId');
 
     const codeVerifier = localStorage.getItem('pkce_code_verifier');
     const idp = localStorage.getItem('idp');
@@ -112,11 +114,9 @@ export async function silentLoginSSO(code) {
                     localStorage.setItem('refreshToken', data.data.refreshToken);
                     // eventTracking('login_success', '');
 
-                    // check if priceId is set
-                    const priceId = localStorage.getItem('priceId');
                     if(priceId){
                         // call checkout
-                        localStorage.removeItem('priceId');
+
                         checkout(priceId)
                     }else{
                         // chuyển hướng redirectUri
@@ -219,36 +219,37 @@ export async function getUserInfo() {
   }
 
 
-  export async function updateUserProfile() {
-      let accessToken = localStorage.getItem('accessToken');
-      const bundleId = import.meta.env.VITE_BUNDLE_ID;
-      const backendDomain = import.meta.env.VITE_BACKEND_DOMAIN;
 
+
+
+export async function updateUserProfile(data) {
+    let accessToken = localStorage.getItem('accessToken');
+    const bundleId = import.meta.env.VITE_BUNDLE_ID;
+    const backendDomain = import.meta.env.VITE_BACKEND_DOMAIN;
     if (!accessToken) {
       console.error('❌ Access token is missing');
       return;
     }
 
+    console.log('data: ', data)
+
 
     // Các key cần lấy từ localStorage
     const keys = [
-      'activity',
-      'goal',
-      'gender',
-      'year_of_birth',
-      'measure_type',
-      'current_weight',
-      'current_height',
-      'target_cal',
-      'goal_weight',
-      'start_date',
-      'end_date',
+      'activity', 'goal', 'gender', 'year_of_birth', 'measure_type', 'current_weight', 'current_height', 'target_cal', 'goal_weight', 'start_date', 'end_date'
     ];
 
     // Tạo object attributes đã được xử lý
+    // bỏ dấu " hoặc ' nếu bị bao quanh bởi "" hoặc ''
     const attributes = keys.reduce((acc, key) => {
-      const value = getSanitizedString(key);
+      const value = data[key];
       if (value !== undefined && value !== '') {
+        if (value.startsWith('"') && value.endsWith('"')) {
+          value = value.slice(1, -1);
+        }
+        if (value.startsWith("'") && value.endsWith("'")) {
+          value = value.slice(1, -1);
+        }
         acc[key] = value;
       }
       return acc;
@@ -257,6 +258,8 @@ export async function getUserInfo() {
     const payload = {
       attributes: attributes
     };
+
+    console.log('payload sau khi xử lý: ', payload)
       try {
         const res = await fetch(`${backendDomain}/saas-user-service/v1/users/update`, {
           method: 'PUT',
@@ -271,18 +274,19 @@ export async function getUserInfo() {
         const result = await res.json();
 
         if (res.ok && result.data === true) {
-          // console.log('✅ Profile updated successfully!');
+
         } else {
           if (result?.error?.message === 'Token expired') {
-            Swal.fire({
-              title: 'Session expired',
-              text: 'Please sign in again to continue.',
-              icon: 'warning',
-              confirmButtonText: 'Log In'
-            }).then(() => {
-              handleLogout();
-              showSignInModal(true);
-            });
+            handleLogout();
+            // Swal.fire({
+            //   title: 'Session expired',
+            //   text: 'Please sign in again to continue.',
+            //   icon: 'warning',
+            //   confirmButtonText: 'Log In'
+            // }).then(() => {
+            //   handleLogout();
+            //   showSignInModal(true);
+            // });
           } else {
             console.error('❌ Update failed:', result);
           }
@@ -292,19 +296,4 @@ export async function getUserInfo() {
         console.error('❌ Error while updating profile:', error);
       }
 
-  }
-
-
-
-  export function getSanitizedString(key) {
-    let value = localStorage.getItem(key);
-
-    if (typeof value !== 'string' || value === null) return undefined;
-
-    // Bỏ dấu " nếu bị bao quanh bởi ""
-    if (value.startsWith('"') && value.endsWith('"')) {
-      value = value.slice(1, -1);
-    }
-
-    return String(value);
   }

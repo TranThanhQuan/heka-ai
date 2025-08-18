@@ -79,7 +79,29 @@
     '12months': import.meta.env.VITE_PRICE_ID_YEARLY
   }
 
-  const close = () => emit('close')
+  const isProfile = () => {
+
+    const requiredKeys = [
+        'activity', 'goal', 'gender', 'year_of_birth', 'measure_type',
+        'current_weight', 'current_height', 'target_cal',
+        'goal_weight', 'start_date', 'end_date'
+    ];
+
+    return requiredKeys.every(key => {
+        const value = localStorage.getItem(key);
+        return value !== null && value.trim() !== '';
+    });
+
+  }
+
+    const close = () => {
+        const groupName = localStorage.getItem('group_name');
+        if (groupName === 'vip') {
+            window.location.href = '/';
+        } else {
+            emit('close')
+        }
+    }
 
   const accept = () => {
     const priceId = PRICE_IDS[selected.value]

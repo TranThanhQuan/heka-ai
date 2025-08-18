@@ -140,6 +140,9 @@ const next = () => {
         else if (props.userData.goal === 'gain') modalBackground.value = '/images/onboarding/modal/bg_gain_modal.png'
         else if (props.userData.goal === 'maintain') modalBackground.value = '/images/onboarding/modal/bg_maintain_modal.png'
         showModal.value = true;
+
+        // gọi hàm lưu dữ liệu
+        saveData();
     }
 }
 
@@ -214,7 +217,14 @@ const contentData = computed(() => {
     const current = props.userData.current_weight
     let target = props.userData.goal_weight
 
-    if (props.userData.goal === 'maintain') target = current
+    if (props.userData.goal === 'maintain'){
+        target = current
+        localStorage.setItem('goal_weight', current)
+    }
+
+    saveData();
+
+
 
     let svg = `<svg width="220" height="120" viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg"> <rect width="100%" height="100%" fill="#e6ebfd" /> <path d="M 20 100 A 90 90 0 0 1 200 100" stroke="#1a1a1a" stroke-width="12" fill="none" stroke-linecap="round" /> <circle cx="200" cy="100" r="8" fill="#1a1a1a" stroke="white" stroke-width="4" /> </svg>`;
 
@@ -299,6 +309,43 @@ const contentData = computed(() => {
         }
     }
 })
+
+
+
+// gọi sau khi tính toán xong vào localStorage
+const saveData = () => {
+
+    const userData = props.userData ?? {};
+    const duration = parseInt(userData.duration ?? '0');
+
+    // Hàm định dạng ngày yyyy-MM-dd
+    const formatDate = (date) => {
+        return date.toISOString().split('T')[0]; // ex: 2025-08-18
+    };
+
+    // Ngày bắt đầu: hôm nay
+    const startDate = new Date();
+
+    // Ngày kết thúc: hôm nay + duration tháng
+    const endDate = new Date(startDate);
+    endDate.setMonth(endDate.getMonth() + duration);
+
+    // Lưu dữ liệu vào localStorage
+    localStorage.setItem('activity', userData.activity ?? '');
+    localStorage.setItem('goal', userData.goal ?? '');
+    localStorage.setItem('gender', userData.gender ?? '');
+    localStorage.setItem('year_of_birth', userData.year_of_birth ?? '');
+    localStorage.setItem('measure_type', userData.measure_type ?? '');
+    localStorage.setItem('current_weight', userData.current_weight ?? '');
+    localStorage.setItem('current_height', userData.current_height ?? '');
+    localStorage.setItem('target_cal', targetCalories.value ?? '');
+    localStorage.setItem('goal_weight', userData.goal_weight ?? '');
+    localStorage.setItem('start_date', formatDate(startDate));
+    localStorage.setItem('end_date', formatDate(endDate));
+};
+
+
+
 </script>
 
 

@@ -34,6 +34,7 @@
 import { ref, onMounted } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import { eventTracking } from '@/utils/tracking';
+import { updateUserProfile } from '@/utils/auth';
 
 const props = defineProps({
     sessionId: String
@@ -53,6 +54,18 @@ if (!accessToken) {
         downloadUrl: downloadUrl.value,
         accessToken: accessToken
     });
+
+    // gọi hàm updateUserProfile
+    // lấy tất cả các key từ localStorage
+    const keys = ['activity', 'goal', 'gender', 'year_of_birth', 'measure_type', 'current_weight', 'current_height', 'target_cal', 'goal_weight', 'start_date', 'end_date'];
+
+    const data = {}
+
+    keys.forEach(key => {
+        data[key] = localStorage.getItem(key)
+    })
+    console.log('data: ', data)
+    updateUserProfile(data);
 }
 
 

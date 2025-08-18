@@ -201,7 +201,7 @@ watch([selectedWeight, duration, unit], () => {
         }
 
 
-        console.log('✅ Weekly change (kg):', weeklyChange.toFixed(2))
+        // console.log('✅ Weekly change (kg):', weeklyChange.toFixed(2))
     }
 
     // --- Đổi màu text ---
