@@ -1,4 +1,7 @@
 import { getRealm, generateCodeVerifier, generateCodeChallenge, generateRandomState, showLoadingScreen, hideLoadingScreen } from './helpers';
+
+import { checkout } from './payment';
+
 import { v4 as uuidv4 } from 'uuid';
 
 
@@ -113,6 +116,7 @@ export async function silentLoginSSO(code) {
                     const priceId = localStorage.getItem('priceId');
                     if(priceId){
                         // call checkout
+                        localStorage.removeItem('priceId');
                         checkout(priceId)
                     }else{
                         // chuyển hướng redirectUri
