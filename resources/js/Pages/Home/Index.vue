@@ -20,20 +20,45 @@
 
             <!-- App Store + Sign in (desktop) -->
             <div class="hidden md:flex items-center space-x-3">
-                <a href="#">
+                 <a href="#">
                     <img src="/images/home/chplay_icon.png" alt="Google Play" class="h-9" />
                 </a>
                 <a href="#">
                     <img src="/images/home/appstore_icon.png" alt="App Store" class="h-9" />
                 </a>
-                <a id="loginBtn" href="javascript:void(0)" @click="loginWithGoogle" class="text-gray-700 hover:text-black font-medium">
+               <!-- <a id="loginBtn" href="javascript:void(0)" @click="loginWithGoogle" class="text-gray-700 hover:text-black font-medium">
+                   Sign In
+                </a> -->
+
+                <!-- Nếu chưa login -->
+                <a v-if="!isLoggedIn" id="loginBtn" @click="showSignInModal = true"
+                    class="text-gray-700 hover:text-black font-medium cursor-pointer">
                     Sign In
                 </a>
 
-                <!-- nếu đã login -> nút logout -->
-                <a id="logoutBtn" href="javascript:void(0)" @click="logout" class="text-gray-700 hover:text-black font-medium hidden">
-                    Logout
-                </a>
+                <!-- Nếu đã login -->
+                <div v-else class="relative">
+                    <img @click="showDropdown = !showDropdown" src="/images/home/user_icon.png"
+                        class="h-9 cursor-pointer rounded-full" />
+
+                    <div v-if="showDropdown" class="absolute right-0 mt-2 w-48 bg-white border rounded shadow-lg z-50">
+                        <ul class="py-2">
+                            <li v-if="hasSubscription" class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                <a id="subscriptionManagement" :href="subscriptionUrl">
+                                    Subscription Management
+                                </a>
+                            </li>
+                            <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer" @click="logout">
+                                Sign Out
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+
+
+
             </div>
 
             <!-- Mobile Menu Button -->
@@ -56,8 +81,9 @@
                 <li><a href="#features" class="hover:text-black">Features</a></li>
                 <li><a href="#premium" class="hover:text-black">Premium Access</a></li>
                 <li>
-                    <a href="#signin" class="text-gray-700 hover:text-black font-medium">
-                        Sign In
+                    <a href="javascript:void(0)" @click="showSignInModal = true"
+                        class="text-gray-700 hover:text-black font-medium">
+                        <img src="/images/home/user_icon.png" alt="User" class="h-9" />
                     </a>
                 </li>
                 <li class="flex space-x-3">
@@ -238,7 +264,7 @@
                             </a>
                         </td>
                         <td style="border:0; padding: 0; text-align: center;">
-                            <a id="goPremiumBtn" href="javascript:openPricingModal()"
+                            <a id="goPremiumBtn" href="javascript:void(0)" @click="showModal = true"
                                 class="inline-block bg-[#f91c5f] hover:bg-pink-600 text-white font-semibold px-3 py-2 text-sm rounded">
                                 {{ premiumText }}
                             </a>
@@ -359,66 +385,42 @@
         </div>
     </footer>
 
+    <PaywallModal :visible="showModal" backgroundUrl="/images/onboarding/modal/bg-modal.jpg" @close="showModal = false" @accepted="handleAccepted" />
 
-
-
-
-
-
+    <SignInModal :visible="showSignInModal" @close="showSignInModal = false" @login="handleLogin" />
 </template>
 
 <script setup>
-import { Head } from '@inertiajs/vue3';
-import { ref, onMounted, onBeforeUnmount } from "vue";
-import { login, silentLoginSSO, getUserInfo, handleLogout } from '@/utils/auth';
+import { Head } from '@inertiajs/vue3'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { login, silentLoginSSO, getUserInfo, handleLogout } from '@/utils/auth'
+import { createStripeBillingPortalSession } from '@/utils/payment'
+import PaywallModal from '@/Pages/User/Components/Onboarding/Modal/PaywallModal.vue'
+import SignInModal from '@/Pages/User/Components/Onboarding/Modal/SignInModal.vue'
 
-// kiểm tra param
-const code = new URLSearchParams(window.location.search).get('code');
-
-if (code) {
-    silentLoginSSO(code);
-}else{
-    console.log('checkLoginStatus');
-    if (localStorage.getItem('accessToken')) {
-        console.log('getUserInfo');
-        getUserInfo();
-
-    }else{
-         console.log('not login');
-    }
+const handleAccepted = (priceId) => {
+    console.log('Price ID:', priceId)
 }
 
+// ==== Auth State ====
+const isLoggedIn = ref(false)
+const hasSubscription = ref(false)
+const showDropdown = ref(false)
+const subscriptionUrl = ref('#')
+const showModal = ref(false)
+const showSignInModal = ref(false)
 
-
-const logout = () => {
-    handleLogout();
-    document.getElementById('logoutBtn').style.display = 'none';
-    document.getElementById('loginBtn').style.display = 'inline-block';
-}
-
-
-
-const loginWithGoogle = () => {
-  login('google')
-}
-
-const loginWithApple = () => {
-  login('apple')
-}
-
-window.logout = logout;
-// window.checkLoginStatus = checkLoginStatus;
-window.loginWithGoogle = loginWithGoogle;
-window.loginWithApple = loginWithApple;
-window.getUserInfo = getUserInfo;
-const isOpen = ref(false);
+// ==== Feature/Slider ====
+const slickRef = ref(null)
+const activeIndex = ref(0)
+const isOpen = ref(false)
 
 const images = [
     { src: "/images/home/analyzed.png" },
     { src: "/images/home/search-food-db.png" },
     { src: "/images/home/food-db.png" },
     { src: "/images/home/water.png" },
-];
+]
 
 const features = [
     {
@@ -441,13 +443,50 @@ const features = [
         description:
             "Log your water intake and daily exercise effortlessly. Heka AI helps you stay hydrated and active, integrating seamlessly with your fitness routine.",
     },
-];
+]
 
-const slickRef = ref(null);
-const activeIndex = ref(0);
+const downloadText = ref("DOWNLOAD NOW")
+const premiumText = ref("GET PREMIUM")
 
+// ==== Check login and Stripe ====
+async function checkLoginStatus() {
+    const token = localStorage.getItem('accessToken')
+    if (token) {
+        isLoggedIn.value = true
+        getUserInfo()
+
+        const res = await createStripeBillingPortalSession()
+        if (res) {
+            hasSubscription.value = true
+            subscriptionUrl.value = res
+            // gắn subscriptionUrl vào link của button subscriptionManagement
+        }
+    }
+}
+
+// ==== Auth actions ====
+const handleLogin = (provider) => {
+    login(provider)
+    showSignInModal.value = false
+}
+
+
+const logout = () => {
+    handleLogout()
+    isLoggedIn.value = false
+    hasSubscription.value = false
+}
+
+// ==== Handle Code Param (SSO login) ====
+const code = new URLSearchParams(window.location.search).get('code')
+if (code) {
+    silentLoginSSO(code)
+} else {
+    checkLoginStatus()
+}
+
+// ==== Slider Init ====
 onMounted(() => {
-    // init slick
     window.$(slickRef.value).slick({
         dots: true,
         arrows: true,
@@ -456,46 +495,44 @@ onMounted(() => {
         slidesToShow: 1,
         slidesToScroll: 1,
         adaptiveHeight: true,
-    });
+    })
 
-    // listen event
     window.$(slickRef.value).on("afterChange", (event, slick, current) => {
-        activeIndex.value = current;
-    });
+        activeIndex.value = current
+    })
 
-    updateButtonText();
-    window.addEventListener("resize", updateButtonText);
+    updateButtonText()
+    window.addEventListener("resize", updateButtonText)
+})
 
-    onBeforeUnmount(() => {
-        window.removeEventListener("resize", updateButtonText);
-    });
+onBeforeUnmount(() => {
+    window.removeEventListener("resize", updateButtonText)
+})
 
-
-});
-
+// ==== Slide change ====
 const goToSlide = (index) => {
-    window.$(slickRef.value).slick("slickGoTo", index);
-    activeIndex.value = index;
-};
-
-
-
-const downloadText = ref("DOWNLOAD NOW");
-const premiumText = ref("GET PREMIUM");
-
-function updateButtonText() {
-    if (window.innerWidth <= 768) {
-        premiumText.value = "BUY NOW";
-        downloadText.value = "DOWNLOAD";
-    } else {
-        premiumText.value = "GET PREMIUM";
-        downloadText.value = "DOWNLOAD NOW";
-    }
-
+    window.$(slickRef.value).slick("slickGoTo", index)
+    activeIndex.value = index
 }
 
+// ==== Text on Mobile/Desktop ====
+function updateButtonText() {
+    if (window.innerWidth <= 768) {
+        premiumText.value = "BUY NOW"
+        downloadText.value = "DOWNLOAD"
+    } else {
+        premiumText.value = "GET PREMIUM"
+        downloadText.value = "DOWNLOAD NOW"
+    }
+}
 
+// ==== Expose for inline usage ====
+window.logout = logout
+// window.loginWithGoogle = handleLogin('google')
+// window.loginWithApple = handleLogin('apple')
+window.getUserInfo = getUserInfo
 </script>
+
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
