@@ -26,6 +26,7 @@ Route::get('/', [UserController::class, 'index'])->name('home');
 Route::get('/get-premium', [OnboardingController::class, 'index'])->name('get-premium');
 Route::get('/ga-get-premium', [OnboardingController::class, 'index'])->name('ga-get-premium');
 Route::get('/tt-get-premium', [OnboardingController::class, 'index'])->name('tt-get-premium');
+Route::get('/get-plan', [OnboardingController::class, 'getPlan'])->name('get-plan');
 
 
 Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');

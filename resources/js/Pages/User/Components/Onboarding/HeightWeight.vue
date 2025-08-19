@@ -34,7 +34,7 @@
                     <div> What's your <span class="font-bold">height, weight?</span> Let's do this! </div>
                 </div>
 
-                <div class="ml-0 sm:ml-5 mt-1">
+                <div class="ml-0 sm:ml-5 mt-1 height-weight-gif">
                     <img src="/images/onboarding/gif/info_guide.gif" alt="Height Weight" class="w-32 md:w-2/7" />
                 </div>
             </div>
@@ -42,8 +42,8 @@
             <hr class="my-2" />
 
             <!-- Toggle Metric/Imperial -->
-            <div class="flex justify-end mt-5 mr-5">
-                <label class="inline-flex items-center mb-5 cursor-pointer">
+            <div class="flex justify-end mt-5 mr-5 toggle-imperial">
+                <label class="inline-flex items-center mb-5 cursor-pointer ">
                     <span class="mr-3 text-sm font-medium text-gray-900">
                         {{ isImperial ? 'Imperial' : 'Metric' }}
                     </span>
@@ -62,13 +62,21 @@
             <div class="flex gap-1">
                 <div class="w-1/3 mx-auto">
                     <label class="text-gray-900 font-medium">Height</label>
-                    <VueScrollPicker :options="heightOptions" v-model="selectedHeight">
+                    <!-- <VueScrollPicker :options="heightOptions" v-model="selectedHeight">
                         <template #default="{ option, selected }">
                             <div :class="selected ? 'text-black font-bold text-2xl' : 'text-2xl'">
                                 {{ option.name }} {{ isImperial ? 'in' : 'cm' }}
                             </div>
                         </template>
+                    </VueScrollPicker> -->
+                    <VueScrollPicker :options="heightOptions" v-model="selectedHeight">
+                        <template #default="{ option, selected }">
+                            <div :class="selected ? 'text-black font-bold text-2xl' : 'text-2xl'">
+                            {{ isImperial ? formatHeight(option.value) : option.name + ' cm' }}
+                            </div>
+                        </template>
                     </VueScrollPicker>
+
                 </div>
 
                 <div class="w-1/3 mx-auto">
@@ -128,32 +136,62 @@ onMounted(() => {
     }
 })
 
+const formatHeight = (inches) => {
+  const feet = Math.floor(inches / 12);
+  const inch = inches % 12;
+  return `${feet}'${inch}''`;
+};
+
+
+
+
+// Mặc định cho metric
+const defaultMetricHeight = 167;   // cm
+const defaultMetricWeight = 54;    // kg
+
+// Mặc định cho imperial
+const defaultImperialHeight = 5 * 12 + 6; // 66 in
+const defaultImperialWeight = 120;        // lbs
 
 const updateOptions = () => {
-    if (isImperial.value) {
-        heightOptions.value = Array.from({ length: 100 }, (_, i) => ({
-            name: (i + 1).toString(),
-            value: i + 1
-        }))
-        weightOptions.value = Array.from({ length: 550 }, (_, i) => ({
-            name: (i + 1).toString(),
-            value: i + 1
-        }))
-        if (selectedHeight.value > 100) selectedHeight.value = 60
-        if (selectedWeight.value > 550) selectedWeight.value = 130
-    } else {
-        heightOptions.value = Array.from({ length: 250 }, (_, i) => ({
-            name: (i + 1).toString(),
-            value: i + 1
-        }))
-        weightOptions.value = Array.from({ length: 250 }, (_, i) => ({
-            name: (i + 1).toString(),
-            value: i + 1
-        }))
-        if (selectedHeight.value > 250) selectedHeight.value = 150
-        if (selectedWeight.value > 250) selectedWeight.value = 50
-    }
-}
+  if (isImperial.value) {
+    // Chiều cao: từ 1 ft (12 in) đến 8 ft 11 in (107 in)
+    heightOptions.value = Array.from({ length: 107 - 12 + 1 }, (_, i) => {
+      const totalInches = i + 12; // bắt đầu từ 12 inch (1 ft)
+      return {
+        name: totalInches.toString(),
+        value: totalInches
+      };
+    });
+
+    // Cân nặng: từ 50 → 700 lbs
+    weightOptions.value = Array.from({ length: 700 - 50 + 1 }, (_, i) => ({
+      name: (i + 50).toString(),
+      value: i + 50
+    }));
+
+    selectedHeight.value = defaultImperialHeight;
+    selectedWeight.value = defaultImperialWeight;
+
+  } else {
+    // Chiều cao: 60 → 243 cm
+    heightOptions.value = Array.from({ length: 243 - 60 + 1 }, (_, i) => ({
+      name: (i + 60).toString(),
+      value: i + 60
+    }));
+
+    // Cân nặng: 20 → 360 kg
+    weightOptions.value = Array.from({ length: 360 - 20 + 1 }, (_, i) => ({
+      name: (i + 20).toString(),
+      value: i + 20
+    }));
+
+    selectedHeight.value = defaultMetricHeight;
+    selectedWeight.value = defaultMetricWeight;
+  }
+};
+
+
 
 const initFromLocalStorage = () => {
     const type = localStorage.getItem('measure_type')
@@ -167,9 +205,15 @@ const initFromLocalStorage = () => {
     updateOptions()
 }
 
+
+
 watch(isImperial, () => {
+
     updateOptions()
 })
+
+
+
 
 initFromLocalStorage()
 
@@ -212,4 +256,35 @@ const back = () => {
 .fade-leave-to {
     opacity: 0;
 }
+
+@media (min-width: 1600px){
+    .height-weight-gif img{
+        width: 9rem;
+    }
+}
+
+
+@media (max-width: 1280px) {
+    .toggle-imperial {
+        margin-top: 0;
+    }
+
+    .toggle-imperial label{
+        margin-bottom: 0;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .toggle-imperial {
+        margin-top: 1rem;
+    }
+
+    .toggle-imperial label{
+        margin-bottom: 1rem;
+    }
+}
+
+
+
 </style>

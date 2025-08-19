@@ -23,7 +23,7 @@
             <!-- intro -->
             <div class="text-center px-5">
                 <div class="flex justify-center p-4">
-                    <img :src="contentData.handImage" alt="thanks" class="w-2/5 md:w-1/5" />
+                    <img :src="contentData.handImage" alt="thanks" class="w-2/5 md:w-1/4" />
 
                 </div>
                 <div class="text-gray-700 font-medium w-full md:w-4/5 mx-auto" v-html="contentData.introText"></div>
@@ -37,7 +37,7 @@
                 <p class="font-semibold text-sm text-gray-700 mb-1">
                     {{ contentData.encouragement }}
                 </p>
-                <p class="text-xl my-2 font-bold text-black bg-[#f7f7f7] w-full md:w-1/2 mx-auto rounded-full p-2">
+                <p v-if="props.userData.goal != 'maintain'" class="text-xl my-2 font-bold text-black bg-[#f7f7f7] w-full md:w-2/3 mx-auto rounded-full p-2">
                     {{ contentData.goalWeightText }}
                 </p>
 
@@ -77,7 +77,7 @@
             </div>
 
             <!-- next button -->
-            <div class="fixed bottom-0 left-0 right-0 z-50 bg-white shadow">
+            <div class="fixed bottom-0 left-0 right-0 z-50 bg-white shadow pb-4">
                 <div class="flex items-center justify-center px-4 py-2">
                     <button type="button"
                         class="text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 w-full sm:w-1/2 md:w-1/4"
@@ -273,7 +273,7 @@ const contentData = computed(() => {
         calorieBg: '#e3e9fb',
         svg: svg,
         dailyGoalLabel: 'Daily Goal Calories',
-        healthTip: 'Great move for your health 💪',
+        // healthTip: 'Great move for your health 💪',
         stepsTitle: 'Steps to hit your goal:',
         steps: [
             {
@@ -292,20 +292,23 @@ const contentData = computed(() => {
     if (goal === 'lose') {
         return {
             ...shared,
+            healthTip: 'Great move for your health 💪',
             introText: 'Thanks for logging your goals. You\'re one step closer to your transformation.',
             encouragement: `You've got this! Goal day: ${goalDate.value}`
         }
     } else if (goal === 'gain') {
         return {
             ...shared,
+            healthTip: 'A Wise move to gain healthy weight.',
             introText: 'Great job setting your goals! You\'re on the path to gaining healthy weight.',
             encouragement: `Let's do this! Target date: ${goalDate.value}`
         }
     } else {
         return {
             ...shared,
-            introText: 'Let’s maintain your health and lifestyle together.',
-            encouragement: 'Keep it up! Healthy living continues.'
+            healthTip: 'Smart step to stay weight.',
+            introText: 'Thanks for logging your goals. You\'re one step closer to your transformation.',
+            encouragement: 'Eat smart to maintain your weight.'
         }
     }
 })
@@ -358,5 +361,27 @@ const saveData = () => {
 .fade-enter-from,
 .fade-leave-to {
     opacity: 0;
+}
+
+
+
+/* Dưới 768px */
+@media (max-width: 768px) {
+
+}
+
+/* Từ 769px đến 1280px */
+@media (min-width: 769px) and (max-width: 1280px) {
+
+}
+
+/* Từ 1281px đến 1600px */
+@media (min-width: 1281px) and (max-width: 1600px) {
+
+}
+
+/* Trên 1600px */
+@media (min-width: 1601px) {
+
 }
 </style>

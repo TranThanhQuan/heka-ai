@@ -1,6 +1,6 @@
 <template>
     <OnboardingLayout>
-        <component :is="currentComponent" :userData="userData"  @change-screen="changeScreen" />
+        <component :is="currentComponent" :userData="userData" :source="source" @change-screen="changeScreen" />
 
         <PaywallModal :visible="showModal" backgroundUrl="/images/onboarding/modal/bg-modal.jpg" @close="showModal = false" @accepted="handleAccepted" @showSignInModal="showSignInModal = true" />
         <SignInModal :visible="showSignInModal" @close="showSignInModal = false" @login="handleLogin" />
@@ -20,8 +20,31 @@ import Review from '../Components/Onboarding/Review.vue';
 import Nutribution from '../Components/Onboarding/Nutribution.vue';
 import PaywallModal from '../Components/Onboarding/Modal/PaywallModal.vue';
 import SignInModal from '../Components/Onboarding/Modal/SignInModal.vue';
-
+import { usePage } from '@inertiajs/vue3';
 import { silentLoginSSO, getUserInfo, handleLogout } from '@/utils/auth';
+const page = usePage();
+
+const source = ref(page.props.source)
+
+function loadScript(src, id) {
+  if (document.getElementById(id)) return;
+
+  const script = document.createElement('script');
+  script.src = src;
+  script.id = id;
+  script.async = true;
+  document.head.appendChild(script);
+}
+
+if (source.value === 'get-premium') {
+  loadScript('/scripts/meta.js', 'meta-pixel');
+} else if (source.value === 'tt-get-premium') {
+  loadScript('/scripts/tiktok.js', 'tiktok-pixel');
+} else if (source.value === 'ga-get-premium') {
+  loadScript('/scripts/ga.js', 'ga-script');
+}
+
+
 
 const isLoggedIn = ref(false);
 const showModal = ref(false);
@@ -35,6 +58,9 @@ if (code) {
     checkLoginStatus()
 }
 
+const handleAccepted = () => {
+    console.log('handleAccepted')
+}
 
 async function checkLoginStatus() {
     const token = localStorage.getItem('accessToken')
@@ -43,7 +69,7 @@ async function checkLoginStatus() {
         getUserInfo().then(() => {
             //group name
             const groupName = localStorage.getItem('group_name');
-            console.log('groupName: ', groupName)
+
             if(groupName === 'vip'){
                 //show modal paywall
                 showModal.value = true

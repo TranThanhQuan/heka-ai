@@ -1,7 +1,7 @@
 <template>
     <div class="w-4/5 md:w-1/3 mx-auto h-full px-4">
       <transition name="fade" @after-leave="$emit('change-screen', 'MainGoal')">
-        <div v-if="showContent" class="text-center flex flex-col items-center justify-center h-full">
+        <div v-if="showContent" class="text-center flex flex-col items-center justify-center h-full ">
           <!-- Logo HEKA -->
           <a href="/">
             <img src="/images/icon.png" alt="logo" class="w-20 md:w-1/5 mx-auto mb-2" />
@@ -20,7 +20,7 @@
           </a>
 
           <!-- Nút Guest -->
-          <a class="flex items-center gap-2 justify-center text-blue-500 mt-4 text-sm md:text-base" style="cursor:pointer" id="continueGuest" @click="handleGuestClick">
+          <a class="flex items-center gap-2 justify-center text-blue-500 mt-8 text-sm md:text-base" style="cursor:pointer" id="continueGuest" @click="handleGuestClick">
             Continue as Guest
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="18" height="18">
               <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
@@ -34,6 +34,16 @@
   <script setup>
   import { ref } from 'vue'
   import { login, silentLoginSSO, getUserInfo, handleLogout } from '@/utils/auth'
+  import { logEvent, analytics } from '@/firebase'
+
+
+  const props = defineProps({
+    source: {
+      type: String
+    }
+  })
+
+
 
   const showContent = ref(true)
 
@@ -44,6 +54,11 @@
   const loginWithProvider = (provider) => {
 
     login(provider);
+
+    logEvent(analytics, 'sign_in', {
+      method: provider
+    });
+
 
     }
   </script>

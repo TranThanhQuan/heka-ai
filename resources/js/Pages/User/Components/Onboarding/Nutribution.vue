@@ -1,12 +1,12 @@
 <template>
     <div class="overflow-hidden">
         <!-- Dynamic height image -->
-        <div class="mx-auto pb-5" style="height: calc(100vh - 250px);">
+        <div class="mx-auto pb-5" style="height: calc(67vh);">
             <img src="/images/onboarding/image_nutrition.png" alt="" class="h-full w-auto mx-auto object-contain" />
         </div>
 
         <!-- Bottom fixed content -->
-        <div ref="footerRef" class="fixed bottom-0 left-0 right-0 z-40 shadow bg-white pb-6 px-4">
+        <div ref="footerRef" class="fixed bottom-0 left-0 right-0 z-40 shadow bg-white pb-8 md:pb-6 px-4">
             <div class="text-center">
                 <h2 class="text-lg font-bold text-black">
                     MASTER YOUR <span class="text-blue-600">NUTRITION</span>
@@ -24,7 +24,9 @@
         </div>
 
         <!-- Modal -->
-        <PaywallModal :visible="showModal" backgroundUrl="/images/onboarding/modal/bg_nutrition_modal.png" @close="showModal = false" @accepted="handleAccepted" />
+        <PaywallModal :visible="showModal" backgroundUrl="/images/onboarding/modal/bg_nutrition_modal.png" @close="showModal = false" @accepted="handleAccepted" @showSignInModal="showSignInModal = true"/>
+
+        <SignInModal :visible="showSignInModal" @close="showSignInModal = false" @login="handleLogin" />
 
     </div>
 </template>
@@ -32,14 +34,26 @@
 <script setup>
 import { ref } from 'vue'
 import PaywallModal from './Modal/PaywallModal.vue'
+import SignInModal from './Modal/SignInModal.vue'
+
+
+
 defineEmits(['change-screen'])
 
 const handleAccepted = (priceId) => {
-    console.log('Price ID:', priceId)
     // Thực hiện các hành động sau khi người dùng chấp nhận thanh toán
+
+    // showModal.value = false;
+    // gọi hàm checkout
+    checkout(priceId)
 }
 
 const showModal = ref(false)
+const showSignInModal = ref(false)
+
+const handleLogin = () => {
+    showSignInModal.value = false
+}
 </script>
 
 <style scoped>

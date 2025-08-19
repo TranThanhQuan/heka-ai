@@ -14,28 +14,29 @@
 
       <!-- Tooltip -->
       <div class="relative flex items-start">
-        <div
-          class="absolute right-0 top-0 w-3/5 md:w-3/5 max-w-md py-2 px-4 text-left text-lg shadow-lg rounded-2xl bg-white flex items-center mr-1 md:mr-10">
+        <div class="absolute right-0 top-0 w-3/5 md:w-3/5 max-w-md py-2 px-4 text-left text-lg shadow-lg rounded-2xl bg-white flex items-center mr-1 md:mr-10 box-message">
           <div>
             How often do you <span class="font-bold">exercise</span> each week?
           </div>
         </div>
 
-        <div class="ml-0 sm:ml-5 mt-1">
-          <img src="/images/onboarding/gif/activity_guide.gif" alt="Activity" class="w-32 md:w-1/3" />
+        <div class="ml-0 sm:ml-5 mt-1 activity-gif">
+          <!-- <img src="/images/onboarding/gif/activity_guide.gif" alt="Activity" class="w-32 md:w-1/3" /> -->
+          <img src="/images/onboarding/gif/activity_guide.gif" alt="Activity" class="w-1/3 " />
+
         </div>
       </div>
 
       <hr class="my-2" />
 
       <!-- Activity options -->
-      <div class="flex flex-col gap-3 px-2">
+      <div class="flex flex-col gap-3 px-2 max-h-[47vh] xl:max-h-[52vh] overflow-y-auto pb-16 activity-options">
         <div
           v-for="item in activities"
           :key="item.value"
           @click="selectActivity(item.value)"
           :class="[
-            'flex items-center gap-2 p-3 sm:p-4 w-full sm:w-4/5 mx-auto rounded-lg cursor-pointer transition border',
+            'flex items-center gap-2 p-3 sm:p-2 w-full sm:w-4/5 mx-auto rounded-lg cursor-pointer transition border',
             item.value === activity
               ? 'bg-black text-white border-black'
               : 'bg-gray-100 hover:bg-gray-200 border-transparent'
@@ -51,7 +52,7 @@
     </div>
 
     <!-- Button fixed at bottom -->
-    <div class="fixed bottom-0 left-0 right-0 z-40 shadow bg-white pb-6 px-4">
+    <div class="fixed bottom-0 left-0 right-0 z-40 shadow bg-white pb-8 md:pb-6 px-4">
       <div class="flex items-center justify-center">
         <button
           @click="next"
@@ -129,4 +130,38 @@ const back = () => {
     emit('change-screen', 'GenderAge', props.userData)
 }
 </script>
-<style scoped></style>
+<style scoped>
+
+/* Dưới 768px */
+@media (max-width: 768px) {
+    .activity-options{
+        padding-bottom: 0;
+    }
+
+}
+
+/* Từ 769px đến 1280px */
+@media (min-width: 769px) and (max-width: 1280px) {
+    .activity-options {
+        padding-bottom: 5rem!important;
+    }
+}
+
+/* Từ 1281px đến 1600px */
+@media (min-width: 1281px) and (max-width: 1600px) {
+    .activity-gif img{
+       width: 9rem;
+    }
+
+
+}
+
+/* Trên 1600px */
+@media (min-width: 1601px) {
+    .activity-gif img{
+       width: 9rem;
+    }
+}
+
+
+</style>

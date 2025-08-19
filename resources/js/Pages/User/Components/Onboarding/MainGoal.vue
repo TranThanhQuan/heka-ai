@@ -19,19 +19,24 @@
                 <div
                     class="absolute right-0 top-2 w-9/12 md-w-full max-w-md py-2 px-3 text-left text-lg shadow-lg rounded-2xl bg-white flex items-center mr-2">
 
-                    <div>
+                    <div class="">
                         Tell us your goal so we can <span class="font-bold">better support</span> you!
                     </div>
                 </div>
 
-                <div class="ml-1 mt-10 sm:ml-10">
-                    <img src="/images/onboarding/gif/goal_guide.gif" alt="Main Goal" class="w-1/3" />
+                <div class="ml-1 mt-10 sm:ml-10 main-goal-gif">
+                    <!-- <img src="/images/onboarding/gif/goal_guide.gif" alt="Main Goal" class="w-1/4" /> -->
+                    <img src="/images/onboarding/gif/goal_guide.gif" alt="Main Goal" class="w-1/3  " />
+
                 </div>
             </div>
 
             <hr class="my-2" />
 
-            <div class="flex flex-col gap-2 px-4 max-h-[52vh] overflow-y-auto pb-6">
+            <div class="flex flex-col gap-2 px-4 max-h-[47vh] xl:max-h-[52vh] overflow-y-auto pb-8 xl:pb-6 main-goal-option">
+
+                <!-- <div class="flex flex-col gap-2 px-4 max-h-[40vh] overflow-y-auto pb-16 lg:pb-6"> -->
+
                 <div v-for="item in goals" :key="item.title" @click="selectGoal(item.value)" :class="[
                     'flex items-center gap-3 p-3 rounded-lg cursor-pointer transition border w-full md:w-4/5 mx-auto',
                     item.value === goal ? 'bg-black text-white border-black' : 'bg-gray-100 hover:bg-gray-200 border-transparent'
@@ -46,7 +51,7 @@
         </div>
     </div>
 
-    <div class="fixed bottom-0 left-0 right-0 z-40 shadow bg-white pb-6 px-4" v-show="!showIntro">
+    <div class="fixed bottom-0 left-0 right-0 z-40 shadow bg-white pb-8 md:pb-6 px-4" v-show="!showIntro">
         <div class="flex items-center justify-center">
             <button @click="next"
                 class="text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 w-full sm:w-1/2 md:w-1/4 transition duration-200"
@@ -147,4 +152,50 @@ const back = () => {
 .fade-leave-to {
     opacity: 0;
 }
+
+
+/* Dưới 768px */
+@media (max-width: 768px) {
+
+}
+
+/* Từ 769px đến 1280px */
+@media (min-width: 769px) and (max-width: 1280px) {
+    .main-goal-option{
+        padding-bottom: 2rem;
+    }
+
+
+
+    .main-goal-gif img {
+        width: 8rem!important;
+    }
+}
+
+/* Từ 1281px đến 1600px */
+@media (min-width: 1281px) and (max-width: 1600px) {
+    .main-goal-gif img {
+        width: 8rem!important;
+    }
+
+    .main-goal-option{
+        padding-bottom: 1rem;
+    }
+}
+
+/* Trên 1600px */
+@media (min-width: 1601px) {
+    .main-goal-gif{
+         margin-top: 0;
+    }
+
+    .main-goal-gif img {
+        width: 10rem;
+    }
+
+    .main-goal-option{
+        padding-bottom: 2rem;
+    }
+}
+
 </style>

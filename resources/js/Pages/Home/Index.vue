@@ -398,6 +398,8 @@ import { createStripeBillingPortalSession, checkout } from '@/utils/payment'
 import PaywallModal from '@/Pages/User/Components/Onboarding/Modal/PaywallModal.vue'
 import SignInModal from '@/Pages/User/Components/Onboarding/Modal/SignInModal.vue'
 
+
+
 const handleAccepted = (priceId) => {
     checkout(priceId)
 }

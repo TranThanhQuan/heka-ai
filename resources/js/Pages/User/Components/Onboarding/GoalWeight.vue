@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="relative flex items-start">
-            <div class="absolute right-0 top-2 w-3/5 md:w-3/5 max-w-md py-2 px-4 text-left text-lg shadow-lg rounded-2xl bg-white flex items-center mr-1 md:mr-10">
+            <div class="absolute right-0 top-2 w-3/5 md:w-3/5 max-w-md py-2 px-4 text-left text-lg shadow-lg rounded-2xl bg-white flex items-center mr-1 md:mr-10  box-message">
 
                 <div v-if="warningMessage" v-html="warningMessage"></div>
                 <div v-else>
@@ -20,61 +20,67 @@
                 </div>
             </div>
 
-            <div class="ml-0 sm:ml-5 mt-3">
-                <img src="/images/onboarding/gif/info_guide.gif" alt="Activity Guide" class="w-32 md:w-1/3">
+            <div class="ml-0 sm:ml-5 mt-3 goal-weight-gif">
+                <img src="/images/onboarding/gif/info_guide.gif" alt="Activity Guide" class=" w-1/3">
             </div>
         </div>
 
         <hr class="my-2">
+        <div class=" max-h-[47vh] xl:max-h-[52vh] overflow-y-auto pb-16 xl:pb-6 goal-weight-options">
 
-        <div class="flex flex-col mt-6 px-4">
-            <label class="text-gray-900 font-medium">Weight</label>
-            <div class="w-1/2 mx-auto">
-                <VueScrollPicker :options="weightOptions" v-model="selectedWeight">
-                    <template #default="{ option, selected }">
-                        <div :class="[
-                            selected ? 'text-2xl font-bold' : 'text-2xl',
-                            selected && isInvalidWeight ? 'text-red-500' : 'text-black'
-                        ]">
-                            {{ option.name }} {{ isImperial ? 'Ib' : 'kg' }}
-                        </div>
-                    </template>
-                </VueScrollPicker>
-            </div>
-        </div>
 
-        <div class="flex flex-col gap-3 px-4">
-            <!-- Label -->
-            <label class="text-gray-900 font-medium">Duration</label>
-
-            <!-- Input Group -->
-            <div
-                class="flex items-center justify-center bg-gray-50 border border-gray-300 rounded-full px-4 py-0 space-x-4 w-4/5 mx-auto">
-
-                <!-- Minus Button -->
-                <button @click="decrement" class="text-xl text-gray-500 hover:text-black">
-                    &minus;
-                </button>
-
-                <!-- Number -->
-                <div class="text-lg font-semibold w-16 text-center border-b border-gray-300">
-                    {{ duration }}
+            <div class="flex flex-col mt-6 px-4">
+                <label class="text-gray-900 font-medium">Weight</label>
+                <div class="w-1/2 mx-auto">
+                    <VueScrollPicker :options="weightOptions" v-model="selectedWeight">
+                        <template #default="{ option, selected }">
+                            <div :class="[
+                                selected ? 'text-2xl font-bold' : 'text-2xl',
+                                selected && isInvalidWeight ? 'text-red-500' : 'text-black'
+                            ]">
+                                {{ option.name }} {{ isImperial ? 'Ib' : 'kg' }}
+                            </div>
+                        </template>
+                    </VueScrollPicker>
                 </div>
-
-                <!-- Plus Button -->
-                <button @click="increment" class="text-xl text-gray-500 hover:text-black">
-                    &#43;
-                </button>
-
-                <!-- Divider -->
-                <div class="w-px h-6 bg-gray-300 mx-2"></div>
-
-                <!-- Dropdown -->
-                <select v-model="unit"
-                    class="bg-transparent text-gray-700 focus:outline-none cursor-pointer border-none  focus:border-none">
-                    <option value="month" selected>Month</option>
-                </select>
             </div>
+
+            <div class="flex flex-col gap-3 px-4">
+                <!-- Label -->
+                <label class="text-gray-900 font-medium">Duration</label>
+
+                <!-- Input Group -->
+                <div
+                    class="flex items-center justify-center bg-gray-50 border border-gray-300 rounded-full px-4 py-0 space-x-4 md:w-4/5 w-full mx-auto">
+
+                    <!-- Minus Button -->
+                    <button @click="decrement" class="text-xl text-gray-500 hover:text-black">
+                        &minus;
+                    </button>
+
+                    <!-- Number -->
+                    <div class="text-lg font-semibold w-16 text-center border-b border-gray-300">
+                        {{ duration }}
+                    </div>
+
+                    <!-- Plus Button -->
+                    <button @click="increment" class="text-xl text-gray-500 hover:text-black">
+                        &#43;
+                    </button>
+
+                    <!-- Divider -->
+                    <div class="w-px h-6 bg-gray-300 mx-2"></div>
+
+                    <!-- Dropdown -->
+                    <select v-model="unit"
+                        class="bg-transparent text-gray-700 focus:outline-none cursor-pointer border-none  focus:border-none">
+                        <option value="month" selected>Month</option>
+                        <option value="week">Week</option>
+                        <option value="year">Year</option>
+                    </select>
+                </div>
+            </div>
+
         </div>
     </div>
     <!-- Button fixed at bottom -->
@@ -109,10 +115,23 @@ const duration = ref(1)
 const unit = ref('month')
 
 // --- Khởi tạo danh sách cân nặng ---
-weightOptions.value = Array.from({ length: isImperial.value ? 550 : 250 }, (_, i) => ({
-    name: (i + 1).toString(),
-    value: i + 1
-}))
+
+
+const currentWeight = ref(props.userData.current_weight)
+
+
+if(props.userData.goal === 'lose'){
+    weightOptions.value = Array.from({ length: currentWeight.value - 1 }, (_, i) => ({
+        name: (i + 1).toString(),
+        value: i + 1
+    }))
+}else if(props.userData.goal === 'gain'){
+    weightOptions.value = Array.from({ length: 700 - currentWeight.value - 1 }, (_, i) => ({
+        name: (currentWeight.value + i + 1).toString(),
+        value: currentWeight.value + i + 1
+    }))
+}
+
 
 // --- Gán goal_weight mặc định ---
 const validateGoalWeight = () => {
@@ -173,7 +192,7 @@ watch([selectedWeight, duration, unit], () => {
         let diff = Math.abs(weight - current_weight)
         if (measure_type === 'imperial') diff *= 0.453592
 
-        const totalDays = unit.value === 'month' ? duration.value * 30 : duration.value
+        const totalDays = unit.value === 'month' ? duration.value * 30 : unit.value === 'week' ? duration.value * 7 : duration.value * 365
         const weeklyChange = (diff / totalDays) * 7
 
         const verb = goal === 'gain' ? 'gaining' : 'losing'
@@ -184,10 +203,12 @@ watch([selectedWeight, duration, unit], () => {
             ? rawWeight.toString()
             : rawWeight.toFixed(1);
 
-
+        // tính theo đơn vị tháng, tuần, năm
         const durationText = unit.value === 'month'
             ? `${duration.value} month${duration.value > 1 ? 's' : ''}`
-            : `${duration.value} day${duration.value > 1 ? 's' : ''}`
+            : unit.value === 'week'
+                ? `${duration.value} week${duration.value > 1 ? 's' : ''}`
+                : `${duration.value} year${duration.value > 1 ? 's' : ''}`
 
         if (weeklyChange > 1.5) {
             warningMessage.value = `Hey, <span class="font-bold text-red-600">${verb}</span> <span class="font-bold text-red-600">${formattedWeight}${displayUnit}</span> in <span class="font-bold text-red-600">${durationText}</span> is pretty fast.`
@@ -239,5 +260,51 @@ const back = () => {
 <style scoped>
 .invalid-weight {
     color: red !important;
+}
+
+
+
+/* Dưới 768px */
+@media (max-width: 768px) {
+    .goal-weight-options {
+        padding-bottom: 1rem;
+    }
+
+    .box-message {
+        margin-right: 10px;
+    }
+}
+
+/* Từ 769px đến 1280px */
+@media (min-width: 769px) and (max-width: 1280px) {
+     .goal-weight-options{
+        padding-bottom: 5rem;
+     }
+}
+
+/* Từ 1281px đến 1600px */
+@media (min-width: 1281px) and (max-width: 1600px) {
+    .goal-weight-gif img {
+        width: 8rem !important;
+    }
+
+    .box-message {
+        margin-right: 1rem !important;
+    }
+
+    .goal-weight-options{
+        padding-bottom: 3rem;
+     }
+}
+
+/* Trên 1600px */
+@media (min-width: 1601px) {
+    .gender-img {
+        width: 10rem;
+    }
+
+    .select-birthday {
+        margin-top: 2rem;
+    }
 }
 </style>

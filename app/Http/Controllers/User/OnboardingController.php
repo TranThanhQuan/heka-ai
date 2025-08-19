@@ -8,29 +8,23 @@ use App\Http\Controllers\Controller;
 
 class OnboardingController extends Controller
 {
-    // public function index()
-    // {
-    //     // hiển thị screen
-    //     $screen = 'SignIn';
 
-    //     $version = 'A';
-    //     return Inertia::render('User/Onboarding/Version_' . $version.'/' . $screen, [
-    //         'message' => 'Chào mừng đến với HekaAI',
-    //     ]);
-    // }
-
-
-    public function index()
+    public function index(Request $request)
     {
-
+        $path = $request->path();
         return Inertia::render('User/Onboarding/Index', [
-
-
+            'source' => $path
         ]);
     }
 
 
-
+    public function getPlan(Request $request)
+    {
+        $path = $request->path();
+        return Inertia::render('User/Onboarding/GetPlan', [
+            'source' => $path
+        ]);
+    }
 
 
 
