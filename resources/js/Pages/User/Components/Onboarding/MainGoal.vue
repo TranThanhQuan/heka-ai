@@ -133,7 +133,7 @@ onMounted(() => {
 
     setTimeout(() => {
         showIntro.value = false
-    }, 3000)
+    }, 30000)
 })
 
 
