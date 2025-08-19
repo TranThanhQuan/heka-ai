@@ -7,8 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export async function login(idp) {
     showLoadingScreen();
-    console.log('keycloak domain',import.meta.env.VITE_KEYCLOAK_DOMAIN)
-    console.log('VITE_BACKEND_DOMAIN',import.meta.env.VITE_BACKEND_DOMAIN)
+
 
     const codeVerifier = generateCodeVerifier();
     const codeChallenge = await generateCodeChallenge(codeVerifier);
@@ -153,7 +152,11 @@ export async function silentLoginSSO(code) {
 export async function getUserInfo() {
     var accessToken = localStorage.getItem('accessToken');
     var backendDomain = import.meta.env.VITE_BACKEND_DOMAIN;
+    var keycloakDomain = import.meta.env.VITE_KEYCLOAK_DOMAIN;
     var bundleId = import.meta.env.VITE_BUNDLE_ID;
+
+    console.log('backendDomain',backendDomain);
+    console.log('keycloakDomain',keycloakDomain);
     showLoadingScreen();
 
     try {
