@@ -9,7 +9,7 @@
             <Header></Header>
         </div>
 
-        <div class="flex-1 flex items-start justify-center mt-16 pt-5 border-2 border-red-500 max-h-[100vh] overflow-hidden">
+        <div class="flex-1 flex items-start justify-center mt-16 pt-5 border-2 border-red-500 max-h-[100vh] overflow-hidden ob-layout">
             <slot>  </slot>
         </div>
     </div>
@@ -29,3 +29,14 @@ onMounted(() => {
 
 
 </script>
+
+
+<style scoped>
+
+
+@media (max-width: 768px) {
+    .ob-layout {
+        max-height: calc(95vh - 100px);
+    }
+}
+</style>
