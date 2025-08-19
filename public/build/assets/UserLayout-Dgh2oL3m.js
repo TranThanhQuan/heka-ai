@@ -1,1 +1,0 @@
-import{i as r}from"./index-DmPXgj1V.js";import t from"./Header-D6b7umMy.js";import a from"./Footer-dkX3WhbT.js";import{h as s,b as m,o as n,a as o,r as i}from"./app-Bi0C3QP2.js";import"./_plugin-vue_export-helper-DlAUqK2U.js";const b={__name:"UserLayout",setup(l){return s(()=>{r()}),(e,p)=>(n(),m("div",null,[o(t),i(e.$slots,"default"),o(a)]))}};export{b as default};

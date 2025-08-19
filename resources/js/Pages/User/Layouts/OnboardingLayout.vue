@@ -4,12 +4,12 @@
         <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     </Head>
 
-    <div class="max-h-[100vh] flex flex-col overflow-hidden border-2 border-yellow-500">
-        <div class="fixed top-0 left-0 right-0 z-50 bg-white shadow opacity-50">
+    <div class="max-h-[100vh] flex flex-col overflow-hidden ">
+        <div class="fixed top-0 left-0 right-0 z-50 bg-white shadow">
             <Header></Header>
         </div>
 
-        <div class="flex-1 flex items-start justify-center mt-16 pt-5 border-2 border-red-500 max-h-[100vh] overflow-hidden ob-layout">
+        <div class="flex-1 flex items-start justify-center mt-16 pt-5  max-h-[100vh]   ob-layout">
             <slot>  </slot>
         </div>
     </div>

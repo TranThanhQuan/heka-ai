@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full md:w-1/3 mx-auto overflow-y-auto pb-28 px-4">
+    <div class="w-full md:w-1/3 mx-auto overflow-y-auto pb-28 px-4 content-screen">
         <!-- Back & Progress -->
         <div class="flex items-center mb-4 h-8">
             <button @click="back" class="mr-2 bg-gray-200 rounded-full p-1">
@@ -126,7 +126,11 @@ onMounted(() => {
 
     /* Dưới 768px */
     @media (max-width: 768px) {
-
+        @media (max-width: 768px) {
+            .content-screen {
+                min-height: 75vh!important;
+            }
+        }
     }
 
     /* Từ 769px đến 1280px */
