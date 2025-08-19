@@ -4,7 +4,7 @@
         <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     </Head>
 
-    <div class="h-screen flex flex-col overflow-hidden">
+    <div class="max-h-[100vh] flex flex-col overflow-hidden border-2 border-yellow-500">
         <div class="fixed top-0 left-0 right-0 z-50 bg-white shadow">
             <Header></Header>
         </div>
