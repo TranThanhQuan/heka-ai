@@ -1,5 +1,5 @@
 <template>
-    <div class="w-4/5 md:w-1/3 mx-auto h-full px-4">
+    <div class="w-4/5 md:w-1/3 mx-auto h-full px-4 mt-16 pt-16">
       <transition name="fade" @after-leave="$emit('change-screen', 'MainGoal')">
         <div v-if="showContent" class="text-center flex flex-col items-center justify-center h-full ">
           <!-- Logo HEKA -->

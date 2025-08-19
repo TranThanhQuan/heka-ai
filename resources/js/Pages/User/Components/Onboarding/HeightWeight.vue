@@ -144,54 +144,6 @@ const formatHeight = (inches) => {
 
 
 
-
-// // Mặc định cho metric
-// const defaultMetricHeight = 167;   // cm
-// const defaultMetricWeight = 57;    // kg
-
-// // Mặc định cho imperial
-// const defaultImperialHeight = 5 * 12 + 6; // 66 in
-// const defaultImperialWeight = 120;        // lbs
-
-// const updateOptions = () => {
-//   if (isImperial.value) {
-//     // Chiều cao: từ 1 ft (12 in) đến 8 ft 11 in (107 in)
-//     heightOptions.value = Array.from({ length: 107 - 12 + 1 }, (_, i) => {
-//       const totalInches = i + 12; // bắt đầu từ 12 inch (1 ft)
-//       return {
-//         name: totalInches.toString(),
-//         value: totalInches
-//       };
-//     });
-
-//     // Cân nặng: từ 50 → 700 lbs
-//     weightOptions.value = Array.from({ length: 700 - 50 + 1 }, (_, i) => ({
-//       name: (i + 50).toString(),
-//       value: i + 50
-//     }));
-
-//     selectedHeight.value = defaultImperialHeight;
-//     selectedWeight.value = defaultImperialWeight;
-
-//   } else {
-//     // Chiều cao: 60 → 243 cm
-//     heightOptions.value = Array.from({ length: 243 - 60 + 1 }, (_, i) => ({
-//       name: (i + 60).toString(),
-//       value: i + 60
-//     }));
-
-//     // Cân nặng: 20 → 360 kg
-//     weightOptions.value = Array.from({ length: 360 - 20 + 1 }, (_, i) => ({
-//       name: (i + 20).toString(),
-//       value: i + 20
-//     }));
-
-//     selectedHeight.value = defaultMetricHeight;
-//     selectedWeight.value = defaultMetricWeight;
-//   }
-// };
-
-
 // Mặc định cho metric
 const defaultMetricHeight = 167;   // cm
 const defaultMetricWeight = 57;    // kg
@@ -286,6 +238,12 @@ const emit = defineEmits(['change-screen'])
 
 const next = () => {
     const measure_type = isImperial.value ? 'imperial' : 'metric'
+
+    if(measure_type === 'imperial'){
+        selectedHeight.value = selectedHeight.value * 2.54
+    }
+
+
     localStorage.setItem('measure_type', measure_type)
     localStorage.setItem('current_height', selectedHeight.value)
     localStorage.setItem('current_weight', selectedWeight.value)

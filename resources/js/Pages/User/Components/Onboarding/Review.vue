@@ -170,8 +170,44 @@ const back = () => {
 }
 
 // Tính toán calories mục tiêu
+// const targetCalories = computed(() => {
+//     const {
+//         gender,
+//         year_of_birth,
+//         current_weight,
+//         current_height,
+//         goal,
+//         goal_weight,
+//         duration,
+//         activity
+//     } = props.userData
+
+//     const currentYear = new Date().getFullYear()
+//     const age = currentYear - parseInt(year_of_birth)
+
+//     let BMR = 0
+//     if (gender === 'male') {
+//         BMR = (10 * current_weight) + (6.25 * current_height) - (5 * age) + 5
+//     } else {
+//         BMR = (10 * current_weight) + (6.25 * current_height) - (5 * age) - 161
+//     }
+
+//     const startDate = new Date()
+//     startDate.setDate(startDate.getDate() + 1)
+//     const endDate = new Date(startDate)
+//     endDate.setMonth(endDate.getMonth() + parseInt(duration))
+//     const durationDays = Math.round((endDate - startDate) / (1000 * 60 * 60 * 24))
+
+//     let gainLossCalories = 0
+//     if (goal === 'gain' || goal === 'lose') {
+//         gainLossCalories = ((goal_weight - current_weight) / durationDays) * 7700
+//     }
+
+//     return Math.round((BMR * parseFloat(activity)) + gainLossCalories)
+// })
+
 const targetCalories = computed(() => {
-    const {
+    let {
         gender,
         year_of_birth,
         current_weight,
@@ -179,9 +215,21 @@ const targetCalories = computed(() => {
         goal,
         goal_weight,
         duration,
-        activity
+        activity,
+        measure_type
     } = props.userData
 
+
+    // nếu là imperial thì chuyển đổi sang metric
+    if(measure_type === 'imperial'){
+        current_weight = current_weight * 0.453592
+        current_height = current_height
+        goal_weight = goal_weight * 0.453592
+    }
+
+    // console.log(current_weight, current_height, goal_weight)
+
+    // tính toán calories mục tiêu
     const currentYear = new Date().getFullYear()
     const age = currentYear - parseInt(year_of_birth)
 
@@ -206,6 +254,7 @@ const targetCalories = computed(() => {
     return Math.round((BMR * parseFloat(activity)) + gainLossCalories)
 })
 
+
 // Tính ngày kết thúc mục tiêu
 const goalDate = computed(() => {
     const startDate = new Date()
@@ -225,7 +274,7 @@ const contentData = computed(() => {
     const goal = props.userData.goal
     const current = props.userData.current_weight
     let target = props.userData.goal_weight
-
+    let measure_type = props.userData.measure_type
     if (props.userData.goal === 'maintain'){
         target = current
         localStorage.setItem('goal_weight', current)
@@ -237,6 +286,12 @@ const contentData = computed(() => {
 
     let svg = `<svg width="220" height="120" viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg"> <rect width="100%" height="100%" fill="#e6ebfd" /> <path d="M 20 100 A 90 90 0 0 1 200 100" stroke="#1a1a1a" stroke-width="12" fill="none" stroke-linecap="round" /> <circle cx="200" cy="100" r="8" fill="#1a1a1a" stroke="white" stroke-width="4" /> </svg>`;
 
+    let goalWeightText = ''
+        if( measure_type === 'imperial'){
+            goalWeightText = `${current} lb → ${target} lb`
+        }else{
+            goalWeightText = `${current} KG → ${target} KG`
+        }
     // Nếu calories < 0 → cảnh báo
     if (targetCalories.value < 0) {
         unhappyCase = true;
@@ -259,6 +314,8 @@ const contentData = computed(() => {
         <circle cx="20" cy="100" r="8" fill="#d4d4d4" stroke="white" stroke-width="4" />
         </svg>`;
 
+
+
         return {
             backIcon: '/images/onboarding/back_arrow.png',
             handImage: '/images/onboarding/error.png',
@@ -271,9 +328,11 @@ const contentData = computed(() => {
             stepsTitle: 'What you can do:',
             steps: '',
             buttonText: 'Go Back',
-            goalWeightText: `${current} KG → ${target} KG`
+            goalWeightText: goalWeightText
         }
     }
+
+
 
     // Nội dung mặc định theo mục tiêu
     const shared = {
@@ -295,7 +354,7 @@ const contentData = computed(() => {
             }
         ],
         buttonText: 'Next',
-        goalWeightText: `${current} KG → ${target} KG`
+        goalWeightText: goalWeightText
     }
 
     if (goal === 'lose') {
