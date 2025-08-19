@@ -12,7 +12,7 @@
                 </div>
             </div>
         </transition>
-        <div v-if="showMainContent" class="relative z-10 w-full  mx-auto overflow-y-auto pb-16"
+        <div v-if="showMainContent" class="relative z-10 w-full  mx-auto"
             style="height: calc(100vh - 100px);">
 
             <!-- back arrow -->
@@ -20,61 +20,65 @@
                 <img @click="back()" :src="contentData.backIcon" alt="back" class="w-10 h-10 cursor-pointer" />
             </div>
 
-            <!-- intro -->
-            <div class="text-center px-5">
-                <div class="flex justify-center p-4">
-                    <img :src="contentData.handImage" alt="thanks" class="w-2/5 md:w-1/4" />
+            <div class="h-full overflow-y-auto pb-16">
+                <!-- intro -->
+                <div class="text-center px-5">
+                    <div class="flex justify-center p-4">
+                        <img :src="contentData.handImage" alt="thanks" class="w-2/5 md:w-1/4" />
+
+                    </div>
+                    <div class="text-gray-700 font-medium w-full md:w-4/5 mx-auto" v-html="contentData.introText"></div>
+                </div>
+
+                <hr class="my-4 w-4/5 mx-auto" />
+
+                <!-- goal info -->
+                <div class="text-center p-0 md:px-5">
+
+                    <p class="font-semibold text-sm text-gray-700 mb-1">
+                        {{ contentData.encouragement }}
+                    </p>
+                    <p v-if="props.userData.goal != 'maintain'" class="text-xl my-2 font-bold text-black bg-[#f7f7f7] w-full md:w-2/3 mx-auto rounded-full p-2">
+                        {{ contentData.goalWeightText }}
+                    </p>
 
                 </div>
-                <div class="text-gray-700 font-medium w-full md:w-4/5 mx-auto" v-html="contentData.introText"></div>
-            </div>
 
-            <hr class="my-4 w-4/5 mx-auto" />
+                <!-- calorie gauge -->
+                <div :style="{ backgroundColor: contentData.calorieBg }"
+                    class="flex justify-center py-5 w-4/5 md:w-2/3 mx-auto rounded-lg mb-5">
+                    <div class="relative w-[220px] h-[110px]">
+                        <div v-html="contentData.svg"></div>
+                        <div class="absolute inset-0 flex flex-col items-center justify-end pb-3">
+                            <p v-if="!unhappyCase" class="text-2xl font-bold text-black">{{ targetCalories }}</p>
+                            <p v-else class="text-2xl font-bold text-gray-500"> 0 </p>
+                            <p class="text-gray-500 text-sm">{{ contentData.dailyGoalLabel }}</p>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- goal info -->
-            <div class="text-center p-0 md:px-5">
-
-                <p class="font-semibold text-sm text-gray-700 mb-1">
-                    {{ contentData.encouragement }}
+                <!-- health tip -->
+                <p v-if="!unhappyCase"
+                    class="text-center text-sm font-medium bg-[#f4f4f4] w-full md:w-2/3 mx-auto rounded-full p-2 mt-2">
+                    {{ contentData.healthTip }}
                 </p>
-                <p v-if="props.userData.goal != 'maintain'" class="text-xl my-2 font-bold text-black bg-[#f7f7f7] w-full md:w-2/3 mx-auto rounded-full p-2">
-                    {{ contentData.goalWeightText }}
+                <p v-else
+                    class="text-center text-sm font-medium bg-[#f4f4f4] w-full md:w-2/3 mx-auto rounded-full p-2 mt-2 text-red-500">
+                    Invalid goal, unable to calculate calories ⚠️
                 </p>
 
-            </div>
-
-            <!-- calorie gauge -->
-            <div :style="{ backgroundColor: contentData.calorieBg }"
-                class="flex justify-center py-5 w-4/5 md:w-2/3 mx-auto rounded-lg mb-5">
-                <div class="relative w-[220px] h-[110px]">
-                    <div v-html="contentData.svg"></div>
-                    <div class="absolute inset-0 flex flex-col items-center justify-end pb-3">
-                        <p v-if="!unhappyCase" class="text-2xl font-bold text-black">{{ targetCalories }}</p>
-                        <p v-else class="text-2xl font-bold text-gray-500"> 0 </p>
-                        <p class="text-gray-500 text-sm">{{ contentData.dailyGoalLabel }}</p>
+                <!-- steps -->
+                <div class="bg-gray-50 rounded-xl mt-2 p-4 w-full md:w-2/3 mx-auto" v-if="!unhappyCase">
+                    <p class="font-semibold text-gray-800 mb-4">{{ contentData.stepsTitle }}</p>
+                    <div v-for="(step, index) in contentData.steps" :key="index"
+                        class="flex items-center gap-3 bg-white rounded-xl px-4 py-3 mb-3 shadow-sm">
+                        <img :src="step.img" :alt="'step-' + index" class="w-10 h-10 object-contain" />
+                        <span class="text-gray-700 font-medium">{{ step.text }}</span>
                     </div>
                 </div>
             </div>
 
-            <!-- health tip -->
-            <p v-if="!unhappyCase"
-                class="text-center text-sm font-medium bg-[#f4f4f4] w-full md:w-2/3 mx-auto rounded-full p-2 mt-2">
-                {{ contentData.healthTip }}
-            </p>
-            <p v-else
-                class="text-center text-sm font-medium bg-[#f4f4f4] w-full md:w-2/3 mx-auto rounded-full p-2 mt-2 text-red-500">
-                Invalid goal, unable to calculate calories ⚠️
-            </p>
 
-            <!-- steps -->
-            <div class="bg-gray-50 rounded-xl mt-2 p-4 w-full md:w-2/3 mx-auto" v-if="!unhappyCase">
-                <p class="font-semibold text-gray-800 mb-4">{{ contentData.stepsTitle }}</p>
-                <div v-for="(step, index) in contentData.steps" :key="index"
-                    class="flex items-center gap-3 bg-white rounded-xl px-4 py-3 mb-3 shadow-sm">
-                    <img :src="step.img" :alt="'step-' + index" class="w-10 h-10 object-contain" />
-                    <span class="text-gray-700 font-medium">{{ step.text }}</span>
-                </div>
-            </div>
 
             <!-- next button -->
             <div class="fixed bottom-0 left-0 right-0 z-50 bg-white shadow pb-4">
