@@ -7,6 +7,8 @@ import { v4 as uuidv4 } from 'uuid';
 
 export async function login(idp) {
     showLoadingScreen();
+    console.log('keycloak domain',import.meta.env.VITE_KEYCLOAK_DOMAIN)
+    console.log('VITE_BACKEND_DOMAIN',import.meta.env.VITE_BACKEND_DOMAIN)
 
     const codeVerifier = generateCodeVerifier();
     const codeChallenge = await generateCodeChallenge(codeVerifier);
