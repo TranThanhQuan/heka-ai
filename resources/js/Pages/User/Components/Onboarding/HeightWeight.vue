@@ -6,8 +6,8 @@
                 class="absolute top-0 left-0 w-full h-full z-50 bg-white flex items-center justify-center text-center px-5">
                 <div>
                     <img src="/images/onboarding/gif/info_guide.gif" alt="Intro" class="w-1/3 mx-auto mb-4" />
-                    <p class="text-lg font-semibold">
-                        Help us personalize your experience by entering your height and weight.
+                    <p class="text-lg">
+                        Got it! Now let’s <strong>set up a goal </strong> <br> that works best for you.
                     </p>
                 </div>
             </div>
@@ -145,33 +145,89 @@ const formatHeight = (inches) => {
 
 
 
+// // Mặc định cho metric
+// const defaultMetricHeight = 167;   // cm
+// const defaultMetricWeight = 57;    // kg
+
+// // Mặc định cho imperial
+// const defaultImperialHeight = 5 * 12 + 6; // 66 in
+// const defaultImperialWeight = 120;        // lbs
+
+// const updateOptions = () => {
+//   if (isImperial.value) {
+//     // Chiều cao: từ 1 ft (12 in) đến 8 ft 11 in (107 in)
+//     heightOptions.value = Array.from({ length: 107 - 12 + 1 }, (_, i) => {
+//       const totalInches = i + 12; // bắt đầu từ 12 inch (1 ft)
+//       return {
+//         name: totalInches.toString(),
+//         value: totalInches
+//       };
+//     });
+
+//     // Cân nặng: từ 50 → 700 lbs
+//     weightOptions.value = Array.from({ length: 700 - 50 + 1 }, (_, i) => ({
+//       name: (i + 50).toString(),
+//       value: i + 50
+//     }));
+
+//     selectedHeight.value = defaultImperialHeight;
+//     selectedWeight.value = defaultImperialWeight;
+
+//   } else {
+//     // Chiều cao: 60 → 243 cm
+//     heightOptions.value = Array.from({ length: 243 - 60 + 1 }, (_, i) => ({
+//       name: (i + 60).toString(),
+//       value: i + 60
+//     }));
+
+//     // Cân nặng: 20 → 360 kg
+//     weightOptions.value = Array.from({ length: 360 - 20 + 1 }, (_, i) => ({
+//       name: (i + 20).toString(),
+//       value: i + 20
+//     }));
+
+//     selectedHeight.value = defaultMetricHeight;
+//     selectedWeight.value = defaultMetricWeight;
+//   }
+// };
+
+
 // Mặc định cho metric
 const defaultMetricHeight = 167;   // cm
-const defaultMetricWeight = 54;    // kg
+const defaultMetricWeight = 57;    // kg
 
 // Mặc định cho imperial
 const defaultImperialHeight = 5 * 12 + 6; // 66 in
-const defaultImperialWeight = 120;        // lbs
+const defaultImperialWeight = 120;       // lbs
 
-const updateOptions = () => {
+const updateOptions = (isSwitch = false) => {
   if (isImperial.value) {
-    // Chiều cao: từ 1 ft (12 in) đến 8 ft 11 in (107 in)
+    // Chiều cao: 12in (1ft) → 107in (8ft11in)
     heightOptions.value = Array.from({ length: 107 - 12 + 1 }, (_, i) => {
-      const totalInches = i + 12; // bắt đầu từ 12 inch (1 ft)
+      const totalInches = i + 12;
       return {
         name: totalInches.toString(),
         value: totalInches
       };
     });
 
-    // Cân nặng: từ 50 → 700 lbs
+    // Cân nặng: 50 → 700 lbs
     weightOptions.value = Array.from({ length: 700 - 50 + 1 }, (_, i) => ({
       name: (i + 50).toString(),
       value: i + 50
     }));
 
-    selectedHeight.value = defaultImperialHeight;
-    selectedWeight.value = defaultImperialWeight;
+    // Gán theo switch hoặc lấy từ localStorage
+
+    selectedHeight.value = isSwitch
+      ? defaultImperialHeight
+      : parseInt(localStorage.getItem('current_height')) || defaultImperialHeight;
+
+    selectedWeight.value = isSwitch
+      ? defaultImperialWeight
+      : parseInt(localStorage.getItem('current_weight')) || defaultImperialWeight;
+
+
 
   } else {
     // Chiều cao: 60 → 243 cm
@@ -186,10 +242,17 @@ const updateOptions = () => {
       value: i + 20
     }));
 
-    selectedHeight.value = defaultMetricHeight;
-    selectedWeight.value = defaultMetricWeight;
+    selectedHeight.value = isSwitch
+      ? defaultMetricHeight
+      : parseInt(localStorage.getItem('current_height')) || defaultMetricHeight;
+
+    selectedWeight.value = isSwitch
+      ? defaultMetricWeight
+      : parseInt(localStorage.getItem('current_weight')) || defaultMetricWeight;
   }
 };
+
+
 
 
 
@@ -198,18 +261,20 @@ const initFromLocalStorage = () => {
     const height = localStorage.getItem('current_height')
     const weight = localStorage.getItem('current_weight')
 
+
     isImperial.value = type === 'imperial'
     selectedHeight.value = height ? parseInt(height) : (isImperial.value ? 60 : 150)
     selectedWeight.value = weight ? parseInt(weight) : (isImperial.value ? 130 : 50)
 
-    updateOptions()
+    updateOptions(false)
+
 }
 
 
 
 watch(isImperial, () => {
 
-    updateOptions()
+    updateOptions(true)
 })
 
 

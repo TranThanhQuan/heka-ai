@@ -157,7 +157,12 @@ const handleLogin = () => {
 
 
 const back = () => {
-    emit('change-screen', 'GoalWeight', props.userData, false)
+    // nếu maintain thì quay lại
+    if (props.userData.goal === 'maintain') {
+        emit('change-screen', 'HeightWeight', props.userData, false)
+    } else {
+        emit('change-screen', 'GoalWeight', props.userData, false)
+    }
 }
 
 // Tính toán calories mục tiêu
@@ -306,7 +311,7 @@ const contentData = computed(() => {
     } else {
         return {
             ...shared,
-            healthTip: 'Smart step to stay weight.',
+            healthTip: 'Smart step to stay balanced.',
             introText: 'Thanks for logging your goals. You\'re one step closer to your transformation.',
             encouragement: 'Eat smart to maintain your weight.'
         }
@@ -342,7 +347,13 @@ const saveData = () => {
     localStorage.setItem('current_weight', userData.current_weight ?? '');
     localStorage.setItem('current_height', userData.current_height ?? '');
     localStorage.setItem('target_cal', targetCalories.value ?? '');
-    localStorage.setItem('goal_weight', userData.goal_weight ?? '');
+
+    if (userData.goal != 'maintain') {
+        localStorage.setItem('goal_weight', userData.goal_weight ?? '');
+    }else{
+        localStorage.setItem('goal_weight', userData.current_weight ?? '');
+    }
+
     localStorage.setItem('start_date', formatDate(startDate));
     localStorage.setItem('end_date', formatDate(endDate));
 };

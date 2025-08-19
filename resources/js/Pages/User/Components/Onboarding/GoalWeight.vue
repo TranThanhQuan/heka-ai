@@ -151,7 +151,12 @@ const validateGoalWeight = () => {
 
     selectedWeight.value = goalWeight
     props.userData.goal_weight = goalWeight
+
+
 }
+
+
+
 validateGoalWeight()
 
 // --- Theo dõi thay đổi ---

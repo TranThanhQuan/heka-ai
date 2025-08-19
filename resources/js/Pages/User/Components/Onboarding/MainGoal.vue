@@ -6,8 +6,8 @@
                 class="absolute top-0 left-0 w-full h-full z-50 bg-white flex items-center justify-center text-center px-5 ">
                 <div class="mb-16">
                     <img src="/images/onboarding/gif/goal_welcome.gif" alt="Intro" class="w-1/3 mx-auto mb-4" />
-                    <p class="text-lg font-semibold">
-                        Hi there! We're Heka, and we're here to take care of your health.
+                    <p class="text-lg">
+                        Hi there! We're <strong>Heka</strong>, and we're <br> here to take care of your health.
                     </p>
                 </div>
             </div>

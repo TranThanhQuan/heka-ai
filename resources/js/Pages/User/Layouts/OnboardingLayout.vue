@@ -9,7 +9,7 @@
             <Header></Header>
         </div>
 
-        <div class="flex-1 flex items-start justify-center mt-16 pt-5 ">
+        <div class="flex-1 flex items-start justify-center mt-16 pt-5 border-2 border-red-500 max-h-[100vh] overflow-hidden">
             <slot>  </slot>
         </div>
     </div>
