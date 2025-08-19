@@ -1,5 +1,5 @@
 <template>
-    <div class="relative w-full md:w-1/3 mx-auto overflow-y-auto border-2 border-blue-500" style="min-height: calc(100vh - 100px);">
+    <div class="relative w-full md:w-1/3 mx-auto overflow-y-auto border-2 border-blue-500 content-screen" style="min-height: calc(100vh - 100px);">
         <!-- Intro overlay -->
         <transition name="fade">
             <div v-if="showIntro"
@@ -156,7 +156,9 @@ const back = () => {
 
 /* Dưới 768px */
 @media (max-width: 768px) {
-
+    .content-screen {
+        min-height: 80vh!important;
+    }
 }
 
 /* Từ 769px đến 1280px */
