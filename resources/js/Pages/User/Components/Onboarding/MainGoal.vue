@@ -1,5 +1,5 @@
 <template>
-    <div class="relative w-full md:w-1/3 mx-auto overflow-y-auto" style="min-height: calc(100vh - 100px);">
+    <div class="relative w-full md:w-1/3 mx-auto overflow-y-auto border-2 border-blue-500" style="min-height: calc(100vh - 100px);">
         <!-- Intro overlay -->
         <transition name="fade">
             <div v-if="showIntro"
@@ -51,7 +51,7 @@
         </div>
     </div>
 
-    <div class="fixed bottom-0 left-0 right-0 z-40 shadow bg-white pb-8 md:pb-6 px-4" v-show="!showIntro">
+    <div class="fixed bottom-0 left-0 right-0 z-40 shadow bg-white pb-8 md:pb-6 px-4 opacity-50" v-show="!showIntro">
         <div class="flex items-center justify-center">
             <button @click="next"
                 class="text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 w-full sm:w-1/2 md:w-1/4 transition duration-200"
@@ -133,7 +133,7 @@ onMounted(() => {
 
     setTimeout(() => {
         showIntro.value = false
-    }, 30000)
+    }, 3000)
 })
 
 
