@@ -5,7 +5,7 @@
     </Head>
 
     <div class="max-h-[100vh] flex flex-col overflow-hidden border-2 border-yellow-500">
-        <div class="fixed top-0 left-0 right-0 z-50 bg-white shadow">
+        <div class="fixed top-0 left-0 right-0 z-50 bg-white shadow opacity-50">
             <Header></Header>
         </div>
 
