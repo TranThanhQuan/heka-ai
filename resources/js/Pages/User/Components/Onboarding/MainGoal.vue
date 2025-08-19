@@ -157,7 +157,7 @@ const back = () => {
 /* Dưới 768px */
 @media (max-width: 768px) {
     .content-screen {
-        min-height: 80vh!important;
+        min-height: 75vh!important;
     }
 }
 
