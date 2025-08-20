@@ -1,51 +1,55 @@
-export function eventTracking(eventName, eventData = null) {
-    //  path = "/heka.astronex.local/get-premium"
-    let path = localStorage.getItem('redirectUri');
 
-    if (path) {
-        // Chuyển thành mảng và lấy phần tử cuối cùng
-        path = path.split('/').filter(Boolean).pop(); // "get-premium"
-    } else {
-        // Lấy từ window.location.pathname nếu không có redirectUri
-        path = window.location.pathname.split('/').filter(Boolean).pop(); // "get-premium"
+import { logEvent, analytics } from "@/firebase.js";
+
+// Danh sách các event chỉ gửi 1 lần
+const singleFireEvents = [
+  "goal_scr_item_click",
+  "goal_scr_next_click",
+  "sex_age_scr_next_click",
+  "activity_level_click",
+  "height_weight_next_click",
+  "goal_weight_next_click",
+  "review_scr_next_click"
+];
+
+// Key trong localStorage để lưu event đã bắn
+const STORAGE_KEY = "tracked_events";
+
+// Lấy danh sách event đã gửi từ localStorage
+function getTrackedEvents() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  } catch {
+    return [];
+  }
+}
+
+// Lưu danh sách event đã gửi vào localStorage
+function saveTrackedEvents(events) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
+}
+
+// Hàm tracking chính
+export function eventTracking(eventName, data = {}) {
+  const tracked = getTrackedEvents();
+
+  if (singleFireEvents.includes(eventName)) {
+    // Nếu event thuộc loại chỉ gửi 1 lần
+    if (tracked.includes(eventName)) {
+      console.log(`[Tracking] Event '${eventName}' đã gửi rồi, bỏ qua`);
+      return;
     }
 
+    // Gửi event lần đầu
+    logEvent(analytics, eventName, data);
+    console.log(`[Tracking] Sent (once): ${eventName}`, data);
 
-
-    const payload = {
-        event_name: eventName,
-        event_data: eventData ? JSON.stringify(eventData) : null,
-        path: path
-    };
-
-    console.log('payload event tracking: ', payload);
-
-    // // 🔹 Gửi lên API
-    // fetch('/api/event_tracking.php', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify(payload)
-    // })
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         // console.log('Event tracked:', data);
-    //     })
-    //     .catch(error => {
-    //         // console.error('Tracking error:', error);
-    //     });
-
-
-    // // 🔹 Gửi lên Firebase
-    // if (typeof logEvent === 'function' && typeof analytics !== 'undefined') {
-    //     try {
-    //         logEvent(analytics, eventName, eventData || {});
-    //         //   console.log('✅ Event tracked to Firebase:', eventName);
-    //     } catch (firebaseError) {
-    //         //   console.error('❌ Firebase tracking error:', firebaseError);
-    //     }
-    // } else {
-    //     // console.warn('⚠️ Firebase not initialized or logEvent not available');
-    // }
+    // Lưu vào localStorage
+    tracked.push(eventName);
+    saveTrackedEvents(tracked);
+  } else {
+    // Event gửi nhiều lần
+    logEvent(analytics, eventName, data);
+    console.log(`[Tracking] Sent (multi): ${eventName}`, data);
+  }
 }

@@ -2,8 +2,9 @@
     <OnboardingLayout>
         <component :is="currentComponent" :userData="userData" :source="source" @change-screen="changeScreen" />
 
-        <PaywallModal :visible="showModal" backgroundUrl="/images/onboarding/modal/bg-modal.jpg" @close="showModal = false" @accepted="handleAccepted" @showSignInModal="showSignInModal = true" />
+        <PaywallModal :visible="showModal" backgroundUrl="/images/onboarding/modal/bg-modal.jpg" @close="showModal = false" @accepted="handleAccepted" @showSignInModal="showSignInModal = true" @showEmailModal="showEmailModal = true" />
         <SignInModal :visible="showSignInModal" @close="showSignInModal = false" @login="handleLogin" />
+        <EmailModal :visible="showEmailModal" @close="showEmailModal = false" @email="handleEmail" />
     </OnboardingLayout>
 </template>
 
@@ -20,6 +21,7 @@ import Review from '../Components/Onboarding/Review.vue';
 import Nutribution from '../Components/Onboarding/Nutribution.vue';
 import PaywallModal from '../Components/Onboarding/Modal/PaywallModal.vue';
 import SignInModal from '../Components/Onboarding/Modal/SignInModal.vue';
+import EmailModal from '../Components/Onboarding/Modal/EmailModal.vue';
 import { usePage } from '@inertiajs/vue3';
 import { silentLoginSSO, getUserInfo, handleLogout } from '@/utils/auth';
 const page = usePage();
@@ -49,6 +51,9 @@ if (source.value === 'get-premium') {
 const isLoggedIn = ref(false);
 const showModal = ref(false);
 const showSignInModal = ref(false);
+const showEmailModal = ref(false);
+
+localStorage.setItem('noSignIn', true)
 
 // ==== Handle Code Param (SSO login) ====
 const code = new URLSearchParams(window.location.search).get('code')
@@ -120,6 +125,9 @@ const handleLogin = (provider) => {
     showSignInModal.value = false
 }
 
+const handleEmail = (email) => {
+    console.log(email)
+}
 
 const logout = () => {
     handleLogout()

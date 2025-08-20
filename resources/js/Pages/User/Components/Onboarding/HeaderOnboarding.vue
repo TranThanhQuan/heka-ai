@@ -13,7 +13,7 @@
 </nav>
 
 <!-- modal -->
-<PaywallModal :visible="showModal" backgroundUrl="/images/onboarding/modal/bg_premium_modal.png" @close="showModal = false" @accepted="handleAccepted" @showSignInModal="showSignInModal = true" />
+<PaywallModal :visible="showModal" backgroundUrl="/images/onboarding/modal/bg_premium_modal.png" @close="showModal = false" @accepted="handleAccepted" @showSignInModal="showSignInModal = true" @closeModal="showModal = true" />
 
 <SignInModal :visible="showSignInModal" @close="showSignInModal = false" @login="handleLogin" />
 

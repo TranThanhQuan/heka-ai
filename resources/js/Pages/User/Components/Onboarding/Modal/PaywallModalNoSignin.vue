@@ -39,17 +39,14 @@
     </transition>
 
     <SignInModal :visible="showSignInModal" @close="showSignInModal = false" @login="handleLogin" />
-    <EmailModal :visible="showEmailModal" @close="showEmailModal = false" @email="handleEmail" />
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import { checkout } from '@/utils/payment';
 import SignInModal from '@/Pages/User/Components/Onboarding/Modal/SignInModal.vue';
-import EmailModal from '@/Pages/User/Components/Onboarding/Modal/EmailModal.vue';
 
 const showSignInModal = ref(false)
-const showEmailModal = ref(false)
 
 const props = defineProps({
     visible: Boolean,
@@ -59,7 +56,7 @@ const props = defineProps({
     }
 })
 
-const emit = defineEmits(['close', 'accepted', 'showSignInModal', 'showEmailModal'])
+const emit = defineEmits(['close', 'accepted', 'showSignInModal', 'closeModal'])
 const selected = ref('12months')
 
 const PRICE_IDS = {
@@ -96,13 +93,6 @@ const accept = () => {
     const priceId = PRICE_IDS[selected.value]
     localStorage.setItem('priceId', priceId)
 
-    if (localStorage.getItem('noSignIn') === 'true') {
-        emit('showEmailModal')
-        close()
-
-        return
-    }
-
     if (!localStorage.getItem('accessToken')) {
         //    nếu không có accessToken thì trả về tín hiệu để index.vue hiện modal đăng nhập
 
@@ -118,10 +108,6 @@ const accept = () => {
 
 const selectPlan = (plan) => {
     selected.value = plan
-}
-
-const handleEmail = (email) => {
-    console.log(email)
 }
 
 const handleLogin = () => {

@@ -67,7 +67,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-
+import { eventTracking } from "@/utils/tracking.js";
 const props = defineProps({
     userData: {
         type: Object,
@@ -79,6 +79,9 @@ const props = defineProps({
         })
     }
 })
+
+// gửi event khi load trang
+eventTracking('goal_scr_load');
 
 const showIntro = ref(props.userData.showIntro ?? true)
 
@@ -113,12 +116,19 @@ const goals = [
 
 const selectGoal = (value) => {
     goal.value = value
+    eventTracking('goal_scr_item_click', {
+        goal: value
+    })
 }
 
 const emit = defineEmits(['change-screen'])
 
 const next = () => {
     if (goal.value) {
+        eventTracking('goal_scr_next_click', {
+            goal: goal.value
+        })
+
         localStorage.setItem('goal', goal.value)
         props.userData.goal = goal.value
         emit('change-screen', 'GenderAge', props.userData)

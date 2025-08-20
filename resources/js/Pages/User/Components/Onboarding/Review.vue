@@ -12,12 +12,12 @@
                 </div>
             </div>
         </transition>
-        <div v-if="showMainContent" class="relative z-10 w-full  mx-auto"
-            style="height: calc(100vh - 100px);">
+        <div v-if="showMainContent" class="relative z-10 w-full  mx-auto" style="height: calc(100vh - 100px);">
 
             <!-- back arrow -->
             <div class="flex items-center justify-start">
-                <img @click="back()" src="/images/onboarding/back_arrow.png" alt="back" class="w-10 h-10 cursor-pointer" />
+                <img @click="back()" src="/images/onboarding/back_arrow.png" alt="back"
+                    class="w-10 h-10 cursor-pointer" />
             </div>
 
             <div class="h-full overflow-y-auto box-step" style="padding-bottom: 6rem;">
@@ -38,7 +38,8 @@
                     <p class="font-semibold text-sm text-gray-700 mb-1">
                         {{ contentData.encouragement }}
                     </p>
-                    <p v-if="props.userData.goal != 'maintain'" class="text-xl my-2 font-bold text-black bg-[#f7f7f7] w-full md:w-2/3 mx-auto rounded-full p-2">
+                    <p v-if="props.userData.goal != 'maintain'"
+                        class="text-xl my-2 font-bold text-black bg-[#f7f7f7] w-full md:w-2/3 mx-auto rounded-full p-2">
                         {{ contentData.goalWeightText }}
                     </p>
 
@@ -95,11 +96,11 @@
 
     <!-- Modal -->
     <PaywallModal :visible="showModal" :backgroundUrl="modalBackground" @close="showModal = false"
-        @accepted="handleAccepted" @showSignInModal="showSignInModal = true" />
+        @accepted="handleAccepted" @showSignInModal="showSignInModal = true" @showEmailModal="showEmailModal = true" />
 
     <SignInModal :visible="showSignInModal" @close="showSignInModal = false" @login="handleLogin" />
 
-
+    <EmailModal :visible="showEmailModal" @close="showEmailModal = false" @email="handleEmail" />
 </template>
 
 <script setup>
@@ -107,9 +108,10 @@ import { computed, ref, onMounted } from 'vue'
 import { calculateCalories } from '@/utils/calculation'
 import PaywallModal from './Modal/PaywallModal.vue'
 import SignInModal from './Modal/SignInModal.vue'
+import EmailModal from './Modal/EmailModal.vue'
 const showMainContent = ref(false)
 const showSignInModal = ref(false)
-
+const showEmailModal = ref(false)
 onMounted(() => {
     if (showIntro.value) {
         setTimeout(() => {
@@ -159,6 +161,10 @@ const handleLogin = () => {
     showSignInModal.value = false
 }
 
+const handleEmail = (email) => {
+    console.log(email)
+}
+
 
 const back = () => {
     // nếu maintain thì quay lại
@@ -181,7 +187,7 @@ const contentData = computed(() => {
     const current = props.userData.current_weight
     let target = props.userData.goal_weight
     let measure_type = props.userData.measure_type
-    if (props.userData.goal === 'maintain'){
+    if (props.userData.goal === 'maintain') {
         target = current
         localStorage.setItem('goal_weight', current)
     }
@@ -193,11 +199,11 @@ const contentData = computed(() => {
     let svg = `<svg width="220" height="120" viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg"> <rect width="100%" height="100%" fill="#e6ebfd" /> <path d="M 20 100 A 90 90 0 0 1 200 100" stroke="#1a1a1a" stroke-width="12" fill="none" stroke-linecap="round" /> <circle cx="200" cy="100" r="8" fill="#1a1a1a" stroke="white" stroke-width="4" /> </svg>`;
 
     let goalWeightText = ''
-        if( measure_type === 'imperial'){
-            goalWeightText = `${current} lb → ${target} lb`
-        }else{
-            goalWeightText = `${current} KG → ${target} KG`
-        }
+    if (measure_type === 'imperial') {
+        goalWeightText = `${current} lb → ${target} lb`
+    } else {
+        goalWeightText = `${current} KG → ${target} KG`
+    }
 
     // Nếu calories < 0 → cảnh báo
     if (targetCalories < 0) {
@@ -316,24 +322,18 @@ const contentData = computed(() => {
         padding-bottom: 10rem !important;
     }
 
-    .btn-next{
+    .btn-next {
         font-size: 1.2rem;
         padding: 1rem 2rem;
     }
 }
 
 /* Từ 769px đến 1280px */
-@media (min-width: 769px) and (max-width: 1280px) {
-
-}
+@media (min-width: 769px) and (max-width: 1280px) {}
 
 /* Từ 1281px đến 1600px */
-@media (min-width: 1281px) and (max-width: 1600px) {
-
-}
+@media (min-width: 1281px) and (max-width: 1600px) {}
 
 /* Trên 1600px */
-@media (min-width: 1601px) {
-
-}
+@media (min-width: 1601px) {}
 </style>
