@@ -169,7 +169,7 @@ const back = () => {
 /* Từ 769px đến 1280px */
 @media (min-width: 769px) and (max-width: 1280px) {
     .main-goal-option{
-        padding-bottom: 4rem;
+        padding-bottom: 5rem;
     }
 
 

@@ -143,6 +143,10 @@ onMounted(() => {
         .gender-img {
             width: 6.25rem;
         }
+
+        .gender-age-content{
+            padding-bottom: 5rem;
+        }
     }
 
     /* Từ 1281px đến 1600px */

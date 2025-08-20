@@ -72,12 +72,7 @@
                     <div class="w-px h-6 bg-gray-300 mx-2"></div>
 
                     <!-- Dropdown -->
-                    <select v-model="unit"
-                        class="bg-transparent text-gray-700 focus:outline-none cursor-pointer border-none  focus:border-none">
-                        <option value="month" selected>Month</option>
-                        <option value="week">Week</option>
-                        <option value="year">Year</option>
-                    </select>
+                    <select v-model="unit" class="bg-transparent text-gray-700 focus:outline-none cursor-pointer border-none focus:border-none"> <option value="month" selected>Month</option> <option value="week">Week</option> <option value="year">Year</option> </select>
                 </div>
             </div>
 
@@ -97,7 +92,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 
 const props = defineProps({
     userData: Object
@@ -115,6 +110,17 @@ const isInvalidWeight = ref(false)
 // lấy từ localStorage nếu không có thì 1
 const duration = ref(localStorage.getItem('duration') ?? 1)
 const unit = ref(localStorage.getItem('unit') ?? 'month')
+
+const allOptions = [
+  { value: 'month', label: 'Month' },
+  { value: 'week', label: 'Week' },
+  { value: 'year', label: 'Year' }
+]
+
+// Hiển thị 2 option còn lại
+const filteredOptions = computed(() =>
+  allOptions.filter(option => option.value !== unit.value)
+)
 
 // --- Khởi tạo danh sách cân nặng ---
 

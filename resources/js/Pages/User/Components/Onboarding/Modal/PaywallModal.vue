@@ -4,7 +4,7 @@
             class="fixed inset-0 z-50 flex items-center justify-center w-full h-full overflow-x-hidden overflow-y-auto bg-black bg-opacity-70"
             @keydown.esc="close">
             <!-- Modal content -->
-            <div class="relative w-full max-w-[270px] mx-auto rounded-2xl overflow-hidden shadow-lg" :style="{
+            <div class="modal-paywall relative w-full max-w-[250px] mx-auto rounded-2xl overflow-hidden shadow-lg" :style="{
                 background: `url('${backgroundUrl}') no-repeat center center/cover`
             }">
                 <!-- ❌ Close Button -->
@@ -16,7 +16,7 @@
                 <!-- Content -->
                 <div class="relative z-10 flex flex-col items-center text-center text-white p-6">
                     <!-- Pricing Options -->
-                    <div class="grid grid-cols-2 gap-2 w-full mx-auto" style="padding-top: 21rem;">
+                    <div class="grid grid-cols-2 gap-2 w-full mx-auto price-option" style="padding-top: 21rem;">
                         <div @click="selectPlan('1month')" class="cursor-pointer">
                             <img :src="selected === '1month' ? '/images/onboarding/modal/1month_active.png' : '/images/onboarding/modal/1month.png'"
                                 alt="1 month" class="w-full" />
@@ -125,4 +125,37 @@ const handleLogin = () => {
 .fade-leave-to {
     opacity: 0;
 }
+
+
+/* Dưới 768px */
+@media (max-width: 768px) {
+    .modal-paywall{
+        max-width: 80vw;
+    }
+    .price-option{
+        padding-top: 23rem!important;
+    }
+}
+
+/* Từ 769px đến 1280px */
+@media (min-width: 769px) and (max-width: 1280px) {
+    .modal-paywall{
+        max-width: 200px!important;
+    }
+
+    .price-option{
+        padding-top: 15rem!important;
+    }
+}
+
+/* Từ 1281px đến 1600px */
+@media (min-width: 1281px) and (max-width: 1600px) {
+
+}
+/* Trên 1600px */
+@media (min-width: 1601px) {
+
+}
+
+
 </style>

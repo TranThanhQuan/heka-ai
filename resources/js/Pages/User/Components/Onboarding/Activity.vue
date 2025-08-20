@@ -34,7 +34,7 @@
         <div
           v-for="item in activities"
           :key="item.value"
-          @click="selectActivity(item.value)"
+          @click="selectActivity(item.value); next()"
           :class="[
             'flex items-center gap-2 p-3 sm:p-2 w-full sm:w-4/5 mx-auto rounded-lg cursor-pointer transition border',
             item.value === activity
@@ -52,7 +52,7 @@
     </div>
 
     <!-- Button fixed at bottom -->
-    <div class="fixed bottom-0 left-0 right-0 z-40 shadow bg-white pb-8 md:pb-6 px-4">
+    <!-- <div class="fixed bottom-0 left-0 right-0 z-40 shadow bg-white pb-8 md:pb-6 px-4">
       <div class="flex items-center justify-center">
         <button
           @click="next"
@@ -63,7 +63,7 @@
           Next
         </button>
       </div>
-    </div>
+    </div> -->
   </template>
 
 
@@ -148,7 +148,7 @@ const back = () => {
 /* Từ 769px đến 1280px */
 @media (min-width: 769px) and (max-width: 1280px) {
     .activity-options {
-        padding-bottom: 5rem!important;
+        padding-bottom: 1rem!important;
     }
 }
 
