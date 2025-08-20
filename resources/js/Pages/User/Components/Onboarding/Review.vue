@@ -20,7 +20,7 @@
                 <img @click="back()" :src="contentData.backIcon" alt="back" class="w-10 h-10 cursor-pointer" />
             </div>
 
-            <div class="h-full overflow-y-auto pb-16">
+            <div class="h-full overflow-y-auto" style="padding-bottom: 6rem;">
                 <!-- intro -->
                 <div class="text-center px-5">
                     <div class="flex justify-center p-4">
