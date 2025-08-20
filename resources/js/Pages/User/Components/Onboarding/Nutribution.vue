@@ -2,12 +2,11 @@
     <div class="overflow-hidden">
         <!-- Dynamic height image -->
         <div class="mx-auto pb-5" style="height: calc(67vh);">
-            <img src="/images/onboarding/image_nutrition.png" alt="" class="h-full w-auto mx-auto object-contain" />
 
-            <!-- <img v-if="isMobile" src="/images/onboarding/image_nutrition.png" alt="" class="h-full w-auto mx-auto object-contain" />
+            <img v-if="isMobile" src="/images/onboarding/image_nutrition.webp" alt="" class="h-full w-auto mx-auto object-contain" />
 
             <video v-else src="/images/onboarding/video/introduction.mp4" autoplay muted loop
-                class="h-full w-auto mx-auto object-contain" /> -->
+                class="h-full w-auto mx-auto object-contain" />
 
 
         </div>
