@@ -59,7 +59,7 @@
 
                 <!-- health tip -->
                 <p v-if="!unhappyCase"
-                    class="text-center text-sm font-medium bg-[#f4f4f4] w-full md:w-2/3 mx-auto rounded-full p-2 mt-2">
+                    class="text-center text-sm   bg-[#f4f4f4] w-full md:w-2/3 mx-auto rounded-full p-2 mt-2">
                     {{ contentData.healthTip }}
                 </p>
                 <p v-else
@@ -274,14 +274,14 @@ const contentData = computed(() => {
     } else if (goal === 'gain') {
         return {
             ...shared,
-            healthTip: 'A Wise move to gain healthy weight.',
-            introText: 'Great job setting your goals! You\'re on the path to gaining healthy weight.',
+            healthTip: 'A wise move to gain healthy weight. 🍽️',
+            introText: 'Thanks for logging your goals. You’re one step closer to your transformation.',
             encouragement: `Let's do this! Target date: ${endDate}`
         }
     } else {
         return {
             ...shared,
-            healthTip: 'Smart step to stay balanced.',
+            healthTip: 'Smart step to stay balanced. ⚖️',
             introText: 'Thanks for logging your goals. You\'re one step closer to your transformation.',
             encouragement: 'Eat smart to maintain your weight.'
         }

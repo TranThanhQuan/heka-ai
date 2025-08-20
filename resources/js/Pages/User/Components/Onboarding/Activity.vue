@@ -15,8 +15,8 @@
       <!-- Tooltip -->
       <div class="relative flex items-start">
         <div class="absolute right-0 top-0 w-3/5 md:w-3/5 max-w-md py-2 px-4 text-left text-lg shadow-lg rounded-2xl bg-white flex items-center mr-1 md:mr-10 box-message">
-          <div>
-            How often do you <span class="font-bold">exercise</span> each week?
+          <div class="text-sm">
+            <p>How often do you <span class="font-bold">exercise</span> each week?</p>
           </div>
         </div>
 

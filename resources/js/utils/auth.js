@@ -155,8 +155,7 @@ export async function getUserInfo() {
     var keycloakDomain = import.meta.env.VITE_KEYCLOAK_DOMAIN;
     var bundleId = import.meta.env.VITE_BUNDLE_ID;
 
-    console.log('backendDomain',backendDomain);
-    console.log('keycloakDomain',keycloakDomain);
+
     showLoadingScreen();
 
     try {

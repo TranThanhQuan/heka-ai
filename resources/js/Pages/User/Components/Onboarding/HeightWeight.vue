@@ -31,7 +31,9 @@
             <div class="relative flex items-start">
                 <div
                     class="absolute right-0 top-0 w-3/5 md:w-3/5 max-w-md py-2 px-4 text-left text-lg shadow-lg rounded-2xl bg-white flex items-center mr-1 md:mr-10">
-                    <div> What's your <span class="font-bold">height, weight?</span> Let's do this! </div>
+                    <div class="text-sm">
+                        <p>What's your <span class="font-bold">height, weight?</span> Let's do this!</p>
+                    </div>
                 </div>
 
                 <div class="ml-0 sm:ml-5 mt-1 height-weight-gif">

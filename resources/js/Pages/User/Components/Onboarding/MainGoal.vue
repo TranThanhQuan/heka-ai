@@ -19,8 +19,8 @@
                 <div
                     class="absolute right-0 top-2 w-9/12 md-w-full max-w-md py-2 px-3 text-left text-lg shadow-lg rounded-2xl bg-white flex items-center mr-2">
 
-                    <div class="">
-                        Tell us your goal so we can <span class="font-bold">better support</span> you!
+                    <div class="text-sm">
+                        <p>Tell us your goal so we can <span class="font-bold">better support</span> you!</p>
                     </div>
                 </div>
 
@@ -164,7 +164,7 @@ const back = () => {
 /* Từ 769px đến 1280px */
 @media (min-width: 769px) and (max-width: 1280px) {
     .main-goal-option{
-        padding-bottom: 2rem;
+        padding-bottom: 4rem;
     }
 
 

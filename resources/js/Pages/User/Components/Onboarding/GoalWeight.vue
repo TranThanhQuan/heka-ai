@@ -15,8 +15,8 @@
             <div class="absolute right-0 top-2 w-3/5 md:w-3/5 max-w-md py-2 px-4 text-left text-lg shadow-lg rounded-2xl bg-white flex items-center mr-1 md:mr-10  box-message">
 
                 <div v-if="warningMessage" v-html="warningMessage"></div>
-                <div v-else>
-                    What's your <strong>goal?</strong> Let me help customize for you.
+                <div v-else class="text-sm">
+                    <p>What's your <strong>goal?</strong> Let me help customize for you.</p>
                 </div>
             </div>
 

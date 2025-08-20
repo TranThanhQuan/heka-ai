@@ -17,8 +17,8 @@
             <div class="absolute right-0 top-0 w-3/5 sm:w-11/12 md:w-3/5 max-w-md py-2 px-4 text-left text-lg shadow-lg rounded-2xl bg-white flex items-center mr-1  box-message">
 
 
-                <div>
-                    Let us know your <span class="font-bold">gender and your birthday</span>
+                <div class="text-sm">
+                    <p>Let us know your <span class="font-bold">gender and your birthday</span></p>
                 </div>
             </div>
 
