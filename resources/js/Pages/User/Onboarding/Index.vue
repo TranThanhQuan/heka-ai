@@ -99,7 +99,7 @@ const screens = {
 }
 
 // Biến điều khiển màn hình đang hiển thị
-const currentScreen = ref('SignIn')
+const currentScreen = ref('MainGoal')
 
 const currentComponent = computed(() => screens[currentScreen.value] || GenderAge)
 

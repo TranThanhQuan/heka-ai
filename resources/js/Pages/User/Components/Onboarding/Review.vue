@@ -17,7 +17,7 @@
 
             <!-- back arrow -->
             <div class="flex items-center justify-start">
-                <img @click="back()" :src="contentData.backIcon" alt="back" class="w-10 h-10 cursor-pointer" />
+                <img @click="back()" src="/images/onboarding/back_arrow.png" alt="back" class="w-10 h-10 cursor-pointer" />
             </div>
 
             <div class="h-full overflow-y-auto box-step" style="padding-bottom: 6rem;">
@@ -64,7 +64,7 @@
                 </p>
                 <p v-else
                     class="text-center text-sm font-medium bg-[#f4f4f4] w-full md:w-2/3 mx-auto rounded-full p-2 mt-2 text-red-500">
-                    Invalid goal, unable to calculate calories ⚠️
+                    Invalid goal, unable to calculate calories
                 </p>
 
                 <!-- steps -->
@@ -104,7 +104,7 @@
 
 <script setup>
 import { computed, ref, onMounted } from 'vue'
-
+import { calculateCalories } from '@/utils/calculation'
 import PaywallModal from './Modal/PaywallModal.vue'
 import SignInModal from './Modal/SignInModal.vue'
 const showMainContent = ref(false)
@@ -130,12 +130,12 @@ const props = defineProps({
 
 
 
-
 const showIntro = ref(props.userData.showIntro ?? true)
 const emit = defineEmits(['change-screen'])
 const showModal = ref(false)
-let unhappyCase = false;
+
 const modalBackground = ref('')
+
 const next = () => {
     if (unhappyCase) emit('change-screen', 'GoalWeight', props.userData, false)
     else {
@@ -169,105 +169,11 @@ const back = () => {
     }
 }
 
-// Tính toán calories mục tiêu
-// const targetCalories = computed(() => {
-//     const {
-//         gender,
-//         year_of_birth,
-//         current_weight,
-//         current_height,
-//         goal,
-//         goal_weight,
-//         duration,
-//         activity
-//     } = props.userData
-
-//     const currentYear = new Date().getFullYear()
-//     const age = currentYear - parseInt(year_of_birth)
-
-//     let BMR = 0
-//     if (gender === 'male') {
-//         BMR = (10 * current_weight) + (6.25 * current_height) - (5 * age) + 5
-//     } else {
-//         BMR = (10 * current_weight) + (6.25 * current_height) - (5 * age) - 161
-//     }
-
-//     const startDate = new Date()
-//     startDate.setDate(startDate.getDate() + 1)
-//     const endDate = new Date(startDate)
-//     endDate.setMonth(endDate.getMonth() + parseInt(duration))
-//     const durationDays = Math.round((endDate - startDate) / (1000 * 60 * 60 * 24))
-
-//     let gainLossCalories = 0
-//     if (goal === 'gain' || goal === 'lose') {
-//         gainLossCalories = ((goal_weight - current_weight) / durationDays) * 7700
-//     }
-
-//     return Math.round((BMR * parseFloat(activity)) + gainLossCalories)
-// })
-
-const targetCalories = computed(() => {
-    let {
-        gender,
-        year_of_birth,
-        current_weight,
-        current_height,
-        goal,
-        goal_weight,
-        duration,
-        activity,
-        measure_type
-    } = props.userData
 
 
-    // nếu là imperial thì chuyển đổi sang metric
-    if(measure_type === 'imperial'){
-        current_weight = current_weight * 0.453592
-        current_height = current_height
-        goal_weight = goal_weight * 0.453592
-    }
-
-    // console.log(current_weight, current_height, goal_weight)
-
-    // tính toán calories mục tiêu
-    const currentYear = new Date().getFullYear()
-    const age = currentYear - parseInt(year_of_birth)
-
-    let BMR = 0
-    if (gender === 'male') {
-        BMR = (10 * current_weight) + (6.25 * current_height) - (5 * age) + 5
-    } else {
-        BMR = (10 * current_weight) + (6.25 * current_height) - (5 * age) - 161
-    }
-
-    const startDate = new Date()
-    startDate.setDate(startDate.getDate() + 1)
-    const endDate = new Date(startDate)
-    endDate.setMonth(endDate.getMonth() + parseInt(duration))
-    const durationDays = Math.round((endDate - startDate) / (1000 * 60 * 60 * 24))
-
-    let gainLossCalories = 0
-    if (goal === 'gain' || goal === 'lose') {
-        gainLossCalories = ((goal_weight - current_weight) / durationDays) * 7700
-    }
-
-    return Math.round((BMR * parseFloat(activity)) + gainLossCalories)
-})
-
-
-// Tính ngày kết thúc mục tiêu
-const goalDate = computed(() => {
-    const startDate = new Date()
-    startDate.setDate(startDate.getDate() + 1)
-    const endDate = new Date(startDate)
-    endDate.setMonth(endDate.getMonth() + parseInt(props.userData.duration))
-
-    return endDate.toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric'
-    })
-})
+//// lấy dữ liệu calculateCalories
+let { targetCalories, endDate, unhappyCase, durationDays } = calculateCalories();
+console.log(targetCalories, endDate, unhappyCase, durationDays);
 
 // Xử lý dữ liệu hiển thị
 const contentData = computed(() => {
@@ -280,7 +186,7 @@ const contentData = computed(() => {
         localStorage.setItem('goal_weight', current)
     }
 
-    saveData();
+
 
 
 
@@ -292,11 +198,12 @@ const contentData = computed(() => {
         }else{
             goalWeightText = `${current} KG → ${target} KG`
         }
+
     // Nếu calories < 0 → cảnh báo
-    if (targetCalories.value < 0) {
+    if (targetCalories < 0) {
         unhappyCase = true;
 
-        targetCalories.value = 0;
+
         svg = `<svg width="220" height="120" viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg">
         <!-- Background -->
         <rect width="100%" height="100%" fill="#f8f8f8" />
@@ -319,9 +226,9 @@ const contentData = computed(() => {
         return {
             backIcon: '/images/onboarding/back_arrow.png',
             handImage: '/images/onboarding/error.png',
-            calorieBg: '#f4f4f4',
+            calorieBg: '#f9f7f7',
             introText: 'Can\'t calculate your daily calories. <br> Please update your main goal to continue.',
-            encouragement: `You've got this! Goal day: ${goalDate.value}`,
+            encouragement: `You've got this! Goal day: ${endDate}`,
             svg: svg,
             dailyGoalLabel: 'Daily Goal Calories',
             healthTip: 'Adjust your plan to stay healthy!',
@@ -362,14 +269,14 @@ const contentData = computed(() => {
             ...shared,
             healthTip: 'Great move for your health 💪',
             introText: 'Thanks for logging your goals. You\'re one step closer to your transformation.',
-            encouragement: `You've got this! Goal day: ${goalDate.value}`
+            encouragement: `You've got this! Goal day: ${endDate}`
         }
     } else if (goal === 'gain') {
         return {
             ...shared,
             healthTip: 'A Wise move to gain healthy weight.',
             introText: 'Great job setting your goals! You\'re on the path to gaining healthy weight.',
-            encouragement: `Let's do this! Target date: ${goalDate.value}`
+            encouragement: `Let's do this! Target date: ${endDate}`
         }
     } else {
         return {
@@ -383,43 +290,7 @@ const contentData = computed(() => {
 
 
 
-// gọi sau khi tính toán xong vào localStorage
-const saveData = () => {
 
-    const userData = props.userData ?? {};
-    const duration = parseInt(userData.duration ?? '0');
-
-    // Hàm định dạng ngày yyyy-MM-dd
-    const formatDate = (date) => {
-        return date.toISOString().split('T')[0]; // ex: 2025-08-18
-    };
-
-    // Ngày bắt đầu: hôm nay
-    const startDate = new Date();
-
-    // Ngày kết thúc: hôm nay + duration tháng
-    const endDate = new Date(startDate);
-    endDate.setMonth(endDate.getMonth() + duration);
-
-    // Lưu dữ liệu vào localStorage
-    localStorage.setItem('activity', userData.activity ?? '');
-    localStorage.setItem('goal', userData.goal ?? '');
-    localStorage.setItem('gender', userData.gender ?? '');
-    localStorage.setItem('year_of_birth', userData.year_of_birth ?? '');
-    localStorage.setItem('measure_type', userData.measure_type ?? '');
-    localStorage.setItem('current_weight', userData.current_weight ?? '');
-    localStorage.setItem('current_height', userData.current_height ?? '');
-    localStorage.setItem('target_cal', targetCalories.value ?? '');
-
-    if (userData.goal != 'maintain') {
-        localStorage.setItem('goal_weight', userData.goal_weight ?? '');
-    }else{
-        localStorage.setItem('goal_weight', userData.current_weight ?? '');
-    }
-
-    localStorage.setItem('start_date', formatDate(startDate));
-    localStorage.setItem('end_date', formatDate(endDate));
-};
 
 
 

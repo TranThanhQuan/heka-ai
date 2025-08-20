@@ -110,8 +110,8 @@ const props = defineProps({
 })
 
 
-
-const isImperial = ref(false)
+// lấy từ localStorage nếu không có thì metric
+const isImperial = ref(localStorage.getItem('measure_type') === 'imperial')
 const selectedHeight = ref(props.userData.current_height ?? 150)
 const selectedWeight = ref(props.userData.current_weight ?? 50)
 
@@ -179,7 +179,7 @@ const updateOptions = (isSwitch = false) => {
       ? defaultImperialWeight
       : parseInt(localStorage.getItem('current_weight')) || defaultImperialWeight;
 
-
+    console.log(selectedHeight.value, selectedWeight.value);
 
   } else {
     // Chiều cao: 60 → 243 cm
@@ -226,6 +226,7 @@ const initFromLocalStorage = () => {
 
 watch(isImperial, () => {
 
+
     updateOptions(true)
 })
 
@@ -238,11 +239,6 @@ const emit = defineEmits(['change-screen'])
 
 const next = () => {
     const measure_type = isImperial.value ? 'imperial' : 'metric'
-
-    if(measure_type === 'imperial'){
-        selectedHeight.value = selectedHeight.value * 2.54
-    }
-
 
     localStorage.setItem('measure_type', measure_type)
     localStorage.setItem('current_height', selectedHeight.value)

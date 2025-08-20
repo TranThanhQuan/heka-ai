@@ -111,8 +111,10 @@ const selectedWeight = ref(props.userData.current_weight ?? (isImperial.value ? 
 const weightOptions = ref([])
 const warningMessage = ref('')
 const isInvalidWeight = ref(false)
-const duration = ref(1)
-const unit = ref('month')
+
+// lấy từ localStorage nếu không có thì 1
+const duration = ref(localStorage.getItem('duration') ?? 1)
+const unit = ref(localStorage.getItem('unit') ?? 'month')
 
 // --- Khởi tạo danh sách cân nặng ---
 
