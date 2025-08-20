@@ -14,7 +14,7 @@
 
         <!-- Tooltip  -->
         <div class="relative flex items-start">
-            <div class="absolute right-0 top-0 w-3/5 sm:w-11/12 md:w-3/5 max-w-md py-2 px-4 text-left text-lg shadow-lg rounded-2xl bg-white flex items-center mr-1  box-message">
+            <div class="absolute left-[30%] top-0 w-3/5 sm:w-11/12 md:w-3/5 max-w-md py-2 px-4 text-left text-lg shadow-lg rounded-2xl bg-white flex items-center mr-1  box-message">
 
 
                 <div class="text-sm">
@@ -65,7 +65,7 @@
     <div class="fixed bottom-0 left-0 right-0 z-40 shadow bg-white pb-8 md:pb-6 px-4">
         <div class="flex items-center justify-center">
             <button type="button"
-                class="text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 w-full sm:w-2/3 md:w-1/4 transition duration-200"
+                class="text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 w-full sm:w-2/3 md:w-1/4 transition duration-200 btn-next"
                 :disabled="!gender" :class="{ 'opacity-50 cursor-not-allowed': !gender }" @click="next">
                 Next
             </button>
@@ -125,13 +125,18 @@ onMounted(() => {
 
 
     /* Dưới 768px */
+
     @media (max-width: 768px) {
-        @media (max-width: 768px) {
-            .content-screen {
-                min-height: 75vh!important;
-            }
+        .content-screen {
+            min-height: 75vh!important;
+        }
+
+        .btn-next{
+            font-size: 1.2rem;
+            padding: 1rem 2rem;
         }
     }
+
 
     /* Từ 769px đến 1280px */
     @media (min-width: 769px) and (max-width: 1280px) {
@@ -166,6 +171,10 @@ onMounted(() => {
 
         .select-birthday{
             margin-top: 2rem;
+        }
+
+        .box-message{
+            left: 20%;
         }
     }
 

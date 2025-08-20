@@ -3,7 +3,7 @@
         <!-- ✅ Intro Overlay -->
         <transition name="fade">
             <div v-if="showIntro"
-                class="absolute top-0 left-0 w-full h-full z-50 bg-white flex items-center justify-center text-center px-5">
+                class="absolute top-0 left-0 w-full h-full z-50 bg-white flex items-center justify-center text-center px-5 ">
                 <div>
                     <img src="/images/onboarding/gif/info_guide.gif" alt="Intro" class="w-1/3 mx-auto mb-4" />
                     <p class="text-lg">
@@ -30,7 +30,7 @@
 
             <div class="relative flex items-start">
                 <div
-                    class="absolute right-0 top-0 w-3/5 md:w-3/5 max-w-md py-2 px-4 text-left text-lg shadow-lg rounded-2xl bg-white flex items-center mr-1 md:mr-10">
+                    class="absolute left-[30%] top-0   max-w-md py-2 px-4 text-left text-lg shadow-lg rounded-2xl bg-white flex items-center mr-1 md:mr-10 box-message">
                     <div class="text-sm">
                         <p>What's your <span class="font-bold">height, weight?</span> Let's do this!</p>
                     </div>
@@ -97,7 +97,7 @@
             <!-- Button fixed at bottom -->
             <div class="fixed bottom-0 left-0 right-0 z-40 shadow bg-white pb-4 px-4">
                 <div class="flex items-center justify-center px-4 py-2">
-                    <button @click="next" class="text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 w-full sm:w-1/2 md:w-1/4 transition duration-200" > Next </button>
+                    <button @click="next" class="text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 w-full sm:w-1/2 md:w-1/4 transition duration-200 btn-next" > Next </button>
                 </div>
             </div>
         </div>
@@ -282,11 +282,19 @@ const back = () => {
     .content-screen {
         min-height: 75vh!important;
     }
+
+    .btn-next{
+        font-size: 1.2rem;
+        padding: 1rem 2rem;
+    }
 }
 
 @media (min-width: 1600px){
     .height-weight-gif img{
         width: 9rem;
+    }
+    .box-message{
+        left: 20%;
     }
 }
 

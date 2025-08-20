@@ -84,7 +84,7 @@
             <div class="fixed bottom-0 left-0 right-0 z-50 bg-white shadow pb-4">
                 <div class="flex items-center justify-center px-4 py-2">
                     <button type="button"
-                        class="text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 w-full sm:w-1/2 md:w-1/4"
+                        class="text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 w-full sm:w-1/2 md:w-1/4 btn-next"
                         @click="next">
                         {{ contentData.buttonText }}
                     </button>
@@ -314,6 +314,11 @@ const contentData = computed(() => {
 @media (max-width: 768px) {
     .box-step {
         padding-bottom: 10rem !important;
+    }
+
+    .btn-next{
+        font-size: 1.2rem;
+        padding: 1rem 2rem;
     }
 }
 

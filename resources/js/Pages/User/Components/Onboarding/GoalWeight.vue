@@ -12,9 +12,9 @@
             </div>
         </div>
         <div class="relative flex items-start">
-            <div class="absolute right-0 top-2 w-3/5 md:w-3/5 max-w-md py-2 px-4 text-left text-lg shadow-lg rounded-2xl bg-white flex items-center mr-1 md:mr-10  box-message">
+            <div class="absolute left-[30%] top-2   max-w-md py-2 px-4 text-left text-lg shadow-lg rounded-2xl bg-white flex items-center mr-1 md:mr-10  box-message">
 
-                <div v-if="warningMessage" v-html="warningMessage"></div>
+                <div v-if="warningMessage" v-html="warningMessage" class="text-sm"></div>
                 <div v-else class="text-sm">
                     <p>What's your <strong>goal?</strong> Let me help customize for you.</p>
                 </div>
@@ -88,7 +88,7 @@
         <div class="flex items-center justify-center px-4 py-2">
             <button @click="next"
         :disabled="isInvalidWeight"
-        class="w-full md:w-1/4 text-white font-medium rounded-full text-sm px-5 py-2.5 mb-2 transition focus:outline-none focus:ring-4 focus:ring-gray-300 disabled:opacity-50 disabled:cursor-not-allowed bg-black hover:bg-gray-900">
+        class="w-full md:w-1/4 text-white font-medium rounded-full text-sm px-5 py-2.5 mb-2 transition focus:outline-none focus:ring-4 focus:ring-gray-300 disabled:opacity-50 disabled:cursor-not-allowed bg-black hover:bg-gray-900 btn-next">
     Next
 </button>
 
@@ -280,6 +280,11 @@ const back = () => {
     .box-message {
         margin-right: 10px;
     }
+
+    .btn-next{
+        font-size: 1.2rem;
+        padding: 1rem 2rem;
+    }
 }
 
 /* Từ 769px đến 1280px */
@@ -312,6 +317,10 @@ const back = () => {
 
     .select-birthday {
         margin-top: 2rem;
+    }
+
+    .box-message{
+        left: 20%;
     }
 }
 </style>

@@ -17,7 +17,7 @@
         <div>
             <div class="relative flex items-start">
                 <div
-                    class="absolute right-0 top-2 w-9/12 md-w-full max-w-md py-2 px-3 text-left text-lg shadow-lg rounded-2xl bg-white flex items-center mr-2">
+                    class="absolute box-message left-[20%] top-2  max-w-md py-2 px-3 text-left text-lg shadow-lg rounded-2xl bg-white flex items-center mr-2">
 
                     <div class="text-sm">
                         <p>Tell us your goal so we can <span class="font-bold">better support</span> you!</p>
@@ -51,10 +51,10 @@
         </div>
     </div>
 
-    <div class="fixed bottom-0 left-0 right-0 z-40 shadow bg-white pb-8 md:pb-6 px-4 " v-show="!showIntro">
+    <div class="fixed bottom-0 left-0 right-0 z-40 shadow bg-white pb-6 md:pb-6 px-4 " v-show="!showIntro">
         <div class="flex items-center justify-center">
             <button @click="next"
-                class="text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 w-full sm:w-1/2 md:w-1/4 transition duration-200"
+                class="text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 w-full sm:w-1/2 md:w-1/4 transition duration-200 btn-next"
                 :disabled="!goal" :class="{ 'opacity-50 cursor-not-allowed': !goal }">
                 Next
             </button>
@@ -159,6 +159,11 @@ const back = () => {
     .content-screen {
         min-height: 75vh!important;
     }
+
+    .btn-next{
+        font-size: 1.2rem;
+        padding: 1rem 2rem;
+    }
 }
 
 /* Từ 769px đến 1280px */
@@ -182,6 +187,10 @@ const back = () => {
 
     .main-goal-option{
         padding-bottom: 1rem;
+    }
+
+    .box-message{
+        top: 1rem;
     }
 }
 
