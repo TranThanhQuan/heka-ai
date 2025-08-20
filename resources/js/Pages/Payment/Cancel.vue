@@ -48,11 +48,36 @@
 
   <script setup>
   import { Head } from '@inertiajs/vue3';
+  import { eventTracking } from "@/utils/tracking.js";
 
-  const accessToken = localStorage.getItem('accessToken');
-  if(!accessToken){
+  // lấy id từ url
+  const id = new URLSearchParams(window.location.search).get('id');
+
+  // lấy checkoutId từ local storage
+  const checkoutId = localStorage.getItem('checkoutId');
+
+  //xóa checkoutId
+  localStorage.removeItem('checkoutId');
+
+  if(!id || !checkoutId || id !== checkoutId){
     window.location.href = '/';
+
   }
+
+  // lấy package_id từ local storage
+  const package_id = localStorage.getItem('package_id');
+  localStorage.removeItem('package_id');
+
+
+  eventTracking('confirm_purchased_fail', {
+      package_id: package_id,
+      msg: 'cancel',
+      code: null
+    }
+  );
+
+
+
 
   </script>
 

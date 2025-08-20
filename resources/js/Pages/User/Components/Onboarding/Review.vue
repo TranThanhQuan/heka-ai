@@ -104,11 +104,15 @@
 </template>
 
 <script setup>
-import { computed, ref, onMounted } from 'vue'
+import { computed, ref, onMounted, watch } from 'vue'
 import { calculateCalories } from '@/utils/calculation'
 import PaywallModal from './Modal/PaywallModal.vue'
 import SignInModal from './Modal/SignInModal.vue'
 import EmailModal from './Modal/EmailModal.vue'
+import { eventTracking } from "@/utils/tracking.js";
+
+
+
 const showMainContent = ref(false)
 const showSignInModal = ref(false)
 const showEmailModal = ref(false)
@@ -131,14 +135,38 @@ const props = defineProps({
 })
 
 
-
 const showIntro = ref(props.userData.showIntro ?? true)
 const emit = defineEmits(['change-screen'])
 const showModal = ref(false)
-
 const modalBackground = ref('')
 
+
+
+
+watch(showModal, (newVal) => {
+    if (newVal) {
+        // lưu số lần mở modal vào localStorage integer
+        const openModalCount = parseInt(localStorage.getItem('openModalCount')) || 0
+        localStorage.setItem('openModalCount', openModalCount + 1)
+        eventTracking('iap_view', {
+            convert_number: openModalCount + 1
+        })
+
+    }
+})
+
+watch(showSignInModal, (newVal) => {
+    if (newVal) {
+        eventTracking('sign_in_pu')
+    }
+})
+
+
+
 const next = () => {
+
+    eventTracking('review_scr_next_click')
+
     if (unhappyCase) emit('change-screen', 'GoalWeight', props.userData, false)
     else {
         //  gọi modal truyền vào background
@@ -147,8 +175,7 @@ const next = () => {
         else if (props.userData.goal === 'maintain') modalBackground.value = '/images/onboarding/modal/bg_maintain_modal.png'
         showModal.value = true;
 
-        // gọi hàm lưu dữ liệu
-        saveData();
+
     }
 }
 
@@ -179,7 +206,7 @@ const back = () => {
 
 //// lấy dữ liệu calculateCalories
 let { targetCalories, endDate, unhappyCase, durationDays } = calculateCalories();
-console.log(targetCalories, endDate, unhappyCase, durationDays);
+// console.log(targetCalories, endDate, unhappyCase, durationDays);
 
 // Xử lý dữ liệu hiển thị
 const contentData = computed(() => {

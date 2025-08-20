@@ -13,17 +13,18 @@
 </nav>
 
 <!-- modal -->
-<PaywallModal :visible="showModal" backgroundUrl="/images/onboarding/modal/bg_premium_modal.png" @close="showModal = false" @accepted="handleAccepted" @showSignInModal="showSignInModal = true" @closeModal="showModal = true" />
+<PaywallModal :visible="showModal" backgroundUrl="/images/onboarding/modal/bg_premium_modal.png" @close="showModal = false" @accepted="handleAccepted" @showSignInModal="showSignInModal = true" @closeModal="showModal = true" @headerModal="showModal = true" />
 
 <SignInModal :visible="showSignInModal" @close="showSignInModal = false" @login="handleLogin" />
 
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import PaywallModal from './Modal/PaywallModal.vue';
 import SignInModal from './Modal/SignInModal.vue';
+import { eventTracking } from "@/utils/tracking.js";
 
 const props = defineProps({
     title: {
@@ -42,6 +43,36 @@ const handleAccepted = (priceId) => {
 const handleLogin = () => {
     showSignInModal.value = false
 }
+
+watch(showModal, (newVal) => {
+    //lấy goal từ localStorage
+    const goal = localStorage.getItem('goal')
+    let source = ''
+
+    if (goal === 'lose') {
+        source = 'onboarding_lose'
+    } else if (goal === 'maintain') {
+        source = 'onboarding_maintain'
+    } else if (goal === 'gain') {
+        source = 'onboarding_gain'
+    } else if (goal === 'healthy') {
+        source = 'onboarding_healthy'
+    } else {
+        source = 'home_scr_pro_icon'
+    }
+
+
+    if (newVal) {
+        // lưu số lần mở modal vào localStorage integer
+        const openModalCount = parseInt(localStorage.getItem('openModalCount')) || 0
+        localStorage.setItem('openModalCount', openModalCount + 1)
+        eventTracking('iap_view', {
+            convert_number: openModalCount + 1,
+            source: source
+        })
+
+    }
+})
 
 </script>
 

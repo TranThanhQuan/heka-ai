@@ -43,16 +43,50 @@ const props = defineProps({
 let email = ref('');
 let downloadUrl = ref('');
 
+// lấy checkoutId từ local storage
+let checkoutId = localStorage.getItem('checkoutId');
+//xóa checkoutId
+localStorage.removeItem('checkoutId');
+
+//lấy id từ url
+const id = new URLSearchParams(window.location.search).get('id');
+
+
+
+
+
 // lấy accessToken từ local storage
 const accessToken = localStorage.getItem('accessToken');
-if (!accessToken) {
+if (!id || !checkoutId || id !== checkoutId) {
     window.location.href = '/';
-}else{
-    eventTracking('payment_success', {
-        sessionId: props.sessionId,
-        email: email.value,
-        downloadUrl: downloadUrl.value,
-        accessToken: accessToken
+} else {
+
+    // đếm số lần checkout thành công
+    const checkoutCount = parseInt(localStorage.getItem('checkoutCount')) || 0
+    localStorage.setItem('checkoutCount', checkoutCount + 1)
+    // lấy package_id từ local storage
+    const package_id = localStorage.getItem('package_id');
+    localStorage.removeItem('package_id');
+
+    // lấy goal từ local storage
+    const goal = localStorage.getItem('goal');
+    let source = '';
+    if (goal === 'lose') {
+        source = 'onboarding_lose';
+    } else if (goal === 'maintain') {
+        source = 'onboarding_maintain';
+    } else if (goal === 'gain') {
+        source = 'onboarding_gain';
+    } else if (goal === 'healthy') {
+        source = 'onboarding_healthy';
+    } else {
+        source = 'home_scr_pro_icon';
+    }
+
+    eventTracking('iap_successfull', {
+        convert_number: checkoutCount + 1,
+        package_id: package_id,
+        source: source
     });
 
     // gọi hàm updateUserProfile
@@ -60,22 +94,22 @@ if (!accessToken) {
         'activity', 'goal', 'gender', 'year_of_birth', 'measure_type',
         'current_weight', 'current_height', 'target_cal', 'goal_weight',
         'start_date', 'end_date'
-        ];
+    ];
 
-        const data = {};
+    const data = {};
 
-        // Lấy giá trị từ localStorage nếu có
-        keys.forEach(key => {
+    // Lấy giá trị từ localStorage nếu có
+    keys.forEach(key => {
         const value = localStorage.getItem(key);
         if (value !== null && value !== '') {
             data[key] = value;
         }
-        });
+    });
 
-        console.log('👉 data truyền đi:', data);
+    console.log('👉 data truyền đi:', data);
 
-        // Gọi cập nhật với dữ liệu đã lọc
-        updateUserProfile(data);
+    // Gọi cập nhật với dữ liệu đã lọc
+    updateUserProfile(data);
 
 }
 
@@ -85,23 +119,23 @@ email.value = localStorage.getItem('email');
 
 
 onMounted(() => {
-    if(result){
+    if (result) {
         downloadUrl.value = result.clickURL;
-    }else{
+    } else {
         //detect device
         const device = navigator.userAgent;
-        if(device.includes('iPhone') || device.includes('iPad') || device.includes('iPod')){
+        if (device.includes('iPhone') || device.includes('iPad') || device.includes('iPod')) {
             downloadUrl.value = import.meta.env.VITE_DOWNLOAD_URL_IOS;
-        }else if(device.includes('Android')){
+        } else if (device.includes('Android')) {
             downloadUrl.value = import.meta.env.VITE_DOWNLOAD_URL_ANDROID;
-        }else{
+        } else {
             // random ios và android
             const urls = import.meta.env.VITE_DOWNLOAD_URL_WEB.split(',');
-            if(device.includes('iPhone') || device.includes('iPad') || device.includes('iPod')){
+            if (device.includes('iPhone') || device.includes('iPad') || device.includes('iPod')) {
                 downloadUrl.value = urls[Math.floor(Math.random() * urls.length)];
-            }else if(device.includes('Android')){
+            } else if (device.includes('Android')) {
                 downloadUrl.value = urls[Math.floor(Math.random() * urls.length)];
-            }else{
+            } else {
                 downloadUrl.value = urls[Math.floor(Math.random() * urls.length)];
             }
         }

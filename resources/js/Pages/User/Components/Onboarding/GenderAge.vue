@@ -76,6 +76,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { eventTracking } from "@/utils/tracking.js";
 
 const props = defineProps({
     userData: Object
@@ -94,6 +95,7 @@ const emit = defineEmits(['change-screen'])
 
 const selectGender = (value) => {
     gender.value = value
+
 }
 
 const back = () => {
@@ -101,7 +103,7 @@ const back = () => {
 }
 
 const next = () => {
-
+    eventTracking('sex_age_scr_next_click')
     localStorage.setItem('gender', gender.value)
     localStorage.setItem('year_of_birth', selectedYear.value)
     // truyền giá trị   cho userData

@@ -69,6 +69,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { eventTracking } from "@/utils/tracking.js";
 
 const props = defineProps({
     userData: Object
@@ -119,6 +120,7 @@ const emit = defineEmits(['change-screen'])
 
 const next = () => {
     if (activity.value) {
+        eventTracking('activity_level_click' )
         localStorage.setItem('activity', activity.value)
         props.userData.activity = activity.value
         // Gửi cả activity lên Index để xử lý điều hướng

@@ -1,4 +1,4 @@
-
+import { eventTracking } from "@/utils/tracking.js";
 
 export async function createStripeBillingPortalSession() {
     try {
@@ -64,13 +64,18 @@ export async function checkout(stripePriceId) {
       return;
     }
 
-    console.log('product: ', product.price.id);
+    // console.log('product: ', product.price.id);
+
+    // tạo 1 id random
+    const id = Math.random().toString(36).substring(2, 15);
+    localStorage.setItem('checkoutId', id)
+    localStorage.setItem('package_id', stripePriceId)
 
     try {
       const body = {
         cart: [{ stripePriceId: product.price.id, quantity: 1, name: product.name }],
-        successUrl: `${domain}/payment/success`,
-        cancelUrl: `${domain}/payment/cancel`
+        successUrl: `${domain}/payment/success?id=${id}`,
+        cancelUrl: `${domain}/payment/cancel?id=${id}`
       };
 
       const res = await fetch(`${paymentDomain}/saas-payment-service/v1/stripe/create-checkout-session`, {
@@ -87,6 +92,9 @@ export async function checkout(stripePriceId) {
       hideLoadingScreen();
 
       if (res.ok && data?.url) {
+
+        eventTracking('checkout_view')
+
         window.location.href = data.url;
       } else {
             window.location.href = '/';

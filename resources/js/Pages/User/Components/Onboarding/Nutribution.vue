@@ -39,9 +39,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import PaywallModal from './Modal/PaywallModal.vue'
 import SignInModal from './Modal/SignInModal.vue'
+import { eventTracking } from "@/utils/tracking.js";
+
 
 const isMobile = ref(false)
 
@@ -62,6 +64,41 @@ const handleAccepted = (priceId) => {
 
 const showModal = ref(false)
 const showSignInModal = ref(false)
+
+watch(showModal, (newVal) => {
+    //lấy goal từ localStorage
+    const goal = localStorage.getItem('goal')
+    let source = ''
+
+    if (goal === 'lose') {
+        source = 'onboarding_lose'
+    } else if (goal === 'maintain') {
+        source = 'onboarding_maintain'
+    } else if (goal === 'gain') {
+        source = 'onboarding_gain'
+    } else if (goal === 'healthy') {
+        source = 'onboarding_healthy'
+    } else {
+        source = 'home_scr_pro_icon'
+    }
+
+    if (newVal) {
+        // lưu số lần mở modal vào localStorage integer
+        const openModalCount = parseInt(localStorage.getItem('openModalCount')) || 0
+        localStorage.setItem('openModalCount', openModalCount + 1)
+        eventTracking('iap_view', {
+            convert_number: openModalCount + 1,
+            source: source
+        })
+
+    }
+})
+
+watch(showSignInModal, (newVal) => {
+    if (newVal) {
+        eventTracking('sign_in_pu')
+    }
+})
 
 const handleLogin = () => {
     showSignInModal.value = false

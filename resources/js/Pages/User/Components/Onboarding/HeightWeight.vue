@@ -106,6 +106,7 @@
 
 <script setup>
 import { ref, watch, onMounted } from 'vue'
+import { eventTracking } from "@/utils/tracking.js";
 
 const props = defineProps({
     userData: Object
@@ -240,6 +241,8 @@ initFromLocalStorage()
 const emit = defineEmits(['change-screen'])
 
 const next = () => {
+    eventTracking('height_weight_next_click')
+
     const measure_type = isImperial.value ? 'imperial' : 'metric'
 
     localStorage.setItem('measure_type', measure_type)

@@ -62,14 +62,18 @@ export function calculateCalories() {
         day: 'numeric'
     });
 
+    // end_date yyyy-mm-dd
+    const end_date = endDate.toISOString().split('T')[0];
+    const start_date = startDate.toISOString().split('T')[0];
     //lưu vào localStorage
-    // localStorage.setItem('target_cal', targetCalories);
-    // localStorage.setItem('unhappyCase', unhappyCase);
-    // localStorage.setItem('durationDays', durationDays);
+    localStorage.setItem('target_cal', targetCalories);
+    localStorage.setItem('end_date', end_date);
+    localStorage.setItem('start_date', start_date);
+
     return {
         targetCalories,
         endDate: formattedEndDate,
         unhappyCase,
-        durationDays,
+        durationDays
     };
 }

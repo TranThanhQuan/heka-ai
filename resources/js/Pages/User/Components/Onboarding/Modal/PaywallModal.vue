@@ -43,10 +43,15 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { checkout } from '@/utils/payment';
 import SignInModal from '@/Pages/User/Components/Onboarding/Modal/SignInModal.vue';
 import EmailModal from '@/Pages/User/Components/Onboarding/Modal/EmailModal.vue';
+import { eventTracking } from "@/utils/tracking.js";
+
+
+
+
 
 const showSignInModal = ref(false)
 const showEmailModal = ref(false)
@@ -59,7 +64,12 @@ const props = defineProps({
     }
 })
 
-const emit = defineEmits(['close', 'accepted', 'showSignInModal', 'showEmailModal'])
+
+//
+
+
+
+const emit = defineEmits(['close', 'accepted', 'showSignInModal', 'showEmailModal', 'headerModal'])
 const selected = ref('12months')
 
 const PRICE_IDS = {
@@ -84,6 +94,9 @@ const isProfile = () => {
 
 
 const close = (isClose = false) => {
+    eventTracking('iap_close_click')
+
+
     const groupName = localStorage.getItem('group_name');
     if (groupName === 'vip') {
         window.location.href = '/';
@@ -95,6 +108,34 @@ const close = (isClose = false) => {
 const accept = () => {
     const priceId = PRICE_IDS[selected.value]
     localStorage.setItem('priceId', priceId)
+
+    // lấy goal từ localStorage
+    const goal = localStorage.getItem('goal')
+    let source = ''
+    if (goal === 'lose') {
+        source = 'onboarding_lose'
+    } else if (goal === 'maintain') {
+        source = 'onboarding_maintain'
+    } else if (goal === 'gain') {
+        source = 'onboarding_gain'
+    } else if (goal === 'healthy') {
+        source = 'onboarding_healthy'
+    } else {
+        source = 'home_scr_pro_icon'
+    }
+
+
+
+    // lấy số lần click vào localStorage integer
+    const iapClickCount = parseInt(localStorage.getItem('iapClickCount')) || 0
+    localStorage.setItem('iapClickCount', iapClickCount + 1)
+    eventTracking('iap_btn_click', {
+        convert_number: iapClickCount + 1,
+        package_id: priceId,
+        source: source
+    })
+
+
 
     if (localStorage.getItem('noSignIn') === 'true') {
         emit('showEmailModal')
@@ -117,6 +158,12 @@ const accept = () => {
 }
 
 const selectPlan = (plan) => {
+    if (plan === '12months') {
+        eventTracking('iap_yearly_click' )
+    } else if (plan === '1month') {
+        eventTracking('iap_monthly_click')
+    }
+
     selected.value = plan
 }
 

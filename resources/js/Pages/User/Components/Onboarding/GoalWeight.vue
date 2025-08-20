@@ -93,6 +93,7 @@
 
 <script setup>
 import { ref, watch, computed } from 'vue'
+import { eventTracking } from "@/utils/tracking.js";
 
 const props = defineProps({
     userData: Object
@@ -254,6 +255,9 @@ const decrement = () => {
 }
 
 const next = () => {
+
+    eventTracking('goal_weight_next_click' )
+
     localStorage.setItem('goal_weight', selectedWeight.value)
     localStorage.setItem('duration', duration.value)
     localStorage.setItem('unit', unit.value)

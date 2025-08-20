@@ -100,7 +100,7 @@ const screens = {
 
 // Biến điều khiển màn hình đang hiển thị
 const currentScreen = ref('MainGoal')
-
+localStorage.removeItem('noSignIn')
 const currentComponent = computed(() => screens[currentScreen.value] || GenderAge)
 
 // Hàm chuyển màn hình
