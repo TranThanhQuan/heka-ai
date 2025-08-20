@@ -20,7 +20,7 @@
                 <img @click="back()" :src="contentData.backIcon" alt="back" class="w-10 h-10 cursor-pointer" />
             </div>
 
-            <div class="h-full overflow-y-auto" style="padding-bottom: 6rem;">
+            <div class="h-full overflow-y-auto box-step" style="padding-bottom: 6rem;">
                 <!-- intro -->
                 <div class="text-center px-5">
                     <div class="flex justify-center p-4">
@@ -441,7 +441,9 @@ const saveData = () => {
 
 /* Dưới 768px */
 @media (max-width: 768px) {
-
+    .box-step {
+        padding-bottom: 10rem !important;
+    }
 }
 
 /* Từ 769px đến 1280px */
