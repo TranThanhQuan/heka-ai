@@ -103,6 +103,7 @@ if (!id || !checkoutId || id !== checkoutId) {
         }
     });
 
+    console.log(data);
 
     if (accessToken) {
         updateUserProfile(data);

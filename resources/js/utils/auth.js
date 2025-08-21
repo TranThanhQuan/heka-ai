@@ -253,7 +253,7 @@ export async function getUserInfo() {
       }, {});
 
 
-    const payload = { attributes };
+    const payload = { attributes: attributes };
 
     console.log('✅ payload sau khi xử lý:', payload);
 
