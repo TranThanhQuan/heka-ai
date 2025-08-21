@@ -215,7 +215,7 @@ const handleLogin = () => {
 /* Từ 769px đến 1280px */
 @media (min-width: 769px) and (max-width: 1280px) {
     .modal-paywall{
-        max-width: 200px!important;
+        max-width: 250px!important;
     }
 
     .price-option{
@@ -223,7 +223,7 @@ const handleLogin = () => {
     }
 
     .btn-go-premium{
-        margin-top: 2rem!important;
+        margin-top: 1rem!important;
         padding-top: 0.2rem!important;
         padding-bottom: 0.2rem!important;
 
@@ -244,17 +244,15 @@ const handleLogin = () => {
 /* Trên 1600px */
 @media (min-width: 1601px) {
     .modal-paywall{
-        width: 350px!important;
-        max-width: 350px!important;
+        width: 400px!important;
+        max-width: 400px!important;
     }
 
     .price-option{
         padding-top: 33rem!important;
     }
 
-    .cursor-pointer img {
-        /* width: 80%!important; */
-    }
+
 }
 
 
