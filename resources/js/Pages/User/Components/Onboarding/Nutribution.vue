@@ -7,8 +7,6 @@
 
             <video v-else src="/images/onboarding/video/introduction.mp4" autoplay muted loop
                 class="h-full w-auto mx-auto object-contain" />
-
-
         </div>
 
         <!-- Bottom fixed content -->
