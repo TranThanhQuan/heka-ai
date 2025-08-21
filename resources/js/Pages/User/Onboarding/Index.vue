@@ -1,7 +1,6 @@
 <template>
-    <OnboardingLayout>
+    <OnboardingLayout v-if="!isSSO">
         <component :is="currentComponent" :userData="userData" :source="source" @change-screen="changeScreen" />
-
         <PaywallModal :visible="showModal" backgroundUrl="/images/onboarding/modal/bg_premium_modal.png" @close="showModal = false" @accepted="handleAccepted" @showSignInModal="showSignInModal = true" />
         <SignInModal :visible="showSignInModal" @close="showSignInModal = false" @login="handleLogin" />
     </OnboardingLayout>
@@ -49,12 +48,14 @@ if (source.value === 'get-premium') {
 const isLoggedIn = ref(false);
 const showModal = ref(false);
 const showSignInModal = ref(false);
-
+const isSSO = ref(false);
 // ==== Handle Code Param (SSO login) ====
 const code = new URLSearchParams(window.location.search).get('code')
 if (code) {
+    isSSO.value = true
     silentLoginSSO(code)
 } else {
+
     checkLoginStatus()
 }
 
