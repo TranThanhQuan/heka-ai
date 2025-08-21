@@ -13,17 +13,24 @@
 
             <!-- Desktop Menu -->
             <ul class="hidden md:flex items-center space-x-6 text-gray-700">
-                <li><a href="#" class="hover:text-black">Home</a></li>
-                <li><a href="#features" class="hover:text-black">Features</a></li>
-                <li><a href="#premium" class="hover:text-black">Premium Access</a></li>
-            </ul>
+            <li>
+            <a href="/" class="hover:text-black">Home</a>
+            </li>
+            <li>
+            <a href="#features"   class="hover:text-black">Features</a>
+            </li>
+            <li>
+            <a href="#premium"  class="hover:text-black">Premium Access</a>
+            </li>
+        </ul>
+
 
             <!-- App Store + Sign in (desktop) -->
             <div class="hidden md:flex items-center space-x-3">
-                 <a href="#">
+                 <a :href="downloadUrl">
                     <img src="/images/home/chplay_icon.png" alt="Google Play" class="h-9" />
                 </a>
-                <a href="#">
+                <a :href="downloadUrl">
                     <img src="/images/home/appstore_icon.png" alt="App Store" class="h-9" />
                 </a>
                <!-- <a id="loginBtn" href="javascript:void(0)" @click="loginWithGoogle" class="text-gray-700 hover:text-black font-medium">
@@ -134,12 +141,12 @@
                         <!-- App Buttons -->
                         <div class="flex flex-nowrap justify-center lg:justify-start items-center gap-2 md:gap-3 mb-4">
                             <a id="app-button-ios2"
-                                href="https://apps.apple.com/app/heka-ai-calorie-counter/id6747111547"
+                                :href="downloadUrl"
                                 class="btn-download-tracking">
                                 <img src="/images/home/appstore_icon.png" alt="App Store" class="h-10 md:h-12 w-auto" />
                             </a>
                             <a id="app-button-and2"
-                                href="https://play.google.com/store/apps/details?id=com.heka.ai.caloriecounter.mealplan"
+                                :href="downloadUrl"
                                 class="btn-download-tracking">
                                 <img src="/images/home/chplay_icon.png" alt="Google Play" class="h-10 md:h-12 w-auto" />
                             </a>
@@ -398,8 +405,35 @@ import { createStripeBillingPortalSession, checkout } from '@/utils/payment'
 import PaywallModal from '@/Pages/User/Components/Onboarding/Modal/PaywallModal.vue'
 import SignInModal from '@/Pages/User/Components/Onboarding/Modal/SignInModal.vue'
 
+console.log(result);
 
+let downloadUrl = ref('');
+// cập nhật link download
+onMounted(() => {
+    if (result) {
+        downloadUrl.value = result.clickURL;
+    } else {
+        //detect device
+        const device = navigator.userAgent;
+        if (device.includes('iPhone') || device.includes('iPad') || device.includes('iPod')) {
+            downloadUrl.value = import.meta.env.VITE_DOWNLOAD_URL_IOS;
+        } else if (device.includes('Android')) {
+            downloadUrl.value = import.meta.env.VITE_DOWNLOAD_URL_ANDROID;
+        } else {
+            // random ios và android
+            const urls = import.meta.env.VITE_DOWNLOAD_URL_WEB.split(',');
+            if (device.includes('iPhone') || device.includes('iPad') || device.includes('iPod')) {
+                downloadUrl.value = urls[Math.floor(Math.random() * urls.length)];
+            } else if (device.includes('Android')) {
+                downloadUrl.value = urls[Math.floor(Math.random() * urls.length)];
+            } else {
+                downloadUrl.value = urls[Math.floor(Math.random() * urls.length)];
+            }
+        }
+    }
+});
 
+console.log(downloadUrl.value);
 const handleAccepted = (priceId) => {
     checkout(priceId)
 }
@@ -538,4 +572,9 @@ window.getUserInfo = getUserInfo
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-<style scoped></style>
+<style scoped>
+    body{
+        scroll-behavior: smooth;
+    }
+
+</style>

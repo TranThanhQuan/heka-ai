@@ -107,12 +107,11 @@ if (!id || !checkoutId || id !== checkoutId) {
         }
     });
 
-    console.log(data);
+    const isComplete = keys.every(key => key in data);
 
-    if (accessToken) {
+    if (isComplete && accessToken) {
         updateUserProfile(data);
     }
-
 }
 
 

@@ -207,9 +207,6 @@ const handleLogin = () => {
     .modal-paywall{
         width: 80vw;
         height: 85vh;
-        /* background-color: red!important;
-        border-bottom-left-radius: 40px!important;
-        border-bottom-right-radius: 40px!important; */
     }
     .price-option{
         padding-top: 105vw!important;

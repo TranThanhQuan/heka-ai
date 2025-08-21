@@ -5,7 +5,7 @@
                 <!-- Logo -->
                 <a class="navbar-brand" href="/">
                     <img src="/assets/images/logo.svg" alt="Logo" width="100" class="me-2">
-                    </a>
+                </a>
 
                 <!-- Toggle button -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
