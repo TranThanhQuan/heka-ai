@@ -59,14 +59,18 @@ onMounted(() => {
     isMobile.value = window.innerWidth < 768
 })
 
+// sau 13s nếu chưa mở modal paywall thì hiển thị modal paywall
+setTimeout(() => {
+    if (!showModal.value) {
+        showPaywall()
+    }
+}, 13000)
+
 const showEmailModal = ref(false)
 defineEmits(['change-screen'])
 
 const handleAccepted = (priceId) => {
-    // Thực hiện các hành động sau khi người dùng chấp nhận thanh toán
 
-    // showModal.value = false;
-    // gọi hàm checkout
     checkout(priceId)
 }
 

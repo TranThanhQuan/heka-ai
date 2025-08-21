@@ -138,7 +138,7 @@ const loginWithProvider = (provider) => {
         loadingProvider.value = null
 
         login(provider)
-    }, 2000)
+    }, 3000)
 }
 
 </script>
