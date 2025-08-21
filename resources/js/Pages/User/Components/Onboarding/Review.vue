@@ -170,10 +170,12 @@ const next = () => {
     if (unhappyCase) emit('change-screen', 'GoalWeight', props.userData, false)
     else {
         //  gọi modal truyền vào background
-        if (props.userData.goal === 'lose') modalBackground.value = '/images/onboarding/modal/bg_lose_modal.png'
-        else if (props.userData.goal === 'gain') modalBackground.value = '/images/onboarding/modal/bg_gain_modal.png'
-        else if (props.userData.goal === 'maintain') modalBackground.value = '/images/onboarding/modal/bg_maintain_modal.png'
-        showModal.value = true;
+        // if (props.userData.goal === 'lose') modalBackground.value = '/images/onboarding/modal/bg_lose_modal.png'
+        // else if (props.userData.goal === 'gain') modalBackground.value = '/images/onboarding/modal/bg_gain_modal.png'
+        // else if (props.userData.goal === 'maintain') modalBackground.value = '/images/onboarding/modal/bg_maintain_modal.png'
+        // showModal.value = true;
+
+        emit('change-screen', 'Nutribution', props.userData, false)
 
 
     }

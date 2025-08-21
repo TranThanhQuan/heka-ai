@@ -1,5 +1,3 @@
-
-
 export function getRealm(bundleId) {
     return bundleId.replace(/\./g, '-');
 }

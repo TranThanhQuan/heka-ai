@@ -75,13 +75,14 @@ const props = defineProps({
             goal: null,
             current_weight: null,
             current_height: null,
-            measure_type: null
+            measure_type: null,
+            isBack: false
         })
     }
 })
 
 // gửi event khi load trang
-eventTracking('goal_scr_load');
+eventTracking('splash_scr');
 
 const showIntro = ref(props.userData.showIntro ?? true)
 
@@ -116,9 +117,9 @@ const goals = [
 
 const selectGoal = (value) => {
     goal.value = value
-    eventTracking('goal_scr_item_click', {
-        goal: value
-    })
+    // eventTracking('goal_scr_item_click', {
+    //     goal: value
+    // })
 }
 
 const emit = defineEmits(['change-screen'])
@@ -142,8 +143,18 @@ onMounted(() => {
     }
 
     setTimeout(() => {
-        showIntro.value = false
-    }, 3000)
+        console.log(props.userData.targetScreen)
+
+        if (props.userData.targetScreen) {
+            showIntro.value = false
+            props.userData.goal = localStorage.getItem('goal')
+            props.userData.isBack = false
+            emit('change-screen', props.userData.targetScreen, props.userData)
+        }else{
+            showIntro.value = false
+
+        }
+    }, 2000)
 })
 
 

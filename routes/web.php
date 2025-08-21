@@ -24,64 +24,32 @@ Route::get('/', [UserController::class, 'index'])->name('home');
 
 
 Route::get('/get-premium', [OnboardingController::class, 'index'])->name('get-premium');
-Route::get('/ga-get-premium', [OnboardingController::class, 'index'])->name('ga-get-premium');
-Route::get('/tt-get-premium', [OnboardingController::class, 'index'])->name('tt-get-premium');
+// Route::get('/ga-get-premium', [OnboardingController::class, 'index'])->name('ga-get-premium');
+// Route::get('/tt-get-premium', [OnboardingController::class, 'index'])->name('tt-get-premium');
+
+Route::get('/get-premium-lose', [OnboardingController::class, 'premiumLose'])->name('get-premium-lose');
+Route::get('/get-premium-maintain', [OnboardingController::class, 'premiumMaintain'])->name('get-premium-maintain');
+Route::get('/get-premium-gain', [OnboardingController::class, 'premiumGain'])->name('get-premium-gain');
+Route::get('/get-premium-healthy', [OnboardingController::class, 'premiumHealthy'])->name('get-premium-healthy');
+
+
+
+
 Route::get('/get-plan', [OnboardingController::class, 'getPlan'])->name('get-plan');
+Route::get('/get-plan-lose', [OnboardingController::class, 'getPlanLose'])->name('get-plan-lose');
+Route::get('/get-plan-maintain', [OnboardingController::class, 'getPlanMaintain'])->name('get-plan-maintain');
+Route::get('/get-plan-gain', [OnboardingController::class, 'getPlanGain'])->name('get-plan-gain');
+Route::get('/get-plan-healthy', [OnboardingController::class, 'getPlanHealthy'])->name('get-plan-healthy');
 
 
+
+
+
+
+
+// payment
 Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
 Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
-
-// Route::get('/dashboard', function () {
-//     return Inertia::render('Dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-
-
-
-
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-
-//     // checkout
-//     Route::prefix('checkout')->controller(CheckoutController::class)->group(function () {
-//         Route::post('order', 'store')->name('checkout.store');
-//         Route::get('success', 'success')->name('checkout.success');
-//         Route::get('cancel', 'cancel')->name('checkout.cancel');
-
-//     });
-
-
-
-// });
-
-//add to cart
-
-// Route::prefix('cart')->controller(CartController::class)->group(function () {
-//     Route::get('view', 'view')->name('cart.view');
-//     Route::post('store/{product}', 'store')->name('cart.store');
-//     Route::patch('update/{product}', 'update')->name('cart.update');
-//     Route::delete('delete/{product}', 'delete')->name('cart.delete');
-// });
-
-
-// product list and filter
-// Route::prefix('products')->controller(ProductListController::class)->group(function () {
-//     Route::get('/', 'index')->name('products.index');
-//     Route::post('store/{product}', 'store')->name('products.store');
-//     Route::patch('update/{product}', 'update')->name('products.update');
-//     Route::delete('delete/{product}', 'delete')->name('products.delete');
-// });
-
-
-
-
-
-
 
 
 
@@ -101,25 +69,25 @@ Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('payme
 */
 
 
-Route::group(['prefix' => 'admin' , 'middleware' => 'redirectAdmin'],function () {
-        Route::get('login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
-        Route::post('login', [AdminAuthController::class, 'login'])->name('admin.login.post');
-        Route::post('logout', [AdminAuthController::class, 'logout'])->name('logout');
+// Route::group(['prefix' => 'admin' , 'middleware' => 'redirectAdmin'],function () {
+//         Route::get('login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+//         Route::post('login', [AdminAuthController::class, 'login'])->name('admin.login.post');
+//         Route::post('logout', [AdminAuthController::class, 'logout'])->name('logout');
 
-});
+// });
 
-Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+// Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+//     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
-    // product
-    Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');
-    Route::post('/products/store', [ProductController::class, 'store'])->name('admin.products.store');
-    Route::put('/products/update/{id}', [ProductController::class, 'update'])->name('admin.products.update');
+//     // product
+//     Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');
+//     Route::post('/products/store', [ProductController::class, 'store'])->name('admin.products.store');
+//     Route::put('/products/update/{id}', [ProductController::class, 'update'])->name('admin.products.update');
 
-    Route::delete('/products/image/{id}', [ProductController::class, 'deleteImage'])->name('admin.products.image.delete');
-    Route::delete('/products/destroy/{id}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+//     Route::delete('/products/image/{id}', [ProductController::class, 'deleteImage'])->name('admin.products.image.delete');
+//     Route::delete('/products/destroy/{id}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
 
 
-});
+// });
 
 require __DIR__.'/auth.php';

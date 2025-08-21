@@ -11,9 +11,7 @@ class PaymentController extends Controller
     public function success(Request $request)
     {
         $sessionId = $request->query('session_id');
-        if(!$sessionId){
-            return redirect('/');
-        }
+
 
         return Inertia::render('Payment/Success', [
             'sessionId' => $sessionId

@@ -2,7 +2,7 @@
     <div class="w-full md:w-1/3 mx-auto overflow-y-auto pb-28 px-4 content-screen">
         <!-- Back & Progress -->
         <div class="flex items-center mb-4 h-8">
-            <button @click="back" class="mr-2 bg-gray-200 rounded-full p-1">
+            <button v-if="showBack" @click="back" class="mr-2 bg-gray-200 rounded-full p-1">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
                 </svg>
@@ -82,6 +82,8 @@ const props = defineProps({
     userData: Object
 });
 
+
+const showBack = ref(props.userData.isBack ?? true)
 
 const gender = ref(localStorage.getItem('gender') ?? 'male')
 const selectedYear = ref(localStorage.getItem('year_of_birth') ?? 2000)

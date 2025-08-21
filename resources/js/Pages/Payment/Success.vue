@@ -51,12 +51,9 @@ localStorage.removeItem('checkoutId');
 //lấy id từ url
 const id = new URLSearchParams(window.location.search).get('id');
 
-
-
-
-
 // lấy accessToken từ local storage
 const accessToken = localStorage.getItem('accessToken');
+
 if (!id || !checkoutId || id !== checkoutId) {
     window.location.href = '/';
 } else {
@@ -106,10 +103,10 @@ if (!id || !checkoutId || id !== checkoutId) {
         }
     });
 
-    console.log('👉 data truyền đi:', data);
 
-    // Gọi cập nhật với dữ liệu đã lọc
-    updateUserProfile(data);
+    if (accessToken) {
+        updateUserProfile(data);
+    }
 
 }
 

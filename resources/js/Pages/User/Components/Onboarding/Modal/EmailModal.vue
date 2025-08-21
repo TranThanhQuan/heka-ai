@@ -17,11 +17,32 @@
                     <h2 class="text-lg font-semibold text-black">Enter your email to continue</h2>
 
                     <!-- form input email -->
-                    <form @submit.prevent="submit">
-                        <input type="email" v-model="email" placeholder="Email" class="w-full p-2 border border-gray-300 rounded-md mb-2">
-                        <button type="submit" class="w-full p-2 bg-blue-500 text-white rounded-md">Continue</button>
-                    </form>
+                    <form @submit.prevent="submit" class="relative w-full">
+                        <input type="email" v-model="email" placeholder="Email"
+                            class="w-full p-2 border border-gray-300 rounded-md mb-2" :disabled="isLoading">
 
+                        <div class="relative w-full">
+                            <button type="submit" :disabled="!email || isLoading"
+                                class="w-full p-2 bg-blue-500 text-white rounded-md relative transition-opacity duration-200"
+                                :class="{ 'opacity-50 cursor-not-allowed': !email || isLoading }">
+                                <span v-if="!isLoading">Continue</span>
+                                <span v-else class="invisible">Continue</span>
+                            </button>
+
+                            <!-- vòng tròn loading overlay -->
+                            <div v-if="isLoading" class="absolute inset-0 flex items-center justify-center z-10">
+                                <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                        stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor"
+                                        d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 018 8z">
+                                    </path>
+                                </svg>
+
+                            </div>
+                        </div>
+                    </form>
 
 
 
@@ -33,7 +54,9 @@
 
 <script setup>
 import { ref } from 'vue';
-
+import { createPaymentLink } from '@/utils/paymentLink'
+import { showLoadingScreen, hideLoadingScreen } from '@/utils/helpers'
+import Swal from 'sweetalert2'
 
 const showLoading = ref(false)
 const email = ref('')
@@ -44,10 +67,30 @@ const props = defineProps({
 const emit = defineEmits(['close', 'email'])
 
 const close = () => emit('close')
+const isLoading = ref(false);
 
-const submit = () => {
-    emit('email', email.value)
-}
+const submit = async () => {
+    isLoading.value = true; // bắt đầu loading
+
+    const priceId = localStorage.getItem('priceId');
+    const result = await createPaymentLink(email.value, priceId);
+
+    isLoading.value = false;
+
+    if (result.success) {
+        window.location.href = result.data.url;
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: result.error.message
+        }).then(() => {
+            window.location.reload();
+        });
+    }
+};
+
+
 
 
 </script>

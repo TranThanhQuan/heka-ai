@@ -5,7 +5,7 @@
     <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
          <ApplicationLogo class="h-10 w-auto fill-current text-gray-800 dark:text-gray-200" />
     </a>
-    <a href="javascript:void(0)" id="direct-purchase" class="  w-1/4 md:w-1/5" @click="showModal = true">
+    <a href="javascript:void(0)" id="direct-purchase" class="  w-1/4 md:w-1/5" @click="openPaywallModal(true)">
         <img src="/images/onboarding/Animation-Premium.gif" alt="">
     </a>
 
@@ -13,9 +13,11 @@
 </nav>
 
 <!-- modal -->
-<PaywallModal :visible="showModal" backgroundUrl="/images/onboarding/modal/bg_premium_modal.png" @close="showModal = false" @accepted="handleAccepted" @showSignInModal="showSignInModal = true" @closeModal="showModal = true" @headerModal="showModal = true" />
+<PaywallModal :visible="showModal"  :forceClose="true" backgroundUrl="/images/onboarding/modal/bg_premium_modal.png" @close="showModal = false" @accepted="handleAccepted" @showSignInModal="showSignInModal = true" @closeModal="showModal = true" @headerModal="showModal = true" @showEmailModal="showEmailModal = true"/>
 
 <SignInModal :visible="showSignInModal" @close="showSignInModal = false" @login="handleLogin" />
+
+<EmailModal :visible="showEmailModal" @close="showEmailModal = false" @email="handleEmail" />
 
 </template>
 
@@ -24,6 +26,7 @@ import { ref, watch } from 'vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import PaywallModal from './Modal/PaywallModal.vue';
 import SignInModal from './Modal/SignInModal.vue';
+import EmailModal from './Modal/EmailModal.vue';
 import { eventTracking } from "@/utils/tracking.js";
 
 const props = defineProps({
@@ -35,7 +38,8 @@ const props = defineProps({
 
 const showModal = ref(false)
 const showSignInModal = ref(false)
-
+const forceClose = ref(true)
+const showEmailModal = ref(false)
 const handleAccepted = (priceId) => {
     console.log('Price ID:', priceId)
 }
@@ -73,6 +77,12 @@ watch(showModal, (newVal) => {
 
     }
 })
+
+
+const openPaywallModal = (shouldForceClose = false) => {
+    forceClose.value = shouldForceClose
+    showModal.value = true
+}
 
 </script>
 

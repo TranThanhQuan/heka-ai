@@ -61,6 +61,10 @@ const props = defineProps({
     backgroundUrl: {
         type: String,
         required: true
+    },
+    forceClose: {
+        type: Boolean,
+        default: false
     }
 })
 
@@ -96,14 +100,24 @@ const isProfile = () => {
 const close = (isClose = false) => {
     eventTracking('iap_close_click')
 
-
     const groupName = localStorage.getItem('group_name');
+
+    // nếu group name == vip thì bắt buộc redirect
     if (groupName === 'vip') {
         window.location.href = '/';
+        return
+    }
+
+    console.log(isClose);
+
+    if (props.forceClose || !isClose ) {
+        emit('close', true)
     } else {
-        emit('close', isClose)
+        // ❌ Ngược lại thì redirect
+        window.location.href = '/';
     }
 }
+
 
 const accept = () => {
     const priceId = PRICE_IDS[selected.value]
@@ -139,8 +153,8 @@ const accept = () => {
 
     if (localStorage.getItem('noSignIn') === 'true') {
         emit('showEmailModal')
-        close()
 
+        // close()
         return
     }
 

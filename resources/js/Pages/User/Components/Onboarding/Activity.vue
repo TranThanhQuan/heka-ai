@@ -129,7 +129,7 @@ const next = () => {
 }
 
 const back = () => {
-    emit('change-screen', 'GenderAge', props.userData)
+    emit('change-screen', 'GenderAge', props.userData, )
 }
 </script>
 <style scoped>

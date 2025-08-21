@@ -2,7 +2,7 @@
     <OnboardingLayout>
         <component :is="currentComponent" :userData="userData" :source="source" @change-screen="changeScreen" />
 
-        <PaywallModal :visible="showModal" backgroundUrl="/images/onboarding/modal/bg-modal.jpg" @close="showModal = false" @accepted="handleAccepted" @showSignInModal="showSignInModal = true" @showEmailModal="showEmailModal = true" />
+        <PaywallModal :visible="showModal" backgroundUrl="/images/onboarding/modal/bg_premium_modal.png" @close="showModal = false" @accepted="handleAccepted" @showSignInModal="showSignInModal = true" @showEmailModal="showEmailModal = true" />
         <SignInModal :visible="showSignInModal" @close="showSignInModal = false" @login="handleLogin" />
         <EmailModal :visible="showEmailModal" @close="showEmailModal = false" @email="handleEmail" />
     </OnboardingLayout>

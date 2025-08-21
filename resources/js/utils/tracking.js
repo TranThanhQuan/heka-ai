@@ -9,7 +9,8 @@ const singleFireEvents = [
   "activity_level_click",
   "height_weight_next_click",
   "goal_weight_next_click",
-  "review_scr_next_click"
+  "review_scr_next_click",
+  "nutrition_scr_next_click"
 ];
 
 // Key trong localStorage để lưu event đã bắn
