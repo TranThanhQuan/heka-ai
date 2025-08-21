@@ -209,7 +209,7 @@ const handleLogin = () => {
         height: 80vh;
     }
     .price-option{
-        padding-top: 60vh!important;
+        padding-top: 48vh!important;
     }
 }
 
