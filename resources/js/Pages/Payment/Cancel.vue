@@ -2,7 +2,7 @@
     <Head title="Payment Failed" />
 
     <div class="min-h-screen flex items-center justify-center bg-gray-50">
-      <div class="bg-white rounded-xl shadow-lg w-1/3 text-center" style="padding: 2rem;">
+      <div class="bg-white rounded-xl shadow-lg w-11/12 sm:w-2/3 md:w-1/2 lg:w-1/3 text-center p-6">
         <!-- Icon -->
         <div class="flex justify-center mb-4">
           <div class="bg-red-500 rounded-full p-4">
@@ -50,37 +50,20 @@
   import { Head } from '@inertiajs/vue3';
   import { eventTracking } from "@/utils/tracking.js";
 
-  // lấy id từ url
   const id = new URLSearchParams(window.location.search).get('id');
-
-  // lấy checkoutId từ local storage
   const checkoutId = localStorage.getItem('checkoutId');
-
-  //xóa checkoutId
   localStorage.removeItem('checkoutId');
 
-  if(!id || !checkoutId || id !== checkoutId){
+  if (!id || !checkoutId || id !== checkoutId) {
     window.location.href = '/';
-
   }
 
-  // lấy package_id từ local storage
   const package_id = localStorage.getItem('package_id');
   localStorage.removeItem('package_id');
 
-
   eventTracking('confirm_purchased_fail', {
-      package_id: package_id,
-      msg: 'cancel',
-      code: null
-    }
-  );
-
-
-
-
+    package_id: package_id,
+    msg: 'cancel',
+    code: null
+  });
   </script>
-
-  <style scoped>
-
-  </style>

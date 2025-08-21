@@ -1,34 +1,38 @@
 <template>
-
     <Head title="Subscription Activated" />
 
     <div class="min-h-screen flex items-center justify-center bg-[#e2ebfb]">
-        <div class="text-center px-4 py-6 max-w-md w-full">
-            <h4 class="text-xl font-bold mb-4">
-                Thanks for being amazing with Heka AI.<br />
-                Let's start your plan now!
-            </h4>
+      <div class="bg-white rounded-xl shadow-md text-center px-4 py-8 sm:px-6 sm:py-10 max-w-md w-11/12">
+        <!-- Title -->
+        <h4 class="text-lg sm:text-xl font-bold mb-4">
+          Thanks for being amazing with Heka AI.<br />
+          Let's start your plan now!
+        </h4>
 
-            <a href="/">
-                <img src="/images/icon.png" alt="Heka Logo" class="w-20 h-20 mx-auto my-4" />
-            </a>
+        <!-- Logo -->
+        <a href="/">
+          <img src="/images/icon.png" alt="Heka Logo" class="w-20 h-20 mx-auto my-4" />
+        </a>
 
-            <ol class="text-lg text-left mb-6 space-y-1">
-                <li>1. Click on the link below to download Heka AI</li>
-                <li>2. Open the app and select "Sign in"</li>
-                <li v-if="email" id="email">
-                    3. Use your sign-up email: <strong class="text-black">{{ email }}</strong>
-                </li>
-            </ol>
+        <!-- Instructions -->
+        <ol class="text-base sm:text-lg text-left mb-6 space-y-2">
+          <li>1. Click on the link below to download Heka AI</li>
+          <li>2. Open the app and select "Sign in"</li>
+          <li v-if="email" id="email">
+            3. Use your sign-up email: <strong class="text-black break-all">{{ email }}</strong>
+          </li>
+        </ol>
 
-            <a :href="downloadUrl" class="block w-full text-white btn-download">
-                Download Heka
-            </a>
+        <!-- Download button -->
+        <a :href="downloadUrl" class="block w-full bg-indigo-600 text-white font-semibold text-sm py-2.5 rounded-lg hover:bg-indigo-700 transition duration-200">
+          Download Heka
+        </a>
 
-            <a href="/" class="text-indigo-600 text-sm hover:text-indigo-800 block mt-2">Back to home</a>
-        </div>
+        <!-- Back link -->
+        <a href="/" class="text-indigo-600 text-sm hover:text-indigo-800 block mt-3">Back to home</a>
+      </div>
     </div>
-</template>
+  </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
