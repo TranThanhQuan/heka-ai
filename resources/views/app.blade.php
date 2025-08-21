@@ -15,6 +15,12 @@
 
         <!-- preload img -->
         <link rel="preload" as="image" href="/images/onboarding/image_nutrition.webp" />
+        <link rel="preload" as="image" href="/images/onboarding/modal/bg_premium_modal.png" />
+        <link rel="preload" as="image" href="/images/onboarding/modal/bg_lose_modal.png" />
+        <link rel="preload" as="image" href="/images/onboarding/modal/bg_maintain_modal.png" />
+        <link rel="preload" as="image" href="/images/onboarding/modal/bg_lose_modal.png" />
+        <link rel="preload" as="video" href="/images/onboarding/video/introduction.mp4" />
+
 
         <!-- slick css -->
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />

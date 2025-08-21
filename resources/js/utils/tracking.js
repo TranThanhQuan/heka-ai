@@ -37,13 +37,13 @@ export function eventTracking(eventName, data = {}) {
   if (singleFireEvents.includes(eventName)) {
     // Nếu event thuộc loại chỉ gửi 1 lần
     if (tracked.includes(eventName)) {
-      console.log(`[Tracking] Event '${eventName}' đã gửi rồi, bỏ qua`);
+    //   console.log(`[Tracking] Event '${eventName}' đã gửi rồi, bỏ qua`);
       return;
     }
 
     // Gửi event lần đầu
     logEvent(analytics, eventName, data);
-    console.log(`[Tracking] Sent (once): ${eventName}`, data);
+    // console.log(`[Tracking] Sent (once): ${eventName}`, data);
 
     // Lưu vào localStorage
     tracked.push(eventName);
@@ -51,6 +51,6 @@ export function eventTracking(eventName, data = {}) {
   } else {
     // Event gửi nhiều lần
     logEvent(analytics, eventName, data);
-    console.log(`[Tracking] Sent (multi): ${eventName}`, data);
+    // console.log(`[Tracking] Sent (multi): ${eventName}`, data);
   }
 }

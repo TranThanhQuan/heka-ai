@@ -443,7 +443,6 @@ import { createStripeBillingPortalSession, checkout } from '@/utils/payment'
 import PaywallModal from '@/Pages/User/Components/Onboarding/Modal/PaywallModal.vue'
 import SignInModal from '@/Pages/User/Components/Onboarding/Modal/SignInModal.vue'
 
-console.log(result);
 
 let downloadUrl = ref('');
 // cập nhật link download
@@ -471,7 +470,7 @@ onMounted(() => {
     }
 });
 
-console.log(downloadUrl.value);
+
 const handleAccepted = (priceId) => {
     checkout(priceId)
 }

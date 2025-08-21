@@ -2,7 +2,7 @@
     <Head title="Subscription Activated" />
 
     <div class="min-h-screen flex items-center justify-center bg-[#e2ebfb]">
-      <div class="bg-white rounded-xl shadow-md text-center px-4 py-8 sm:px-6 sm:py-10 max-w-md w-11/12">
+      <div class="   text-center px-4 py-8 sm:px-6 sm:py-10 max-w-md w-11/12">
         <!-- Title -->
         <h4 class="text-lg sm:text-xl font-bold mb-4">
           Thanks for being amazing with Heka AI.<br />
