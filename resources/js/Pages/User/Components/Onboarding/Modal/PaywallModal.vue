@@ -4,7 +4,7 @@
             class="fixed inset-0 z-50 flex items-center justify-center w-full h-full overflow-x-hidden overflow-y-auto bg-black bg-opacity-70"
             @keydown.esc="close">
             <!-- Modal content -->
-            <div class="modal-paywall relative w-[20%] h-[90vh] mx-auto rounded-2xl overflow-hidden shadow-lg" :style="{
+            <div class="modal-paywall relative w-[20%] h-[90vh] mx-auto rounded-2xl  shadow-lg" :style="{
                 background: `url('${backgroundUrl}') no-repeat center center/cover`
             }">
                 <!-- ❌ Close Button -->
@@ -14,7 +14,7 @@
                 </button>
 
                 <!-- Content -->
-                <div class="relative z-10 flex flex-col items-center text-center text-white p-6">
+                <div class="relative z-10 flex flex-col items-center text-center text-white p-6 paywall-content">
                     <!-- Pricing Options -->
                     <div class="grid grid-cols-2 gap-2 w-full mx-auto price-option" style="padding-top: 21rem;">
                         <div @click="selectPlan('1month')" class="cursor-pointer">
@@ -107,7 +107,7 @@ const close = (isClose = false) => {
         return
     }
 
-    console.log(isClose);
+    // console.log(isClose);
 
     if (props.forceClose || !isClose ) {
         emit('close', true)
@@ -206,11 +206,16 @@ const handleLogin = () => {
 @media (max-width: 768px) {
     .modal-paywall{
         width: 80vw;
-        height: 80vh;
+        height: 85vh;
+        /* background-color: red!important;
+        border-bottom-left-radius: 40px!important;
+        border-bottom-right-radius: 40px!important; */
     }
     .price-option{
-        padding-top: 48vh!important;
+        padding-top: 105vw!important;
     }
+
+
 }
 
 /* Từ 769px đến 1280px */
