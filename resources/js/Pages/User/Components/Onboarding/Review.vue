@@ -15,7 +15,7 @@
         <div v-if="showMainContent" class="relative z-10 w-full  mx-auto" style="height: calc(100vh - 100px);">
 
             <!-- back arrow -->
-            <div class="flex items-center justify-start">
+            <div class="flex items-center justify-start absolute top-0 left-0 w-full z-50   ">
                 <img @click="back()" src="/images/onboarding/back_arrow.png" alt="back"
                     class="w-10 h-10 cursor-pointer" />
             </div>

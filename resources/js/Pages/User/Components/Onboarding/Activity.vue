@@ -150,7 +150,7 @@ const back = () => {
 /* Từ 769px đến 1280px */
 @media (min-width: 769px) and (max-width: 1280px) {
     .activity-options {
-        padding-bottom: 1rem!important;
+        padding-bottom: 1.5rem!important;
     }
 }
 

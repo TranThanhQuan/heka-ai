@@ -205,10 +205,10 @@ const handleLogin = () => {
 /* Dưới 768px */
 @media (max-width: 768px) {
     .modal-paywall{
-        width: 80vw;
+        width: 90vw;
     }
     .price-option{
-        padding-top: 23rem!important;
+        padding-top: 60vh!important;
     }
 }
 
