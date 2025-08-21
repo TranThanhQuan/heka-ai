@@ -70,7 +70,22 @@ async function checkLoginStatus() {
             //group name
             const groupName = localStorage.getItem('group_name');
 
-            if(groupName === 'vip'){
+            const data = {};
+
+            const keys = [
+                'activity', 'goal', 'gender', 'year_of_birth', 'measure_type',
+                'current_weight', 'current_height', 'target_cal', 'goal_weight',
+                'start_date', 'end_date'
+            ];
+
+            // nếu tất cả các keys trong local storage đều có giá trị thì hiển thị modal paywall
+            const isComplete = keys.every(key => {
+                const value = localStorage.getItem(key);
+                return value !== null && value.trim() !== '';
+            });
+
+
+            if(groupName === 'vip' || isComplete){
                 //show modal paywall
                 showModal.value = true
             }

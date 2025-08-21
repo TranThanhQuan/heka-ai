@@ -255,8 +255,6 @@ export async function getUserInfo() {
 
     const payload = { attributes: attributes };
 
-    console.log('✅ payload sau khi xử lý:', payload);
-
     try {
       // showLoadingScreen();
       const res = await fetch(`${backendDomain}/saas-user-service/v1/users/update`, {
