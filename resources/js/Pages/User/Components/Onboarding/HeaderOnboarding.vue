@@ -5,7 +5,7 @@
     <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
          <ApplicationLogo class="h-10 w-auto fill-current text-gray-800 dark:text-gray-200" />
     </a>
-    <a href="javascript:void(0)" id="direct-purchase" class="  w-1/4 md:w-1/5" @click="openPaywallModal(true)">
+    <a href="javascript:void(0)" id="direct-purchase" class="  w-1/4 md:w-1/5" @click="openPaywallModal(true)" :class="{ 'pointer-events-none': !directPurchase }">
         <img src="/images/onboarding/Animation-Premium.gif" alt="">
     </a>
 
@@ -84,6 +84,14 @@ const openPaywallModal = (shouldForceClose = false) => {
     showModal.value = true
 }
 
+
+// direct-purchase
+// sau 2s mới cho phép click
+const directPurchase = ref(false)
+
+setTimeout(() => {
+    directPurchase.value = true
+}, 2000)
 </script>
 
 
@@ -92,6 +100,9 @@ const openPaywallModal = (shouldForceClose = false) => {
 
     animation: zoomInOut 2s infinite ease-in-out;
 }
+
+
+
 
 @keyframes zoomInOut {
     0% {

@@ -4,7 +4,7 @@
             class="fixed inset-0 z-50 flex items-center justify-center w-full h-full overflow-x-hidden overflow-y-auto bg-black bg-opacity-70"
             @keydown.esc="close">
             <!-- Modal content -->
-            <div class="modal-paywall relative w-full max-w-[250px] mx-auto rounded-2xl overflow-hidden shadow-lg" :style="{
+            <div class="modal-paywall relative w-[20%] h-[90vh] mx-auto rounded-2xl overflow-hidden shadow-lg" :style="{
                 background: `url('${backgroundUrl}') no-repeat center center/cover`
             }">
                 <!-- ❌ Close Button -->
@@ -18,19 +18,18 @@
                     <!-- Pricing Options -->
                     <div class="grid grid-cols-2 gap-2 w-full mx-auto price-option" style="padding-top: 21rem;">
                         <div @click="selectPlan('1month')" class="cursor-pointer">
-                            <img :src="selected === '1month' ? '/images/onboarding/modal/1month_active.png' : '/images/onboarding/modal/1month.png'"
-                                alt="1 month" class="w-full" />
+                            <img :src="selected === '1month' ? '/images/onboarding/modal/1month_active.png' : '/images/onboarding/modal/1month.png'" alt="1 month" class="w-full mx-auto" />
                         </div>
 
                         <div @click="selectPlan('12months')" class="cursor-pointer">
                             <img :src="selected === '12months' ? '/images/onboarding/modal/12months_active.png' : '/images/onboarding/modal/12months.png'"
-                                alt="12 months" class="w-full" />
+                                alt="12 months" class="w-full mx-auto" />
                         </div>
                     </div>
 
                     <!-- CTA -->
                     <button @click="accept"
-                        class="mt-2 w-full bg-gradient-to-r from-yellow-300 to-yellow-500 text-black font-bold py-2 rounded-xl shadow-md">
+                        class="mt-4 w-full bg-gradient-to-r from-yellow-300 to-yellow-500 text-black font-bold py-2 rounded-xl shadow-md btn-go-premium">
                         Go Premium Now
                     </button>
                 </div>
@@ -206,10 +205,10 @@ const handleLogin = () => {
 /* Dưới 768px */
 @media (max-width: 768px) {
     .modal-paywall{
-        max-width: 80vw;
+        width: 80vw;
     }
     .price-option{
-        padding-top: 24rem!important;
+        padding-top: 23rem!important;
     }
 }
 
@@ -220,17 +219,42 @@ const handleLogin = () => {
     }
 
     .price-option{
-        padding-top: 15rem!important;
+        padding-top: 18rem!important;
+    }
+
+    .btn-go-premium{
+        margin-top: 2rem!important;
+        padding-top: 0.2rem!important;
+        padding-bottom: 0.2rem!important;
+
     }
 }
 
 /* Từ 1281px đến 1600px */
 @media (min-width: 1281px) and (max-width: 1600px) {
+    .price-option{
+        padding-top: 24rem!important;
+    }
 
+    .modal-paywall{
+        max-width: 350px!important;
+
+    }
 }
 /* Trên 1600px */
 @media (min-width: 1601px) {
+    .modal-paywall{
+        width: 350px!important;
+        max-width: 350px!important;
+    }
 
+    .price-option{
+        padding-top: 33rem!important;
+    }
+
+    .cursor-pointer img {
+        /* width: 80%!important; */
+    }
 }
 
 
