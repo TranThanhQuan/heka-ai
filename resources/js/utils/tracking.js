@@ -3,6 +3,7 @@ import { logEvent, analytics } from "@/firebase.js";
 
 // Danh sách các event chỉ gửi 1 lần
 const singleFireEvents = [
+  "splash_scr",
   "goal_scr_item_click",
   "goal_scr_next_click",
   "sex_age_scr_next_click",
@@ -51,6 +52,28 @@ export function eventTracking(eventName, data = {}) {
   } else {
     // Event gửi nhiều lần
     logEvent(analytics, eventName, data);
-    // console.log(`[Tracking] Sent (multi): ${eventName}`, data);
+
+
+    if (eventName === 'iap_successfull') {
+        const session_id = localStorage.getItem('session_id');
+        fbq('track', 'Purchase', {
+            value: 0.00,
+            currency: 'USD',
+            session_id: session_id
+        });
+
+
+        //   dataLayer.push({
+        //       event: 'purchase_success',
+        //       event_category: 'purchase',
+        //       event_label: 'purchase',
+        //     });
+    }
+
+    if (eventName === 'iap_btn_click') {
+
+        fbq('track', 'InitiateCheckout');
+    }
+
   }
 }
