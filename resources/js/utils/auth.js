@@ -8,6 +8,9 @@ import { v4 as uuidv4 } from 'uuid';
 export async function login(idp) {
     showLoadingScreen();
 
+    console.log('VITE_KEYCLOAK_DOMAIN: ', import.meta.env.VITE_KEYCLOAK_DOMAIN);
+    console.log('VITE_BACKEND_DOMAIN: ', import.meta.env.VITE_BACKEND_DOMAIN);
+    console.log('VITE_PAYMENT_DOMAIN: ', import.meta.env.VITE_PAYMENT_DOMAIN);
 
     const codeVerifier = generateCodeVerifier();
     const codeChallenge = await generateCodeChallenge(codeVerifier);
