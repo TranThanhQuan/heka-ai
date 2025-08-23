@@ -250,7 +250,7 @@ const handleLogin = () => {
     .modal-paywall{
         width: 400px!important;
         max-width: 400px!important;
-        max-width: 850px!important;
+        max-height: 850px!important;
     }
 
     .price-option{
