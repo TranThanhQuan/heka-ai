@@ -55,7 +55,7 @@
   localStorage.removeItem('checkoutId');
 
   if (!id || !checkoutId || id !== checkoutId) {
-    window.location.href = '/';
+    // window.location.href = '/';
   }
 
   const package_id = localStorage.getItem('package_id');

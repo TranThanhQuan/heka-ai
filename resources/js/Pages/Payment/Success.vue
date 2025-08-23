@@ -59,7 +59,7 @@ const id = new URLSearchParams(window.location.search).get('id');
 const accessToken = localStorage.getItem('accessToken');
 
 if (!id || !checkoutId || id !== checkoutId) {
-    window.location.href = '/';
+    // window.location.href = '/';
 } else {
 
     // đếm số lần checkout thành công
