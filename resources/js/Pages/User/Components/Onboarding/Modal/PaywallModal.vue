@@ -206,7 +206,8 @@ const handleLogin = () => {
 @media (max-width: 768px) {
     .modal-paywall{
         width: 80vw;
-        height: 85vh;
+        /* height: 85vh; */
+        height: 173vw;
     }
     .price-option{
         padding-top: 105vw!important;
@@ -249,6 +250,7 @@ const handleLogin = () => {
     .modal-paywall{
         width: 400px!important;
         max-width: 400px!important;
+        max-width: 850px!important;
     }
 
     .price-option{
