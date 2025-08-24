@@ -86,7 +86,7 @@ if (!id || !checkoutId || id !== checkoutId) {
 
     eventTracking('iap_successfull', {
         convert_number: checkoutCount + 1,
-        package_id: package_id,
+        purchase_package_id: package_id,
         source: source
     });
 
