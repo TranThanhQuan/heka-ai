@@ -62,16 +62,17 @@ export async function checkout(stripePriceId) {
       return;
     }
 
-    // console.log('product: ', product.price.id);
+    console.log('product: ', product);
 
     // tạo 1 id random
     const id = Math.random().toString(36).substring(2, 15);
     localStorage.setItem('checkoutId', id)
     localStorage.setItem('package_id', stripePriceId)
 
+
     try {
       const body = {
-        cart: [{ stripePriceId: product.price.id, quantity: 1, name: product.name }],
+        cart: [{ stripePriceId: product.id, quantity: 1, name: product.recurring.interval }],
         successUrl: `${domain}/payment/success?id=${id}`,
         cancelUrl: `${domain}/payment/cancel?id=${id}`
       };
@@ -102,7 +103,8 @@ export async function checkout(stripePriceId) {
         }
 
     } catch (err) {
-      window.location.href = '/';
+    //   window.location.href = '/';
+    console.log('err', err)
       hideLoadingScreen();
     }
   }

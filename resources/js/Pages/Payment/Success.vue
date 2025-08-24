@@ -67,6 +67,10 @@ if (!id || !checkoutId || id !== checkoutId) {
 
 
 
+
+
+
+
     // đếm số lần checkout thành công
     const checkoutCount = parseInt(localStorage.getItem('checkoutCount')) || 0
     localStorage.setItem('checkoutCount', checkoutCount + 1)
