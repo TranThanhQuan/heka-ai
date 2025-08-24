@@ -47,10 +47,8 @@ export async function checkout(stripePriceId) {
 
     showLoadingScreen();
     let accessToken = localStorage.getItem("accessToken");
-    const paymentDomain = import.meta.env.VITE_PAYMENT_DOMAIN;
+    const paymentDomain = import.meta.env.VITE_SERVICE_DOMAIN;
     const bundleId = import.meta.env.VITE_BUNDLE_ID;
-    const clientId = import.meta.env.VITE_CLIENT_ID;
-    const keycloakDomain = import.meta.env.VITE_KEYCLOAK_DOMAIN;
 
     const redirectUri = localStorage.getItem('redirectUri');
     // lấy domain hiện tại
@@ -78,7 +76,7 @@ export async function checkout(stripePriceId) {
         cancelUrl: `${domain}/payment/cancel?id=${id}`
       };
 
-      const res = await fetch(`${paymentDomain}/saas-payment-service/v1/stripe/create-checkout-session`, {
+      const res = await fetch(`${paymentDomain}/api/v1/payment/create-checkout-session`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -89,17 +87,18 @@ export async function checkout(stripePriceId) {
       });
 
       const data = await res.json();
-      hideLoadingScreen();
-
-      if (res.ok && data?.url) {
-        localStorage.setItem('payment_redirect_from', window.location.pathname);
-        eventTracking('checkout_view')
-
-        window.location.href = data.url;
-      } else {
-            window.location.href = '/';
         hideLoadingScreen();
-      }
+
+        if (res.ok && data?.data?.url) {
+        localStorage.setItem('payment_redirect_from', window.location.pathname);
+        eventTracking('checkout_view');
+
+        window.location.href = data.data.url;
+        } else {
+        window.location.href = '/';
+        hideLoadingScreen();
+        }
+
     } catch (err) {
       window.location.href = '/';
       hideLoadingScreen();
@@ -110,26 +109,29 @@ export async function checkout(stripePriceId) {
 
 
   export async function getProducts(targetId) {
-    const paymentDomain = import.meta.env.VITE_PAYMENT_DOMAIN;
-    const bundleId = import.meta.env.VITE_BUNDLE_ID;
-    const accessToken = localStorage.getItem("accessToken");
-
+    const serviceDomain = import.meta.env.VITE_SERVICE_DOMAIN;
 
     try {
-      const res = await fetch(`${paymentDomain}/saas-payment-service/v1/stripe/products`, {
+      const res = await fetch(`${serviceDomain}/api/v1/payment/products/prices`, {
         method: "GET",
-        headers: {
-          "Authorization": `Bearer ${accessToken}`,
-          "x-api-bundleid": bundleId
-        }
       });
 
       const data = await res.json();
+
       if (res.ok && Array.isArray(data.data)) {
-        return data.data.find(p => p.price?.id === targetId);
+        const product = data.data.find(p => p.id === targetId);
+
+        if (product) {
+          return product; // ID tồn tại
+        } else {
+        //   console.warn(`Price ID "${targetId}" không tồn tại trong danh sách.`);
+          return null;
+        }
       }
     } catch (e) {
       console.error("Lỗi lấy sản phẩm:", e);
     }
+
     return null;
   }
+

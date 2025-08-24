@@ -65,6 +65,8 @@ if (!id || !checkoutId || id !== checkoutId) {
     window.location.href = '/';
 } else {
 
+
+
     // đếm số lần checkout thành công
     const checkoutCount = parseInt(localStorage.getItem('checkoutCount')) || 0
     localStorage.setItem('checkoutCount', checkoutCount + 1)

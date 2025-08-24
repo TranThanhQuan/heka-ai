@@ -22,10 +22,10 @@
                         </div>
 
                         <div @click="selectPlan('12months')" class="cursor-pointer">
-                            <img :src="selected === '12months' ? '/images/onboarding/modal/12months_active.png' : '/images/onboarding/modal/12months.png'"
-                                alt="12 months" class="w-full mx-auto" />
+                            <img :src="selected === '12months' ? '/images/onboarding/modal/12months_active.png' : '/images/onboarding/modal/12months.png'" alt="12 months" class="w-full mx-auto" />
                         </div>
                     </div>
+
 
                     <!-- CTA -->
                     <button @click="accept"
@@ -42,13 +42,16 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import { checkout } from '@/utils/payment';
 import SignInModal from '@/Pages/User/Components/Onboarding/Modal/SignInModal.vue';
 import EmailModal from '@/Pages/User/Components/Onboarding/Modal/EmailModal.vue';
 import { eventTracking } from "@/utils/tracking.js";
+import axios from 'axios'
 
 
+
+const PRICE_IDS = ref({})
 
 
 
@@ -75,10 +78,27 @@ const props = defineProps({
 const emit = defineEmits(['close', 'accepted', 'showSignInModal', 'showEmailModal', 'headerModal'])
 const selected = ref('12months')
 
-const PRICE_IDS = {
-    '1month': import.meta.env.VITE_PRICE_ID_MONTHLY,
-    '12months': import.meta.env.VITE_PRICE_ID_YEARLY
-}
+// gọi API khi component mounted
+onMounted(async () => {
+  const response = await axios.get(`${import.meta.env.VITE_SERVICE_DOMAIN}/api/v1/payment/products/prices`);
+  const prices = response.data.data;
+
+  const mapping = {}
+  prices.forEach((price) => {
+    const interval = price.recurring?.interval;
+    if (interval === 'month') {
+      mapping['1month'] = price.id
+    } else if (interval === 'year') {
+      mapping['12months'] = price.id
+    }
+  })
+  PRICE_IDS.value = mapping
+})
+
+
+
+
+
 
 const isProfile = () => {
 
@@ -107,10 +127,11 @@ const close = (isClose = false) => {
         return
     }
 
-    // console.log(isClose);
+
 
     if (props.forceClose || !isClose ) {
         emit('close', true)
+
     } else {
         // ❌ Ngược lại thì redirect
         window.location.href = '/';
@@ -119,7 +140,7 @@ const close = (isClose = false) => {
 
 
 const accept = () => {
-    const priceId = PRICE_IDS[selected.value]
+    const priceId = PRICE_IDS.value[selected.value]
     localStorage.setItem('priceId', priceId)
 
     // lấy goal từ localStorage
