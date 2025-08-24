@@ -58,7 +58,7 @@ export async function checkout(stripePriceId) {
 
     const product = await getProducts(stripePriceId);
 
-    console.log('product: ', product);
+
     if (!product) {
       hideLoadingScreen();
       return;
@@ -92,7 +92,7 @@ export async function checkout(stripePriceId) {
       hideLoadingScreen();
 
       if (res.ok && data?.url) {
-
+        localStorage.setItem('payment_redirect_from', window.location.pathname);
         eventTracking('checkout_view')
 
         window.location.href = data.url;

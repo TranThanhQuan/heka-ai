@@ -176,6 +176,7 @@
                 }
         </script>
         @inertiaHead
+        @routes
     </head>
     <body class="font-sans antialiased">
         @inertia

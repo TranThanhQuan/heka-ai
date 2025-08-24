@@ -34,6 +34,9 @@ function saveTrackedEvents(events) {
 // Hàm tracking chính
 export function eventTracking(eventName, data = {}) {
   const tracked = getTrackedEvents();
+  const path = window.location.pathname;
+  const from = localStorage.getItem('payment_redirect_from');
+
 
   if (singleFireEvents.includes(eventName)) {
     // Nếu event thuộc loại chỉ gửi 1 lần
@@ -46,6 +49,14 @@ export function eventTracking(eventName, data = {}) {
     logEvent(analytics, eventName, data);
     // console.log(`[Tracking] Sent (once): ${eventName}`, data);
 
+
+    axios.post('/event-tracking', {
+      eventName,
+      data,
+      path,
+      from,
+    });
+
     // Lưu vào localStorage
     tracked.push(eventName);
     saveTrackedEvents(tracked);
@@ -53,6 +64,13 @@ export function eventTracking(eventName, data = {}) {
     // Event gửi nhiều lần
     logEvent(analytics, eventName, data);
 
+
+    axios.post('/event-tracking', {
+      eventName,
+      data,
+      path,
+      from,
+    });
 
     if (eventName === 'iap_successfull') {
         const session_id = localStorage.getItem('session_id');
