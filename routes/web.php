@@ -9,6 +9,7 @@ use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\User\PaymentController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\EventTrackingController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\User\OnboardingController;
@@ -44,15 +45,16 @@ Route::get('/get-plan-healthy', [OnboardingController::class, 'getPlanHealthy'])
 
 
 
-
-
-
 // payment
 Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
 Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
 
 
 
+Route::post('/event-tracking', [EventTrackingController::class, 'store']);
+
+Route::get('/tracking/funnel', [EventTrackingController::class, 'funnel'])->name('tracking.funnel');
+Route::get('/tracking/view_tracking', [EventTrackingController::class, 'viewTracking'])->name('tracking.viewTracking');
 
 
 
@@ -69,12 +71,6 @@ Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('payme
 */
 
 
-// Route::group(['prefix' => 'admin' , 'middleware' => 'redirectAdmin'],function () {
-//         Route::get('login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
-//         Route::post('login', [AdminAuthController::class, 'login'])->name('admin.login.post');
-//         Route::post('logout', [AdminAuthController::class, 'logout'])->name('logout');
-
-// });
 
 // Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 //     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');

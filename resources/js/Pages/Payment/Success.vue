@@ -52,6 +52,9 @@ let checkoutId = localStorage.getItem('checkoutId');
 //xóa checkoutId
 localStorage.removeItem('checkoutId');
 
+let payment_redirect_from = localStorage.getItem('payment_redirect_from');
+localStorage.removeItem('payment_redirect_from');
+
 //lấy id từ url
 const id = new URLSearchParams(window.location.search).get('id');
 
@@ -87,7 +90,8 @@ if (!id || !checkoutId || id !== checkoutId) {
     eventTracking('iap_successfull', {
         convert_number: checkoutCount + 1,
         purchase_package_id: package_id,
-        source: source
+        source: source,
+
     });
 
     // gọi hàm updateUserProfile
