@@ -88,15 +88,17 @@ export async function checkout(stripePriceId) {
 
       const data = await res.json();
         hideLoadingScreen();
+      console.log('data', data)
 
         if (res.ok && data?.data?.url) {
-        localStorage.setItem('payment_redirect_from', window.location.pathname);
-        eventTracking('checkout_view');
+            localStorage.setItem('payment_redirect_from', window.location.pathname);
+            eventTracking('checkout_view');
 
-        window.location.href = data.data.url;
+            window.location.href = data.data.url;
         } else {
-        window.location.href = '/';
-        hideLoadingScreen();
+            alert('Lỗi khi tạo checkout session');
+        // window.location.href = '/';
+        // hideLoadingScreen();
         }
 
     } catch (err) {
