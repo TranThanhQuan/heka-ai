@@ -62,7 +62,6 @@ export async function checkout(stripePriceId) {
       return;
     }
 
-    console.log('product: ', product);
 
     // tạo 1 id random
     const id = Math.random().toString(36).substring(2, 15);
@@ -89,7 +88,7 @@ export async function checkout(stripePriceId) {
 
       const data = await res.json();
         hideLoadingScreen();
-      console.log('data', data)
+
 
         if (res.ok && data?.data?.url) {
             localStorage.setItem('payment_redirect_from', window.location.pathname);
@@ -97,8 +96,8 @@ export async function checkout(stripePriceId) {
 
             window.location.href = data.data.url;
         } else {
-            alert('Lỗi khi tạo checkout session');
-        // window.location.href = '/';
+            // alert('Lỗi khi tạo checkout session');
+        window.location.href = '/';
         // hideLoadingScreen();
         }
 

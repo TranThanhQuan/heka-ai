@@ -308,7 +308,7 @@
                             </a>
                         </td>
                         <td style="border:0; padding: 0; text-align: center;">
-                            <a id="goPremiumBtn" href="javascript:void(0)" @click="showModal = true"
+                            <a id="goPremiumBtn" href="javascript:void(0)" @click="showPaywallModal()"
                                 class="inline-block bg-[#f91c5f] hover:bg-pink-600 text-white font-semibold px-3 py-2 text-sm rounded">
                                 {{ premiumText }}
                             </a>
@@ -474,6 +474,11 @@ onMounted(() => {
 
 const handleAccepted = (priceId) => {
     checkout(priceId)
+}
+
+const showPaywallModal = () => {
+    showModal.value = true
+    localStorage.setItem('source', 'home_page')
 }
 
 // ==== Auth State ====

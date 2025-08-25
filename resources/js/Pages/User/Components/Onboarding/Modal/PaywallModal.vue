@@ -145,17 +145,17 @@ const accept = () => {
 
     // lấy goal từ localStorage
     const goal = localStorage.getItem('goal')
-    let source = ''
+
     if (goal === 'lose') {
-        source = 'onboarding_lose'
+        localStorage.setItem('source', 'onboarding_lose')
     } else if (goal === 'maintain') {
-        source = 'onboarding_maintain'
+        localStorage.setItem('source', 'onboarding_maintain')
     } else if (goal === 'gain') {
-        source = 'onboarding_gain'
+        localStorage.setItem('source', 'onboarding_gain')
     } else if (goal === 'healthy') {
-        source = 'onboarding_healthy'
+        localStorage.setItem('source', 'onboarding_healthy')
     } else {
-        source = 'home_scr_pro_icon'
+        localStorage.setItem('source', 'home_scr_pro_icon')
     }
 
 
@@ -166,7 +166,7 @@ const accept = () => {
     eventTracking('iap_btn_click', {
         convert_number: iapClickCount + 1,
         package_id: priceId,
-        source: source
+        source: localStorage.getItem('source')
     })
 
 

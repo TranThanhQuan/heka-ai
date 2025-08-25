@@ -80,6 +80,7 @@ watch(showModal, (newVal) => {
 
 
 const openPaywallModal = (shouldForceClose = false) => {
+    localStorage.setItem('source', 'home_scr_pro_icon')
     forceClose.value = shouldForceClose
     showModal.value = true
 }

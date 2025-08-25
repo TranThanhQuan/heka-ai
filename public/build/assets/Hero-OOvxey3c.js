@@ -1,1 +1,0 @@
-import{b as a,o as t,a as o,e as r,u as s,Z as n,F as l}from"./app-CPuNsaQu.js";const c={__name:"Hero",setup(m){return(u,e)=>(t(),a(l,null,[o(s(n),{title:"Home"}),e[0]||(e[0]=r("h1",null,"home page",-1))],64))}};export{c as default};
