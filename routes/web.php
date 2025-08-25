@@ -3,6 +3,7 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\UserController;
@@ -57,6 +58,11 @@ Route::get('/tracking/funnel', [EventTrackingController::class, 'funnel'])->name
 Route::get('/tracking/view_tracking', [EventTrackingController::class, 'viewTracking'])->name('tracking.viewTracking');
 
 
+// tạo route xóa cache
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    return 'Cache cleared';
+});
 
 
 

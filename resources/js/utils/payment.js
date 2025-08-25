@@ -5,7 +5,7 @@ export async function createStripeBillingPortalSession() {
       // Lấy access token từ localStorage
       let token = localStorage.getItem('accessToken');
 
-      const paymentDomain = import.meta.env.VITE_PAYMENT_DOMAIN;
+      const paymentDomain = import.meta.env.VITE_SERVICE_DOMAIN;
       if (!token) {
         throw new Error('Access token not found in localStorage');
       }

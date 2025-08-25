@@ -14,6 +14,14 @@ class EventTrackingController extends Controller
 {
     public function store(Request $request)
     {
+
+        // $request->input('path')
+
+        // nếu path là / thì bỏ qua
+        if ($request->input('path') == '/') {
+            return response()->json(['message' => 'Event saved']);
+        }
+
         $agent = new Agent();
         if ($agent->isMobile()) {
             $device = $agent->isiOS() ? 'ios' : ($agent->isAndroidOS() ? 'android' : 'mobile');

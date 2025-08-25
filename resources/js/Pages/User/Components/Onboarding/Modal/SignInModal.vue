@@ -133,11 +133,11 @@ const loginWithProvider = (provider) => {
     loadingProvider.value = provider
 
     // Giả lập xử lý đăng nhập trong 2s
+    login(provider)
     setTimeout(() => {
         showLoading.value = false
         loadingProvider.value = null
 
-        login(provider)
     }, 3000)
 }
 

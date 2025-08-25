@@ -39,7 +39,7 @@ import { ref, onMounted } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import { eventTracking } from '@/utils/tracking';
 import { updateUserProfile } from '@/utils/auth';
-
+import { getUserInfo } from '@/utils/auth';
 const props = defineProps({
     sessionId: String
 });
@@ -65,9 +65,36 @@ if (!id || !checkoutId || id !== checkoutId) {
     window.location.href = '/';
 } else {
 
+    if (accessToken) {
+        const user = getUserInfo();
+
+    }
 
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const sessionId = urlParams.get('session_id');
 
+    if (sessionId) {
+        //lấy từ env
+        const apiUrl = import.meta.env.VITE_SERVICE_DOMAIN + `/api/v1/payment/verify-checkout-session?session_id=${sessionId}`;
+
+            $.ajax({
+                url: apiUrl,
+                method: 'GET',
+                success: function (data) {
+                    console.log("✅ Dữ liệu trả về từ API:", data);
+
+                },
+                error: function (xhr, status, error) {
+                    console.error("❌ Lỗi khi gọi API:", error);
+                    if (xhr.responseJSON) {
+                        console.error("Chi tiết lỗi:", xhr.responseJSON);
+                    }
+                }
+            });
+        } else {
+            console.warn("⚠️ Không tìm thấy session_id trong URL.");
+        }
 
 
 
