@@ -9,52 +9,66 @@ use Illuminate\Http\Request;
 use App\Models\EventTracking;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 
 class EventTrackingController extends Controller
 {
-    public function store(Request $request)
-    {
 
-        // $request->input('path')
+            public function store(Request $request)
+            {
+                $ip = $request->ip();
+                $eventName = $request->input('eventName');
 
-        // nếu path là / thì bỏ qua
-        if ($request->input('path') == '/') {
-            return response()->json(['message' => 'Event saved']);
-        }
+                // Tạo cache key duy nhất theo IP + eventName
+                $cacheKey = 'event_' . md5($ip . '_' . $eventName);
 
-        $agent = new Agent();
-        if ($agent->isMobile()) {
-            $device = $agent->isiOS() ? 'ios' : ($agent->isAndroidOS() ? 'android' : 'mobile');
-        } elseif ($agent->isDesktop()) {
-            $device = 'pc';
-        } else {
-            $device = 'unknown';
-        }
+                if (Cache::has($cacheKey)) {
+                    return false;
+                }
 
-        $ip = $request->ip();
+                // Ghi cache tồn tại trong 10 giây
+                Cache::put($cacheKey, true, now()->addSeconds(10));
 
-        $country = null;
-        try {
-            $response = Http::get("https://ipapi.co/{$ip}/country_name/");
-            if ($response->successful()) {
-                $country = $response->body();
+                // Bỏ qua nếu path là "/"
+                if ($request->input('path') == '/') {
+                    return response()->json(['message' => 'Event saved']);
+                }
+
+                // Thiết bị
+                $agent = new Agent();
+                if ($agent->isMobile()) {
+                    $device = $agent->isiOS() ? 'ios' : ($agent->isAndroidOS() ? 'android' : 'mobile');
+                } elseif ($agent->isDesktop()) {
+                    $device = 'pc';
+                } else {
+                    $device = 'unknown';
+                }
+
+                // Quốc gia từ IP
+                $country = null;
+                try {
+                    $response = Http::get("http://ip-api.com/json/{$ip}?fields=status,country");
+                    if ($response->successful() && $response->json('status') === 'success') {
+                        $country = $response->json('country');
+                    }
+                } catch (\Exception $e) {
+                    $country = 'unknown';
+                }
+
+                // Lưu sự kiện
+                EventTracking::create([
+                    'event_name' => $eventName,
+                    'data' => $request->input('data'),
+                    'device' => $device,
+                    'ip_address' => $ip,
+                    'country' => $country,
+                    'path' => $request->input('path'),
+                    'from' => $request->input('from'),
+                ]);
+
+                return response()->json(['message' => 'Event saved']);
             }
-        } catch (\Exception $e) {
-            $country = null;
-        }
 
-        EventTracking::create([
-            'event_name' => $request->input('eventName'),
-            'data' => $request->input('data'),
-            'device' => $device,
-            'ip_address' => $ip,
-            'country' => $country,
-            'path' => $request->input('path'),
-            'from' => $request->input('from'),
-        ]);
-
-        return response()->json(['message' => 'Event saved']);
-    }
 
 
 
