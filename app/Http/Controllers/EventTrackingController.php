@@ -9,11 +9,67 @@ use Illuminate\Http\Request;
 use App\Models\EventTracking;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 
 class EventTrackingController extends Controller
 {
+    // public function store(Request $request)
+    // {
+    //     $agent = new Agent();
+    //     if ($agent->isMobile()) {
+    //         $device = $agent->isiOS() ? 'ios' : ($agent->isAndroidOS() ? 'android' : 'mobile');
+    //     } elseif ($agent->isDesktop()) {
+    //         $device = 'pc';
+    //     } else {
+    //         $device = 'unknown';
+    //     }
+
+    //     $ip = $request->ip();
+
+    //     $country = null;
+    //     try {
+    //         $response = Http::get("https://ipapi.co/{$ip}/country_name/");
+    //         if ($response->successful()) {
+    //             $country = $response->body();
+    //         }
+    //     } catch (\Exception $e) {
+    //         $country = null;
+    //     }
+
+    //     EventTracking::create([
+    //         'event_name' => $request->input('eventName'),
+    //         'data' => $request->input('data'),
+    //         'device' => $device,
+    //         'ip_address' => $ip,
+    //         'country' => $country,
+    //         'path' => $request->input('path'),
+    //         'from' => $request->input('from'),
+    //     ]);
+
+    //     return response()->json(['message' => 'Event saved']);
+    // }
+
+
+
     public function store(Request $request)
     {
+        // Lấy IP, event name, path từ request
+        $ip = $request->ip();
+        $eventName = $request->input('eventName');
+        $path = $request->input('path');
+
+        // Tạo cache key duy nhất theo IP + event + path
+        $cacheKey = "event_{$ip}_{$eventName}_" . md5($path);
+
+        // Nếu tồn tại trong cache => là spam/trùng
+        if (Cache::has($cacheKey)) {
+            return response()->json(['message' => 'Duplicate event blocked'], 429); // 429 Too Many Requests
+        }
+
+        // Lưu vào cache trong 10 giây để chặn gửi lại
+        Cache::put($cacheKey, true, now()->addSeconds(10));
+
+        // Xác định loại thiết bị
         $agent = new Agent();
         if ($agent->isMobile()) {
             $device = $agent->isiOS() ? 'ios' : ($agent->isAndroidOS() ? 'android' : 'mobile');
@@ -23,11 +79,10 @@ class EventTrackingController extends Controller
             $device = 'unknown';
         }
 
-        $ip = $request->ip();
-
+        // Lấy country theo IP
         $country = null;
         try {
-            $response = Http::get("https://ipapi.co/{$ip}/country_name/");
+            $response = Http::timeout(2)->get("https://ipapi.co/{$ip}/country_name/");
             if ($response->successful()) {
                 $country = $response->body();
             }
@@ -35,18 +90,20 @@ class EventTrackingController extends Controller
             $country = null;
         }
 
+        // Lưu sự kiện vào database
         EventTracking::create([
-            'event_name' => $request->input('eventName'),
+            'event_name' => $eventName,
             'data' => $request->input('data'),
             'device' => $device,
             'ip_address' => $ip,
             'country' => $country,
-            'path' => $request->input('path'),
+            'path' => $path,
             'from' => $request->input('from'),
         ]);
 
         return response()->json(['message' => 'Event saved']);
     }
+
 
 
 
@@ -60,7 +117,7 @@ class EventTrackingController extends Controller
             'height_weight_next_click' => 'Height & Weight Screen Click',
             'goal_weight_next_click' => 'Goal Weight Screen Click',
             'review_scr_next_click' => 'Review Screen Click',
-            'nutrition_scr_next_click' => 'Nutrition Screen Click',
+            'nutrition_scr_next_click' => 'Introduction Screen Click',
         ];
 
         $iapSteps = [
@@ -143,66 +200,51 @@ class EventTrackingController extends Controller
 
 
     public function viewTracking(Request $request)
-{
-    $startDate = $request->input('startDate');
-    $endDate = $request->input('endDate');
+    {
+        $startDate = $request->input('startDate');
+        $endDate = $request->input('endDate');
 
-    // Nếu không truyền, mặc định 7 ngày gần nhất
-    $startDate = $startDate
-        ? Carbon::parse($startDate)->startOfDay()
-        : now()->subDays(7)->startOfDay();
+        // Nếu không truyền, mặc định 7 ngày gần nhất
+        $startDate = $startDate
+            ? Carbon::parse($startDate)->startOfDay()
+            : now()->subDays(7)->startOfDay();
 
-    $endDate = $endDate
-        ? Carbon::parse($endDate)->endOfDay()
-        : now()->endOfDay();
+        $endDate = $endDate
+            ? Carbon::parse($endDate)->endOfDay()
+            : now()->endOfDay();
 
-    $eventName = $request->input('event_name');
-    $device = $request->input('device');
-    $country = $request->input('country');
+        $eventName = $request->input('event_name');
+        $device = $request->input('device');
+        $country = $request->input('country');
 
-    $query = EventTracking::query()
-        ->whereBetween('created_at', [$startDate, $endDate])
-        ->when(!empty($eventName) && $eventName !== 'all', fn ($q) => $q->where('event_name', $eventName))
-        ->when(!empty($device) && $device !== 'all', fn ($q) => $q->where('device', $device))
-        ->when(!empty($country) && $country !== 'all', fn ($q) => $q->where('country', $country));
-
-    // Debug SQL query (bật khi cần kiểm tra)
-    // dd(
-    //     vsprintf(
-    //         str_replace('?', "'%s'", $query->toSql()),
-    //         $query->getBindings()
-    //     )
-    // );
-
-    $eventNames = EventTracking::select('event_name')->distinct()->orderBy('event_name')->pluck('event_name');
-    $countries = EventTracking::select('country')->distinct()->orderBy('country')->pluck('country');
-    $devices = EventTracking::select('device')->distinct()->orderBy('device')->pluck('device');
-
-    $data = $query->orderByDesc('created_at')->paginate(10)->withQueryString();
-
-    $totalClicks = $query->count();
-
-    return Inertia::render('Tracking/ViewTracking', [
-        'data' => $data,
-        'filters' => [
-            'startDate' => $startDate->toDateString(),
-            'endDate' => $endDate->toDateString(),
-            'event_name' => $eventName,
-            'device' => $device,
-            'country' => $country,
-        ],
-        'eventNames' => $eventNames,
-        'countries' => $countries,
-        'devices' => $devices,
-        'totalClicks' => $totalClicks,
-    ]);
-}
+        $query = EventTracking::query()
+            ->whereBetween('created_at', [$startDate, $endDate])
+            ->when(!empty($eventName) && $eventName !== 'all', fn($q) => $q->where('event_name', $eventName))
+            ->when(!empty($device) && $device !== 'all', fn($q) => $q->where('device', $device))
+            ->when(!empty($country) && $country !== 'all', fn($q) => $q->where('country', $country));
 
 
+        $eventNames = EventTracking::select('event_name')->distinct()->orderBy('event_name')->pluck('event_name');
+        $countries = EventTracking::select('country')->distinct()->orderBy('country')->pluck('country');
+        $devices = EventTracking::select('device')->distinct()->orderBy('device')->pluck('device');
 
+        $data = $query->orderByDesc('created_at')->paginate(10)->withQueryString();
 
+        $totalClicks = $query->count();
 
-
-
-
+        return Inertia::render('Tracking/ViewTracking', [
+            'data' => $data,
+            'filters' => [
+                'startDate' => $startDate->toDateString(),
+                'endDate' => $endDate->toDateString(),
+                'event_name' => $eventName,
+                'device' => $device,
+                'country' => $country,
+            ],
+            'eventNames' => $eventNames,
+            'countries' => $countries,
+            'devices' => $devices,
+            'totalClicks' => $totalClicks,
+        ]);
+    }
 }
