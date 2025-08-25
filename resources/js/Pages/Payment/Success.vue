@@ -85,9 +85,6 @@ if (!id || !checkoutId) {
                 console.log("✅ Dữ liệu trả về từ API:", data);
                 if (data.success) {
 
-
-                    email.value = data.data.customerEmail;
-
                     eventTracking('iap_successfull', {
                         convert_number: checkoutCount + 1,
                         price_id: localStorage.getItem('priceId'),
