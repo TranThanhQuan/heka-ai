@@ -65,9 +65,6 @@ if (!id || !checkoutId) {
     window.location.href = '/';
 } else {
 
-    if (accessToken) {
-        const user = getUserInfo();
-    }
 
 
 
@@ -84,7 +81,12 @@ if (!id || !checkoutId) {
             success: function (data) {
                 console.log("✅ Dữ liệu trả về từ API:", data);
                 if (data.success) {
-                    email.value = data.data.customerEmail;
+
+                    if (localStorage.getItem('email')) {
+                        email.value = localStorage.getItem('email');
+                    } else {
+                        email.value = data.data.customerEmail;
+                    }
 
 
                     eventTracking('iap_successfull', {
@@ -153,8 +155,11 @@ if (!id || !checkoutId) {
 }
 
 
+if (accessToken) {
+    getUserInfo();
+    email.value = localStorage.getItem('email');
+}
 // lấy email từ local storage
-email.value = localStorage.getItem('email');
 
 
 onMounted(() => {
