@@ -110,7 +110,7 @@ const submit = async () => {
       title: result.error.message,
       text: 'Please use another email'
     }).then(() => {
-      window.location.reload();
+    //   window.location.reload();
     });
   }
 };

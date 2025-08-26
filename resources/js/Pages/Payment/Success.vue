@@ -84,7 +84,7 @@ if (!id || !checkoutId) {
             success: function (data) {
                 console.log("✅ Dữ liệu trả về từ API:", data);
                 if (data.success) {
-                    email.value = data.data.email;
+                    email.value = data.data.customerEmail;
 
 
                     eventTracking('iap_successfull', {
