@@ -84,6 +84,8 @@ if (!id || !checkoutId) {
             success: function (data) {
                 console.log("✅ Dữ liệu trả về từ API:", data);
                 if (data.success) {
+                    email.value = data.data.email;
+
 
                     eventTracking('iap_successfull', {
                         convert_number: checkoutCount + 1,
@@ -167,7 +169,7 @@ onMounted(() => {
             downloadUrl.value = import.meta.env.VITE_DOWNLOAD_URL_ANDROID;
         } else {
             // random ios và android
-            const urls = import.meta.env.VITE_DOWNLOAD_URL_WEB.split(',');
+            const urls = import.meta.env.VITE_DOWNLOAD_URL_IOS.split(',');
             if (device.includes('iPhone') || device.includes('iPad') || device.includes('iPod')) {
                 downloadUrl.value = urls[Math.floor(Math.random() * urls.length)];
             } else if (device.includes('Android')) {
