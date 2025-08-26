@@ -54,22 +54,24 @@ let checkoutId = localStorage.getItem('checkoutId');
 localStorage.removeItem('checkoutId');
 
 let payment_redirect_from = localStorage.getItem('payment_redirect_from');
-console.log('payment_redirect_from: ', payment_redirect_from);
+// console.log('payment_redirect_from: ', payment_redirect_from);
 //lấy id từ url
 const id = new URLSearchParams(window.location.search).get('id');
 
 // lấy accessToken từ local storage
 const accessToken = localStorage.getItem('accessToken');
 
-if (!id || !checkoutId) {
+const urlParams = new URLSearchParams(window.location.search);
+const sessionId = urlParams.get('session_id');
+
+
+if (!sessionId) {
     window.location.href = '/';
 } else {
 
 
 
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const sessionId = urlParams.get('session_id');
 
     if (sessionId) {
         //lấy từ env
@@ -110,10 +112,19 @@ if (!id || !checkoutId) {
                 }
             },
             error: function (xhr, status, error) {
-                console.error("❌ Lỗi khi gọi API:", error);
-                if (xhr.responseJSON) {
-                    console.error("Chi tiết lỗi:", xhr.responseJSON);
-                }
+                swal({
+                    title: "Error",
+                    text: "Something went wrong, please try again later",
+                    icon: "error",
+                }).then(() => {
+                    window.location.href = '/';
+                });
+
+                // window.location.href = '/';
+                // console.error("❌ Lỗi khi gọi API:", error);
+                // if (xhr.responseJSON) {
+                //     console.error("Chi tiết lỗi:", xhr.responseJSON);
+                // }
             }
         });
     } else {
