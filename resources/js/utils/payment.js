@@ -4,14 +4,14 @@ export async function createStripeBillingPortalSession() {
     try {
       // Lấy access token từ localStorage
       let token = localStorage.getItem('accessToken');
-
+    const domain = window.location.origin;
       const paymentDomain = import.meta.env.VITE_SERVICE_DOMAIN;
       if (!token) {
         throw new Error('Access token not found in localStorage');
       }
 
       // Gửi request tạo billing portal session
-       const response = await fetch(`${paymentDomain}/saas-payment-service/v1/stripe/billing-portal-session`, {
+       const response = await fetch(`${paymentDomain}/api/v1/payment/billing-portal-session`, {
 
         method: 'POST',
         headers: {
@@ -20,7 +20,7 @@ export async function createStripeBillingPortalSession() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          callbackUrl: '/',
+          callbackUrl: domain,
         }),
       });
 
@@ -29,7 +29,9 @@ export async function createStripeBillingPortalSession() {
         throw new Error(`Request failed: ${response.status} - ${errorData.message || 'Unknown error'}`);
       }
 
-      const data = await response.json();
+      let data = await response.json();
+
+      data = data.data;
       // console.log('Stripe Billing Portal URL:', data.url);
 
 
