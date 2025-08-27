@@ -13,44 +13,6 @@ use Illuminate\Support\Facades\Cache;
 
 class EventTrackingController extends Controller
 {
-    // public function store(Request $request)
-    // {
-    //     $agent = new Agent();
-    //     if ($agent->isMobile()) {
-    //         $device = $agent->isiOS() ? 'ios' : ($agent->isAndroidOS() ? 'android' : 'mobile');
-    //     } elseif ($agent->isDesktop()) {
-    //         $device = 'pc';
-    //     } else {
-    //         $device = 'unknown';
-    //     }
-
-    //     $ip = $request->ip();
-
-    //     $country = null;
-    //     try {
-    //         $response = Http::get("https://ipapi.co/{$ip}/country_name/");
-    //         if ($response->successful()) {
-    //             $country = $response->body();
-    //         }
-    //     } catch (\Exception $e) {
-    //         $country = null;
-    //     }
-
-    //     EventTracking::create([
-    //         'event_name' => $request->input('eventName'),
-    //         'data' => $request->input('data'),
-    //         'device' => $device,
-    //         'ip_address' => $ip,
-    //         'country' => $country,
-    //         'path' => $request->input('path'),
-    //         'from' => $request->input('from'),
-    //     ]);
-
-    //     return response()->json(['message' => 'Event saved']);
-    // }
-
-
-
     public function store(Request $request)
     {
         // Lấy IP, event name, path từ request
@@ -104,9 +66,6 @@ class EventTrackingController extends Controller
         return response()->json(['message' => 'Event saved']);
     }
 
-
-
-
     public function funnel(Request $request)
     {
         $eventSteps = [
@@ -142,9 +101,6 @@ class EventTrackingController extends Controller
             'endDate' => $endDate,
         ]);
     }
-
-
-
 
     public function getFunnelData(array $eventSteps, $startDate = null, $endDate = null)
     {
@@ -197,8 +153,6 @@ class EventTrackingController extends Controller
         ];
     }
 
-
-
     public function viewTracking(Request $request)
     {
         $startDate = $request->input('startDate');
@@ -222,7 +176,6 @@ class EventTrackingController extends Controller
             ->when(!empty($eventName) && $eventName !== 'all', fn($q) => $q->where('event_name', $eventName))
             ->when(!empty($device) && $device !== 'all', fn($q) => $q->where('device', $device))
             ->when(!empty($country) && $country !== 'all', fn($q) => $q->where('country', $country));
-
 
         $eventNames = EventTracking::select('event_name')->distinct()->orderBy('event_name')->pluck('event_name');
         $countries = EventTracking::select('country')->distinct()->orderBy('country')->pluck('country');

@@ -18,13 +18,16 @@
 
                     <!-- form input email -->
                     <form @submit.prevent="submit" class="relative w-full">
-                        <input type="email" v-model="email" placeholder="Email"
-                            class="w-full p-2 border border-gray-300 rounded-md mb-2" :disabled="isLoading">
+                        <input type="text" v-model="email" @blur="validateEmail" placeholder="Email"
+                            class="w-full p-2 border border-gray-300 rounded-md mb-1" :disabled="isLoading" />
+
+                        <p v-if="emailError" class="text-sm text-red-500 mb-2">{{ emailError }}</p>
+                        <p v-else class="text-sm text-red-500 mb-7"> </p>
 
                         <div class="relative w-full">
-                            <button type="submit" :disabled="!email || isLoading"
+                            <button type="submit" :disabled="!email || emailError || isLoading"
                                 class="w-full p-2 bg-blue-500 text-white rounded-md relative transition-opacity duration-200"
-                                :class="{ 'opacity-50 cursor-not-allowed': !email || isLoading }">
+                                :class="{ 'opacity-50 cursor-not-allowed': !email || emailError || isLoading }">
                                 <span v-if="!isLoading">Continue</span>
                                 <span v-else class="invisible">Continue</span>
                             </button>
@@ -36,16 +39,11 @@
                                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
                                         stroke-width="4"></circle>
                                     <path class="opacity-75" fill="currentColor"
-                                        d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 018 8z">
-                                    </path>
+                                        d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 018 8z"></path>
                                 </svg>
-
                             </div>
                         </div>
                     </form>
-
-
-
                 </div>
             </div>
         </div>
@@ -53,47 +51,71 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { createPaymentLink } from '@/utils/paymentLink'
-import { showLoadingScreen, hideLoadingScreen } from '@/utils/helpers'
-import Swal from 'sweetalert2'
+import { ref, watch } from 'vue';
+import { createPaymentLink } from '@/utils/paymentLink';
+import { showLoadingScreen, hideLoadingScreen } from '@/utils/helpers';
+import Swal from 'sweetalert2';
 
-const showLoading = ref(false)
-const email = ref('')
-
-const props = defineProps({
-    visible: Boolean
-})
-const emit = defineEmits(['close', 'email'])
-
-const close = () => emit('close')
+const email = ref('');
+const emailError = ref('');
+const isEmailValid = ref(false);
 const isLoading = ref(false);
 
-const submit = async () => {
-    isLoading.value = true; // bắt đầu loading
+const showLoading = ref(false);
 
-    const priceId = localStorage.getItem('priceId');
-    const result = await createPaymentLink(email.value, priceId);
+const props = defineProps({
+  visible: Boolean
+});
+const emit = defineEmits(['close', 'email']);
 
-    isLoading.value = false;
+const close = () => emit('close');
 
-    if (result.success) {
-        window.location.href = result.data.url;
-    } else {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: result.error.message
-        }).then(() => {
-            window.location.reload();
-        });
-    }
+// Regex kiểm tra định dạng email
+const validateEmail = (value) => {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(value);
 };
 
+// Theo dõi thay đổi của email để validate real-time
+watch(email, (newVal) => {
+  if (newVal === '') {
+    emailError.value = '';
+    isEmailValid.value = false;
+  } else if (!validateEmail(newVal)) {
+    emailError.value = 'Email not valid';
+    isEmailValid.value = false;
+  } else {
+    emailError.value = '';
+    isEmailValid.value = true;
+  }
+});
 
+const submit = async () => {
+  if (!isEmailValid.value) return;
 
+  isLoading.value = true;
 
+  const priceId = localStorage.getItem('priceId');
+  const result = await createPaymentLink(email.value, priceId);
+
+  isLoading.value = false;
+
+  if (result.success) {
+
+    localStorage.removeItem('priceId');
+    window.location.href = result.data.url;
+  } else {
+    Swal.fire({
+      icon: 'error',
+      title: result.error.message,
+      text: 'Please use another email'
+    }).then(() => {
+    //   window.location.reload();
+    });
+  }
+};
 </script>
+
 
 <style scoped>
 .fade-enter-active,

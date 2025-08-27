@@ -42,12 +42,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { checkout } from '@/utils/payment';
 import SignInModal from '@/Pages/User/Components/Onboarding/Modal/SignInModal.vue';
+import axios from 'axios'
+
 
 const showSignInModal = ref(false)
-
+const PRICE_IDS = ref({})
 const props = defineProps({
     visible: Boolean,
     backgroundUrl: {
@@ -59,10 +61,22 @@ const props = defineProps({
 const emit = defineEmits(['close', 'accepted', 'showSignInModal', 'closeModal'])
 const selected = ref('12months')
 
-const PRICE_IDS = {
-    '1month': import.meta.env.VITE_PRICE_ID_MONTHLY,
-    '12months': import.meta.env.VITE_PRICE_ID_YEARLY
-}
+onMounted(async () => {
+  const response = await axios.get(`${import.meta.env.VITE_SERVICE_DOMAIN}/api/v1/payment/products/prices`);
+  const prices = response.data.data;
+
+  const mapping = {}
+  prices.forEach((price) => {
+    const interval = price.recurring?.interval;
+    if (interval === 'month') {
+      mapping['1month'] = price.id
+    } else if (interval === 'year') {
+      mapping['12months'] = price.id
+    }
+  })
+  PRICE_IDS.value = mapping
+})
+
 
 const isProfile = () => {
 

@@ -1,45 +1,47 @@
 <template>
+
     <Head title="Subscription Activated" />
 
     <div class="min-h-screen flex items-center justify-center bg-[#e2ebfb]">
-      <div class="   text-center px-4 py-8 sm:px-6 sm:py-10 max-w-md w-11/12">
-        <!-- Title -->
-        <h4 class="text-lg sm:text-xl font-bold mb-4">
-          Thanks for being amazing with Heka AI.<br />
-          Let's start your plan now!
-        </h4>
+        <div class="   text-center px-4 py-8 sm:px-6 sm:py-10 max-w-md w-11/12">
+            <!-- Title -->
+            <h4 class="text-lg sm:text-xl font-bold mb-4">
+                Thanks for being amazing with Heka AI.<br />
+                Let's start your plan now!
+            </h4>
 
-        <!-- Logo -->
-        <a href="/">
-          <img src="/images/icon.png" alt="Heka Logo" class="w-20 h-20 mx-auto my-4" />
-        </a>
+            <!-- Logo -->
+            <a href="/">
+                <img src="/images/icon.png" alt="Heka Logo" class="w-20 h-20 mx-auto my-4" />
+            </a>
 
-        <!-- Instructions -->
-        <ol class="text-base sm:text-lg text-left mb-6 space-y-2">
-          <li>1. Click on the link below to download Heka AI</li>
-          <li>2. Open the app and select "Sign in"</li>
-          <li v-if="email" id="email">
-            3. Use your sign-up email: <strong class="text-black break-all">{{ email }}</strong>
-          </li>
-        </ol>
+            <!-- Instructions -->
+            <ol class="text-base sm:text-lg text-left mb-6 space-y-2">
+                <li>1. Click on the link below to download Heka AI</li>
+                <li>2. Open the app and select "Sign in"</li>
+                <li v-if="email" id="email">
+                    3. Use your sign-up email: <br> <strong class="text-black break-all">{{ email }}</strong>
+                </li>
+            </ol>
 
-        <!-- Download button -->
-        <a :href="downloadUrl" class="block w-full bg-indigo-600 text-white font-semibold text-sm py-2.5 rounded-lg hover:bg-indigo-700 transition duration-200">
-          Download Heka
-        </a>
+            <!-- Download button -->
+            <a :href="downloadUrl"
+                class="block w-full bg-indigo-600 text-white font-semibold text-sm py-2.5 rounded-lg hover:bg-indigo-700 transition duration-200">
+                Download Heka
+            </a>
 
-        <!-- Back link -->
-        <a href="/" class="text-indigo-600 text-sm hover:text-indigo-800 block mt-3">Back to home</a>
-      </div>
+            <!-- Back link -->
+            <a href="/" class="text-indigo-600 text-sm hover:text-indigo-800 block mt-3">Back to home</a>
+        </div>
     </div>
-  </template>
+</template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
 import { Head } from '@inertiajs/vue3';
 import { eventTracking } from '@/utils/tracking';
 import { updateUserProfile } from '@/utils/auth';
-
+import { getUserInfo } from '@/utils/auth';
 const props = defineProps({
     sessionId: String
 });
@@ -47,23 +49,89 @@ const props = defineProps({
 let email = ref('');
 let downloadUrl = ref('');
 
-// lấy checkoutId từ local storage
+
 let checkoutId = localStorage.getItem('checkoutId');
-//xóa checkoutId
 localStorage.removeItem('checkoutId');
 
 let payment_redirect_from = localStorage.getItem('payment_redirect_from');
-localStorage.removeItem('payment_redirect_from');
-
+// console.log('payment_redirect_from: ', payment_redirect_from);
 //lấy id từ url
 const id = new URLSearchParams(window.location.search).get('id');
 
 // lấy accessToken từ local storage
 const accessToken = localStorage.getItem('accessToken');
 
-if (!id || !checkoutId || id !== checkoutId) {
+const urlParams = new URLSearchParams(window.location.search);
+const sessionId = urlParams.get('session_id');
+
+
+if (!sessionId) {
     window.location.href = '/';
 } else {
+
+
+
+
+
+    if (sessionId) {
+        //lấy từ env
+        const apiUrl = import.meta.env.VITE_SERVICE_DOMAIN + `/api/v1/payment/verify-checkout-session?session_id=${sessionId}`;
+
+        $.ajax({
+            url: apiUrl,
+            method: 'GET',
+            success: function (data) {
+                console.log("✅ Dữ liệu trả về từ API:", data);
+                if (data.success) {
+
+                    if (localStorage.getItem('email')) {
+                        email.value = localStorage.getItem('email');
+                    } else {
+                        email.value = data.data.customerEmail;
+                    }
+
+
+                    eventTracking('iap_successfull', {
+                        convert_number: checkoutCount + 1,
+                        price_id: localStorage.getItem('priceId'),
+                        source: localStorage.getItem('source'),
+
+                    });
+
+                    eventTracking('confirm_purchased_with_store', {
+                        pi_id: data.data.pi_id || null,
+                        invoice_id: data.data.invoice_id || null,
+                        subscription_id: data.data.subscription_id || null,
+                        customerId: data.data.customerId || null,
+                        value: Math.round(data.data.amountTotal) / 100 || null,
+                        original_price: Math.round(data.data.amountSubtotal) / 100 || null,
+                        currency: data.data.currency || null,
+                        price_id: localStorage.getItem('priceId') || null,
+                    });
+
+                }
+            },
+            error: function (xhr, status, error) {
+                swal({
+                    title: "Error",
+                    text: "Something went wrong, please try again later",
+                    icon: "error",
+                }).then(() => {
+                    window.location.href = '/';
+                });
+
+                // window.location.href = '/';
+                // console.error("❌ Lỗi khi gọi API:", error);
+                // if (xhr.responseJSON) {
+                //     console.error("Chi tiết lỗi:", xhr.responseJSON);
+                // }
+            }
+        });
+    } else {
+        console.warn("⚠️ No session_id");
+    }
+
+
 
     // đếm số lần checkout thành công
     const checkoutCount = parseInt(localStorage.getItem('checkoutCount')) || 0
@@ -72,27 +140,6 @@ if (!id || !checkoutId || id !== checkoutId) {
     const package_id = localStorage.getItem('package_id');
     localStorage.removeItem('package_id');
 
-    // lấy goal từ local storage
-    const goal = localStorage.getItem('goal');
-    let source = '';
-    if (goal === 'lose') {
-        source = 'onboarding_lose';
-    } else if (goal === 'maintain') {
-        source = 'onboarding_maintain';
-    } else if (goal === 'gain') {
-        source = 'onboarding_gain';
-    } else if (goal === 'healthy') {
-        source = 'onboarding_healthy';
-    } else {
-        source = 'home_scr_pro_icon';
-    }
-
-    eventTracking('iap_successfull', {
-        convert_number: checkoutCount + 1,
-        purchase_package_id: package_id,
-        source: source,
-
-    });
 
     // gọi hàm updateUserProfile
     const keys = [
@@ -119,8 +166,11 @@ if (!id || !checkoutId || id !== checkoutId) {
 }
 
 
+if (accessToken) {
+    getUserInfo();
+    email.value = localStorage.getItem('email');
+}
 // lấy email từ local storage
-email.value = localStorage.getItem('email');
 
 
 onMounted(() => {
@@ -135,7 +185,7 @@ onMounted(() => {
             downloadUrl.value = import.meta.env.VITE_DOWNLOAD_URL_ANDROID;
         } else {
             // random ios và android
-            const urls = import.meta.env.VITE_DOWNLOAD_URL_WEB.split(',');
+            const urls = import.meta.env.VITE_DOWNLOAD_URL_IOS.split(',');
             if (device.includes('iPhone') || device.includes('iPad') || device.includes('iPod')) {
                 downloadUrl.value = urls[Math.floor(Math.random() * urls.length)];
             } else if (device.includes('Android')) {

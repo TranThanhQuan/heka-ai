@@ -59,10 +59,16 @@ Route::get('/tracking/view_tracking', [EventTrackingController::class, 'viewTrac
 
 
 // tạo route xóa cache
+
 Route::get('/clear-cache', function () {
-    Artisan::call('optimize:clear');
-    return '✅ Đã xóa cache!';
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    return '✅ Laravel cache cleared!';
 });
+
+
 
 
 

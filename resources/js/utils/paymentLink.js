@@ -7,7 +7,7 @@ async function createPaymentLink(email, priceId) {
     localStorage.setItem('checkoutId', id);
     localStorage.setItem('package_id', priceId);
     localStorage.setItem('type', 'paymentLink');
-    const createPaymentLinkUrl = `${import.meta.env.VITE_CREATE_PAYMENT_LINK_DOMAIN}/api/v1/payment/create-payment-link`
+    const createPaymentLinkUrl = `${import.meta.env.VITE_SERVICE_DOMAIN}/api/v1/payment/create-payment-link`
     try {
         showLoadingScreen();
 
