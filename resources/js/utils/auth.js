@@ -93,7 +93,8 @@ export async function silentLoginSSO(code) {
 
     const codeVerifier = localStorage.getItem('pkce_code_verifier');
     const idp = localStorage.getItem('idp');
-    const deviceId = localStorage.getItem('deviceId');
+    // const deviceId = localStorage.getItem('deviceId');
+    const deviceId = 'heka-saigonoi0000@gmail.com';
     const bundleId = import.meta.env.VITE_BUNDLE_ID;
     const backendDomain = import.meta.env.VITE_BACKEND_DOMAIN;
     const redirectUri = window.location.origin + window.location.pathname;
