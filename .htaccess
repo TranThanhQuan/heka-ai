@@ -1,6 +1,18 @@
-    <IfModule mod_rewrite.c>
-        RewriteEngine On
+<IfModule mod_rewrite.c>
+    RewriteEngine On
 
-        # Rewrite all requests to the public directory
-        RewriteRule ^(.*)$ public/$1 [L]
-    </IfModule>
+    # Nếu URL có dấu "/" ở cuối, nhưng KHÔNG phải root ("/")
+    RewriteCond %{REQUEST_URI} ^(.+)/+$ [NC]
+    RewriteCond %{REQUEST_URI} !^/public/ [NC]
+
+    # Nếu có QUERY_STRING, giữ lại và thêm v=0.0.1
+    RewriteCond %{QUERY_STRING} (.+)
+    RewriteRule ^(.*)/$ /$1?%1&v=0.0.1 [R=301,L]
+
+    # Nếu KHÔNG có QUERY_STRING, chỉ thêm v=0.0.1
+    RewriteCond %{QUERY_STRING} ^$
+    RewriteRule ^(.*)/$ /$1?v=0.0.1 [R=301,L]
+
+    # Cuối cùng, rewrite vào thư mục public
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

@@ -20,7 +20,7 @@
                 <li>1. Click on the link below to download Heka AI</li>
                 <li>2. Open the app and select "Sign in"</li>
                 <li v-if="email" id="email">
-                    3. Use your sign-up email: <strong class="text-black break-all">{{ email }}</strong>
+                    3. Use your sign-up email: <br> <strong class="text-black break-all">{{ email }}</strong>
                 </li>
             </ol>
 
@@ -99,14 +99,14 @@ if (!sessionId) {
                     });
 
                     eventTracking('confirm_purchased_with_store', {
-                        pi_id: data.data.pi_id,
-                        invoice_id: data.data.invoice_id,
-                        subscription_id: data.data.subscription_id,
-                        customerId: data.data.customerId,
-                        value: data.data.amountTotal,
-                        original_price: data.data.amountSubtotal,
-                        currency: data.data.currency,
-                        price_id: localStorage.getItem('priceId'),
+                        pi_id: data.data.pi_id || null,
+                        invoice_id: data.data.invoice_id || null,
+                        subscription_id: data.data.subscription_id || null,
+                        customerId: data.data.customerId || null,
+                        value: Math.round(data.data.amountTotal) / 100 || null,
+                        original_price: Math.round(data.data.amountSubtotal) / 100 || null,
+                        currency: data.data.currency || null,
+                        price_id: localStorage.getItem('priceId') || null,
                     });
 
                 }
