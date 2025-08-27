@@ -31,7 +31,7 @@
                             <a class="nav-link subscriptionLink" target="_blank" href="/">Subscription Management</a>
                         </li>
                         <li class="nav-item d-lg-none" id="mobileLogoutBtn" style="display: none;">
-                            <a class="nav-link" href="javascript:handleLogout();">Sign Out</a>
+                            <a class="nav-link" href="javascript:handleLogout();">SignOut</a>
                         </li>
                     </ul>
 
@@ -61,7 +61,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuLink">
                                 <li><a class="dropdown-item subscriptionLink" href="/">Subscription Management</a></li>
-                                <li><a class="dropdown-item" href="javascript:handleLogout();">Sign Out</a></li>
+                                <li><a class="dropdown-item" href="javascript:handleLogout();">SignOut</a></li>
                             </ul>
                         </div>
                     </div>
