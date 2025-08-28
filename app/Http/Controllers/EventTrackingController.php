@@ -44,13 +44,23 @@ class EventTrackingController extends Controller
         // Lấy country theo IP
         $country = null;
         try {
-            $response = Http::timeout(2)->get("https://ipapi.co/{$ip}/country_name/");
+            $response = Http::timeout(2)->get("http://ip-api.com/json/{$ip}?fields=status,country");
+
             if ($response->successful()) {
-                $country = $response->body();
+                $data = $response->json();
+
+                if ($data['status'] === 'success') {
+                    $country = $data['country'];
+                } else {
+                    $country = null;
+                }
+            } else {
+                $country = null;
             }
         } catch (\Exception $e) {
             $country = null;
         }
+
 
         // Lưu sự kiện vào database
         EventTracking::create([
