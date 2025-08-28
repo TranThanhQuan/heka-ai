@@ -20,7 +20,7 @@
                 <li>1. Click on the link below to download Heka AI</li>
                 <li>2. Open the app and select "Sign in"</li>
                 <li v-if="email" id="email">
-                    3. Use your sign-up email: <strong class="text-black break-all">{{ email }}</strong>
+                    3. Use your sign-up email: <br> <strong class="text-black break-all">{{ email }}</strong>
                 </li>
             </ol>
 
@@ -54,8 +54,7 @@ let checkoutId = localStorage.getItem('checkoutId');
 localStorage.removeItem('checkoutId');
 
 let payment_redirect_from = localStorage.getItem('payment_redirect_from');
-// console.log('payment_redirect_from: ', payment_redirect_from);
-//lấy id từ url
+
 const id = new URLSearchParams(window.location.search).get('id');
 
 // lấy accessToken từ local storage
@@ -69,10 +68,6 @@ if (!sessionId) {
     window.location.href = '/';
 } else {
 
-
-
-
-
     if (sessionId) {
         //lấy từ env
         const apiUrl = import.meta.env.VITE_SERVICE_DOMAIN + `/api/v1/payment/verify-checkout-session?session_id=${sessionId}`;
@@ -81,7 +76,7 @@ if (!sessionId) {
             url: apiUrl,
             method: 'GET',
             success: function (data) {
-                console.log("✅ Dữ liệu trả về từ API:", data);
+
                 if (data.success) {
 
                     if (localStorage.getItem('email')) {
@@ -119,16 +114,10 @@ if (!sessionId) {
                 }).then(() => {
                     window.location.href = '/';
                 });
-
-                // window.location.href = '/';
-                // console.error("❌ Lỗi khi gọi API:", error);
-                // if (xhr.responseJSON) {
-                //     console.error("Chi tiết lỗi:", xhr.responseJSON);
-                // }
             }
         });
     } else {
-        console.warn("⚠️ No session_id");
+        // console.warn("⚠️ No session_id");
     }
 
 

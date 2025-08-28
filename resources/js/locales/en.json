@@ -1,0 +1,10 @@
+{
+    "survey": {
+      "title": "Customer Survey",
+      "description": "Please take a few minutes to complete this survey."
+    },
+    "button": {
+      "submit": "Submit",
+      "cancel": "Cancel"
+    }
+  }

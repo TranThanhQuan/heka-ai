@@ -96,6 +96,20 @@ const submit = async () => {
   isLoading.value = true;
 
   const priceId = localStorage.getItem('priceId');
+
+  if (!priceId) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Something went wrong',
+      text: 'Please try again'
+    });
+
+    isLoading.value = false;
+    //close modal
+    close();
+    return;
+  }
+
   const result = await createPaymentLink(email.value, priceId);
 
   isLoading.value = false;

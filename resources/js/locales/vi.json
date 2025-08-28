@@ -1,0 +1,420 @@
+{
+    "welcome_screen": {
+      "text": "Chào bạn, chúng tôi là <b>Heka AI</b>. Chúng tôi ở đây để hỗ trợ chăm sóc sức khỏe của bạn.",
+      "next_btn": "Bắt đầu hành trình của bạn"
+    },
+    "branding_screen": {
+      "title": "Đã được cộng đồng kiểm chứng",
+      "description": "Người dùng đang hoạt động",
+      "next_btn": "Tiếp tục"
+    },
+    "ai_tech_screen": {
+      "title": "Công nghệ AI & kho dữ liệu chính xác",
+      "description": "Độ chính xác phân tích món ăn",
+      "box": {
+        "left": {
+          "title": "< 3s",
+          "description": "Phân tích siêu nhanh"
+        },
+        "right": {
+          "title": "1 cú chạm",
+          "description": "Đơn giản"
+        }
+      },
+      "feature": {
+        "feature_1": "Phân tích từ ảnh chụp",
+        "feature_2": "Thông tin dinh dưỡng tức thì",
+        "feature_3": "Gợi ý thông minh",
+        "feature_4": "Lưu trữ dữ liệu trọn đời trên cloud"
+      },
+      "next_btn": "Tiếp tục"
+    },
+    "body_status_screen": {
+      "title": "Trạng thái cơ thể hiện tại của bạn?",
+      "description": "Chọn mô tả phù hợp nhất với bạnChọn mô tả phù hợp nhất với bạn",
+      "status": {
+        "status_1": "Gầy",
+        "status_2": "Mập",
+        "status_3": "Mảnh khảnh",
+        "status_4": "Tôi không chắc"
+      }
+    },
+    "concern_screen": {
+      "title": "Bạn có đang lo lắng gì không?",
+      "description": "Chọn tình trạng bạn đang gặp phải",
+      "concern": {
+        "concern_1": "Căng thẳng trong cơ thể",
+        "concern_2": "Căng thẳng và lo lắng",
+        "concern_3": "Mệt mỏi và năng lượng thấp",
+        "concern_4": "Ngủ kém",
+        "concern_5": "Chỉ tò mò muốn thử thôi"
+      }
+    },
+    "motivation_screen": {
+      "title": "Đừng lo lắng, hãy lạc quan!",
+      "description_1": "Có rất nhiều người đã chủ động kiểm soát Calo giúp sức khỏe và cơ thể ngày càng khỏe mạnh hơn.",
+      "description_2": "<b>Heka AI</b> được sinh ra để làm việc này cực kỳ đơn giản, và hãy cho Heka các thông tin tiếp theo để đồng hành cùng bạn.",
+      "box": {
+        "left": {
+          "title": "85%",
+          "description": "Người dùng đạt mục tiêu"
+        },
+        "right": {
+          "title": "30 ngày",
+          "description": "Thời gian trung bình"
+        }
+      },
+      "next_btn": "Tiếp tục"
+    },
+    "main_goal_screen": {
+      "title": "Mục tiêu chính của bạn là gì?",
+      "description": "Chọn mục tiêu quan trọng nhất với bạn",
+      "goal": {
+        "goal_1": "Giảm cân",
+        "goal_2": "Giữ cân",
+        "goal_3": "Tăng cân",
+        "goal_4": "Ăn uống lành mạnh"
+      }
+    },
+     "age_screen": {
+        "title": "Bạn bao nhiêu tuổi?",
+        "description": "Điều này giúp chúng tôi tính toán chính xác hơn",
+        "age": {
+            "age_1": "18-25 tuổi",
+            "age_2": "26-35 tuổi",
+            "age_3": "36-45 tuổi",
+            "age_4": "Trên 45 tuổi"
+        }
+    },
+    "gender_screen": {
+        "title": "Giới tính của bạn?",
+        "description": "Để tính toán lượng calo phù hợp",
+        "gender": {
+            "male": "Nam",
+            "female": "Nữ",
+            "other": "Khác"
+        }
+    },
+
+    "height_weight_screen": {
+        "title": "Chiều cao và cân nặng",
+        "description": "Nhập thông tin để tính BMI và lập kế hoạch",
+        "mesure_type": {
+            "metric": "Metric",
+            "imperial": "Imperial"
+        },
+        "height": {
+            "title": "Chiều cao",
+            "description": "Nhập chiều cao của bạn",
+            "unit": "cm"
+        },
+        "weight": {
+            "title": "Cân nặng",
+            "description": "Nhập cân nặng của bạn",
+            "unit": "kg"
+        },
+        "error_message": "Dữ liệu nhập không phù hợp",
+        "next_btn": "Tiếp tục"
+    },
+    "goal_weight_screen": {
+        "BMI": {
+            "title": "BMI của bạn",
+            "calculating": "Đang tính toán ...",
+            "analying": "Đang phân tích...",
+            "text_2": "Chỉ số khối cơ thể của bạn",
+            "reference": "Tham khảo: WHO & Mayo Clinic"
+         },
+         "goal_weight": {
+            "title": "Cân nặng mục tiêu?",
+            "description": "Bạn muốn đạt cân nặng bao nhiêu?",
+            "not_valid": "Dữ liệu nhập không phù hợp"
+        },
+        "next_btn": "Tiếp tục"
+    },
+    "activity_screen": {
+        "title": "Mức độ hoạt động hàng ngày?",
+        "description": "Chọn mức độ phù hợp với lối sống của bạn",
+        "activity": {
+            "activity_1": "Ít vận động (công việc văn phòng)",
+            "activity_2": "Hoạt động nhẹ (1-3 ngày/tuần)",
+            "activity_3": "Hoạt động vừa (3-5 ngày/tuần)",
+            "activity_4": "Hoạt động nhiều (6-7 ngày/tuần)"
+        }
+    },
+    "thankyou_screen": {
+        "title": "Cảm ơn bạn!",
+        "description_1": "Cảm ơn đã cung cấp các thông tin trước đó. Chúng tôi đã tính toán ra các chỉ số tương ứng với cơ thể của bạn và sẽ giúp bạn cá nhân hóa kế hoạch phù hợp cho bạn.",
+        "description_2": "<b>Hãy cho chúng tôi thêm một số thông tin nữa nhé.</b>",
+        "prosessing": "Đã xử lý 100%",
+        "next_btn": "Tiếp tục"
+    },
+    "diet_type_screen": {
+        "title": "Bạn có chế độ ăn đặc biệt nào?",
+        "description": "Để đề xuất thực phẩm phù hợp",
+        "diet_type": {
+            "diet_type_1": "Không có",
+            "diet_type_2": "Chay / Thuần chay",
+            "diet_type_3": "Keto",
+            "diet_type_4": "Không gluten"
+        }
+    },
+    "challenge_screen": {
+        "title": "Thách thức lớn nhất của bạn?",
+        "description": "Để Heka AI hỗ trợ bạn tốt nhất",
+        "challenge": {
+            "challenge_1": "Không có thời gian",
+            "challenge_2": "Cảm giác thèm ăn",
+            "challenge_3": "Theo dõi thực phẩm",
+            "challenge_4": "Thiếu động lực"
+        }
+    },
+    "water_intake_screen": {
+        "title": "Bạn uống nước bao nhiêu ly/ngày?",
+        "description": "Để theo dõi lượng nước cần thiết",
+        "water_intake": {
+            "water_intake_1": "Dưới 4 ly",
+            "water_intake_2": "4-6 ly",
+            "water_intake_3": "6-8 ly",
+            "water_intake_4": "Trên 8 ly"
+        }
+    },
+    "sleep_screen": {
+        "title": "Bạn ngủ bao nhiêu giờ/ngày?",
+        "description": "Giấc ngủ ảnh hưởng đến quá trình giảm cân",
+        "sleep": {
+            "sleep_1": "Dưới 6 giờ",
+            "sleep_2": "6-7 giờ",
+            "sleep_3": "7-8 giờ",
+            "sleep_4": "Trên 8 giờ"
+        }
+    },
+    "eating_out_screen": {
+        "title": "Bạn thường ăn ngoài bao nhiêu lần/tuần?",
+        "description": "Để lập kế hoạch dinh dưỡng phù hợp",
+        "eating_out": {
+            "eating_out_1": "Không bao giờ",
+            "eating_out_2": "1-2 lần",
+            "eating_out_3": "3-4 lần",
+            "eating_out_4": "Trên 4 lần"
+        }
+    },
+    "previous_app_experience_screen": {
+        "title": "Bạn đã từng dùng ứng dụng Calorie Counter trước đó chưa?",
+        "description": "Để tùy chỉnh trải nghiệm phù hợp",
+        "previous_app_experience": {
+            "no": "Chưa bao giờ",
+            "yes": "Đã từng dùng"
+        }
+    },
+    "heka_feature_1_screen": {
+        "title": "Heka thao tác cực đơn giản",
+        "description": "Với Heka, bạn chỉ cần <b>chụp nhanh hay upload hình món ăn</b>, chúng tôi sẽ phân tích chính xác lượng chất trong thức ăn chính xác tới <b>99%</b> bằng công nghệ AI.",
+         "feature_highlight": {
+            "title": "99%",
+            "description": "Độ chính xác phân tích",
+            "feature_1": "Chụp ảnh",
+            "feature_2": "AI phân tích",
+            "feature_3": "Kết quả"
+         },
+         "next_btn": "Tuyệt vời!"
+    },
+    "heka_feature_2_screen": {
+        "title": "Phân tích Macro & Nutrition chi tiết",
+        "description": "Với công nghệ AI và kho dữ liệu lớn, Heka có thể phân tích được các chất <b>Macro và Nutrition</b> một cách chi tiết và chính xác nhất.",
+        "macro_list": {
+            "macro_1": "Protein",
+            "macro_2": "Carbs",
+            "macro_3": "Fat"
+        },
+        "nutrition_list": {
+            "title": "Vitamin & Khoáng chất:",
+            "nutrition_1": "Vitamin A, B, C, D",
+            "nutrition_2": "Canxi, Sắt, Kẽm",
+            "nutrition_3": "Chất xơ",
+            "nutrition_4": "Natri, Kali"
+        },
+         "next_btn": "Tiếp tục"
+    },
+    "heka_feature_3_screen": {
+        "title": "Kết nối thông minh",
+        "description": "Heka có thể giúp bạn theo dõi lượng Calo đốt và nạp chi tiết hơn thông qua kết nối các ứng dụng hay smart watch tiện ích.",
+        "connected_device_list": {
+            "connected_device_1": "Apple Watch",
+            "connected_device_2": "Samsung Watch"
+        },
+        "connected_app_list": {
+            "connected_app_1": "Google Fit",
+            "connected_app_2": "Apple Health"
+        },
+        "feature_list": {
+            "feature_1": "Theo dõi bước chân tự động",
+            "feature_2": "Tính calo đốt chính xác",
+            "feature_3": "Đồng bộ dữ liệu real-time"
+        },
+        "next_btn": "Tuyệt vời!"
+    },
+
+    "medical_condition_screen": {
+        "title": "Bạn có tình trạng sức khỏe đặc biệt?",
+        "description": "Để đưa ra lời khuyên phù hợp và an toàn",
+        "medical_condition": {
+            "medical_condition_1": "Không có",
+            "medical_condition_2": "Tiểu đường",
+            "medical_condition_3": "Huyết áp cao",
+            "medical_condition_4": "Khác (sẽ tư vấn riêng)"
+        }
+    },
+    "loading_analysis_screen": {
+        "title": "Heka AI đang phân tích...",
+        "analtstic_text": {
+            "analtstic_text_1": "Heka AI phân tích các chỉ số của bạn",
+            "analtstic_text_2": "Heka phân tích các thói quen của bạn",
+            "analtstic_text_3": "Heka đưa ra lượng Calo cần kiểm soát của bạn",
+            "analtstic_text_4": "Heka sẵn sàng cho kế hoạch riêng của bạn",
+            "analtstic_text_5": "Đang phân tích dữ liệu của bạn"
+        }
+    },
+    "timeline_screen": {
+        "title": "Bạn muốn hoàn thành kế hoạch này trong bao lâu?",
+        "description": "Chọn thời gian phù hợp với mục tiêu của bạn",
+        "timeline": {
+            "timeline_1": "1-2 tháng (Nhanh)",
+            "timeline_2": "3-6 tháng (Cân bằng)",
+            "timeline_3": "6-12 tháng (Bền vững)",
+            "timeline_4": "Trên 1 năm (Lối sống)"
+        }
+    },
+    "commitment_screen": {
+        "title": "Bạn đã sẵn sàng cam kết?",
+        "description": "Cam kết là chìa khóa thành công",
+        "commitment": {
+            "commitment_1": "Có, tôi sẵn sàng 100%",
+            "commitment_2": "Có, tôi sẽ cố gắng",
+            "commitment_3": "Tôi sẽ thử xem",
+            "commitment_4": "Chưa chắc, nhưng muốn thử"
+        }
+    },
+    "email_input_screen": {
+        "title": "Nhập email để nhận kế hoạch cá nhân hóa",
+        "description": "Kế hoạch đã được tùy chỉnh riêng cho bạn",
+        "email": {
+            "email_1": "Email",
+            "email_2": "Email không hợp lệ"
+        },
+        "email_invalid": "Vui lòng nhập email hợp lệ",
+        "notice_text": "<b>Lưu ý:</b> Hãy nhập email chính xác để đồng bộ quyền lợi với ứng dụng Heka AI trên mobile. <br> Chúng tôi tôn trọng quyền riêng tư của bạn và cam kết bảo vệ dữ liệu cá nhân. Dữ liệu của bạn sẽ được xử lý theo Chính sách Quyền riêng tư của chúng tôi.",
+        "next_btn": "Nhận kế hoạch của tôi"
+    },
+    "loading_summary_screen": {
+        "title": "Tóm tắt hành trình của bạn",
+        "summary": {
+            "summary_1": {
+                "title": "Mục tiêu chính:",
+                "description": "Tăng cân"
+            },
+            "summary_2": {
+                "title": "Cân nặng mục tiêu:",
+                "description": "60 kg"
+            },
+            "summary_3": {
+                "title": "Thời gian hoàn thành:",
+                "description": "3-6 tháng"
+            }
+        },
+        "remommendation": {
+            "title": "Kiến nghị của Heka AI",
+            "description": "Để hoàn thành mục tiêu một cách đơn giản và hiệu quả nhất, chúng tôi khuyên bạn nên sử dụng <b>gói Premium</b>.",
+            "statistical": {
+                "left": {
+                    "title": "1M+",
+                    "description": "Người dùng"
+                },
+                "right": {
+                    "title": "85%",
+                    "description": "Thành công"
+                }
+            },
+            "select_plan": "Chọn gói premium của bạn",
+            "preparing" : "Đang chuẩn bị gói dịch vụ phù hợp..."
+
+        },
+        "next_btn": "Tiếp tục"
+    },
+    "paywall_screen": {
+        "title": "Chọn gói Premium phù hợp",
+        "description": "Mở khóa toàn bộ tính năng AI của Heka",
+        "plan": {
+            "monthly": {
+                "title": "Premium Monthly",
+                "description": "Thanh toán hàng tháng",
+                "price": "$6.99",
+                "duration": "/tháng",
+                "select_btn": "Chọn gói tháng"
+            },
+            "yearly": {
+                "title": "Premium Yearly",
+                "description": "Thanh toán hàng năm",
+                "best_seller_badge": "Best Seller",
+                "savings_badge": "Tiết kiệm 52%",
+                "price_through": "$83.88",
+                "price": "$39.99",
+                "price_per_month": "$3.33/tháng",
+                "select_btn": "Chọn gói năm",
+                "enhance_saving": {
+                    "title": "Tiết kiệm $44/năm",
+                    "description": "So với thanh toán hàng tháng"
+                },
+                "CTA_btn" : {
+                    "title": "Chọn gói năm - Tiết kiệm nhất",
+                    "click_btn": "Nhấp để chọn gói được ưa chuộng nhất"
+                }
+
+            }
+        },
+        "preview_benefit": {
+            "title": "Quyền lợi của gói Premium",
+            "benefit_list": {
+                "benefit_1": "Không giới hạn lượt quét thức ăn bằng AI",
+                "benefit_2": "Cá nhân hóa kế hoạch mục tiêu của bạn",
+                "benefit_3": "Phân tích sâu Macro và Nutrition",
+                "benefit_4": "Kho dữ liệu không giới hạn",
+                "benefit_5": "Theo dõi và phân tích dữ liệu bằng AI",
+                "benefit_6": "Có thể hủy bất cứ lúc nào"
+            }
+        },
+        "user_review": {
+            "title": "Đánh giá của người dùng",
+            "review_list": {
+                "review_1": {
+                    "name": "Sarah Johnson",
+                    "review": "Heka AI đã thay đổi cách tôi theo dõi dinh dưỡng. Chỉ cần chụp ảnh và có ngay kết quả chính xác!"
+                },
+                "review_2": {
+                    "name": "Michael Chen",
+                    "review": "Tôi đã giảm được 15kg trong 4 tháng nhờ Heka AI. Ứng dụng thông minh và dễ sử dụng nhất!"
+                },
+                "review_3": {
+                    "name": "Emily Davis",
+                    "review": "Phân tích macro chi tiết giúp tôi hiểu rõ hơn về dinh dưỡng. Đáng đồng tiền bát gạo!"
+                },
+                "review_4": {
+                    "name": "James Wilson",
+                    "review": "AI của Heka chính xác đến 99%. Tôi không còn phải đoán mò về lượng calo nữa!"
+                },
+                "review_5": {
+                    "name": "Anna Martinez",
+                    "review": "Giao diện đẹp, tính năng mạnh mẽ. Heka AI là trợ lý dinh dưỡng hoàn hảo cho tôi!"
+                }
+            }
+        },
+        "trust_indicator": {
+            "list": {
+                "trust_indicator_1": "Bảo mật 100%",
+                "trust_indicator_2": "Hoàn tiền 30 ngày",
+                "trust_indicator_3": "4.8/5 đánh giá"
+            }
+        }
+
+    }
+
+}
