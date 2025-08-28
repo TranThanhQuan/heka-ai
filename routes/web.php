@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\UserController;
@@ -44,14 +45,17 @@ Route::get('/get-plan-gain', [OnboardingController::class, 'getPlanGain'])->name
 Route::get('/get-plan-healthy', [OnboardingController::class, 'getPlanHealthy'])->name('get-plan-healthy');
 
 
-
-
 // payment
 Route::get('/payment/success', [PaymentController::class, 'success'])->name('payment.success');
 Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
 
 
 
+//survey
+Route::get('/survey', [SurveyController::class, 'index'])->name('survey.index');
+
+
+// tracking
 Route::post('/event-tracking', [EventTrackingController::class, 'store']);
 
 Route::get('/tracking/funnel', [EventTrackingController::class, 'funnel'])->name('tracking.funnel');
