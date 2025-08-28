@@ -1482,29 +1482,28 @@
                         class="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-600 rounded-3xl mx-auto mb-6 flex items-center justify-center">
                         <span class="text-3xl">🎉</span>
                     </div>
-                    <h2 id="paymentTitle" class="text-3xl font-bold text-gray-800 mb-4">Thanh toán thành công!</h2>
-                    <p id="paymentMessage" class="text-gray-600 text-lg mb-6">Chúc mừng! Bạn đã đăng ký thành công gói
-                        Heka AI Premium. Kế hoạch cá nhân hóa đã được gửi đến email của bạn.</p>
+                    <h2 id="paymentTitle" class="text-3xl font-bold text-gray-800 mb-4">{{ $t('success_screen.title') }}</h2>
+                    <p id="paymentMessage" class="text-gray-600 text-lg mb-6">{{ $t('success_screen.description') }}</p>
 
                     <!-- Success Details -->
                     <div id="successDetails" class="bg-green-50 rounded-2xl p-6 text-left">
-                        <h3 class="font-bold text-green-800 mb-3">Những gì bạn nhận được:</h3>
+                        <h3 class="font-bold text-green-800 mb-3">{{ $t('success_screen.success_detail.title') }}</h3>
                         <div class="space-y-2">
                             <div class="flex items-center">
                                 <span class="text-green-500 mr-2">✓</span>
-                                <span class="text-sm text-gray-700">Kế hoạch dinh dưỡng cá nhân hóa</span>
+                                <span class="text-sm text-gray-700">{{ $t('success_screen.success_detail.detail_1') }}</span>
                             </div>
                             <div class="flex items-center">
                                 <span class="text-green-500 mr-2">✓</span>
-                                <span class="text-sm text-gray-700">Truy cập đầy đủ tính năng AI</span>
+                                <span class="text-sm text-gray-700">{{ $t('success_screen.success_detail.detail_2') }}</span>
                             </div>
                             <div class="flex items-center">
                                 <span class="text-green-500 mr-2">✓</span>
-                                <span class="text-sm text-gray-700">Hỗ trợ 24/7</span>
+                                <span class="text-sm text-gray-700">{{ $t('success_screen.success_detail.detail_3') }}</span>
                             </div>
                             <div class="flex items-center">
                                 <span class="text-green-500 mr-2">✓</span>
-                                <span class="text-sm text-gray-700">Dùng thử 7 ngày miễn phí</span>
+                                <span class="text-sm text-gray-700">{{ $t('success_screen.success_detail.detail_4') }}</span>
                             </div>
                         </div>
                     </div>
@@ -1512,7 +1511,7 @@
 
                 <div class="space-y-4">
                     <button class="cta-button w-full py-4 text-white font-bold rounded-2xl text-lg">
-                        Tải ứng dụng Heka AI
+                        {{ $t('success_screen.download_btn') }}
                     </button>
                     <!-- <button class="option-button w-full py-3 text-gray-800 font-medium rounded-2xl" onclick="simulatePaymentFailure()">
                         Mô phỏng thanh toán thất bại
@@ -1681,27 +1680,27 @@ const calculateAndDisplayBMI = () => {
     let borderColor = '';
 
     if (bmi < 18.5) {
-        category = 'Thiếu cân';
-        description = 'BMI dưới mức bình thường';
-        quote = 'Cân nặng thấp có thể ảnh hưởng đến hệ miễn dịch và sức khỏe xương. Hãy tập trung vào việc tăng cân một cách lành mạnh.';
+        category = t('paywall_screen.bmi_screen.quote.underweight.category');
+        description = t('paywall_screen.bmi_screen.quote.underweight.description');
+        quote = t('paywall_screen.bmi_screen.quote.underweight.quote');
         colorClass = 'text-red-600';
         borderColor = 'border-red-400';
     } else if (bmi < 25) {
-        category = 'Bình thường';
-        description = 'BMI trong khoảng lý tưởng';
-        quote = 'Chúc mừng! Bạn đang duy trì cân nặng lý tưởng. Hãy tiếp tục lối sống lành mạnh để duy trì chỉ số này.';
+        category = t('paywall_screen.bmi_screen.quote.normal.category');
+        description = t('paywall_screen.bmi_screen.quote.normal.description');
+        quote = t('paywall_screen.bmi_screen.quote.normal.quote');
         colorClass = 'text-green-600';
         borderColor = 'border-green-400';
     } else if (bmi < 30) {
-        category = 'Thừa cân';
-        description = 'BMI trên mức bình thường';
-        quote = 'Thừa cân có thể tăng nguy cơ mắc các bệnh mãn tính. Việc giảm 5-10% cân nặng sẽ mang lại lợi ích sức khỏe đáng kể.';
+        category = t('paywall_screen.bmi_screen.quote.overweight.category');
+        description = t('paywall_screen.bmi_screen.quote.overweight.description');
+        quote = t('paywall_screen.bmi_screen.quote.overweight.quote');
         colorClass = 'text-orange-600';
         borderColor = 'border-orange-400';
     } else {
-        category = 'Béo phì';
-        description = 'BMI ở mức cao';
-        quote = 'Béo phì là yếu tố nguy cơ chính của nhiều bệnh lý. Hãy tham khảo ý kiến bác sĩ để có kế hoạch giảm cân an toàn và hiệu quả.';
+        category = t('paywall_screen.bmi_screen.quote.obesity.category');
+        description = t('paywall_screen.bmi_screen.quote.obesity.description');
+        quote = t('paywall_screen.bmi_screen.quote.obesity.quote');
         colorClass = 'text-red-600';
         borderColor = 'border-red-400';
     }
@@ -1745,10 +1744,10 @@ const validateTargetWeight = () => {
     if (weightDiffElement && weightChangeText && Math.abs(difference) > 0.1) {
         weightDiffElement.classList.remove('hidden');
         if (difference > 0) {
-            weightChangeText.textContent = `Bạn muốn tăng ${Math.abs(difference).toFixed(1)} kg`;
+            weightChangeText.textContent = t('paywall_screen.goal_weight.wanna_gain') + ` ${Math.abs(difference).toFixed(1)} kg`;
             weightChangeText.className = 'text-green-600 font-medium';
         } else {
-            weightChangeText.textContent = `Bạn muốn giảm ${Math.abs(difference).toFixed(1)} kg`;
+            weightChangeText.textContent = t('paywall_screen.goal_weight.wanna_lose') + ` ${Math.abs(difference).toFixed(1)} kg`;
             weightChangeText.className = 'text-blue-600 font-medium';
         }
     }
@@ -1852,10 +1851,10 @@ const showLoadingScreen = () => {
         let progress = 0;
         const steps = ['step1', 'step2', 'step3', 'step4'];
         const stepTexts = [
-            'Heka AI phân tích các chỉ số của bạn',
-            'Heka phân tích các thói quen của bạn',
-            'Heka đưa ra lượng Calo cần kiểm soát của bạn',
-            'Heka sẵn sàng cho kế hoạch riêng của bạn'
+            t('loading_screen.step_1'),
+            t('loading_screen.step_2'),
+            t('loading_screen.step_3'),
+            t('loading_screen.step_4')
         ];
 
         const interval = setInterval(() => {
@@ -1941,15 +1940,15 @@ const showPaywallCTA = () => {
 const updateSummaryData = () => {
     // Update goal
     const goalMap = {
-        'lose_weight': 'Giảm cân',
-        'maintain_weight': 'Giữ cân',
-        'gain_weight': 'Tăng cân',
-        'healthy_eating': 'Ăn uống lành mạnh'
+        'lose_weight': t('summary_screen.lose_weight'),
+        'maintain_weight': t('summary_screen.maintain_weight'),
+        'gain_weight': t('summary_screen.gain_weight'),
+        'healthy_eating': t('summary_screen.healthy_eating')
     };
 
     const goalSummary = document.getElementById('userGoalSummary');
     if (goalSummary && selectedGoal) {
-        goalSummary.textContent = goalMap[selectedGoal] || 'Giảm cân';
+        goalSummary.textContent = goalMap[selectedGoal] || t('summary_screen.lose_weight');
     }
 
     // Update target weight
@@ -2006,8 +2005,8 @@ const showPaymentProcessing = (planType) => {
     paymentModal.innerHTML = `
                 <div class="bg-white rounded-3xl p-8 max-w-md mx-4 text-center">
                     <div class="loading-circle mb-4"></div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Đang xử lý thanh toán...</h3>
-                    <p class="text-gray-600">Vui lòng chờ trong giây lát</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Processing payment...</h3>
+                    <p class="text-gray-600">Please wait for a moment</p>
                 </div>
             `;
 
@@ -2065,10 +2064,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (weightDiffElement && weightChangeText && Math.abs(difference) > 0.1) {
                     weightDiffElement.classList.remove('hidden');
                     if (difference > 0) {
-                        weightChangeText.textContent = `Bạn muốn tăng ${Math.abs(difference).toFixed(1)} kg`;
+                        weightChangeText.textContent = t('paywall_screen.goal_weight.wanna_gain') + ` ${Math.abs(difference).toFixed(1)} kg`;
                         weightChangeText.className = 'text-green-600 font-medium';
                     } else {
-                        weightChangeText.textContent = `Bạn muốn giảm ${Math.abs(difference).toFixed(1)} kg`;
+                        weightChangeText.textContent = t('paywall_screen.goal_weight.wanna_lose') + ` ${Math.abs(difference).toFixed(1)} kg`;
                         weightChangeText.className = 'text-blue-600 font-medium';
                     }
                 } else if (weightDiffElement) {

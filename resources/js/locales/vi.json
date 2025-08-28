@@ -122,12 +122,36 @@
             "calculating": "Đang tính toán ...",
             "analying": "Đang phân tích...",
             "text_2": "Chỉ số khối cơ thể của bạn",
-            "reference": "Tham khảo: WHO & Mayo Clinic"
+            "reference": "Tham khảo: WHO & Mayo Clinic",
+            "quote": {
+                "underweight": {
+                    "category" : "Thiếu cân",
+                    "description" : "BMI dưới mức bình thường",
+                    "quote" : "Cân nặng thấp có thể ảnh hưởng đến hệ miễn dịch và sức khỏe xương. Hãy tập trung vào việc tăng cân một cách lành mạnh."
+                },
+                "normal": {
+                    "category" : "Bình thường",
+                    "description" : "BMI trong khoảng lý tưởng",
+                    "quote" : "Chúc mừng! Bạn đang duy trì cân nặng lý tưởng. Hãy tiếp tục lối sống lành mạnh để duy trì chỉ số này."
+                },
+                "overweight": {
+                    "category" : "Thừa cân",
+                    "description" : "BMI trên mức bình thường",
+                    "quote" : "Thừa cân có thể tăng nguy cơ mắc các bệnh mãn tính. Việc giảm 5-10% cân nặng sẽ mang lại lợi ích sức khỏe đáng kể."
+                },
+                "obesity": {
+                    "category" : "Béo phì",
+                    "description" : "BMI ở mức cao",
+                    "quote" : "Béo phì là yếu tố nguy cơ chính của nhiều bệnh lý. Hãy tham khảo ý kiến bác sĩ để có kế hoạch giảm cân an toàn và hiệu quả."
+                }
+            }
          },
          "goal_weight": {
             "title": "Cân nặng mục tiêu?",
             "description": "Bạn muốn đạt cân nặng bao nhiêu?",
-            "not_valid": "Dữ liệu nhập không phù hợp"
+            "not_valid": "Dữ liệu nhập không phù hợp",
+            "wanna_lose": "Bạn muốn giảm",
+            "wanna_gain": "Bạn muốn tă"
         },
         "next_btn": "Tiếp tục"
     },
@@ -414,7 +438,31 @@
                 "trust_indicator_3": "4.8/5 đánh giá"
             }
         }
-
+    },
+    "success_screen": {
+        "title": "Đã thanh toán thành công",
+        "description": "Chúc mừng! Bạn đã đăng ký thành công gói Heka AI Premium. Kế hoạch cá nhân hóa đã được gửi đến email của bạn.",
+        "success_detail": {
+            "title": "Những gì bạn nhận được:",
+            "detail_1": "Kế hoạch dinh dưỡng cá nhân hóa",
+            "detail_2": "Truy cập đầy đủ tính năng AI",
+            "detail_3": "Hỗ trợ 24/7",
+            "detail_4": "Dùng thử 7 ngày miễn phí"
+        },
+        "download_btn": "Tải ứng dụng Heka AI"
+    },
+    "loading_screen": {
+        "step_1": "Heka AI phân tích các chỉ số của bạn",
+        "step_2": "Heka phân tích các thói quen của bạn",
+        "step_3": "Heka đưa ra lượng Calo cần kiểm soát của bạn",
+        "step_4": "Heka sẵn sàng cho kế hoạch riêng của bạn"
+    },
+    "summary_screen": {
+        "lose_weight": "Giảm cân",
+        "maintain_weight": "Giữ cân",
+        "gain_weight": "Tăng cân",
+        "healthy_eating": "Ăn uống lành mạnh"
     }
+
 
 }

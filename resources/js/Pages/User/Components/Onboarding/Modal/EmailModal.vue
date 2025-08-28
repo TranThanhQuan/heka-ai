@@ -14,7 +14,7 @@
                 <!-- Content -->
                 <div class="flex flex-col items-center text-center space-y-4 mt-4">
                     <!-- Title -->
-                    <h2 class="text-lg font-semibold text-black">Enter your email to continue</h2>
+                    <h2 class="text-lg font-semibold text-black">Enter your email to receive the personalized plan just for you</h2>
 
                     <!-- form input email -->
                     <form @submit.prevent="submit" class="relative w-full">
@@ -24,12 +24,18 @@
                         <p v-if="emailError" class="text-sm text-red-500 mb-2">{{ emailError }}</p>
                         <p v-else class="text-sm text-red-500 mb-7"> </p>
 
-                        <div class="relative w-full">
+                        <div class="text-sm text-black bg-slate-100 p-2 rounded-md text-left">
+                            <p><b>Note:</b> Please enter your correct email to synchronize your benefits with the Heka AI mobile app.</p>
+                            <br>
+                            <p>We respect your privacy and are committed to protecting your personal data. Your data will be processed in accordance with our Privacy Policy.</p>
+                        </div>
+
+                        <div class="relative w-full mt-4">
                             <button type="submit" :disabled="!email || emailError || isLoading"
                                 class="w-full p-2 bg-blue-500 text-white rounded-md relative transition-opacity duration-200"
                                 :class="{ 'opacity-50 cursor-not-allowed': !email || emailError || isLoading }">
-                                <span v-if="!isLoading">Continue</span>
-                                <span v-else class="invisible">Continue</span>
+                                <span v-if="!isLoading">Get My Plan</span>
+                                <span v-else class="invisible">Get My Plan</span>
                             </button>
 
                             <!-- vòng tròn loading overlay -->
