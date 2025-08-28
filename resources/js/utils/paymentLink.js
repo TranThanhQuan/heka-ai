@@ -31,11 +31,18 @@ async function createPaymentLink(email, priceId) {
 
     } catch (error) {
         hideLoadingScreen();
-
-        // Nếu API trả về response 400 với message rõ ràng thì lấy luôn
-        if (error.response?.data) {
-            return error.response.data;
+        // Nếu API trả về response 400 thì trả về something went wrong
+        if (error.response?.status === 400) {
+            return {
+                success: false,
+                error: {
+                    code: 'SOMETHING_WENT_WRONG',
+                    message: 'Something went wrong, please try again'
+                }
+            };
         }
+
+
 
         // Nếu lỗi không rõ
         return {

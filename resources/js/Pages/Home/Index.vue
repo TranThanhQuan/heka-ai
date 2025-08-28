@@ -45,7 +45,11 @@
                     <img @click="showDropdown = !showDropdown" src="/images/home/user_icon.png"
                         class="h-9 cursor-pointer rounded-full" />
 
+<<<<<<< HEAD
                     <div v-if="showDropdown" class="absolute right-0 mt-2  bg-white border rounded shadow-lg z-50">
+=======
+                    <div v-if="showDropdown" class="absolute right-0 mt-2 bg-white border rounded shadow-lg z-50">
+>>>>>>> dev
                         <ul class="py-2">
                             <li v-if="hasSubscription" class="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                                 <a id="subscriptionManagement" :href="subscriptionUrl">
