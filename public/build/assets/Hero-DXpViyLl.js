@@ -1,5 +1,0 @@
-<<<<<<<< HEAD:public/build/assets/Hero-DTIGJ_s5.js
-import{b as a,o as t,a as o,e as r,u as s,Z as n,F as l}from"./app-04A9xdO1.js";const c={__name:"Hero",setup(m){return(u,e)=>(t(),a(l,null,[o(s(n),{title:"Home"}),e[0]||(e[0]=r("h1",null,"home page",-1))],64))}};export{c as default};
-========
-import{b as a,o as t,a as o,e as r,u as s,Z as n,F as l}from"./app-Tdosa2y4.js";const c={__name:"Hero",setup(m){return(u,e)=>(t(),a(l,null,[o(s(n),{title:"Home"}),e[0]||(e[0]=r("h1",null,"home page",-1))],64))}};export{c as default};
->>>>>>>> dev:public/build/assets/Hero-DXpViyLl.js
