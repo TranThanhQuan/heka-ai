@@ -37,6 +37,7 @@ createInertiaApp({
         app.use(VueScrollPicker)
         app.use(i18n)
 
+
         window.Swal = app.config.globalProperties.$swal
         app.mount(el)
     },

@@ -31,8 +31,15 @@ async function createPaymentLink(email, priceId) {
 
     } catch (error) {
         hideLoadingScreen();
-        // Nếu API trả về response 400 thì trả về something went wrong
+
+        // Nếu API trả về 400
         if (error.response?.status === 400) {
+            // Nếu message là User already vip thì trả nguyên response
+            if (error.response?.data?.error?.code === 'USER_ALREADY_VIP') {
+                return error.response.data;
+            }
+
+            // Còn lại trả về something went wrong
             return {
                 success: false,
                 error: {
@@ -41,8 +48,6 @@ async function createPaymentLink(email, priceId) {
                 }
             };
         }
-
-
 
         // Nếu lỗi không rõ
         return {
@@ -53,6 +58,7 @@ async function createPaymentLink(email, priceId) {
             }
         };
     }
+
 }
 
 

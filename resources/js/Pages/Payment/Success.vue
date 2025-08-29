@@ -94,14 +94,14 @@ if (!sessionId) {
                     });
 
                     eventTracking('confirm_purchased_with_store', {
-                        pi_id: data.data.pi_id,
-                        invoice_id: data.data.invoice_id,
-                        subscription_id: data.data.subscription_id,
-                        customerId: data.data.customerId,
-                        value: data.data.amountTotal,
-                        original_price: data.data.amountSubtotal,
-                        currency: data.data.currency,
-                        price_id: localStorage.getItem('priceId'),
+                        pi_id: data.data.pi_id || null,
+                        invoice_id: data.data.invoiceId || null,
+                        subscription_id: data.data.subscriptionId || null,
+                        customerId: data.data.customerId || null,
+                        value: Math.round(data.data.amountTotal) / 100 || null,
+                        original_price: Math.round(data.data.amountSubtotal) / 100 || null,
+                        currency: data.data.currency || null,
+                        price_id: localStorage.getItem('priceId') || null,
                     });
 
                 }

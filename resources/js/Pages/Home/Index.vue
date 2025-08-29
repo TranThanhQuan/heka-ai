@@ -127,7 +127,7 @@
                     </li>
                     <li>
                         <a href="javascript:void(0)" @click="logout" class="text-gray-700 hover:text-black font-medium">
-                            Sign Out
+                            SignOut
                         </a>
                     </li>
                 </template>

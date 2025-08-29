@@ -1,12 +1,22 @@
 import { createI18n } from 'vue-i18n'
-import en from './locales/en.json'
-import vi from './locales/vi.json'
+
+// Dùng glob để load tất cả file json trong /locales
+const messages = Object.fromEntries(
+  Object.entries(import.meta.glob('./locales/*.json', { eager: true }))
+    .map(([key, value]) => {
+      const locale = key.match(/([A-Za-z0-9-_]+)\.json$/i)[1]
+      return [locale, value.default]
+    })
+)
 
 const i18n = createI18n({
-  legacy: false,          // dùng Composition API
-  locale: 'en',           // mặc định English
-  fallbackLocale: 'en',
-  messages: { en, vi }
-})
+    legacy: false,
+    globalInjection: true,
+    warnHtmlMessage: false,
+    locale: 'en',
+    fallbackLocale: 'en',
+    messages
+  })
+
 
 export default i18n

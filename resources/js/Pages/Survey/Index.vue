@@ -15,11 +15,13 @@
         <div class="flex justify-between items-center">
             <!-- Logo Left -->
             <div class="w-32 h-8">
-                <img src="https://heka.astronex.ai/images/logo.svg" alt="Heka AI" class="w-full h-full object-contain">
+                <a href="/">
+                    <img src="https://heka.astronex.ai/images/logo.svg" alt="Heka AI" class="w-full h-full object-contain">
+                </a>
             </div>
 
             <!-- Language Selector Right -->
-            <div class="relative">
+            <!-- <div class="relative">
                 <button id="languageBtn"
                     class="flex items-center space-x-2 bg-gray-100 rounded-xl px-3 py-2 text-gray-700 hover:bg-gray-200 transition-all"
                     onclick="toggleLanguageMenu()">
@@ -30,21 +32,57 @@
                     </svg>
                 </button>
 
-                <!-- Language Dropdown -->
+
+
                 <div id="languageMenu"
                     class="absolute right-0 top-12 bg-white rounded-2xl shadow-2xl border border-gray-200 py-2 w-48 hidden z-50">
                     <button class="w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center space-x-3"
-                        onclick="changeLanguage('vi', '🇻🇳', 'VI')">
+                        @click="changeLanguage('vi', '🇻🇳', 'VI')">
                         <span class="text-lg">🇻🇳</span>
                         <span class="text-gray-800 font-medium">Tiếng Việt</span>
                     </button>
                     <button class="w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center space-x-3"
-                        onclick="changeLanguage('en', '🇺🇸', 'EN')">
+                        @click="changeLanguage('en', '🇺🇸', 'EN')">
                         <span class="text-lg">🇺🇸</span>
                         <span class="text-gray-800 font-medium">English</span>
                     </button>
                 </div>
+            </div> -->
+
+            <div class="relative inline-block">
+                <!-- Button hiển thị ngôn ngữ hiện tại -->
+                <button @click="toggleMenu" class="flex items-center space-x-2 border px-3 py-2 rounded-lg">
+                <span class="text-lg">{{ currentFlag }}</span>
+                <span class="font-medium">{{ currentLabel }}</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M19 9l-7 7-7-7" />
+                </svg>
+                </button>
+
+                <!-- Dropdown -->
+                <div v-show="menuOpen"
+                class="absolute right-0 mt-2 bg-white rounded-2xl shadow-lg border border-gray-200 py-2 w-48 z-50">
+                <button class="w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center space-x-3"
+                    @click="changeLanguage('en', '🇺🇸', 'English')">
+                    <span class="text-lg">🇺🇸</span>
+                    <span class="text-gray-800 font-medium">English</span>
+                </button>
+                <button class="w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center space-x-3"
+                    @click="changeLanguage('vi', '🇻🇳', 'Tiếng Việt')">
+                    <span class="text-lg">🇻🇳</span>
+                    <span class="text-gray-800 font-medium">Tiếng Việt</span>
+                </button>
+                <button class="w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center space-x-3"
+                    @click="changeLanguage('es', '🇪🇸', 'Español')">
+                    <span class="text-lg">🇪🇸</span>
+                    <span class="text-gray-800 font-medium">Español</span>
+                </button>
+                </div>
             </div>
+
+
+
         </div>
     </div>
 
@@ -494,15 +532,15 @@
         <div id="question11" class="w-full max-w-lg mx-auto px-4 hidden">
             <div class="card rounded-3xl p-8 shadow-2xl">
                 <div class="mb-8 text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">{{ $t('goal_weight_screen.BMI.title') }}</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">{{ $t('goal_weight_screen.bmi.title') }}</h2>
 
                     <!-- BMI Display -->
                     <div id="bmiQuote" class="bg-white rounded-xl p-4 border-l-4 border-gray-400 mb-6">
                         <div class="text-3xl font-bold text-gray-800 mb-2" id="bmiValue">0</div>
-                        <div class="text-base font-semibold text-gray-700 mb-1" id="bmiCategory">{{ $t('goal_weight_screen.BMI.calculating') }}</div>
-                        <div class="text-xs text-gray-600 mb-3" id="bmiDescription">{{ $t('goal_weight_screen.BMI.text') }}</div>
-                        <div class="text-sm text-gray-700 italic" id="bmiQuoteText">{{ $t('goal_weight_screen.BMI.analying') }}</div>
-                        <div class="text-xs text-gray-500 mt-2">{{ $t('goal_weight_screen.BMI.reference') }}</div>
+                        <div class="text-base font-semibold text-gray-700 mb-1" id="bmiCategory">{{ $t('goal_weight_screen.bmi.calculating') }}</div>
+                        <div class="text-xs text-gray-600 mb-3" id="bmiDescription">{{ $t('goal_weight_screen.bmi.text') }}</div>
+                        <div class="text-sm text-gray-700 italic" id="bmiQuoteText">{{ $t('goal_weight_screen.bmi.analying') }}</div>
+                        <div class="text-xs text-gray-500 mt-2">{{ $t('goal_weight_screen.bmi.reference') }}</div>
                     </div>
 
                     <h3 class="text-xl font-bold text-gray-800 mb-2">{{ $t('goal_weight_screen.goal_weight.title') }}</h3>
@@ -1056,25 +1094,25 @@
                 <div class="w-full space-y-3">
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
-                        onclick="selectTimeline('1-2 tháng (Nhanh)')">
+                        @click="selectTimeline(t('timeline_screen.timeline.timeline_1'))">
                         <span class="text-2xl mr-4">🚀</span>
                         <span>{{ $t('timeline_screen.timeline.timeline_1') }}</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
-                        onclick="selectTimeline('3-6 tháng (Cân bằng)')">
+                        @click="selectTimeline(t('timeline_screen.timeline.timeline_2'))">
                         <span class="text-2xl mr-4">⚖️</span>
                         <span>{{ $t('timeline_screen.timeline.timeline_2') }}</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
-                        onclick="selectTimeline('6-12 tháng (Bền vững)')">
+                        @click="selectTimeline(t('timeline_screen.timeline.timeline_3'))">
                         <span class="text-2xl mr-4">🌱</span>
                         <span>{{ $t('timeline_screen.timeline.timeline_3') }}</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
-                        onclick="selectTimeline('Trên 1 năm (Lối sống)')">
+                        @click="selectTimeline(t('timeline_screen.timeline.timeline_4'))">
                         <span class="text-2xl mr-4">🏃‍♀️</span>
                         <span>{{ $t('timeline_screen.timeline.timeline_4') }}</span>
                     </button>
@@ -1119,39 +1157,10 @@
             </div>
         </div>
 
-        <!-- Question 27 - Email Input -->
-        <div id="question27" class="w-full max-w-lg mx-auto px-4 hidden">
-            <div class="card rounded-3xl p-8 shadow-2xl">
-                <div class="mb-8 text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $t('email_input_screen.title') }}</h2>
-                    <p class="text-gray-600 mb-4">{{ $t('email_input_screen.description') }}</p>
-                </div>
 
-                <div class="w-full space-y-4">
-                    <div class="relative">
-                        <input type="email" id="userEmail"
-                            class="w-full p-4 rounded-2xl border-2 border-gray-200 text-center text-lg focus:border-gray-600 focus:outline-none"
-                            placeholder="your.email@example.com">
-                        <div id="emailError" class="error-message hidden">{{ $t('email_input_screen.email_invalid') }}</div>
-                    </div>
 
-                    <!-- Privacy Notice -->
-                    <div class="bg-blue-50 rounded-2xl p-4 text-left">
-                        <div class="text-sm text-gray-700 space-y-2">
-                            <p v-html="$t('email_input_screen.notice_text')"></p>
-                        </div>
-                    </div>
-
-                    <button class="cta-button w-full py-4 text-white font-semibold rounded-2xl text-lg"
-                        onclick="validateEmail()">
-                        {{ $t('email_input_screen.next_btn') }}
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Question 28 - Loading Summary -->
-        <div id="question28" class="w-full max-w-lg mx-auto text-center hidden">
+        <!-- Question 27 - Loading Summary -->
+        <div id="question27" class="w-full max-w-lg mx-auto text-center hidden">
             <div class="card rounded-3xl p-8 shadow-2xl">
                 <div class="mb-8">
                     <div
@@ -1189,30 +1198,33 @@
 
                     <!-- Recommendation -->
                     <div class="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-6 mb-6">
-                        <h3 class="font-bold text-gray-800 mb-3">💡 {{ $t('loading_summary_screen.remommendation.title') }}</h3>
+                        <h3 class="font-bold text-gray-800 mb-3">💡 {{ $t('loading_summary_screen.recommendation.title') }}</h3>
                         <p class="text-gray-700 text-sm leading-relaxed mb-4">
-                            <span v-html="$t('loading_summary_screen.remommendation.description')"></span>
+                            <span v-html="$t('loading_summary_screen.recommendation.description')"></span>
                         </p>
                         <div class="flex items-center justify-center space-x-4 text-sm">
                             <div class="text-center">
-                                <div class="text-2xl font-bold text-orange-600">{{ $t('loading_summary_screen.remommendation.statistical.left.title') }}</div>
-                                <div class="text-gray-600">{{ $t('loading_summary_screen.remommendation.statistical.left.description') }}</div>
+                                <div class="text-2xl font-bold text-orange-600">{{ $t('loading_summary_screen.recommendation.statistical.left.title') }}</div>
+                                <div class="text-gray-600">{{ $t('loading_summary_screen.recommendation.statistical.left.description') }}</div>
                             </div>
                             <div class="text-center">
-                                <div class="text-2xl font-bold text-orange-600">{{ $t('loading_summary_screen.remommendation.statistical.right.title') }}</div>
-                                <div class="text-gray-600">{{ $t('loading_summary_screen.remommendation.statistical.right.description') }}</div>
+                                <div class="text-2xl font-bold text-orange-600">{{ $t('loading_summary_screen.recommendation.statistical.right.title') }}</div>
+                                <div class="text-gray-600">{{ $t('loading_summary_screen.recommendation.statistical.right.description') }}</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="loading-circle mb-4" id="loadingCirclePaywall"></div>
-                    <p class="text-gray-600" id="loadingTextPaywall">{{ $t('loading_summary_screen.remommendation.preparing') }}</p>
+                    <button class="cta-button w-full py-4 text-white font-semibold rounded-2xl text-lg bg-blue" onclick="nextQuestion()" style="background-color: #007bff!important;">
+                          {{ $t('loading_summary_screen.recommendation.select_plan') }}
+                      </button>
+
+                    <!-- <div class="loading-circle mb-4" id="loadingCirclePaywall"></div> -->
                 </div>
             </div>
         </div>
 
-        <!-- Question 29 - Paywall -->
-        <div id="question29" class="w-full max-w-2xl mx-auto px-4 hidden">
+        <!-- Question 28 - Paywall -->
+        <div id="question28" class="w-full max-w-2xl mx-auto px-4 hidden">
             <div class="space-y-6">
                 <!-- Header -->
                 <div class="text-center mb-8">
@@ -1240,7 +1252,7 @@
                     </div>
 
                     <button class="option-button w-full py-3 text-gray-800 font-semibold rounded-2xl mb-4"
-                        onclick="selectPlan('monthly')">
+                        onclick="selectPlan('1month')">
                         {{ $t('paywall_screen.plan.monthly.select_btn') }}
                     </button>
                 </div>
@@ -1292,7 +1304,7 @@
                     <!-- Animated CTA Button -->
                     <button
                         class="yearly-cta-button w-full py-4 text-gray-900 font-bold rounded-2xl bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 mb-4 shadow-lg transform transition-all duration-300 hover:scale-105 animate-pulse-button"
-                        onclick="selectPlan('yearly')">
+                        onclick="selectPlan('12months')">
                         <span class="flex items-center justify-center">
                             <span class="mr-2">🚀</span>
                             {{ $t('paywall_screen.plan.yearly.CTA_btn.title') }}
@@ -1474,6 +1486,83 @@
             </div>
         </div>
 
+        <!-- <div id="question27" class="w-full max-w-lg mx-auto px-4 hidden">
+            <div class="card rounded-3xl p-8 shadow-2xl">
+                <div class="mb-8 text-center">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $t('email_input_screen.title') }}</h2>
+                    <p class="text-gray-600 mb-4">{{ $t('email_input_screen.description') }}</p>
+                </div>
+
+                <div class="w-full space-y-4">
+                    <div class="relative">
+                        <input type="email" id="userEmail"
+                            class="w-full p-4 rounded-2xl border-2 border-gray-200 text-center text-lg focus:border-gray-600 focus:outline-none"
+                            placeholder="your.email@example.com">
+                        <div id="emailError" class="error-message hidden">{{ $t('email_input_screen.email_invalid') }}</div>
+                    </div>
+
+
+                    <div class="bg-blue-50 rounded-2xl p-4 text-left">
+                        <div class="text-sm text-gray-700 space-y-2">
+                            <p v-html="$t('email_input_screen.notice_text')"></p>
+                        </div>
+                    </div>
+
+                    <button class="cta-button w-full py-4 text-white font-semibold rounded-2xl text-lg"
+                        @click="validateEmail()">
+                        {{ $t('email_input_screen.next_btn') }}
+                    </button>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Question 29 - Email Input -->
+        <div id="question29" class="w-full max-w-lg mx-auto px-4 hidden">
+            <div class="card rounded-3xl p-8 shadow-2xl">
+                <div class="mb-8 text-center">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $t('email_input_screen.title') }}</h2>
+                    <p class="text-gray-600 mb-4">{{ $t('email_input_screen.description') }}</p>
+                </div>
+
+                <div class="w-full space-y-4">
+                    <div class="relative">
+                        <input type="email" id="userEmail"
+                            class="w-full p-4 rounded-2xl border-2 border-gray-200 text-center text-lg focus:border-gray-600 focus:outline-none"
+                            placeholder="your.email@example.com">
+                        <div id="emailError" class="error-message hidden">{{ $t('email_input_screen.email_invalid') }}</div>
+                    </div>
+
+
+                    <div class="bg-blue-50 rounded-2xl p-4 text-left">
+                        <div class="text-sm text-gray-700 space-y-2">
+                            <p v-html="$t('email_input_screen.notice_text')"></p>
+                        </div>
+                    </div>
+
+                    <!-- <button class="cta-button w-full py-4 text-white font-semibold rounded-2xl text-lg"
+                        @click="validateEmail()">
+                        {{ $t('email_input_screen.next_btn') }}
+                    </button> -->
+                    <button class="cta-button w-full py-4 text-white font-semibold rounded-2xl text-lg"
+                            @click="validateEmail"
+                            :disabled="isLoading">
+                        <template v-if="isLoading">
+                            <svg class="animate-spin h-5 w-5 text-white mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10"
+                                        stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor"
+                                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                            </svg>
+                        </template>
+                        <template v-else>
+                            {{ $t('email_input_screen.next_btn') }}
+                        </template>
+                    </button>
+                </div>
+            </div>
+        </div>
+
         <!-- Question 30 - Payment Status -->
         <div id="question30" class="w-full max-w-lg mx-auto text-center hidden">
             <div class="card rounded-3xl p-8 shadow-2xl">
@@ -1482,29 +1571,28 @@
                         class="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-600 rounded-3xl mx-auto mb-6 flex items-center justify-center">
                         <span class="text-3xl">🎉</span>
                     </div>
-                    <h2 id="paymentTitle" class="text-3xl font-bold text-gray-800 mb-4">Thanh toán thành công!</h2>
-                    <p id="paymentMessage" class="text-gray-600 text-lg mb-6">Chúc mừng! Bạn đã đăng ký thành công gói
-                        Heka AI Premium. Kế hoạch cá nhân hóa đã được gửi đến email của bạn.</p>
+                    <h2 id="paymentTitle" class="text-3xl font-bold text-gray-800 mb-4">{{ $t('success_screen.title') }}</h2>
+                    <p id="paymentMessage" class="text-gray-600 text-lg mb-6">{{ $t('success_screen.description') }}</p>
 
                     <!-- Success Details -->
                     <div id="successDetails" class="bg-green-50 rounded-2xl p-6 text-left">
-                        <h3 class="font-bold text-green-800 mb-3">Những gì bạn nhận được:</h3>
+                        <h3 class="font-bold text-green-800 mb-3">{{ $t('success_screen.success_detail.title') }}</h3>
                         <div class="space-y-2">
                             <div class="flex items-center">
                                 <span class="text-green-500 mr-2">✓</span>
-                                <span class="text-sm text-gray-700">Kế hoạch dinh dưỡng cá nhân hóa</span>
+                                <span class="text-sm text-gray-700">{{ $t('success_screen.success_detail.detail_1') }}</span>
                             </div>
                             <div class="flex items-center">
                                 <span class="text-green-500 mr-2">✓</span>
-                                <span class="text-sm text-gray-700">Truy cập đầy đủ tính năng AI</span>
+                                <span class="text-sm text-gray-700">{{ $t('success_screen.success_detail.detail_2') }}</span>
                             </div>
                             <div class="flex items-center">
                                 <span class="text-green-500 mr-2">✓</span>
-                                <span class="text-sm text-gray-700">Hỗ trợ 24/7</span>
+                                <span class="text-sm text-gray-700">{{ $t('success_screen.success_detail.detail_3') }}</span>
                             </div>
                             <div class="flex items-center">
                                 <span class="text-green-500 mr-2">✓</span>
-                                <span class="text-sm text-gray-700">Dùng thử 7 ngày miễn phí</span>
+                                <span class="text-sm text-gray-700">{{ $t('success_screen.success_detail.detail_4') }}</span>
                             </div>
                         </div>
                     </div>
@@ -1512,7 +1600,7 @@
 
                 <div class="space-y-4">
                     <button class="cta-button w-full py-4 text-white font-bold rounded-2xl text-lg">
-                        Tải ứng dụng Heka AI
+                        {{ $t('success_screen.download_btn') }}
                     </button>
                     <!-- <button class="option-button w-full py-3 text-gray-800 font-medium rounded-2xl" onclick="simulatePaymentFailure()">
                         Mô phỏng thanh toán thất bại
@@ -1533,11 +1621,68 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n'
+import { ref, onMounted } from 'vue'
+import axios from 'axios'
+import { createPaymentLink } from '@/utils/paymentLink'
+import { eventTracking } from '@/utils/tracking';
 
 const { t, locale } = useI18n()
+const PRICE_IDS = ref({})
+const isLoading = ref(false)
+
+
+// gọi API khi component mounted
+onMounted(async () => {
+
+    eventTracking('scr_1', {});
+
+  const response = await axios.get(`${import.meta.env.VITE_SERVICE_DOMAIN}/api/v1/payment/products/prices`);
+  const prices = response.data.data;
+
+  const mapping = {}
+  prices.forEach((price) => {
+    const interval = price.recurring?.interval;
+    if (interval === 'month') {
+      mapping['1month'] = price.id
+    } else if (interval === 'year') {
+      mapping['12months'] = price.id
+    }
+  })
+  PRICE_IDS.value = mapping
+})
+
 const urlParams = new URLSearchParams(window.location.search)
-const lang = urlParams.get('lang') || 'vi'
+let lang = urlParams.get('lang') || localStorage.getItem('lang') || 'en'
+
 locale.value = lang
+localStorage.setItem('lang', lang)
+
+// danh sách ngôn ngữ
+const languages = [
+  { code: 'en', flag: '🇺🇸', label: 'English' },
+  { code: 'vi', flag: '🇻🇳', label: 'Tiếng Việt' },
+  { code: 'es', flag: '🇪🇸', label: 'Español' },
+]
+
+
+const menuOpen = ref(false)
+const currentFlag = ref(languages.find(l => l.code === lang).flag)
+const currentLabel = ref(languages.find(l => l.code === lang).label)
+
+const toggleMenu = () => {
+  menuOpen.value = !menuOpen.value
+}
+
+const changeLanguage = (newLang, flag, label) => {
+  locale.value = newLang
+  currentFlag.value = flag
+  currentLabel.value = label
+  menuOpen.value = false
+
+  localStorage.setItem('lang', newLang)
+  window.location.href = `?lang=${newLang}`
+}
+
 
 
 let currentQuestion = 1;
@@ -1557,17 +1702,20 @@ const toggleLanguageMenu = () => {
     menu.classList.toggle('hidden');
 }
 
-const changeLanguage = (lang, flag, code) => {
-    const btn = document.getElementById('languageBtn');
-    btn.innerHTML = `
-                <span class="text-lg">${flag}</span>
-                <span class="text-sm font-medium">${code}</span>
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                </svg>
-            `;
-    document.getElementById('languageMenu').classList.add('hidden');
-}
+
+// const changeLanguage = (lang, flag, code) => {
+//     const btn = document.getElementById('languageBtn');
+//     btn.innerHTML = `
+//                 <span class="text-lg">${flag}</span>
+//                 <span class="text-sm font-medium">${code}</span>
+//                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+//                 </svg>
+//             `;
+//     document.getElementById('languageMenu').classList.add('hidden');
+// }
+
+
 
 const selectGoal = (goal) => {
     selectedGoal = goal;
@@ -1681,27 +1829,27 @@ const calculateAndDisplayBMI = () => {
     let borderColor = '';
 
     if (bmi < 18.5) {
-        category = 'Thiếu cân';
-        description = 'BMI dưới mức bình thường';
-        quote = 'Cân nặng thấp có thể ảnh hưởng đến hệ miễn dịch và sức khỏe xương. Hãy tập trung vào việc tăng cân một cách lành mạnh.';
+        category = t('goal_weight_screen.bmi.quote.underweight.category');
+        description = t('goal_weight_screen.bmi.quote.underweight.description');
+        quote = t('goal_weight_screen.bmi.quote.underweight.quote');
         colorClass = 'text-red-600';
         borderColor = 'border-red-400';
     } else if (bmi < 25) {
-        category = 'Bình thường';
-        description = 'BMI trong khoảng lý tưởng';
-        quote = 'Chúc mừng! Bạn đang duy trì cân nặng lý tưởng. Hãy tiếp tục lối sống lành mạnh để duy trì chỉ số này.';
+        category = t('goal_weight_screen.bmi.quote.normal.category');
+        description = t('goal_weight_screen.bmi.quote.normal.description');
+        quote = t('goal_weight_screen.bmi.quote.normal.quote');
         colorClass = 'text-green-600';
         borderColor = 'border-green-400';
     } else if (bmi < 30) {
-        category = 'Thừa cân';
-        description = 'BMI trên mức bình thường';
-        quote = 'Thừa cân có thể tăng nguy cơ mắc các bệnh mãn tính. Việc giảm 5-10% cân nặng sẽ mang lại lợi ích sức khỏe đáng kể.';
+        category = t('goal_weight_screen.bmi.quote.overweight.category');
+        description = t('goal_weight_screen.bmi.quote.overweight.description');
+        quote = t('goal_weight_screen.bmi.quote.overweight.quote');
         colorClass = 'text-orange-600';
         borderColor = 'border-orange-400';
     } else {
-        category = 'Béo phì';
-        description = 'BMI ở mức cao';
-        quote = 'Béo phì là yếu tố nguy cơ chính của nhiều bệnh lý. Hãy tham khảo ý kiến bác sĩ để có kế hoạch giảm cân an toàn và hiệu quả.';
+        category = t('goal_weight_screen.bmi.quote.obesity.category');
+        description = t('goal_weight_screen.bmi.quote.obesity.description');
+        quote = t('goal_weight_screen.bmi.quote.obesity.quote');
         colorClass = 'text-red-600';
         borderColor = 'border-red-400';
     }
@@ -1745,10 +1893,10 @@ const validateTargetWeight = () => {
     if (weightDiffElement && weightChangeText && Math.abs(difference) > 0.1) {
         weightDiffElement.classList.remove('hidden');
         if (difference > 0) {
-            weightChangeText.textContent = `Bạn muốn tăng ${Math.abs(difference).toFixed(1)} kg`;
+            weightChangeText.textContent = t('paywall_screen.goal_weight.wanna_gain') + ` ${Math.abs(difference).toFixed(1)} kg`;
             weightChangeText.className = 'text-green-600 font-medium';
         } else {
-            weightChangeText.textContent = `Bạn muốn giảm ${Math.abs(difference).toFixed(1)} kg`;
+            weightChangeText.textContent = t('paywall_screen.goal_weight.wanna_lose') + ` ${Math.abs(difference).toFixed(1)} kg`;
             weightChangeText.className = 'text-blue-600 font-medium';
         }
     }
@@ -1756,7 +1904,7 @@ const validateTargetWeight = () => {
     nextQuestion();
 }
 
-const validateEmail = () => {
+const validateEmail = async () => {
     const email = document.getElementById('userEmail').value;
     const emailError = document.getElementById('emailError');
 
@@ -1768,7 +1916,53 @@ const validateEmail = () => {
     }
 
     emailError.classList.add('hidden');
-    nextQuestion();
+
+    const priceId = localStorage.getItem('priceId');
+    if (priceId) {
+
+        eventTracking('email_next_click',{})
+
+        try {
+            isLoading.value = true
+
+            const result = await createPaymentLink(email, priceId)
+
+            if (result.success) {
+
+                localStorage.removeItem('priceId');
+                localStorage.setItem('source', 'survey');
+                localStorage.setItem('payment_redirect_from', window.location.pathname);
+
+                eventTracking('checkout_scr',{})
+
+                window.location.href = result.data.url;
+            } else {
+                Swal.fire({
+                icon: 'error',
+                title: result.error.message,
+                text: 'Please use another email'
+            }).then(() => {
+            //   window.location.reload();
+            });
+            }
+
+
+
+        } catch (error) {
+            console.error(error)
+        } finally {
+            isLoading.value = false
+        }
+
+    } else {
+        Swal.fire({
+            title: 'Error',
+            text: 'Please select a payment plan before entering your email',
+            icon: 'warning',
+            confirmButtonText: 'OK'
+        });
+    }
+
 }
 
 const simulatePaymentFailure = () => {
@@ -1810,10 +2004,25 @@ const simulatePaymentFailure = () => {
 }
 
 const nextQuestion = () => {
+
     const currentEl = document.getElementById(`question${currentQuestion}`);
     if (currentEl) currentEl.classList.add('hidden');
 
     currentQuestion++;
+
+    console.log('scr_'+currentQuestion)
+
+
+    if(currentQuestion <= 27) {
+        eventTracking('scr_'+currentQuestion, {});
+    }else if(currentQuestion === 28) {
+        eventTracking('scr_28', {});
+    }
+
+
+
+
+
 
     // Special handling for loading screen
     if (currentQuestion === 24) {
@@ -1841,6 +2050,12 @@ const nextQuestion = () => {
             }, 600);
         }
     }
+
+
+
+    // eventTracking('survey_next_question', {});
+
+
 }
 
 const showLoadingScreen = () => {
@@ -1852,10 +2067,10 @@ const showLoadingScreen = () => {
         let progress = 0;
         const steps = ['step1', 'step2', 'step3', 'step4'];
         const stepTexts = [
-            'Heka AI phân tích các chỉ số của bạn',
-            'Heka phân tích các thói quen của bạn',
-            'Heka đưa ra lượng Calo cần kiểm soát của bạn',
-            'Heka sẵn sàng cho kế hoạch riêng của bạn'
+            t('loading_screen.step_1'),
+            t('loading_screen.step_2'),
+            t('loading_screen.step_3'),
+            t('loading_screen.step_4')
         ];
 
         const interval = setInterval(() => {
@@ -1922,34 +2137,34 @@ const showLoadingPaywall = () => {
 }
 
 const showPaywallCTA = () => {
-    const loadingCircle = document.getElementById('loadingCirclePaywall');
+    // const loadingCircle = document.getElementById('loadingCirclePaywall');
     const loadingText = document.getElementById('loadingTextPaywall');
 
-    if (loadingCircle) {
-        loadingCircle.style.display = 'none';
-    }
+    // if (loadingCircle) {
+    //     loadingCircle.style.display = 'none';
+    // }
 
     if (loadingText) {
-        loadingText.outerHTML = `
-                    <button class="cta-button w-full py-4 text-white font-semibold rounded-2xl text-lg bg-blue" onclick="nextQuestion()" style="background-color: #007bff!important;">
-                        Chọn gói Premium của bạn
-                    </button>
-                `;
+        // loadingText.outerHTML = `
+        //             <button class="cta-button w-full py-4 text-white font-semibold rounded-2xl text-lg bg-blue" onclick="nextQuestion()" style="background-color: #007bff!important;">
+        //                 {{ $t('loading_summary_screen.recommendation.select_plan') }}
+        //             </button>
+                // `;
     }
 }
 
 const updateSummaryData = () => {
     // Update goal
     const goalMap = {
-        'lose_weight': 'Giảm cân',
-        'maintain_weight': 'Giữ cân',
-        'gain_weight': 'Tăng cân',
-        'healthy_eating': 'Ăn uống lành mạnh'
+        'lose_weight': t('summary_screen.lose_weight'),
+        'maintain_weight': t('summary_screen.maintain_weight'),
+        'gain_weight': t('summary_screen.gain_weight'),
+        'healthy_eating': t('summary_screen.healthy_eating')
     };
 
     const goalSummary = document.getElementById('userGoalSummary');
     if (goalSummary && selectedGoal) {
-        goalSummary.textContent = goalMap[selectedGoal] || 'Giảm cân';
+        goalSummary.textContent = goalMap[selectedGoal] || t('summary_screen.lose_weight');
     }
 
     // Update target weight
@@ -1986,18 +2201,30 @@ const goToReview = (index) => {
     });
 }
 
+
+
 const selectPlan = (planType) => {
-    // Simulate Stripe payment redirect
-    const stripeUrl = planType === 'monthly'
-        ? 'https://buy.stripe.com/test_monthly_plan'
-        : 'https://buy.stripe.com/test_yearly_plan';
 
-    // In a real implementation, you would redirect to Stripe
-    // window.location.href = stripeUrl;
+    if(planType === '1month') {
+        eventTracking('iap_monthly_click', {});
+    }
+     if(planType === '12months') {
+        eventTracking('iap_yearly_click', {});
+    }
 
-    // For demo purposes, simulate payment processing
-    showPaymentProcessing(planType);
+    const priceId = PRICE_IDS.value[planType];
+
+    if (!priceId) {
+        console.error('Price ID not found for plan type:', planType)
+        return
+    }
+
+
+    localStorage.setItem('priceId', priceId);
+
+    nextQuestion();
 }
+
 
 const showPaymentProcessing = (planType) => {
     // Show loading state
@@ -2006,8 +2233,8 @@ const showPaymentProcessing = (planType) => {
     paymentModal.innerHTML = `
                 <div class="bg-white rounded-3xl p-8 max-w-md mx-4 text-center">
                     <div class="loading-circle mb-4"></div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Đang xử lý thanh toán...</h3>
-                    <p class="text-gray-600">Vui lòng chờ trong giây lát</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Processing payment...</h3>
+                    <p class="text-gray-600">Please wait for a moment</p>
                 </div>
             `;
 
@@ -2065,10 +2292,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (weightDiffElement && weightChangeText && Math.abs(difference) > 0.1) {
                     weightDiffElement.classList.remove('hidden');
                     if (difference > 0) {
-                        weightChangeText.textContent = `Bạn muốn tăng ${Math.abs(difference).toFixed(1)} kg`;
+                        weightChangeText.textContent = t('paywall_screen.goal_weight.wanna_gain') + ` ${Math.abs(difference).toFixed(1)} kg`;
                         weightChangeText.className = 'text-green-600 font-medium';
                     } else {
-                        weightChangeText.textContent = `Bạn muốn giảm ${Math.abs(difference).toFixed(1)} kg`;
+                        weightChangeText.textContent = t('paywall_screen.goal_weight.wanna_lose') + ` ${Math.abs(difference).toFixed(1)} kg`;
                         weightChangeText.className = 'text-blue-600 font-medium';
                     }
                 } else if (weightDiffElement) {

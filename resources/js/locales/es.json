@@ -1,0 +1,467 @@
+
+{
+    "welcome_screen": {
+      "text": "Hola, somos <b>Heka AI</b>. Estamos aquí para apoyar tu salud.",
+      "next_btn": "Inicia tu viaje"
+    },
+    "branding_screen": {
+      "title": "Verificado por la comunidad",
+      "description": "Usuarios activos",
+      "next_btn": "Siguiente"
+    },
+    "ai_tech_screen": {
+      "title": "Tecnología IA y datos precisos",
+      "description": "Precisión del análisis de alimentos",
+      "box": {
+        "left": {
+          "title": "< 3s",
+          "description": "Análisis súper rápido"
+        },
+        "right": {
+          "title": "1 clic",
+          "description": "Simple"
+        }
+      },
+      "feature": {
+        "feature_1": "Analizar desde foto",
+        "feature_2": "Información nutricional instantánea",
+        "feature_3": "Sugerencia inteligente",
+        "feature_4": "Almacenamiento de datos de por vida en la nube"
+      },
+      "next_btn": "Siguiente"
+    },
+    "body_status_screen": {
+      "title": "¿Cuál es tu estado corporal actual?",
+      "description": "Elige la descripción más adecuada para ti",
+      "status": {
+        "status_1": "Bajo peso",
+        "status_2": "Sobrepeso",
+        "status_3": "Delgado",
+        "status_4": "No estoy seguro"
+      }
+    },
+    "concern_screen": {
+      "title": "¿Tienes alguna preocupación?",
+      "description": "Elige el estado que estás enfrentando",
+      "concern": {
+        "concern_1": "Estrés en el cuerpo",
+        "concern_2": "Estrés y preocupación",
+        "concern_3": "Fatiga y baja energía",
+        "concern_4": "Mal sueño",
+        "concern_5": "Solo curiosidad por probar"
+      }
+    },
+    "motivation_screen": {
+      "title": "¡No te preocupes, sé optimista!",
+      "description_1": "Hay muchas personas que han tomado el control de las calorías para ayudar a que su salud y cuerpo se vuelvan más fuertes.",
+      "description_2": "<b>Heka AI</b> fue creado para hacer este trabajo de manera extremadamente simple, y dar a Heka la siguiente información para acompañarte.",
+      "box": {
+        "left": {
+          "title": "85%",
+          "description": "Usuarios logran sus objetivos"
+        },
+        "right": {
+          "title": "30 días",
+          "description": "Tiempo promedio"
+        }
+      },
+      "next_btn": "Siguiente"
+    },
+    "main_goal_screen": {
+      "title": "¿Cuál es tu objetivo principal?",
+      "description": "Elige el objetivo más importante para ti",
+      "goal": {
+        "goal_1": "Perder peso",
+        "goal_2": "Mantener peso",
+        "goal_3": "Ganar peso",
+        "goal_4": "Alimentación saludable"
+      }
+    },
+     "age_screen": {
+        "title": "¿Cuántos años tienes?",
+        "description": "Esto nos ayuda a calcular con más precisión",
+        "age": {
+            "age_1": "18-25 años",
+            "age_2": "26-35 años",
+            "age_3": "36-45 años",
+            "age_4": "Más de 45 años"
+        }
+    },
+    "gender_screen": {
+        "title": "¿Cuál es tu género?",
+        "description": "Para calcular la ingesta calórica apropiada",
+        "gender": {
+            "male": "Masculino",
+            "female": "Femenino",
+            "other": "Otro"
+        }
+    },
+
+    "height_weight_screen": {
+        "title": "Altura y peso",
+        "description": "Ingresa información para calcular IMC y planificar",
+        "mesure_type": {
+            "metric": "Métrico",
+            "imperial": "Imperial"
+        },
+        "height": {
+            "title": "Altura",
+            "description": "Ingresa tu altura",
+            "unit": "cm"
+        },
+        "weight": {
+            "title": "Peso",
+            "description": "Ingresa tu peso",
+            "unit": "kg"
+        },
+        "error_message": "Los datos ingresados no son válidos",
+        "next_btn": "Siguiente"
+    },
+    "goal_weight_screen": {
+        "bmi": {
+            "title": "Tu IMC",
+            "calculating": "Calculando...",
+            "analying": "Analizando...",
+            "text": "Tu índice de masa corporal",
+            "reference": "Referencia: OMS y Clínica Mayo",
+            "quote": {
+                "underweight": {
+                    "category" : "Bajo peso",
+                    "description" : "Por debajo del IMC normal",
+                    "quote" : "El bajo peso puede afectar el sistema inmunológico y la salud ósea. Enfócate en ganar peso de manera saludable."
+                },
+                "normal": {
+                    "category" : "Normal",
+                    "description" : "Rango ideal de IMC",
+                    "quote" : "¡Felicitaciones! Estás manteniendo un peso corporal ideal. Continúa con un estilo de vida saludable para mantener este índice."
+                },
+                "overweight": {
+                    "category" : "Sobrepeso",
+                    "description" : "Por encima del IMC normal",
+                    "quote" : "El sobrepeso puede aumentar el riesgo de enfermedades crónicas. Reducir 5-10% del peso corporal traerá beneficios significativos para la salud."
+                },
+                "obesity": {
+                    "category" : "Obesidad",
+                    "description" : "IMC alto",
+                    "quote" : "La obesidad es un factor de riesgo importante para muchas enfermedades. Consulta con tu médico para un plan de pérdida de peso seguro y efectivo."
+                }
+            }
+         },
+         "goal_weight": {
+            "title": "¿Cuál es tu peso objetivo?",
+            "description": "¿Cuál es tu peso objetivo?",
+            "not_valid": "Los datos ingresados no son válidos",
+            "wanna_lose": "Quiero perder",
+            "wanna_gain": "Quiero ganar"
+        },
+        "next_btn": "Siguiente"
+    },
+    "activity_screen": {
+        "title": "¿Cuál es tu nivel de actividad diaria?",
+        "description": "Elige el nivel que se adapte a tu estilo de vida",
+        "activity": {
+            "activity_1": "Baja actividad (trabajo de oficina)",
+            "activity_2": "Actividad ligera (1-3 días/semana)",
+            "activity_3": "Actividad moderada (3-5 días/semana)",
+            "activity_4": "Alta actividad (6-7 días/semana)"
+        }
+    },
+    "thankyou_screen": {
+        "title": "¡Gracias!",
+        "description_1": "Gracias por proporcionar la información anterior. Hemos calculado los indicadores correspondientes para tu cuerpo y te ayudaremos a personalizar un plan que se adapte a ti.",
+        "description_2": "<b>Por favor, danos un poco más de información.</b>",
+        "prosessing": "Procesado 100%",
+        "next_btn": "Siguiente"
+    },
+    "diet_type_screen": {
+        "title": "¿Tienes alguna dieta especial?",
+        "description": "Para sugerir alimentos apropiados",
+        "diet_type": {
+            "diet_type_1": "No",
+            "diet_type_2": "Vegano / Puro vegano",
+            "diet_type_3": "Keto",
+            "diet_type_4": "Sin gluten"
+        }
+    },
+    "challenge_screen": {
+        "title": "¿Cuál es el mayor desafío para ti?",
+        "description": "Para ayudar a Heka AI a apoyarte mejor",
+        "challenge": {
+            "challenge_1": "Sin tiempo",
+            "challenge_2": "Sentir hambre",
+            "challenge_3": "Rastrear alimentos",
+            "challenge_4": "Falta de motivación"
+        }
+    },
+    "water_intake_screen": {
+        "title": "¿Cuántos vasos de agua bebes por día?",
+        "description": "Para rastrear la ingesta de agua necesaria",
+        "water_intake": {
+            "water_intake_1": "Menos de 4 vasos",
+            "water_intake_2": "4-6 vasos",
+            "water_intake_3": "6-8 vasos",
+            "water_intake_4": "Más de 8 vasos"
+        }
+    },
+    "sleep_screen": {
+        "title": "¿Cuántas horas duermes por día?",
+        "description": "El sueño afecta la pérdida de peso",
+        "sleep": {
+            "sleep_1": "Menos de 6 horas",
+            "sleep_2": "6-7 horas",
+            "sleep_3": "7-8 horas",
+            "sleep_4": "Más de 8 horas"
+        }
+    },
+    "eating_out_screen": {
+        "title": "¿Cuántas veces comes fuera por semana?",
+        "description": "Para crear un plan nutricional personalizado",
+        "eating_out": {
+            "eating_out_1": "Nunca",
+            "eating_out_2": "1-2 veces",
+            "eating_out_3": "3-4 veces",
+            "eating_out_4": "Más de 4 veces"
+        }
+    },
+    "previous_app_experience_screen": {
+        "title": "¿Has usado alguna vez una aplicación contadora de calorías?",
+        "description": "Para personalizar tu experiencia",
+        "previous_app_experience": {
+            "no": "Nunca",
+            "yes": "He usado"
+        }
+    },
+    "heka_feature_1_screen": {
+        "title": "Heka es extremadamente simple de usar",
+        "description": "Con Heka, solo necesitas <b>tomar una foto o subir una imagen de comida</b>, analizaremos la cantidad exacta de nutrientes en la comida con <b>99%</b> de precisión usando tecnología IA.",
+         "feature_highlight": {
+            "title": "99%",
+            "description": "Precisión del análisis",
+            "feature_1": "Tomar foto",
+            "feature_2": "Análisis IA",
+            "feature_3": "Resultado"
+         },
+         "next_btn": "¡Increíble!"
+    },
+    "heka_feature_2_screen": {
+        "title": "Análisis detallado de Macro y Nutrición",
+        "description": "Con tecnología IA y una gran base de datos, Heka puede analizar <b>Macro y Nutrición</b> de la manera más detallada y precisa.",
+        "macro_list": {
+            "macro_1": "Proteína",
+            "macro_2": "Carbohidratos",
+            "macro_3": "Grasa"
+        },
+        "nutrition_list": {
+            "title": "Vitaminas y Minerales:",
+            "nutrition_1": "Vitamina A, B, C, D",
+            "nutrition_2": "Calcio, Hierro, Zinc",
+            "nutrition_3": "Fibra",
+            "nutrition_4": "Sodio, Potasio"
+        },
+         "next_btn": "Siguiente"
+    },
+    "heka_feature_3_screen": {
+        "title": "Conexión inteligente",
+        "description": "Heka puede ayudarte a rastrear calorías quemadas e ingeridas con más precisión a través de aplicaciones de reloj inteligente y aplicaciones de reloj inteligente.",
+        "connected_device_list": {
+            "connected_device_1": "Apple Watch",
+            "connected_device_2": "Samsung Watch"
+        },
+        "connected_app_list": {
+            "connected_app_1": "Google Fit",
+            "connected_app_2": "Apple Health"
+        },
+        "feature_list": {
+            "feature_1": "Rastreo automático de pasos",
+            "feature_2": "Cálculo preciso de calorías quemadas",
+            "feature_3": "Sincronización de datos en tiempo real"
+        },
+        "next_btn": "Siguiente"
+    },
+
+    "medical_condition_screen": {
+        "title": "¿Tienes alguna condición de salud especial?",
+        "description": "Para proporcionar el mejor consejo y seguridad",
+        "medical_condition": {
+            "medical_condition_1": "No",
+            "medical_condition_2": "Diabetes",
+            "medical_condition_3": "Presión arterial alta",
+            "medical_condition_4": "Otra (será consultada por separado)"
+        }
+    },
+    "loading_analysis_screen": {
+        "title": "Heka AI está analizando...",
+        "analtstic_text": {
+            "analtstic_text_1": "Heka AI analizando tus métricas",
+            "analtstic_text_2": "Heka analizando tus hábitos",
+            "analtstic_text_3": "Heka te dará la cantidad de calorías que necesitas controlar",
+            "analtstic_text_4": "Heka está listo para tu plan personalizado",
+            "analtstic_text_5": "Heka está analizando tus datos"
+        }
+    },
+    "timeline_screen": {
+        "title": "¿Cuánto tiempo quieres completar este plan?",
+        "description": "Elige el tiempo que se adapte a tu objetivo",
+        "timeline": {
+            "timeline_1": "1-2 meses (Rápido)",
+            "timeline_2": "3-6 meses (Equilibrado)",
+            "timeline_3": "6-12 meses (Sostenible)",
+            "timeline_4": "Más de 1 año (Estilo de vida)"
+        }
+    },
+    "commitment_screen": {
+        "title": "¿Estás listo para comprometerte?",
+        "description": "El compromiso es la clave del éxito",
+        "commitment": {
+            "commitment_1": "Sí, me comprometeré 100%",
+            "commitment_2": "Sí, lo intentaré",
+            "commitment_3": "Lo intentaré",
+            "commitment_4": "No estoy seguro, pero quiero intentar"
+        }
+    },
+    "email_input_screen": {
+        "title": "Ingresa tu correo electrónico para recibir tu plan personalizado",
+        "description": "Tu plan ha sido personalizado para ti",
+        "email": {
+            "email_1": "Correo electrónico",
+            "email_2": "Correo electrónico inválido"
+        },
+        "email_invalid": "Por favor ingresa un correo electrónico válido",
+        "notice_text": "<b>Nota:</b> Por favor ingresa tu correo electrónico correcto para sincronizar beneficios con Heka AI en móvil. <br> Respetamos tu privacidad y nos comprometemos a proteger tus datos personales. Tus datos serán procesados según nuestra Política de Privacidad.",
+        "next_btn": "Recibir mi plan"
+    },
+    "loading_summary_screen": {
+        "title": "Resumen de tu viaje",
+        "summary": {
+            "summary_1": {
+                "title": "Objetivo principal:",
+                "description": "Ganar peso"
+            },
+            "summary_2": {
+                "title": "Peso objetivo:",
+                "description": "60 kg"
+            },
+            "summary_3": {
+                "title": "Tiempo para completar:",
+                "description": "3-6 meses"
+            }
+        },
+        "recommendation": {
+            "title": "Recomendación de Heka AI",
+            "description": "Para lograr tu objetivo de la manera más simple y efectiva, te recomendamos usar el <b>paquete Premium</b>.",
+            "statistical": {
+                "left": {
+                    "title": "1M+",
+                    "description": "Usuarios"
+                },
+                "right": {
+                    "title": "85%",
+                    "description": "Éxito"
+                }
+            },
+            "select_plan": "Selecciona tu paquete premium",
+            "preparing" : "Preparando tu servicio personalizado..."
+
+        },
+        "next_btn": "Siguiente"
+    },
+    "paywall_screen": {
+        "title": "Selecciona el paquete Premium que se adapte a ti",
+        "description": "Desbloquea todas las funciones IA de Heka",
+        "plan": {
+            "monthly": {
+                "title": "Premium Mensual",
+                "description": "Pago mensual",
+                "price": "$6.99",
+                "duration": "/mes",
+                "select_btn": "Seleccionar paquete mensual"
+            },
+            "yearly": {
+                "title": "Premium Anual",
+                "description": "Pago anual",
+                "best_seller_badge": "Más Vendido",
+                "savings_badge": "Ahorra 52%",
+                "price_through": "$83.88",
+                "price": "$39.99",
+                "price_per_month": "$3.33/mes",
+                "select_btn": "Seleccionar paquete anual",
+                "enhance_saving": {
+                    "title": "Ahorra $44/año",
+                    "description": "Comparado con pago mensual"
+                },
+                "CTA_btn" : {
+                    "title": "Seleccionar paquete anual - Mejor oferta",
+                    "click_btn": "Haz clic para seleccionar el paquete más popular"
+                }
+
+            }
+        },
+        "preview_benefit": {
+            "title": "Beneficios del paquete Premium",
+            "benefit_list": {
+                "benefit_1": "Escaneo IA ilimitado de alimentos",
+                "benefit_2": "Planificación de objetivos personalizada",
+                "benefit_3": "Análisis profundo de Macro y Nutrición",
+                "benefit_4": "Almacenamiento de datos ilimitado",
+                "benefit_5": "Rastreo y análisis de datos impulsado por IA",
+                "benefit_6": "Cancelar en cualquier momento"
+            }
+        },
+        "user_review": {
+            "title": "Reseñas de usuarios",
+            "review_list": {
+                "review_1": {
+                    "name": "John Doe",
+                    "review": "Heka AI ha cambiado la forma en que rastreo la nutrición. ¡Solo toma una foto y obtén resultados precisos!"
+                },
+                "review_2": {
+                    "name": "Jane Smith",
+                    "review": "¡Perdí 15kg en 4 meses gracias a Heka AI. La aplicación más inteligente y fácil!"
+                },
+                "review_3": {
+                    "name": "David Johnson",
+                    "review": "El análisis profundo de macro me ayuda a entender mejor la nutrición. ¡Vale la pena el dinero!"
+                },
+                "review_4": {
+                    "name": "James Wilson",
+                    "review": "La IA de Heka es precisa al 99%. ¡Ya no tengo que adivinar sobre las calorías!"
+                },
+                "review_5": {
+                    "name": "Anna Martinez",
+                    "review": "Interfaz hermosa, funciones poderosas. ¡Heka AI es el asistente nutricional perfecto para mí!"
+                }
+            }
+        },
+        "trust_indicator": {
+            "list": {
+                "trust_indicator_1": "100% seguro",
+                "trust_indicator_2": "Reembolso de 30 días",
+                "trust_indicator_3": "Calificación 4.8/5"
+            }
+        }
+    },
+    "success_screen": {
+        "title": "Pago exitoso",
+        "description": "¡Felicitaciones! Te has registrado exitosamente para el paquete Premium de Heka AI. Tu plan personalizado ha sido enviado a tu correo electrónico.",
+        "success_detail": {
+            "title": "Lo que obtienes:",
+            "detail_1": "Plan nutricional personalizado",
+            "detail_2": "Acceso completo a funciones IA",
+            "detail_3": "Soporte 24/7",
+            "detail_4": "Prueba gratuita de 7 días"
+        },
+        "download_btn": "Descargar aplicación Heka AI"
+    },
+    "loading_screen": {
+        "step_1": "Heka AI analizando tus métricas",
+        "step_2": "Heka analizando tus hábitos",
+        "step_3": "Heka te da la cantidad de calorías que necesitas controlar",
+        "step_4": "Heka está listo para tu plan personalizado"
+    },
+    "summary_screen": {
+        "lose_weight": "Perder peso",
+        "maintain_weight": "Mantener peso",
+        "gain_weight": "Ganar peso",
+        "healthy_eating": "Alimentación saludable"
+    }
+}
