@@ -856,34 +856,34 @@
                         class="w-20 h-20 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-3xl mx-auto mb-6 flex items-center justify-center">
                         <span class="text-3xl">📸</span>
                     </div>
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">What is the most important feature for you?</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Heka is extremely simple to use</h2>
 
                     <div class="text-left space-y-4 mb-8">
-                        <p class="text-gray-700 leading-relaxed">We need to know your most important feature to help you better</p>
+                        <p class="text-gray-700 leading-relaxed">With Heka, you only need to <b>take a photo or upload a food image</b>, we will analyze the exact amount of nutrients in the food to <b>99%</b> accuracy using AI technology.</p>
 
 
                         <!-- Feature Highlight -->
                         <div class="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-2xl p-6">
                             <div class="text-center">
-                                <div class="text-4xl font-bold text-purple-600 mb-2">AI-powered meal suggestions</div>
-                                <div class="text-sm text-gray-600">Get personalized meal suggestions based on your preferences and health goals</div>
+                                <div class="text-4xl font-bold text-purple-600 mb-2">99%</div>
+                                <div class="text-sm text-gray-600">Analysis accuracy</div>
                             </div>
                         </div>
 
                         <div class="flex items-center justify-center space-x-4 mt-6">
                             <div class="text-center">
                                 <div class="text-2xl mb-1">📱</div>
-                                <div class="text-xs text-gray-600">AI-powered meal suggestions</div>
+                                <div class="text-xs text-gray-600">Take a photo</div>
                             </div>
                             <div class="text-2xl text-gray-400">→</div>
                             <div class="text-center">
                                 <div class="text-2xl mb-1">🤖</div>
-                                <div class="text-xs text-gray-600">AI-powered meal suggestions</div>
+                                <div class="text-xs text-gray-600">AI analysis</div>
                             </div>
                             <div class="text-2xl text-gray-400">→</div>
                             <div class="text-center">
                                 <div class="text-2xl mb-1">📊</div>
-                                <div class="text-xs text-gray-600">AI-powered meal suggestions</div>
+                                <div class="text-xs text-gray-600">Result</div>
                             </div>
                         </div>
                     </div>
@@ -904,10 +904,10 @@
                         class="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-600 rounded-3xl mx-auto mb-6 flex items-center justify-center">
                         <span class="text-3xl">🧬</span>
                     </div>
-                        <h2 class="text-2xl font-bold text-gray-800 mb-6">What is the most important feature for you?</h2>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Detailed Macro & Nutrition analysis</h2>
 
                     <div class="text-left space-y-4 mb-8">
-                        <p class="text-gray-700 leading-relaxed">We need to know your most important feature to help you better</p>
+                        <p class="text-gray-700 leading-relaxed">With AI technology and a large database, Heka can analyze <b>Macro and Nutrition</b> in the most detailed and accurate way</p>
 
 
                         <!-- Macro Display -->
@@ -928,12 +928,12 @@
 
                         <!-- Nutrition List -->
                         <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-4">
-                            <div class="text-sm font-semibold text-green-700 mb-2">Nutrition</div>
+                            <div class="text-sm font-semibold text-green-700 mb-2">Vitamins & Minerals:</div>
                             <div class="grid grid-cols-2 gap-2 text-xs text-gray-600">
-                                <div>• Calories</div>
-                                <div>• Protein</div>
-                                <div>• Carbohydrates</div>
-                                <div>• Fats</div>
+                                <div>• Vitamin A, B, C, D</div>
+                                <div>• Calcium, Iron, Zinc</div>
+                                <div>• Fiber</div>
+                                <div>• Natri, Kali</div>
                             </div>
                         </div>
                     </div>
@@ -954,10 +954,10 @@
                         class="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-3xl mx-auto mb-6 flex items-center justify-center">
                         <span class="text-3xl">⌚</span>
                     </div>
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">What is the most important feature for you?</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Smart connection</h2>
 
                     <div class="text-left space-y-4 mb-8">
-                        <p class="text-gray-700 leading-relaxed">We need to know your most important feature to help you better</p>
+                        <p class="text-gray-700 leading-relaxed">Heka can help you track calories burned and intake more accurately through smart watch apps and smart watch apps.</p>
 
                         <!-- Connected Apps -->
                         <div class="grid grid-cols-2 gap-3">
@@ -1072,7 +1072,7 @@
                             <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center mr-3">
                                 <span class="text-white text-sm">4</span>
                             </div>
-                            <span class="text-gray-500">Heka will give you the amount of calories you need to control</span>
+                            <span class="text-gray-500">Heka is ready for your personalized plan</span>
                         </div>
                     </div>
                 </div>
