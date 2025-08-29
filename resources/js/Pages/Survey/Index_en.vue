@@ -68,7 +68,7 @@
                     <span class="text-lg">🇺🇸</span>
                     <span class="text-gray-800 font-medium">English</span>
                 </button>
-                <button class="w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center space-x-3"
+                <!-- <button class="w-full px-4 py-2 text-left hover:bg-gray-50 flex items-center space-x-3"
                     @click="changeLanguage('vi', '🇻🇳', 'Tiếng Việt')">
                     <span class="text-lg">🇻🇳</span>
                     <span class="text-gray-800 font-medium">Tiếng Việt</span>
@@ -77,7 +77,7 @@
                     @click="changeLanguage('es', '🇪🇸', 'Español')">
                     <span class="text-lg">🇪🇸</span>
                     <span class="text-gray-800 font-medium">Español</span>
-                </button>
+                </button> -->
                 </div>
             </div>
 
@@ -101,11 +101,11 @@
                         <img src="https://heka.tranthanhquan.com/images/onboarding/gif/goal_welcome.gif" alt="Welcome"
                             class="w-full h-full object-contain rounded-2xl">
                     </div>
-                            <h1 v-html="$t('welcome_screen.text')" class="text-3xl font-normal text-gray-800 mb-4"></h1>
+                            <h1 class="text-3xl font-normal text-gray-800 mb-4">Hi, we are <b>Heka AI</b>. We are here to support your health.</h1>
                 </div>
                 <button class="cta-button w-full py-4 text-white font-semibold rounded-2xl text-lg"
                     onclick="nextQuestion()">
-                    {{ $t('welcome_screen.next_btn') }}
+                    Start your journey
                 </button>
             </div>
         </div>
@@ -118,7 +118,7 @@
                         class="w-20 h-20 bg-gradient-to-r from-gray-600 to-gray-800 rounded-3xl mx-auto mb-6 flex items-center justify-center">
                         <span class="text-3xl">🏆</span>
                     </div>
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">{{ $t('branding_screen.title') }}</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Verified by the community</h2>
 
                     <!-- Trust Indicators -->
                     <div class="space-y-4 mb-8">
@@ -149,14 +149,14 @@
                         <!-- User Count -->
                         <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-4">
                             <div class="text-3xl font-bold text-gray-800 mb-1">1M+</div>
-                            <div class="text-sm text-gray-600">{{ $t('branding_screen.description') }}</div>
+                            <div class="text-sm text-gray-600">Users are active</div>
                         </div>
                     </div>
                 </div>
 
                 <button class="cta-button w-full py-4 text-white font-semibold rounded-2xl text-lg"
                     onclick="nextQuestion()">
-                    {{ $t('branding_screen.next_btn') }}
+                    Next
                 </button>
             </div>
         </div>
@@ -169,25 +169,25 @@
                         class="w-20 h-20 bg-gradient-to-r from-gray-700 to-black rounded-3xl mx-auto mb-6 flex items-center justify-center">
                         <span class="text-3xl">🤖</span>
                     </div>
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">{{ $t('ai_tech_screen.title') }}</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">AI technology & accurate data</h2>
 
                     <!-- AI Features -->
                     <div class="space-y-4 mb-8">
                         <!-- Accuracy -->
                         <div class="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-4">
                             <div class="text-3xl font-bold text-gray-800 mb-1">99%</div>
-                            <div class="text-sm text-gray-600">{{ $t('ai_tech_screen.description') }}</div>
+                            <div class="text-sm text-gray-600">Food analysis accuracy</div>
                         </div>
 
                         <!-- Speed and Touch - Balanced Layout -->
                         <div class="grid grid-cols-2 gap-3">
                             <div class="highlight-box">
-                                <div class="text-2xl font-bold">🚀 {{ $t('ai_tech_screen.box.left.title') }}</div>
-                                <div class="text-xs mt-1">{{ $t('ai_tech_screen.box.left.description') }}</div>
+                                <div class="text-2xl font-bold">🚀 < 3s</div>
+                                <div class="text-xs mt-1">Super fast analysis</div>
                             </div>
                             <div class="highlight-box-green">
-                                <div class="text-2xl font-bold">👆 {{ $t('ai_tech_screen.box.right.title') }}</div>
-                                <div class="text-xs mt-1">{{ $t('ai_tech_screen.box.right.description') }}</div>
+                                <div class="text-2xl font-bold">👆 1 click</div>
+                                <div class="text-xs mt-1">Simple</div>
                             </div>
                         </div>
 
@@ -197,25 +197,25 @@
                                 <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3">
                                     <span class="text-white text-sm">✓</span>
                                 </div>
-                                <span class="text-sm text-gray-700">{{ $t('ai_tech_screen.feature.feature_1') }}</span>
+                                <span class="text-sm text-gray-700">Analyze from photo</span>
                             </div>
                             <div class="flex items-center">
                                 <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3">
                                     <span class="text-white text-sm">✓</span>
                                 </div>
-                                <span class="text-sm text-gray-700">{{ $t('ai_tech_screen.feature.feature_2') }}</span>
+                                <span class="text-sm text-gray-700">Instant nutrition info</span>
                             </div>
                             <div class="flex items-center">
                                 <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3">
                                     <span class="text-white text-sm">✓</span>
                                 </div>
-                                <span class="text-sm text-gray-700">{{ $t('ai_tech_screen.feature.feature_3') }}</span>
+                                <span class="text-sm text-gray-700">Smart suggestion</span>
                             </div>
                             <div class="flex items-center">
                                 <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3">
                                     <span class="text-white text-sm">✓</span>
                                 </div>
-                                <span class="text-sm text-gray-700">{{ $t('ai_tech_screen.feature.feature_4') }}</span>
+                                <span class="text-sm text-gray-700">Lifetime data storage on cloud</span>
                             </div>
                         </div>
                     </div>
@@ -223,7 +223,7 @@
 
                 <button class="cta-button w-full py-4 text-white font-semibold rounded-2xl text-lg"
                     onclick="nextQuestion()">
-                    {{ $t('ai_tech_screen.next_btn') }}
+                    Next
                 </button>
             </div>
         </div>
@@ -232,8 +232,8 @@
         <div id="question4" class="w-full max-w-lg mx-auto px-4 hidden">
             <div class="card rounded-3xl p-8 shadow-2xl">
                 <div class="mb-8 text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $t('body_status_screen.title') }}</h2>
-                    <p class="text-gray-600">{{ $t('body_status_screen.description') }}</p>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">What is your body status?</h2>
+                    <p class="text-gray-600">We need to know your body status to help you better</p>
                 </div>
 
                 <div class="w-full space-y-3">
@@ -241,25 +241,25 @@
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🦴</span>
-                        <span>{{ $t('body_status_screen.status.status_1') }}</span>
+                        <span>Underweight</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🫃</span>
-                        <span>{{ $t('body_status_screen.status.status_2') }}</span>
+                        <span>Overweight</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🌿</span>
-                        <span>{{ $t('body_status_screen.status.status_3') }}</span>
+                        <span>Thin</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🤔</span>
-                        <span>{{ $t('body_status_screen.status.status_4') }}</span>
+                        <span>I'm not sure</span>
                     </button>
                 </div>
             </div>
@@ -269,8 +269,8 @@
         <div id="question5" class="w-full max-w-lg mx-auto px-4 hidden">
             <div class="card rounded-3xl p-8 shadow-2xl">
                 <div class="mb-8 text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $t('concern_screen.title') }}</h2>
-                    <p class="text-gray-600">{{ $t('concern_screen.description') }}</p>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">Do you have any concerns?</h2>
+                    <p class="text-gray-600">Choose the status you are facing</p>
                 </div>
 
                 <div class="w-full space-y-3">
@@ -278,31 +278,31 @@
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">💪</span>
-                        <span>{{ $t('concern_screen.concern.concern_1') }}</span>
+                        <span>Stress in the body</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">😰</span>
-                        <span>{{ $t('concern_screen.concern.concern_2') }}</span>
+                        <span>Stress and worry</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">😴</span>
-                        <span>{{ $t('concern_screen.concern.concern_3') }}</span>
+                        <span>Fatigue and low energy</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🌙</span>
-                        <span>{{ $t('concern_screen.concern.concern_4') }}</span>
+                        <span>Poor sleep</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🤗</span>
-                        <span>{{ $t('concern_screen.concern.concern_5') }}</span>
+                        <span>Just curious to try</span>
                     </button>
                 </div>
             </div>
@@ -316,28 +316,26 @@
                         class="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-600 rounded-3xl mx-auto mb-6 flex items-center justify-center">
                         <span class="text-3xl">💚</span>
                     </div>
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">{{ $t('motivation_screen.title') }}</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Don't worry, be optimistic!</h2>
 
                     <div class="text-left space-y-4 mb-8">
-                        <p v-html=" $t('motivation_screen.description_1') " class="text-gray-700 leading-relaxed">
+                        <p class="text-gray-700 leading-relaxed">
+                            There are many people who have taken control of calories to help their health and body become stronger and stronger.
                         </p>
-                        <p v-html=" $t('motivation_screen.description_2') " class="text-gray-700 leading-relaxed">
+                        <p class="text-gray-700 leading-relaxed">
+                            <b>Heka AI</b> was created to do this work extremely simply, and give Heka the next information to accompany you.
                         </p>
 
                         <!-- Success Stats -->
                         <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-4 mt-6">
                             <div class="grid grid-cols-2 gap-4 text-center">
                                 <div>
-                                        <div class="text-2xl font-bold text-green-600">{{ $t('motivation_screen.box.left.title')
-                                            }}</div>
-                                    <div class="text-xs text-gray-600">{{ $t('motivation_screen.box.left.description')
-                                        }}</div>
+                                        <div class="text-2xl font-bold text-green-600">85%</div>
+                                    <div class="text-xs text-gray-600">Accuracy of calorie analysis</div>
                                 </div>
                                 <div>
-                                    <div class="text-2xl font-bold text-green-600">{{ $t('motivation_screen.box.right.title')
-                                        }}</div>
-                                    <div class="text-xs text-gray-600">{{ $t('motivation_screen.box.right.description')
-                                        }}</div>
+                                    <div class="text-2xl font-bold text-green-600">100%</div>
+                                    <div class="text-xs text-gray-600">Accuracy of nutrition analysis</div>
                                 </div>
                             </div>
                         </div>
@@ -346,7 +344,7 @@
 
                 <button class="cta-button w-full py-4 text-white font-semibold rounded-2xl text-lg"
                     onclick="nextQuestion()">
-                    {{ $t('motivation_screen.next_btn') }}
+                    Next
                 </button>
             </div>
         </div>
@@ -355,8 +353,8 @@
         <div id="question7" class="w-full max-w-lg mx-auto px-4 hidden">
             <div class="card rounded-3xl p-8 shadow-2xl">
                 <div class="mb-8 text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $t('main_goal_screen.title') }}</h2>
-                    <p class="text-gray-600">{{ $t('main_goal_screen.description') }}</p>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">What is your main goal?</h2>
+                    <p class="text-gray-600">We need to know your main goal to help you better</p>
                 </div>
 
                 <div class="w-full space-y-3">
@@ -364,25 +362,25 @@
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="selectGoal('lose_weight')">
                         <span class="text-2xl mr-4">📉</span>
-                        <span>{{ $t('main_goal_screen.goal.goal_1') }}</span>
+                        <span>Lose weight</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="selectGoal('maintain_weight')">
                         <span class="text-2xl mr-4">⚖️</span>
-                        <span>{{ $t('main_goal_screen.goal.goal_2') }}</span>
+                        <span>Maintain weight</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="selectGoal('gain_weight')">
                         <span class="text-2xl mr-4">📈</span>
-                        <span>{{ $t('main_goal_screen.goal.goal_3') }}</span>
+                        <span>Gain weight</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="selectGoal('healthy_eating')">
                         <span class="text-2xl mr-4">🥗</span>
-                        <span>{{ $t('main_goal_screen.goal.goal_4') }}</span>
+                        <span>Healthy eating</span>
                     </button>
                 </div>
             </div>
@@ -392,19 +390,19 @@
         <div id="question8" class="w-full max-w-lg mx-auto px-4 hidden">
             <div class="card rounded-3xl p-8 shadow-2xl">
                 <div class="mb-8 text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $t('age_screen.title') }}</h2>
-                    <p class="text-gray-600">{{ $t('age_screen.description') }}</p>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">How old are you?</h2>
+                    <p class="text-gray-600">We need to know your age to help you better</p>
                 </div>
 
                 <div class="w-full space-y-3">
                     <button class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium"
-                        onclick="nextQuestion()">{{ $t('age_screen.age.age_1') }}</button>
+                        onclick="nextQuestion()">18-25 years old</button>
                     <button class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium"
-                        onclick="nextQuestion()">{{ $t('age_screen.age.age_2') }}</button>
+                        onclick="nextQuestion()">26-35 years old</button>
                     <button class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium"
-                        onclick="nextQuestion()">{{ $t('age_screen.age.age_3') }}</button>
+                        onclick="nextQuestion()">36-45 years old</button>
                     <button class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium"
-                        onclick="nextQuestion()">{{ $t('age_screen.age.age_4') }}</button>
+                        onclick="nextQuestion()">Over 45 years old</button>
                 </div>
             </div>
         </div>
@@ -413,8 +411,8 @@
         <div id="question9" class="w-full max-w-lg mx-auto px-4 hidden">
             <div class="card rounded-3xl p-8 shadow-2xl">
                 <div class="mb-8 text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $t('gender_screen.title') }}</h2>
-                    <p class="text-gray-600">{{ $t('gender_screen.description') }}</p>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">What is your gender?</h2>
+                    <p class="text-gray-600">We need to know your gender to help you better</p>
                 </div>
 
                 <div class="w-full space-y-3">
@@ -422,19 +420,19 @@
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">👨</span>
-                        <span>{{ $t('gender_screen.gender.male') }}</span>
+                        <span>Male</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">👩</span>
-                        <span>{{ $t('gender_screen.gender.female') }}</span>
+                        <span>Female</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🏳️‍⚧️</span>
-                        <span>{{ $t('gender_screen.gender.other') }}</span>
+                        <span>Other</span>
                     </button>
                 </div>
             </div>
@@ -444,8 +442,8 @@
         <div id="question10" class="w-full max-w-lg mx-auto px-4 hidden">
             <div class="card rounded-3xl p-8 shadow-2xl">
                 <div class="mb-8 text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $t('height_weight_screen.title') }}</h2>
-                    <p class="text-gray-600">{{ $t('height_weight_screen.description') }}</p>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">What is your height and weight?</h2>
+                    <p class="text-gray-600">We need to know your height and weight to help you better</p>
                 </div>
 
                 <div class="w-full">
@@ -455,12 +453,12 @@
                             <button id="metricBtn"
                                 class="px-4 py-2 rounded-xl text-sm font-medium transition-all bg-white text-gray-800 shadow-sm"
                                 onclick="toggleUnit('metric')">
-                                {{ $t('height_weight_screen.mesure_type.metric') }}
+                                Metric
                             </button>
                             <button id="imperialBtn"
                                 class="px-4 py-2 rounded-xl text-sm font-medium transition-all text-gray-600"
                                 onclick="toggleUnit('imperial')">
-                                {{ $t('height_weight_screen.mesure_type.imperial') }}
+                                Imperial
                             </button>
                         </div>
                     </div>
@@ -468,29 +466,29 @@
                     <!-- Metric Inputs -->
                     <div id="metricInputs" class="space-y-4">
                         <div class="relative">
-                            <label class="block text-sm font-medium text-gray-700 mb-2 text-left">{{ $t('height_weight_screen.height.title') }}</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2 text-left">Height</label>
                             <input type="number" id="heightCm"
                                 class="w-full p-4 rounded-2xl border-2 border-gray-200 text-center text-xl font-semibold focus:border-gray-600 focus:outline-none"
                                 placeholder="170" min="100" max="250">
                             <span
                                 class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium mt-3">cm</span>
-                            <div id="heightError" class="error-message hidden">{{ $t('height_weight_screen.error_message') }}</div>
+                            <div id="heightError" class="error-message hidden">Please enter a valid height</div>
                         </div>
                         <div class="relative">
-                            <label class="block text-sm font-medium text-gray-700 mb-2 text-left">{{ $t('height_weight_screen.weight.title') }}</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2 text-left">Weight</label>
                             <input type="number" id="currentWeightKg"
                                 class="w-full p-4 rounded-2xl border-2 border-gray-200 text-center text-xl font-semibold focus:border-gray-600 focus:outline-none"
                                 placeholder="65" min="30" max="300" step="0.1">
                             <span
                                 class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium mt-3">kg</span>
-                            <div id="weightError" class="error-message hidden">{{ $t('height_weight_screen.error_message') }}</div>
+                            <div id="weightError" class="error-message hidden">Please enter a valid weight</div>
                         </div>
                     </div>
 
                     <!-- Imperial Inputs -->
                     <div id="imperialInputs" class="space-y-4 hidden">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-2 text-left">{{ $t('height_weight_screen.height.title') }}</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2 text-left">Height</label>
                             <div class="flex space-x-3">
                                 <div class="relative flex-1">
                                     <input type="number" id="heightFt"
@@ -510,19 +508,19 @@
                             <div id="heightImperialError" class="error-message hidden">{{ $t('height_weight_screen.error_message') }}</div>
                         </div>
                         <div class="relative">
-                            <label class="block text-sm font-medium text-gray-700 mb-2 text-left">{{ $t('height_weight_screen.weight.title') }}</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-2 text-left">Weight</label>
                             <input type="number" id="currentWeightLbs"
                                 class="w-full p-4 rounded-2xl border-2 border-gray-200 text-center text-xl font-semibold focus:border-gray-600 focus:outline-none"
                                 placeholder="143" min="66" max="660" step="0.1">
                             <span
                                 class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium mt-3">lbs</span>
-                            <div id="weightImperialError" class="error-message hidden">{{ $t('height_weight_screen.error_message') }}</div>
+                            <div id="weightImperialError" class="error-message hidden">Please enter a valid weight</div>
                         </div>
                     </div>
 
                     <button class="cta-button w-full py-4 text-white font-semibold rounded-2xl text-lg mt-6"
                         onclick="validateHeightWeight()">
-                        {{ $t('height_weight_screen.next_btn') }}
+                        Next
                     </button>
                 </div>
             </div>
@@ -532,19 +530,19 @@
         <div id="question11" class="w-full max-w-lg mx-auto px-4 hidden">
             <div class="card rounded-3xl p-8 shadow-2xl">
                 <div class="mb-8 text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">{{ $t('goal_weight_screen.bmi.title') }}</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">What is your BMI?</h2>
 
                     <!-- BMI Display -->
                     <div id="bmiQuote" class="bg-white rounded-xl p-4 border-l-4 border-gray-400 mb-6">
                         <div class="text-3xl font-bold text-gray-800 mb-2" id="bmiValue">0</div>
-                        <div class="text-base font-semibold text-gray-700 mb-1" id="bmiCategory">{{ $t('goal_weight_screen.bmi.calculating') }}</div>
-                        <div class="text-xs text-gray-600 mb-3" id="bmiDescription">{{ $t('goal_weight_screen.bmi.text') }}</div>
-                        <div class="text-sm text-gray-700 italic" id="bmiQuoteText">{{ $t('goal_weight_screen.bmi.analying') }}</div>
-                        <div class="text-xs text-gray-500 mt-2">{{ $t('goal_weight_screen.bmi.reference') }}</div>
+                        <div class="text-base font-semibold text-gray-700 mb-1" id="bmiCategory">Calculating...</div>
+                        <div class="text-xs text-gray-600 mb-3" id="bmiDescription">BMI is a measure of body fat based on height and weight.</div>
+                        <div class="text-sm text-gray-700 italic" id="bmiQuoteText">Analyzing...</div>
+                        <div class="text-xs text-gray-500 mt-2">Reference: 18.5-24.9 is normal weight</div>
                     </div>
 
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">{{ $t('goal_weight_screen.goal_weight.title') }}</h3>
-                    <p class="text-gray-600">{{ $t('goal_weight_screen.goal_weight.description') }}</p>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">What is your goal weight?</h3>
+                    <p class="text-gray-600">We need to know your goal weight to help you better</p>
                 </div>
 
                 <div class="w-full space-y-4">
@@ -554,7 +552,7 @@
                             placeholder="60" min="30" max="300" step="0.1">
                         <span id="targetWeightUnit"
                             class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">kg</span>
-                        <div id="targetWeightError" class="error-message hidden">{{ $t('goal_weight_screen.goal_weight.not_valid') }}</div>
+                        <div id="targetWeightError" class="error-message hidden">Please enter a valid target weight</div>
                     </div>
 
                     <div id="weightDifference" class="text-sm text-gray-600 hidden">
@@ -563,7 +561,7 @@
 
                     <button class="cta-button w-full py-4 text-white font-semibold rounded-2xl text-lg"
                         onclick="validateTargetWeight()">
-                        {{ $t('goal_weight_screen.next_btn') }}
+                        Next
                     </button>
                 </div>
             </div>
@@ -573,8 +571,8 @@
         <div id="question12" class="w-full max-w-lg mx-auto px-4 hidden">
             <div class="card rounded-3xl p-8 shadow-2xl">
                 <div class="mb-8 text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $t('activity_screen.title') }} </h2>
-                    <p class="text-gray-600">{{ $t('activity_screen.description') }}</p>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">What is your activity level?</h2>
+                    <p class="text-gray-600">We need to know your activity level to help you better</p>
                 </div>
 
                 <div class="w-full space-y-3">
@@ -582,25 +580,25 @@
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🛋️</span>
-                        <span>{{ $t('activity_screen.activity.activity_1') }}</span>
+                        <span>Low activity (office work)</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🚶‍♀️</span>
-                        <span>{{ $t('activity_screen.activity.activity_2') }}</span>
+                        <span>Light activity (1-3 days/week)</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🏃‍♂️</span>
-                        <span>{{ $t('activity_screen.activity.activity_3') }}</span>
+                        <span>Moderate activity (3-5 days/week)</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">💪</span>
-                        <span>{{ $t('activity_screen.activity.activity_4') }}</span>
+                        <span>High activity (6-7 days/week)</span>
                     </button>
                 </div>
             </div>
@@ -614,12 +612,11 @@
                         class="w-20 h-20 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-3xl mx-auto mb-6 flex items-center justify-center">
                         <span class="text-3xl">🙏</span>
                     </div>
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">{{ $t('thankyou_screen.title') }}</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Thank you!</h2>
 
                     <div class="text-left space-y-4 mb-8">
-                        <p v-html="$t('thankyou_screen.description_1')" class="text-gray-700 leading-relaxed"></p>
-                        <p v-html="$t('thankyou_screen.description_2')" class="text-gray-700 leading-relaxed font-semibold">
-                        </p>
+                        <p class="text-gray-700 leading-relaxed">Thank you for providing the previous information. We have calculated the corresponding indicators for your body and will help you customize a plan that suits you.</p>
+                        <p class="text-gray-700 leading-relaxed font-semibold">Please give us some more information.</p>
 
                         <!-- Progress Indicator -->
                         <!-- <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 mt-6">
@@ -636,7 +633,7 @@
 
                 <button class="cta-button w-full py-4 text-white font-semibold rounded-2xl text-lg"
                     onclick="nextQuestion()">
-                    {{ $t('thankyou_screen.next_btn') }}
+                    Next
                 </button>
             </div>
         </div>
@@ -645,8 +642,8 @@
         <div id="question14" class="w-full max-w-lg mx-auto px-4 hidden">
             <div class="card rounded-3xl p-8 shadow-2xl">
                 <div class="mb-8 text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $t('diet_type_screen.title') }}</h2>
-                    <p class="text-gray-600">{{ $t('diet_type_screen.description') }}</p>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">What is your diet type?</h2>
+                    <p class="text-gray-600">We need to know your diet type to help you better</p>
                 </div>
 
                 <div class="w-full space-y-3">
@@ -654,25 +651,25 @@
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🍽️</span>
-                        <span>{{ $t('diet_type_screen.diet_type.diet_type_1') }}</span>
+                        <span>No</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🥗</span>
-                        <span>{{ $t('diet_type_screen.diet_type.diet_type_2') }}</span>
+                        <span>Vegan / Pure vegan</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🥩</span>
-                        <span>{{ $t('diet_type_screen.diet_type.diet_type_3') }}</span>
+                        <span>Keto</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🌾</span>
-                        <span>{{ $t('diet_type_screen.diet_type.diet_type_4') }}</span>
+                        <span>No gluten</span>
                     </button>
                 </div>
             </div>
@@ -682,8 +679,8 @@
         <div id="question15" class="w-full max-w-lg mx-auto px-4 hidden">
             <div class="card rounded-3xl p-8 shadow-2xl">
                 <div class="mb-8 text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $t('challenge_screen.title') }}</h2>
-                    <p class="text-gray-600">{{ $t('challenge_screen.description') }}</p>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">What is the biggest challenge for you?</h2>
+                    <p class="text-gray-600">We need to know your biggest challenge to help you better</p>
                 </div>
 
                 <div class="w-full space-y-3">
@@ -691,25 +688,25 @@
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">⏰</span>
-                        <span>{{ $t('challenge_screen.challenge.challenge_1') }}</span>
+                        <span>No time</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🍰</span>
-                        <span>{{ $t('challenge_screen.challenge.challenge_2') }}</span>
+                        <span>Feeling hungry</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">📊</span>
-                        <span>{{ $t('challenge_screen.challenge.challenge_3') }}</span>
+                        <span>Tracking food</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">💪</span>
-                        <span>{{ $t('challenge_screen.challenge.challenge_4') }}</span>
+                        <span>Lack of motivation</span>
                     </button>
                 </div>
             </div>
@@ -719,8 +716,8 @@
         <div id="question16" class="w-full max-w-lg mx-auto px-4 hidden">
             <div class="card rounded-3xl p-8 shadow-2xl">
                 <div class="mb-8 text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $t('water_intake_screen.title') }}</h2>
-                    <p class="text-gray-600">{{ $t('water_intake_screen.description') }}</p>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">How much water do you drink per day?</h2>
+                    <p class="text-gray-600">We need to know your water intake to help you better</p>
                 </div>
 
                 <div class="w-full space-y-3">
@@ -728,25 +725,25 @@
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">💧</span>
-                        <span>{{ $t('water_intake_screen.water_intake.water_intake_1') }}</span>
+                        <span>Less than 4 glasses</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🥤</span>
-                        <span>{{ $t('water_intake_screen.water_intake.water_intake_2') }}</span>
+                        <span>4-6 glasses</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">💦</span>
-                        <span>{{ $t('water_intake_screen.water_intake.water_intake_3') }}</span>
+                        <span>6-8 glasses</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🌊</span>
-                        <span>{{ $t('water_intake_screen.water_intake.water_intake_4') }}</span>
+                        <span>More than 8 glasses</span>
                     </button>
                 </div>
             </div>
@@ -756,8 +753,8 @@
         <div id="question17" class="w-full max-w-lg mx-auto px-4 hidden">
             <div class="card rounded-3xl p-8 shadow-2xl">
                 <div class="mb-8 text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $t('sleep_screen.title') }}</h2>
-                    <p class="text-gray-600">{{ $t('sleep_screen.description') }}</p>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">How many hours do you sleep per day?</h2>
+                    <p class="text-gray-600">We need to know your sleep to help you better</p>
                 </div>
 
                 <div class="w-full space-y-3">
@@ -765,25 +762,25 @@
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">😴</span>
-                        <span>{{ $t('sleep_screen.sleep.sleep_1') }}</span>
+                        <span>Less than 6 hours</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🛌</span>
-                        <span>{{ $t('sleep_screen.sleep.sleep_2') }}</span>
+                        <span>6-7 hours</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">😊</span>
-                        <span>{{ $t('sleep_screen.sleep.sleep_3') }}</span>
+                        <span>7-8 hours</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">💤</span>
-                        <span>{{ $t('sleep_screen.sleep.sleep_4') }}</span>
+                        <span>More than 8 hours</span>
                     </button>
                 </div>
             </div>
@@ -793,8 +790,8 @@
         <div id="question18" class="w-full max-w-lg mx-auto px-4 hidden">
             <div class="card rounded-3xl p-8 shadow-2xl">
                 <div class="mb-8 text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $t('eating_out_screen.title') }}</h2>
-                    <p class="text-gray-600">{{ $t('eating_out_screen.description') }}</p>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">How often do you eat out?</h2>
+                    <p class="text-gray-600">We need to know your eating out frequency to help you better</p>
                 </div>
 
                 <div class="w-full space-y-3">
@@ -802,25 +799,25 @@
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🏠</span>
-                        <span>{{ $t('eating_out_screen.eating_out.eating_out_1') }}</span>
+                        <span>Never</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🍽️</span>
-                        <span>{{ $t('eating_out_screen.eating_out.eating_out_2') }}</span>
+                            <span>1-2 times/week</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🍔</span>
-                        <span>{{ $t('eating_out_screen.eating_out.eating_out_3') }}</span>
+                        <span>3-4 times/week</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🍕</span>
-                        <span>{{ $t('eating_out_screen.eating_out.eating_out_4') }}</span>
+                        <span>More than 4 times/week</span>
                     </button>
                 </div>
             </div>
@@ -830,8 +827,8 @@
         <div id="question19" class="w-full max-w-lg mx-auto px-4 hidden">
             <div class="card rounded-3xl p-8 shadow-2xl">
                 <div class="mb-8 text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $t('previous_app_experience_screen.title') }}</h2>
-                    <p class="text-gray-600">{{ $t('previous_app_experience_screen.description') }}</p>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">Have you ever used a calorie counter app before?</h2>
+                    <p class="text-gray-600">We need to know your previous app experience to help you better</p>
                 </div>
 
                 <div class="w-full space-y-3">
@@ -839,13 +836,13 @@
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🆕</span>
-                        <span>{{ $t('previous_app_experience_screen.previous_app_experience.no') }}</span>
+                        <span>Never</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">📱</span>
-                        <span>{{ $t('previous_app_experience_screen.previous_app_experience.yes') }}</span>
+                        <span>Have used</span>
                     </button>
                 </div>
             </div>
@@ -859,34 +856,34 @@
                         class="w-20 h-20 bg-gradient-to-r from-purple-500 to-indigo-600 rounded-3xl mx-auto mb-6 flex items-center justify-center">
                         <span class="text-3xl">📸</span>
                     </div>
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">{{ $t('heka_feature_1_screen.title') }}</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">What is the most important feature for you?</h2>
 
                     <div class="text-left space-y-4 mb-8">
-                        <p v-html="$t('heka_feature_1_screen.description')" class="text-gray-700 leading-relaxed">
-                        </p>
+                        <p class="text-gray-700 leading-relaxed">We need to know your most important feature to help you better</p>
+
 
                         <!-- Feature Highlight -->
                         <div class="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-2xl p-6">
                             <div class="text-center">
-                                <div class="text-4xl font-bold text-purple-600 mb-2">{{ $t('heka_feature_1_screen.feature_highlight.title') }}</div>
-                                <div class="text-sm text-gray-600">{{ $t('heka_feature_1_screen.feature_highlight.description') }}</div>
+                                <div class="text-4xl font-bold text-purple-600 mb-2">AI-powered meal suggestions</div>
+                                <div class="text-sm text-gray-600">Get personalized meal suggestions based on your preferences and health goals</div>
                             </div>
                         </div>
 
                         <div class="flex items-center justify-center space-x-4 mt-6">
                             <div class="text-center">
                                 <div class="text-2xl mb-1">📱</div>
-                                <div class="text-xs text-gray-600">{{ $t('heka_feature_1_screen.feature_highlight.feature_1') }}</div>
+                                <div class="text-xs text-gray-600">AI-powered meal suggestions</div>
                             </div>
                             <div class="text-2xl text-gray-400">→</div>
                             <div class="text-center">
                                 <div class="text-2xl mb-1">🤖</div>
-                                <div class="text-xs text-gray-600">{{ $t('heka_feature_1_screen.feature_highlight.feature_2') }}</div>
+                                <div class="text-xs text-gray-600">AI-powered meal suggestions</div>
                             </div>
                             <div class="text-2xl text-gray-400">→</div>
                             <div class="text-center">
                                 <div class="text-2xl mb-1">📊</div>
-                                <div class="text-xs text-gray-600">{{ $t('heka_feature_1_screen.feature_highlight.feature_3') }}</div>
+                                <div class="text-xs text-gray-600">AI-powered meal suggestions</div>
                             </div>
                         </div>
                     </div>
@@ -894,7 +891,7 @@
 
                 <button class="cta-button w-full py-4 text-white font-semibold rounded-2xl text-lg"
                     onclick="nextQuestion()">
-                    {{ $t('heka_feature_1_screen.next_btn') }}
+                    Next
                 </button>
             </div>
         </div>
@@ -907,36 +904,36 @@
                         class="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-600 rounded-3xl mx-auto mb-6 flex items-center justify-center">
                         <span class="text-3xl">🧬</span>
                     </div>
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">{{ $t('heka_feature_2_screen.title') }}</h2>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">What is the most important feature for you?</h2>
 
                     <div class="text-left space-y-4 mb-8">
-                        <p v-html="$t('heka_feature_2_screen.description')" class="text-gray-700 leading-relaxed">
-                        </p>
+                        <p class="text-gray-700 leading-relaxed">We need to know your most important feature to help you better</p>
+
 
                         <!-- Macro Display -->
                         <div class="grid grid-cols-3 gap-3">
                             <div class="bg-red-50 rounded-xl p-3 text-center">
                                 <div class="text-2xl mb-1">🍖</div>
-                                <div class="text-xs font-semibold text-red-600">{{ $t('heka_feature_2_screen.macro_list.macro_1') }}</div>
+                                <div class="text-xs font-semibold text-red-600">Protein</div>
                             </div>
                             <div class="bg-yellow-50 rounded-xl p-3 text-center">
                                 <div class="text-2xl mb-1">🍞</div>
-                                <div class="text-xs font-semibold text-yellow-600">{{ $t('heka_feature_2_screen.macro_list.macro_2') }}</div>
+                                <div class="text-xs font-semibold text-yellow-600">Carbohydrates</div>
                             </div>
                             <div class="bg-blue-50 rounded-xl p-3 text-center">
                                 <div class="text-2xl mb-1">🥑</div>
-                                <div class="text-xs font-semibold text-blue-600">{{ $t('heka_feature_2_screen.macro_list.macro_3') }}</div>
+                                <div class="text-xs font-semibold text-blue-600">Fats</div>
                             </div>
                         </div>
 
                         <!-- Nutrition List -->
                         <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-4">
-                            <div class="text-sm font-semibold text-green-700 mb-2">{{ $t('heka_feature_2_screen.nutrition_list.title') }}</div>
+                            <div class="text-sm font-semibold text-green-700 mb-2">Nutrition</div>
                             <div class="grid grid-cols-2 gap-2 text-xs text-gray-600">
-                                <div>• {{ $t('heka_feature_2_screen.nutrition_list.nutrition_1') }}</div>
-                                <div>• {{ $t('heka_feature_2_screen.nutrition_list.nutrition_2') }}</div>
-                                <div>• {{ $t('heka_feature_2_screen.nutrition_list.nutrition_3') }}</div>
-                                <div>• {{ $t('heka_feature_2_screen.nutrition_list.nutrition_4') }}</div>
+                                <div>• Calories</div>
+                                <div>• Protein</div>
+                                <div>• Carbohydrates</div>
+                                <div>• Fats</div>
                             </div>
                         </div>
                     </div>
@@ -944,7 +941,7 @@
 
                 <button class="cta-button w-full py-4 text-white font-semibold rounded-2xl text-lg"
                     onclick="nextQuestion()">
-                    {{ $t('heka_feature_2_screen.next_btn') }}
+                    Next
                 </button>
             </div>
         </div>
@@ -957,23 +954,22 @@
                         class="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-3xl mx-auto mb-6 flex items-center justify-center">
                         <span class="text-3xl">⌚</span>
                     </div>
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">{{ $t('heka_feature_3_screen.title') }}</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">What is the most important feature for you?</h2>
 
                     <div class="text-left space-y-4 mb-8">
-                        <p v-html="$t('heka_feature_3_screen.description')" class="text-gray-700 leading-relaxed">
-                        </p>
+                        <p class="text-gray-700 leading-relaxed">We need to know your most important feature to help you better</p>
 
                         <!-- Connected Apps -->
                         <div class="grid grid-cols-2 gap-3">
                             <div class="bg-gray-50 rounded-xl p-4 text-center">
                                 <div class="text-2xl mb-2">⌚</div>
-                                <div class="text-xs font-semibold text-gray-700">{{ $t('heka_feature_3_screen.connected_device_list.connected_device_1') }}</div>
-                                <div class="text-xs text-gray-500">{{ $t('heka_feature_3_screen.connected_device_list.connected_device_2') }}</div>
+                                <div class="text-xs font-semibold text-gray-700">Apple Watch</div>
+                                <div class="text-xs text-gray-500">Samsung Watch</div>
                             </div>
                             <div class="bg-gray-50 rounded-xl p-4 text-center">
                                 <div class="text-2xl mb-2">📱</div>
-                                <div class="text-xs font-semibold text-gray-700">{{ $t('heka_feature_3_screen.connected_app_list.connected_app_1') }}</div>
-                                <div class="text-xs text-gray-500">{{ $t('heka_feature_3_screen.connected_app_list.connected_app_2') }}</div>
+                                <div class="text-xs font-semibold text-gray-700">Google Fit</div>
+                                <div class="text-xs text-gray-500">Apple Health</div>
                             </div>
                         </div>
 
@@ -982,15 +978,15 @@
                             <div class="space-y-2">
                                 <div class="flex items-center text-sm">
                                     <span class="text-green-500 mr-2">✓</span>
-                                    <span class="text-gray-700">{{ $t('heka_feature_3_screen.feature_list.feature_1') }}</span>
+                                    <span class="text-gray-700">Automatic step tracking</span>
                                 </div>
                                 <div class="flex items-center text-sm">
                                     <span class="text-green-500 mr-2">✓</span>
-                                    <span class="text-gray-700">{{ $t('heka_feature_3_screen.feature_list.feature_2') }}</span>
+                                    <span class="text-gray-700">Accurate calorie burning calculation</span>
                                 </div>
                                 <div class="flex items-center text-sm">
                                     <span class="text-green-500 mr-2">✓</span>
-                                    <span class="text-gray-700">{{ $t('heka_feature_3_screen.feature_list.feature_3') }}</span>
+                                    <span class="text-gray-700">Real-time data synchronization</span>
                                 </div>
                             </div>
                         </div>
@@ -999,7 +995,7 @@
 
                 <button class="cta-button w-full py-4 text-white font-semibold rounded-2xl text-lg"
                     onclick="nextQuestion()">
-                    {{ $t('heka_feature_3_screen.next_btn') }}
+                    Next
                 </button>
             </div>
         </div>
@@ -1008,8 +1004,8 @@
         <div id="question23" class="w-full max-w-lg mx-auto px-4 hidden">
             <div class="card rounded-3xl p-8 shadow-2xl">
                 <div class="mb-8 text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $t('medical_condition_screen.title') }}</h2>
-                    <p class="text-gray-600">{{ $t('medical_condition_screen.description') }}</p>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">Do you have any special health conditions?</h2>
+                    <p class="text-gray-600">To provide the best advice and safety</p>
                 </div>
 
                 <div class="w-full space-y-3">
@@ -1017,25 +1013,25 @@
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">✅</span>
-                        <span>{{ $t('medical_condition_screen.medical_condition.medical_condition_1') }}</span>
+                        <span>No</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🩺</span>
-                        <span>{{ $t('medical_condition_screen.medical_condition.medical_condition_2') }}</span>
+                        <span>Diabetes</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">❤️</span>
-                        <span>{{ $t('medical_condition_screen.medical_condition.medical_condition_3') }}</span>
+                        <span>High blood pressure</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🏥</span>
-                        <span>{{ $t('medical_condition_screen.medical_condition.medical_condition_4') }}</span>
+                        <span>Other (will be consulted separately)</span>
                     </button>
                 </div>
             </div>
@@ -1045,7 +1041,7 @@
         <div id="question24" class="w-full max-w-lg mx-auto text-center hidden">
             <div class="card rounded-3xl p-8 shadow-2xl">
                 <div class="mb-8">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-8">{{ $t('loading_analysis_screen.title') }}</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-8">Heka AI is analyzing...</h2>
 
                     <!-- Progress Circle -->
                     <div class="progress-circle mb-8" id="progressCircle">
@@ -1058,25 +1054,25 @@
                             <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mr-3">
                                 <div class="loading-circle w-4 h-4 border-2 border-white border-t-transparent"></div>
                             </div>
-                            <span class="text-gray-700">{{ $t('loading_analysis_screen.analtstic_text.analtstic_text_1') }}</span>
+                            <span class="text-gray-700">Heka AI analyzing your metrics</span>
                         </div>
                         <div class="flex items-center text-left p-3 rounded-xl bg-gray-100" id="step2">
                             <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center mr-3">
                                 <span class="text-white text-sm">2</span>
                             </div>
-                            <span class="text-gray-500">{{ $t('loading_analysis_screen.analtstic_text.analtstic_text_2') }}</span>
+                            <span class="text-gray-500">Heka analyzing your habits</span>
                         </div>
                         <div class="flex items-center text-left p-3 rounded-xl bg-gray-100" id="step3">
                             <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center mr-3">
                                 <span class="text-white text-sm">3</span>
                             </div>
-                            <span class="text-gray-500">{{ $t('loading_analysis_screen.analtstic_text.analtstic_text_3') }}</span>
+                            <span class="text-gray-500">Heka will give you the amount of calories you need to control</span>
                         </div>
                         <div class="flex items-center text-left p-3 rounded-xl bg-gray-100" id="step4">
                             <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center mr-3">
                                 <span class="text-white text-sm">4</span>
                             </div>
-                            <span class="text-gray-500">{{ $t('loading_analysis_screen.analtstic_text.analtstic_text_4') }}</span>
+                            <span class="text-gray-500">Heka will give you the amount of calories you need to control</span>
                         </div>
                     </div>
                 </div>
@@ -1087,34 +1083,34 @@
         <div id="question25" class="w-full max-w-lg mx-auto px-4 hidden">
             <div class="card rounded-3xl p-8 shadow-2xl">
                 <div class="mb-8 text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $t('timeline_screen.title') }}</h2>
-                    <p class="text-gray-600">{{ $t('timeline_screen.description') }}</p>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">What is your goal?</h2>
+                    <p class="text-gray-600">We need to know your goal to help you better</p>
                 </div>
 
                 <div class="w-full space-y-3">
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
-                        @click="selectTimeline(t('timeline_screen.timeline.timeline_1'))">
+                        @click="selectTimeline('1-2 months (Fast)')">
                         <span class="text-2xl mr-4">🚀</span>
-                        <span>{{ $t('timeline_screen.timeline.timeline_1') }}</span>
+                        <span>1-2 months (Fast)</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
-                        @click="selectTimeline(t('timeline_screen.timeline.timeline_2'))">
+                        @click="selectTimeline('3-6 months (Balanced)')">
                         <span class="text-2xl mr-4">⚖️</span>
-                        <span>{{ $t('timeline_screen.timeline.timeline_2') }}</span>
+                        <span>3-6 months (Balanced)</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
-                        @click="selectTimeline(t('timeline_screen.timeline.timeline_3'))">
+                        @click="selectTimeline('6-12 months (Sustainable)')">
                         <span class="text-2xl mr-4">🌱</span>
-                        <span>{{ $t('timeline_screen.timeline.timeline_3') }}</span>
+                        <span>6-12 months (Sustainable)</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
-                        @click="selectTimeline(t('timeline_screen.timeline.timeline_4'))">
+                        @click="selectTimeline('Over 1 year (Lifestyle)')">
                         <span class="text-2xl mr-4">🏃‍♀️</span>
-                        <span>{{ $t('timeline_screen.timeline.timeline_4') }}</span>
+                        <span>Over 1 year (Lifestyle)</span>
                     </button>
                 </div>
             </div>
@@ -1124,8 +1120,8 @@
         <div id="question26" class="w-full max-w-lg mx-auto px-4 hidden">
             <div class="card rounded-3xl p-8 shadow-2xl">
                 <div class="mb-8 text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $t('commitment_screen.title') }}</h2>
-                    <p class="text-gray-600">{{ $t('commitment_screen.description') }}</p>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">Are you ready to commit?</h2>
+                    <p class="text-gray-600">Commitment is the key to success</p>
                 </div>
 
                 <div class="w-full space-y-3">
@@ -1133,25 +1129,25 @@
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">💪</span>
-                        <span>{{ $t('commitment_screen.commitment.commitment_1') }}</span>
+                        <span>Yes, I will commit 100%</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">👍</span>
-                        <span>{{ $t('commitment_screen.commitment.commitment_2') }}</span>
+                        <span>Yes, I will try</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">🤔</span>
-                        <span>{{ $t('commitment_screen.commitment.commitment_3') }}</span>
+                        <span>I'm not sure</span>
                     </button>
                     <button
                         class="option-button w-full p-4 rounded-2xl text-gray-800 font-medium text-left flex items-center"
                         onclick="nextQuestion()">
                         <span class="text-2xl mr-4">😅</span>
-                        <span>{{ $t('commitment_screen.commitment.commitment_4') }}</span>
+                        <span>I will try</span>
                     </button>
                 </div>
             </div>
@@ -1167,55 +1163,55 @@
                         class="w-20 h-20 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-3xl mx-auto mb-6 flex items-center justify-center">
                         <span class="text-3xl">📊</span>
                     </div>
-                    <h2 class="text-2xl font-bold text-gray-800 mb-6">{{ $t('loading_summary_screen.title') }}</h2>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6">Heka AI is analyzing...</h2>
 
                     <!-- User Summary -->
                     <div class="space-y-4 mb-8 text-left">
                         <div class="bg-blue-50 rounded-2xl p-4">
                             <div class="flex items-center mb-2">
                                 <span class="text-2xl mr-3">🎯</span>
-                                <span class="font-semibold text-gray-800">{{ $t('loading_summary_screen.summary.summary_1.title') }}</span>
+                                <span class="font-semibold text-gray-800">Main goal:</span>
                             </div>
-                            <div id="userGoalSummary" class="text-gray-700 ml-11">{{ $t('loading_summary_screen.summary.summary_1.description') }}</div>
+                            <div id="userGoalSummary" class="text-gray-700 ml-11">Gain weight</div>
                         </div>
 
                         <div class="bg-green-50 rounded-2xl p-4">
                             <div class="flex items-center mb-2">
                                 <span class="text-2xl mr-3">⚖️</span>
-                                <span class="font-semibold text-gray-800">{{ $t('loading_summary_screen.summary.summary_2.title') }}</span>
+                                <span class="font-semibold text-gray-800">Target weight:</span>
                             </div>
-                            <div id="targetWeightSummary" class="text-gray-700 ml-11">{{ $t('loading_summary_screen.summary.summary_2.description') }}</div>
+                            <div id="targetWeightSummary" class="text-gray-700 ml-11">60 kg</div>
                         </div>
 
                         <div class="bg-purple-50 rounded-2xl p-4">
                             <div class="flex items-center mb-2">
                                 <span class="text-2xl mr-3">⏰</span>
-                                <span class="font-semibold text-gray-800">{{ $t('loading_summary_screen.summary.summary_3.title') }}</span>
+                                <span class="font-semibold text-gray-800">Time to complete:</span>
                             </div>
-                            <div id="timelineSummary" class="text-gray-700 ml-11">{{ $t('loading_summary_screen.summary.summary_3.description') }}</div>
+                            <div id="timelineSummary" class="text-gray-700 ml-11">3-6 months</div>
                         </div>
                     </div>
 
                     <!-- Recommendation -->
                     <div class="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-6 mb-6">
-                        <h3 class="font-bold text-gray-800 mb-3">💡 {{ $t('loading_summary_screen.recommendation.title') }}</h3>
+                        <h3 class="font-bold text-gray-800 mb-3">💡 Heka AI recommendation</h3>
                         <p class="text-gray-700 text-sm leading-relaxed mb-4">
-                            <span v-html="$t('loading_summary_screen.recommendation.description')"></span>
+                            <span>To achieve your goal in the simplest and most effective way, we recommend you use the <b>Premium package</b>.</span>
                         </p>
                         <div class="flex items-center justify-center space-x-4 text-sm">
                             <div class="text-center">
-                                <div class="text-2xl font-bold text-orange-600">{{ $t('loading_summary_screen.recommendation.statistical.left.title') }}</div>
-                                <div class="text-gray-600">{{ $t('loading_summary_screen.recommendation.statistical.left.description') }}</div>
+                                <div class="text-2xl font-bold text-orange-600">1M+</div>
+                                <div class="text-gray-600">Users</div>
                             </div>
                             <div class="text-center">
-                                <div class="text-2xl font-bold text-orange-600">{{ $t('loading_summary_screen.recommendation.statistical.right.title') }}</div>
-                                <div class="text-gray-600">{{ $t('loading_summary_screen.recommendation.statistical.right.description') }}</div>
+                                <div class="text-2xl font-bold text-orange-600">100+</div>
+                                <div class="text-gray-600">Countries</div>
                             </div>
                         </div>
                     </div>
 
                     <button class="cta-button w-full py-4 text-white font-semibold rounded-2xl text-lg bg-blue" onclick="nextQuestion()" style="background-color: #007bff!important;">
-                          {{ $t('loading_summary_screen.recommendation.select_plan') }}
+                          Receive my plan
                       </button>
 
                     <!-- <div class="loading-circle mb-4" id="loadingCirclePaywall"></div> -->
@@ -1228,8 +1224,8 @@
             <div class="space-y-6">
                 <!-- Header -->
                 <div class="text-center mb-8">
-                    <h2 class="text-3xl font-bold text-white mb-4">{{ $t('paywall_screen.title') }}</h2>
-                    <p class="text-white text-opacity-80">{{ $t('paywall_screen.description') }}</p>
+                    <h2 class="text-3xl font-bold text-white mb-4">Select the Premium package that suits you</h2>
+                    <p class="text-white text-opacity-80">Unlock all AI features of Heka</p>
                 </div>
 
                 <!-- Premium Monthly Plan -->
@@ -1241,19 +1237,19 @@
                                 <span class="text-xl">📅</span>
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold text-gray-800">{{ $t('paywall_screen.plan.monthly.title') }}</h3>
-                                <p class="text-gray-600 text-sm">{{ $t('paywall_screen.plan.monthly.description') }}</p>
+                                <h3 class="text-xl font-bold text-gray-800">Premium Monthly</h3>
+                                <p class="text-gray-600 text-sm">Monthly payment</p>
                             </div>
                         </div>
                         <div class="text-right">
-                            <div class="text-2xl font-bold text-gray-800">{{ $t('paywall_screen.plan.monthly.price') }}</div>
-                            <div class="text-sm text-gray-600">{{ $t('paywall_screen.plan.monthly.duration') }}</div>
+                            <div class="text-2xl font-bold text-gray-800">$6.99</div>
+                            <div class="text-sm text-gray-600">/month</div>
                         </div>
                     </div>
 
                     <button class="option-button w-full py-3 text-gray-800 font-semibold rounded-2xl mb-4"
                         onclick="selectPlan('1month')">
-                        {{ $t('paywall_screen.plan.monthly.select_btn') }}
+                        Select monthly package
                     </button>
                 </div>
 
@@ -1263,13 +1259,13 @@
                     <!-- Best Seller Badge - More Prominent and Visible -->
                     <div
                         class="absolute -top-3 -right-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-yellow-900 px-4 py-2 rounded-full text-sm font-bold shadow-lg transform rotate-12 animate-bounce-subtle z-10">
-                        ⭐ {{ $t('paywall_screen.plan.yearly.best_seller_badge') }} ⭐
+                        ⭐ Best Seller ⭐
                     </div>
 
                     <!-- Savings Badge - Top Left -->
                     <div
                         class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-bold animate-pulse z-10">
-                        {{ $t('paywall_screen.plan.yearly.savings_badge') }}
+                        Save 52%
                     </div>
 
                     <div class="flex items-center justify-between mb-4 mt-6">
@@ -1279,16 +1275,16 @@
                                 <span class="text-xl">👑</span>
                             </div>
                             <div>
-                                <h3 class="text-xl font-bold">{{ $t('paywall_screen.plan.yearly.title') }}</h3>
-                                <p class="text-yellow-300 text-sm font-semibold">{{ $t('paywall_screen.plan.yearly.description') }}</p>
+                                <h3 class="text-xl font-bold">Premium Yearly</h3>
+                                <p class="text-yellow-300 text-sm font-semibold">Yearly payment</p>
                             </div>
                         </div>
                         <div class="text-right">
-                            <div class="text-lg text-yellow-300 line-through">{{ $t('paywall_screen.plan.yearly.price_through') }}</div>
-                            <div class="text-3xl font-bold text-yellow-400">{{ $t('paywall_screen.plan.yearly.price') }}</div>
+                            <div class="text-lg text-yellow-300 line-through">$83.88</div>
+                            <div class="text-3xl font-bold text-yellow-400">$39.99</div>
                             <div
                                 class="text-xl text-yellow-200 font-bold bg-yellow-500 bg-opacity-20 px-2 py-1 rounded-lg">
-                                {{ $t('paywall_screen.plan.yearly.price_per_month') }}</div>
+                                $3.33/month</div>
                         </div>
                     </div>
 
@@ -1296,8 +1292,8 @@
                     <div
                         class="bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl p-4 mb-4 border-2 border-green-400">
                         <div class="text-center">
-                            <div class="text-xl font-bold text-white">💰 {{ $t('paywall_screen.plan.yearly.enhance_saving.title') }}</div>
-                            <div class="text-sm text-green-100 font-medium">{{ $t('paywall_screen.plan.yearly.enhance_saving.description') }}</div>
+                            <div class="text-xl font-bold text-white">💰 Save $44/year</div>
+                            <div class="text-sm text-green-100 font-medium">Compared to monthly payment</div>
                         </div>
                     </div>
 
@@ -1307,7 +1303,7 @@
                         onclick="selectPlan('12months')">
                         <span class="flex items-center justify-center">
                             <span class="mr-2">🚀</span>
-                            {{ $t('paywall_screen.plan.yearly.CTA_btn.title') }}
+                            Select yearly package - Best deal
                             <span class="ml-2">🚀</span>
                         </span>
                     </button>
@@ -1316,57 +1312,57 @@
                     <div class="text-center">
                         <div class="inline-flex items-center text-yellow-300 text-sm animate-bounce">
                             <span class="mr-1">👆</span>
-                            <span>{{ $t('paywall_screen.plan.yearly.CTA_btn.click_btn') }}</span>
+                            <span>Click to select the most popular package</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Premium Benefits -->
                 <div class="card rounded-3xl p-6 shadow-2xl">
-                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">{{ $t('paywall_screen.preview_benefit.title') }}</h3>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">Benefits of the Premium package</h3>
                     <div class="grid grid-cols-1 gap-3 text-left">
                         <div class="flex items-center">
                             <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3">
                                 <span class="text-white text-xs">✓</span>
                             </div>
-                            <span class="text-sm text-gray-700">{{ $t('paywall_screen.preview_benefit.benefit_list.benefit_1') }}</span>
+                            <span class="text-sm text-gray-700">Unlimited AI food scanning</span>
                         </div>
                         <div class="flex items-center">
                             <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3">
                                 <span class="text-white text-xs">✓</span>
                             </div>
-                            <span class="text-sm text-gray-700">{{ $t('paywall_screen.preview_benefit.benefit_list.benefit_2') }}</span>
+                            <span class="text-sm text-gray-700">Personalized goal planning</span>
                         </div>
                         <div class="flex items-center">
                             <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3">
                                 <span class="text-white text-xs">✓</span>
                             </div>
-                            <span class="text-sm text-gray-700">{{ $t('paywall_screen.preview_benefit.benefit_list.benefit_3') }}</span>
+                            <span class="text-sm text-gray-700">Deep Macro & Nutrition analysis</span>
                         </div>
                         <div class="flex items-center">
                             <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3">
                                 <span class="text-white text-xs">✓</span>
                             </div>
-                            <span class="text-sm text-gray-700">{{ $t('paywall_screen.preview_benefit.benefit_list.benefit_4') }}</span>
+                            <span class="text-sm text-gray-700">Unlimited data storage</span>
                         </div>
                         <div class="flex items-center">
                             <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3">
                                 <span class="text-white text-xs">✓</span>
                             </div>
-                            <span class="text-sm text-gray-700">{{ $t('paywall_screen.preview_benefit.benefit_list.benefit_5') }}</span>
+                            <span class="text-sm text-gray-700">AI-powered data tracking & analysis</span>
                         </div>
                         <div class="flex items-center">
                             <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3">
                                 <span class="text-white text-xs">✓</span>
                             </div>
-                            <span class="text-sm text-gray-700">{{ $t('paywall_screen.preview_benefit.benefit_list.benefit_6') }}</span>
+                            <span class="text-sm text-gray-700">Cancel anytime</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- User Reviews Slider -->
                 <div class="card rounded-3xl p-6 shadow-2xl">
-                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">{{ $t('paywall_screen.user_review.title') }}</h3>
+                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">User reviews</h3>
                     <div class="relative overflow-hidden">
                         <div id="reviewSlider" class="flex transition-transform duration-500 ease-in-out">
                             <!-- Review 1 -->
@@ -1378,11 +1374,11 @@
                                             <span class="text-white font-bold">S</span>
                                         </div>
                                         <div>
-                                            <div class="font-semibold text-gray-800">{{ $t('paywall_screen.user_review.review_list.review_1.name') }}</div>
+                                            <div class="font-semibold text-gray-800">John Doe</div>
                                             <div class="flex text-yellow-400 text-sm">⭐⭐⭐⭐⭐</div>
                                         </div>
                                     </div>
-                                    <p class="text-gray-700 text-sm">"{{ $t('paywall_screen.user_review.review_list.review_1.review') }}"</p>
+                                    <p class="text-gray-700 text-sm">"Heka AI has changed the way I track nutrition. Just take a photo and get accurate results!"</p>
                                 </div>
                             </div>
 
@@ -1395,11 +1391,11 @@
                                             <span class="text-white font-bold">M</span>
                                         </div>
                                         <div>
-                                            <div class="font-semibold text-gray-800">{{ $t('paywall_screen.user_review.review_list.review_2.name') }}</div>
+                                            <div class="font-semibold text-gray-800">Jane Smith</div>
                                             <div class="flex text-yellow-400 text-sm">⭐⭐⭐⭐⭐</div>
                                         </div>
                                     </div>
-                                    <p class="text-gray-700 text-sm">"{{ $t('paywall_screen.user_review.review_list.review_2.review') }}"</p>
+                                    <p class="text-gray-700 text-sm">"I lost 15kg in 4 months thanks to Heka AI. The smartest and easiest app!"</p>
                                 </div>
                             </div>
 
@@ -1412,11 +1408,11 @@
                                             <span class="text-white font-bold">E</span>
                                         </div>
                                         <div>
-                                            <div class="font-semibold text-gray-800">{{ $t('paywall_screen.user_review.review_list.review_3.name') }}</div>
+                                            <div class="font-semibold text-gray-800">Emily Johnson</div>
                                             <div class="flex text-yellow-400 text-sm">⭐⭐⭐⭐⭐</div>
                                         </div>
                                     </div>
-                                    <p class="text-gray-700 text-sm">"{{ $t('paywall_screen.user_review.review_list.review_3.review') }}"</p>
+                                    <p class="text-gray-700 text-sm">"Heka AI has helped me achieve my fitness goals. The AI-powered tracking is amazing!"</p>
                                 </div>
                             </div>
 
@@ -1429,11 +1425,11 @@
                                             <span class="text-white font-bold">J</span>
                                         </div>
                                         <div>
-                                            <div class="font-semibold text-gray-800">{{ $t('paywall_screen.user_review.review_list.review_4.name') }}</div>
+                                            <div class="font-semibold text-gray-800">David Brown</div>
                                             <div class="flex text-yellow-400 text-sm">⭐⭐⭐⭐⭐</div>
                                         </div>
                                     </div>
-                                    <p class="text-gray-700 text-sm">"{{ $t('paywall_screen.user_review.review_list.review_4.review') }}"</p>
+                                    <p class="text-gray-700 text-sm">"AI of Heka is accurate to 99%. I no longer have to guess about calories!"</p>
                                 </div>
                             </div>
 
@@ -1446,11 +1442,11 @@
                                             <span class="text-white font-bold">A</span>
                                         </div>
                                         <div>
-                                            <div class="font-semibold text-gray-800">{{ $t('paywall_screen.user_review.review_list.review_5.name') }}</div>
+                                            <div class="font-semibold text-gray-800">Olivia Wilson</div>
                                             <div class="flex text-yellow-400 text-sm">⭐⭐⭐⭐⭐</div>
                                         </div>
                                     </div>
-                                    <p class="text-gray-700 text-sm">"{{ $t('paywall_screen.user_review.review_list.review_5.review') }}"</p>
+                                    <p class="text-gray-700 text-sm">"Beautiful interface, powerful features. Heka AI is the perfect nutrition assistant for me!"</p>
                                 </div>
                             </div>
                         </div>
@@ -1471,15 +1467,15 @@
                     <div class="flex justify-center items-center space-x-6 text-white text-opacity-80">
                         <div class="flex items-center">
                             <span class="text-lg mr-2">🔒</span>
-                            <span class="text-sm">{{ $t('paywall_screen.trust_indicator.list.trust_indicator_1') }}</span>
+                            <span class="text-sm">100% secure</span>
                         </div>
                         <div class="flex items-center">
                             <span class="text-lg mr-2">↩️</span>
-                            <span class="text-sm">{{ $t('paywall_screen.trust_indicator.list.trust_indicator_2') }}</span>
+                            <span class="text-sm">100% accurate</span>
                         </div>
                         <div class="flex items-center">
                             <span class="text-lg mr-2">⭐</span>
-                            <span class="text-sm">{{ $t('paywall_screen.trust_indicator.list.trust_indicator_3') }}</span>
+                            <span class="text-sm">100% privacy</span>
                         </div>
                     </div>
                 </div>
@@ -1520,8 +1516,8 @@
         <div id="question29" class="w-full max-w-lg mx-auto px-4 hidden">
             <div class="card rounded-3xl p-8 shadow-2xl">
                 <div class="mb-8 text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-3">{{ $t('email_input_screen.title') }}</h2>
-                    <p class="text-gray-600 mb-4">{{ $t('email_input_screen.description') }}</p>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-3">Enter your email to active your personalized plan</h2>
+                    <p class="text-gray-600 mb-4">Your plan has been customized for you</p>
                 </div>
 
                 <div class="w-full space-y-4">
@@ -1529,13 +1525,13 @@
                         <input type="email" id="userEmail"
                             class="w-full p-4 rounded-2xl border-2 border-gray-200 text-center text-lg focus:border-gray-600 focus:outline-none"
                             placeholder="your.email@example.com">
-                        <div id="emailError" class="error-message hidden">{{ $t('email_input_screen.email_invalid') }}</div>
+                        <div id="emailError" class="error-message hidden">Please enter a valid email</div>
                     </div>
 
 
                     <div class="bg-blue-50 rounded-2xl p-4 text-left">
                         <div class="text-sm text-gray-700 space-y-2">
-                            <p v-html="$t('email_input_screen.notice_text')"></p>
+                            <p>Please enter your correct email to sync benefits with Heka AI on mobile. <br> We respect your privacy and commit to protecting your personal data. Your data will be processed according to our Privacy Policy.</p>
                         </div>
                     </div>
 
@@ -1556,58 +1552,14 @@
                             </svg>
                         </template>
                         <template v-else>
-                            {{ $t('email_input_screen.next_btn') }}
+                            Receive my plan
                         </template>
                     </button>
                 </div>
             </div>
         </div>
 
-        <!-- Question 30 - Payment Status -->
-        <div id="question30" class="w-full max-w-lg mx-auto text-center hidden">
-            <div class="card rounded-3xl p-8 shadow-2xl">
-                <div class="mb-8">
-                    <div id="paymentIcon"
-                        class="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-600 rounded-3xl mx-auto mb-6 flex items-center justify-center">
-                        <span class="text-3xl">🎉</span>
-                    </div>
-                    <h2 id="paymentTitle" class="text-3xl font-bold text-gray-800 mb-4">{{ $t('success_screen.title') }}</h2>
-                    <p id="paymentMessage" class="text-gray-600 text-lg mb-6">{{ $t('success_screen.description') }}</p>
 
-                    <!-- Success Details -->
-                    <div id="successDetails" class="bg-green-50 rounded-2xl p-6 text-left">
-                        <h3 class="font-bold text-green-800 mb-3">{{ $t('success_screen.success_detail.title') }}</h3>
-                        <div class="space-y-2">
-                            <div class="flex items-center">
-                                <span class="text-green-500 mr-2">✓</span>
-                                <span class="text-sm text-gray-700">{{ $t('success_screen.success_detail.detail_1') }}</span>
-                            </div>
-                            <div class="flex items-center">
-                                <span class="text-green-500 mr-2">✓</span>
-                                <span class="text-sm text-gray-700">{{ $t('success_screen.success_detail.detail_2') }}</span>
-                            </div>
-                            <div class="flex items-center">
-                                <span class="text-green-500 mr-2">✓</span>
-                                <span class="text-sm text-gray-700">{{ $t('success_screen.success_detail.detail_3') }}</span>
-                            </div>
-                            <div class="flex items-center">
-                                <span class="text-green-500 mr-2">✓</span>
-                                <span class="text-sm text-gray-700">{{ $t('success_screen.success_detail.detail_4') }}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="space-y-4">
-                    <button class="cta-button w-full py-4 text-white font-bold rounded-2xl text-lg">
-                        {{ $t('success_screen.download_btn') }}
-                    </button>
-                    <!-- <button class="option-button w-full py-3 text-gray-800 font-medium rounded-2xl" onclick="simulatePaymentFailure()">
-                        Mô phỏng thanh toán thất bại
-                    </button> -->
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- Footer -->
@@ -1627,11 +1579,7 @@ import { createPaymentLink } from '@/utils/paymentLink'
 import { eventTracking } from '@/utils/tracking';
 
 const { t, locale } = useI18n()
-console.log(t)
-onMounted(() => {
-  console.log('Locale:', locale.value)
-  console.log('welcome_screen.text:', t)
-})
+
 const PRICE_IDS = ref({})
 const isLoading = ref(false)
 
@@ -1659,7 +1607,7 @@ onMounted(async () => {
 const urlParams = new URLSearchParams(window.location.search)
 let lang = urlParams.get('lang') || localStorage.getItem('lang') || 'en'
 locale.value = lang
-console.log(locale.value)
+
 
 
 localStorage.setItem('lang', lang)

@@ -319,7 +319,7 @@
         }
     },
     "email_input_screen": {
-        "title": "Enter your email to receive your personalized plan",
+        "title": "Enter your email to active your personalized plan",
         "description": "Your plan has been customized for you",
         "email": {
             "email_1": "Email",
