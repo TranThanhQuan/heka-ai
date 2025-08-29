@@ -121,11 +121,7 @@
             "title": "BMI của bạn",
             "calculating": "Đang tính toán ...",
             "analying": "Đang phân tích...",
-<<<<<<< HEAD
             "text_2": "Chỉ số khối cơ thể của bạn",
-=======
-            "text": "Chỉ số khối cơ thể của bạn",
->>>>>>> dev
             "reference": "Tham khảo: WHO & Mayo Clinic",
             "quote": {
                 "underweight": {

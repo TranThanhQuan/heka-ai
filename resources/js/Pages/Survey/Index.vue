@@ -1836,51 +1836,27 @@ const calculateAndDisplayBMI = () => {
     let borderColor = '';
 
     if (bmi < 18.5) {
-<<<<<<< HEAD
-        category = t('paywall_screen.bmi_screen.quote.underweight.category');
-        description = t('paywall_screen.bmi_screen.quote.underweight.description');
-        quote = t('paywall_screen.bmi_screen.quote.underweight.quote');
+        category = 'Underweight';
+        description = 'Below normal BMI';
+        quote = 'Low weight can affect the immune system and bone health. Focus on gaining weight in a healthy way.';
         colorClass = 'text-red-600';
         borderColor = 'border-red-400';
     } else if (bmi < 25) {
-        category = t('paywall_screen.bmi_screen.quote.normal.category');
-        description = t('paywall_screen.bmi_screen.quote.normal.description');
-        quote = t('paywall_screen.bmi_screen.quote.normal.quote');
+        category = 'Normal';
+        description = 'Ideal BMI range';
+        quote = 'Congratulations! You are maintaining an ideal body weight. Continue to live a healthy lifestyle to maintain this index.';
         colorClass = 'text-green-600';
         borderColor = 'border-green-400';
     } else if (bmi < 30) {
-        category = t('paywall_screen.bmi_screen.quote.overweight.category');
-        description = t('paywall_screen.bmi_screen.quote.overweight.description');
-        quote = t('paywall_screen.bmi_screen.quote.overweight.quote');
+        category = 'Overweight';
+        description = 'Above normal BMI';
+        quote = 'Overweight can increase the risk of chronic diseases. Reducing 5-10% of body weight will bring significant health benefits.';
         colorClass = 'text-orange-600';
         borderColor = 'border-orange-400';
     } else {
-        category = t('paywall_screen.bmi_screen.quote.obesity.category');
-        description = t('paywall_screen.bmi_screen.quote.obesity.description');
-        quote = t('paywall_screen.bmi_screen.quote.obesity.quote');
-=======
-        category = t('goal_weight_screen.bmi.quote.underweight.category');
-        description = t('goal_weight_screen.bmi.quote.underweight.description');
-        quote = t('goal_weight_screen.bmi.quote.underweight.quote');
-        colorClass = 'text-red-600';
-        borderColor = 'border-red-400';
-    } else if (bmi < 25) {
-        category = t('goal_weight_screen.bmi.quote.normal.category');
-        description = t('goal_weight_screen.bmi.quote.normal.description');
-        quote = t('goal_weight_screen.bmi.quote.normal.quote');
-        colorClass = 'text-green-600';
-        borderColor = 'border-green-400';
-    } else if (bmi < 30) {
-        category = t('goal_weight_screen.bmi.quote.overweight.category');
-        description = t('goal_weight_screen.bmi.quote.overweight.description');
-        quote = t('goal_weight_screen.bmi.quote.overweight.quote');
-        colorClass = 'text-orange-600';
-        borderColor = 'border-orange-400';
-    } else {
-        category = t('goal_weight_screen.bmi.quote.obesity.category');
-        description = t('goal_weight_screen.bmi.quote.obesity.description');
-        quote = t('goal_weight_screen.bmi.quote.obesity.quote');
->>>>>>> dev
+        category = 'Obesity';
+        description = 'High BMI';
+        quote = 'Obesity is a major risk factor for many diseases. Consult your doctor for a safe and effective weight loss plan.';
         colorClass = 'text-red-600';
         borderColor = 'border-red-400';
     }

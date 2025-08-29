@@ -52,7 +52,7 @@ Route::get('/payment/cancel', [PaymentController::class, 'cancel'])->name('payme
 
 
 //survey
-// Route::get('/survey', [SurveyController::class, 'index'])->name('survey.index');
+Route::get('/survey', [SurveyController::class, 'index'])->name('survey.index');
 
 
 // tracking
