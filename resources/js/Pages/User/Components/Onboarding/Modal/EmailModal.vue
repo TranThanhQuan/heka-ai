@@ -14,11 +14,7 @@
                 <!-- Content -->
                 <div class="flex flex-col items-center text-center space-y-4 mt-4">
                     <!-- Title -->
-<<<<<<< HEAD
-                    <h2 class="text-lg font-semibold text-black">Enter your email to receive the personalized plan just for you</h2>
-=======
                     <h2 class="text-lg font-semibold text-black">Enter your email to active the personalized plan just for you</h2>
->>>>>>> dev
 
                     <!-- form input email -->
                     <form @submit.prevent="submit" class="relative w-full">
