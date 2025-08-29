@@ -505,7 +505,7 @@
                                         class="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">in</span>
                                 </div>
                             </div>
-                            <div id="heightImperialError" class="error-message hidden">{{ $t('height_weight_screen.error_message') }}</div>
+                            <div id="heightImperialError" class="error-message hidden">The data entered is not valid</div>
                         </div>
                         <div class="relative">
                             <label class="block text-sm font-medium text-gray-700 mb-2 text-left">Weight</label>
@@ -1784,27 +1784,27 @@ const calculateAndDisplayBMI = () => {
     let borderColor = '';
 
     if (bmi < 18.5) {
-        category = t('goal_weight_screen.bmi.quote.underweight.category');
-        description = t('goal_weight_screen.bmi.quote.underweight.description');
-        quote = t('goal_weight_screen.bmi.quote.underweight.quote');
+        category = 'Underweight';
+        description = 'Below normal BMI';
+        quote = 'Low weight can affect the immune system and bone health. Focus on gaining weight in a healthy way.';
         colorClass = 'text-red-600';
         borderColor = 'border-red-400';
     } else if (bmi < 25) {
-        category = t('goal_weight_screen.bmi.quote.normal.category');
-        description = t('goal_weight_screen.bmi.quote.normal.description');
-        quote = t('goal_weight_screen.bmi.quote.normal.quote');
+        category = 'Normal';
+        description = 'Ideal BMI range';
+        quote = 'Congratulations! You are maintaining an ideal body weight. Continue to live a healthy lifestyle to maintain this index.';
         colorClass = 'text-green-600';
         borderColor = 'border-green-400';
     } else if (bmi < 30) {
-        category = t('goal_weight_screen.bmi.quote.overweight.category');
-        description = t('goal_weight_screen.bmi.quote.overweight.description');
-        quote = t('goal_weight_screen.bmi.quote.overweight.quote');
+        category = 'Overweight';
+        description = 'Above normal BMI';
+        quote = 'Overweight can increase the risk of chronic diseases. Reducing 5-10% of body weight will bring significant health benefits.';
         colorClass = 'text-orange-600';
         borderColor = 'border-orange-400';
     } else {
-        category = t('goal_weight_screen.bmi.quote.obesity.category');
-        description = t('goal_weight_screen.bmi.quote.obesity.description');
-        quote = t('goal_weight_screen.bmi.quote.obesity.quote');
+        category = 'Obesity';
+        description = 'High BMI';
+        quote = 'Obesity is a major risk factor for many diseases. Consult your doctor for a safe and effective weight loss plan.';
         colorClass = 'text-red-600';
         borderColor = 'border-red-400';
     }
@@ -1848,10 +1848,10 @@ const validateTargetWeight = () => {
     if (weightDiffElement && weightChangeText && Math.abs(difference) > 0.1) {
         weightDiffElement.classList.remove('hidden');
         if (difference > 0) {
-            weightChangeText.textContent = t('paywall_screen.goal_weight.wanna_gain') + ` ${Math.abs(difference).toFixed(1)} kg`;
+            weightChangeText.textContent = `You want to gain ${Math.abs(difference).toFixed(1)} kg`;
             weightChangeText.className = 'text-green-600 font-medium';
         } else {
-            weightChangeText.textContent = t('paywall_screen.goal_weight.wanna_lose') + ` ${Math.abs(difference).toFixed(1)} kg`;
+            weightChangeText.textContent = `You want to lose ${Math.abs(difference).toFixed(1)} kg`;
             weightChangeText.className = 'text-blue-600 font-medium';
         }
     }
@@ -2022,10 +2022,10 @@ const showLoadingScreen = () => {
         let progress = 0;
         const steps = ['step1', 'step2', 'step3', 'step4'];
         const stepTexts = [
-            t('loading_screen.step_1'),
-            t('loading_screen.step_2'),
-            t('loading_screen.step_3'),
-            t('loading_screen.step_4')
+            'Step 1',
+            'Step 2',
+            'Step 3',
+            'Step 4'
         ];
 
         const interval = setInterval(() => {
@@ -2111,15 +2111,15 @@ const showPaywallCTA = () => {
 const updateSummaryData = () => {
     // Update goal
     const goalMap = {
-        'lose_weight': t('summary_screen.lose_weight'),
-        'maintain_weight': t('summary_screen.maintain_weight'),
-        'gain_weight': t('summary_screen.gain_weight'),
-        'healthy_eating': t('summary_screen.healthy_eating')
+        'lose_weight': 'Lose weight',
+        'maintain_weight': 'Maintain weight',
+        'gain_weight': 'Gain weight',
+        'healthy_eating': 'Healthy eating'
     };
 
     const goalSummary = document.getElementById('userGoalSummary');
     if (goalSummary && selectedGoal) {
-        goalSummary.textContent = goalMap[selectedGoal] || t('summary_screen.lose_weight');
+        goalSummary.textContent = goalMap[selectedGoal] || 'Lose weight';
     }
 
     // Update target weight
@@ -2247,10 +2247,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (weightDiffElement && weightChangeText && Math.abs(difference) > 0.1) {
                     weightDiffElement.classList.remove('hidden');
                     if (difference > 0) {
-                        weightChangeText.textContent = t('paywall_screen.goal_weight.wanna_gain') + ` ${Math.abs(difference).toFixed(1)} kg`;
+                        weightChangeText.textContent = `You want to gain ${Math.abs(difference).toFixed(1)} kg`;
                         weightChangeText.className = 'text-green-600 font-medium';
                     } else {
-                        weightChangeText.textContent = t('paywall_screen.goal_weight.wanna_lose') + ` ${Math.abs(difference).toFixed(1)} kg`;
+                        weightChangeText.textContent = `You want to lose ${Math.abs(difference).toFixed(1)} kg`;
                         weightChangeText.className = 'text-blue-600 font-medium';
                     }
                 } else if (weightDiffElement) {
