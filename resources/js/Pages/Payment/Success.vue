@@ -95,8 +95,13 @@ if (!sessionId) {
 
                     eventTracking('confirm_purchased_with_store', {
                         pi_id: data.data.pi_id || null,
+<<<<<<< HEAD
                         invoice_id: data.data.invoice_id || null,
                         subscription_id: data.data.subscription_id || null,
+=======
+                        invoice_id: data.data.invoiceId || null,
+                        subscription_id: data.data.subscriptionId || null,
+>>>>>>> dev
                         customerId: data.data.customerId || null,
                         value: Math.round(data.data.amountTotal) / 100 || null,
                         original_price: Math.round(data.data.amountSubtotal) / 100 || null,

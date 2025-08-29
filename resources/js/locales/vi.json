@@ -117,11 +117,15 @@
         "next_btn": "Tiếp tục"
     },
     "goal_weight_screen": {
-        "BMI": {
+        "bmi": {
             "title": "BMI của bạn",
             "calculating": "Đang tính toán ...",
             "analying": "Đang phân tích...",
+<<<<<<< HEAD
             "text_2": "Chỉ số khối cơ thể của bạn",
+=======
+            "text": "Chỉ số khối cơ thể của bạn",
+>>>>>>> dev
             "reference": "Tham khảo: WHO & Mayo Clinic",
             "quote": {
                 "underweight": {
@@ -345,7 +349,7 @@
                 "description": "3-6 tháng"
             }
         },
-        "remommendation": {
+        "recommendation": {
             "title": "Kiến nghị của Heka AI",
             "description": "Để hoàn thành mục tiêu một cách đơn giản và hiệu quả nhất, chúng tôi khuyên bạn nên sử dụng <b>gói Premium</b>.",
             "statistical": {
